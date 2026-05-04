@@ -1,0 +1,124 @@
+.plp {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--colour-neutral-white);
+}
+
+.plp__sticky {
+  flex-shrink: 0;
+}
+
+.plp__scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-0) var(--space-16);
+  padding-bottom: var(--space-16);
+  -webkit-overflow-scrolling: touch;
+}
+
+.plp__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: stretch;
+}
+
+/* Framer Motion wrapper needs to fill the grid cell */
+.plp__grid > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.plp__grid > * > .product-card {
+  flex: 1;
+}
+
+/* ─── Loading skeleton ─────────────────────────────────────────────────────── */
+@keyframes plp-skel-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.plp-skel {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--grey-200) 0%,
+    var(--grey-100) 40%,
+    var(--grey-200) 80%
+  );
+  background-size: 200% 100%;
+  animation: plp-skel-shimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+.plp-skel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+.plp-skel-back {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex: 0 0 24px;
+}
+.plp-skel-title {
+  height: 18px;
+  border-radius: 6px;
+  flex: 1;
+}
+.plp-skel-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex: 0 0 24px;
+}
+
+.plp-skel-tabs {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px 12px;
+  overflow: hidden;
+}
+.plp-skel-tab {
+  height: 32px;
+  width: 88px;
+  flex: 0 0 88px;
+  border-radius: 16px;
+}
+
+.plp-skel-filters {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+  overflow: hidden;
+}
+.plp-skel-chip {
+  height: 32px;
+  width: 88px;
+  flex: 0 0 88px;
+  border-radius: 16px;
+}
+
+.plp-skel-line {
+  height: 12px;
+  border-radius: 6px;
+}
+
+.plp-skel-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--colour-neutral-white);
+}
+.plp-skel-card-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+}

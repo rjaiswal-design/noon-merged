@@ -1,0 +1,111 @@
+.bottom-nav {
+  --bottom-nav-height: 64px;
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--bottom-nav-height);
+  display: flex;
+  align-items: stretch;
+  background: #ffffff;
+  border-top: 1px solid #EAECF0;
+  z-index: 100;
+  transform: translateY(0);
+  margin-bottom: 0;
+  transition:
+    transform     0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, margin-bottom;
+}
+
+.bottom-nav--hidden {
+  transform: translateY(100%);
+  margin-bottom: calc(-1 * var(--bottom-nav-height));
+}
+
+.bottom-nav__item {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav__icon {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.bottom-nav__label {
+  font-family: var(--font-primary, 'Noontree', system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  color: #475067;
+  line-height: 14px;
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+}
+
+.bottom-nav__item--active .bottom-nav__label {
+  color: #0F61FF;
+  font-weight: 700;
+}
+
+/* Center brand button — noon yellow pill, lifted slightly */
+.bottom-nav__brand {
+  flex: 0 0 56px;
+  align-self: center;
+  width: 56px;
+  height: 40px;
+  margin: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FEEE00;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(254, 238, 0, 0.45);
+  transition: transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav__brand:active {
+  transform: scale(0.96);
+}
+
+.bottom-nav__brand-mark {
+  font-family: var(--font-primary, 'Noontree', system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 800;
+  color: #1D2539;
+  letter-spacing: -0.4px;
+}
+
+.bottom-nav__cart-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.bottom-nav__badge {
+  position: absolute;
+  top: -3px;
+  right: -7px;
+  background: #F4364C;
+  color: #ffffff;
+  font-family: var(--font-primary, 'Noontree', system-ui, sans-serif);
+  font-size: 9px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 1.5px solid #ffffff;
+  line-height: 1;
+}
