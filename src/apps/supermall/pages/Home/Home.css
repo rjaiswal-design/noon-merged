@@ -713,7 +713,7 @@
   height: 44px;
   border-radius: 12px;
   background: rgba(249, 249, 251, 1);
-  border: 1px solid var(--grey-100);
+  border: 1px solid var(--grey-300);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -757,7 +757,7 @@
   aspect-ratio: 1;
   border-radius: 16px;
   background: var(--colour-neutral-white);
-  border: 1px solid var(--grey-100);
+  border: 1px solid var(--grey-300);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -810,7 +810,7 @@
   flex: 0 0 calc(100vw - 44px);
   background: #ffffff;
   border-radius: 20px;
-  border: 1px solid var(--grey-100);
+  border: 1px solid var(--grey-300);
   box-shadow: none;
   padding: 16px;
   display: flex;
@@ -845,7 +845,7 @@
   aspect-ratio: 1;
   background: #f5f5f7;
   border-radius: 12px;
-  border: 1px solid var(--grey-100);
+  border: 1px solid var(--grey-300);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1083,7 +1083,7 @@
 .home-coupon {
   background: var(--colour-neutral-white);
   border-radius: 16px;
-  border: 1px solid var(--grey-100);
+  border: 1px solid var(--grey-300);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -1232,7 +1232,7 @@
 .home-bill {
   background: var(--colour-neutral-white);
   border-radius: 16px;
-  border: 1px solid var(--grey-100);
+  border: 1px solid var(--grey-300);
   padding: 16px;
   box-shadow: none;
 }
