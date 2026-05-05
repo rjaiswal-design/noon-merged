@@ -1,18 +1,25 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { BottomNav } from '@ui/BottomNav';
+import type { Tab } from '@ui/BottomNav/BottomNav';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
-
-type Tab = 'home' | 'categories' | 'account' | 'cart';
 
 function tabForPath(p: string): Tab | undefined {
   if (p === '/supermall' || p === '/supermall/') return 'home';
   if (p.startsWith('/supermall/shop')) return 'categories';
-  if (p === '/supermall/account') return 'account';
+  if (p === '/supermall/account') return 'profile';
   if (p === '/supermall/cart') return 'cart';
   return undefined;
 }
+
+const TAB_ROUTES: Record<Tab, string> = {
+  home: '/supermall',
+  categories: '/supermall/shop',
+  deals: '/supermall',
+  profile: '/supermall/account',
+  cart: '/supermall/cart',
+};
 
 // The bottom nav is shared chrome across the whole app. It hides on:
 //   - any PDP (sticky add-to-cart owns the bottom there)
@@ -32,6 +39,7 @@ function shouldHide(pathname: string, search: string, noonOneShowsNav: boolean):
 
 export function RootShell({ children }: { children: ReactNode }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const cartCount = useCartStore((s) => s.itemCount());
   const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
 
@@ -60,7 +68,7 @@ export function RootShell({ children }: { children: ReactNode }) {
   return (
     <>
       {children}
-      {!hidden && <BottomNav active={activeTab} cartCount={cartCount} />}
+      {/* BottomNav moved into supermall RootLayout so it lives inside .app-frame */}
     </>
   );
 }

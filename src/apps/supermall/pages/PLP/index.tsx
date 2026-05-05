@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
-import { ProductCard } from '../../components/ui/ProductCard/ProductCard';
+import { ProductCard } from '@ui';
 import { PLPHeader } from './components/PLPHeader';
 import { CategoryTabs } from './components/CategoryTabs';
 import { FilterBar } from './components/FilterBar';

@@ -1,90 +1,57 @@
 import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  HomeDefault, HomeSelected,
+  CategoriesDefault, CategoriesSelected,
+  DealsDefault, DealsSelected,
+  ProfileDefault, ProfileSelected,
+  CartDefault, CartSelected,
+} from './BottomNavIcons';
 import './BottomNav.css';
 
 const HIDE_AFTER_PX = 24;
 const DELTA_PX = 6;
 
-type Tab = 'home' | 'categories' | 'account' | 'cart';
+export type Tab = 'home' | 'categories' | 'deals' | 'profile' | 'cart';
 
-type Props = {
-  active?: Tab;
-  /** Cart badge count. Pass 0/undefined to hide. */
+export type BottomNavProps = {
+  activeTab?: Tab;
+  showDeals?: boolean;
   cartCount?: number;
+  onTabChange?: (tab: Tab) => void;
 };
 
-function HomeIcon({ active }: { active: boolean }) {
-  return active ? (
-    <svg viewBox="0 0 24 24" className="bottom-nav__icon" aria-hidden="true">
-      <path
-        d="M11.36 3.45a1 1 0 0 1 1.28 0l8 6.65a1 1 0 0 1 .36.77V20a1 1 0 0 1-1 1h-4.5a1 1 0 0 1-1-1v-5h-3.5v5a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1v-9.13a1 1 0 0 1 .36-.77l7.5-6.65Z"
-        fill="#0F61FF"
-      />
-    </svg>
-  ) : (
-    <svg viewBox="0 0 24 24" className="bottom-nav__icon" fill="none" aria-hidden="true">
-      <path
-        d="M3.86 10.1 12 3.45l8.14 6.65V20a1 1 0 0 1-1 1h-4.5v-6h-5.28v6h-4.5a1 1 0 0 1-1-1v-9.9Z"
-        stroke="#1D2539"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+const COLOR_ACTIVE = 'var(--color-text-action, #0f61ff)';
+const COLOR_DEFAULT = 'var(--color-text-tertiary, #666d85)';
+
+function TabIcon({ id, active }: { id: Tab; active: boolean }) {
+  const color = active ? COLOR_ACTIVE : COLOR_DEFAULT;
+  switch (id) {
+    case 'home': return active ? <HomeSelected color={color} /> : <HomeDefault color={color} />;
+    case 'categories': return active ? <CategoriesSelected color={color} /> : <CategoriesDefault color={color} />;
+    case 'deals': return active ? <DealsSelected color={color} /> : <DealsDefault color={color} />;
+    case 'profile': return active ? <ProfileSelected color={color} /> : <ProfileDefault color={color} />;
+    case 'cart': return active ? <CartSelected color={color} /> : <CartDefault color={color} />;
+  }
 }
 
-function CategoriesIcon({ active }: { active: boolean }) {
-  const fill = active ? '#0F61FF' : 'none';
-  const stroke = active ? '#0F61FF' : '#1D2539';
-  return (
-    <svg viewBox="0 0 24 24" className="bottom-nav__icon" aria-hidden="true">
-      <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.8" fill={fill} stroke={stroke} strokeWidth="1.6" />
-      <rect x="13" y="3.5" width="7.5" height="7.5" rx="1.8" fill={fill} stroke={stroke} strokeWidth="1.6" />
-      <rect x="3.5" y="13" width="7.5" height="7.5" rx="1.8" fill={fill} stroke={stroke} strokeWidth="1.6" />
-      <rect x="13" y="13" width="7.5" height="7.5" rx="1.8" fill={fill} stroke={stroke} strokeWidth="1.6" />
-    </svg>
-  );
-}
+const TABS: Tab[] = ['home', 'categories', 'deals', 'profile', 'cart'];
+const TAB_LABELS: Record<Tab, string> = {
+  home: 'Home',
+  categories: 'Categories',
+  deals: 'Deals',
+  profile: 'Profile',
+  cart: 'Cart',
+};
 
-function AccountIcon({ active }: { active: boolean }) {
-  return active ? (
-    <svg viewBox="0 0 24 24" className="bottom-nav__icon" aria-hidden="true">
-      <circle cx="12" cy="8.5" r="4" fill="#0F61FF" />
-      <path d="M4 20c0-3.6 3.6-6 8-6s8 2.4 8 6v.5a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5V20Z" fill="#0F61FF" />
-    </svg>
-  ) : (
-    <svg viewBox="0 0 24 24" className="bottom-nav__icon" fill="none" aria-hidden="true">
-      <circle cx="12" cy="8.5" r="3.6" stroke="#1D2539" strokeWidth="1.6" />
-      <path d="M4 20c0-3.6 3.6-6 8-6s8 2.4 8 6" stroke="#1D2539" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  );
-}
+const iconTransition = { duration: 0.25, ease: [0.22, 1, 0.36, 1] as const };
 
-function CartIcon({ active }: { active: boolean }) {
-  return active ? (
-    <svg viewBox="0 0 24 24" className="bottom-nav__icon" aria-hidden="true">
-      <path
-        d="M3 4.5a1 1 0 0 1 1-1h2.05a1 1 0 0 1 .98.81l.32 1.69H21a1 1 0 0 1 .97 1.24l-1.85 7.4a1.5 1.5 0 0 1-1.46 1.13H8.4l.32 1.73h10.78a1 1 0 0 1 0 2H8.05a1.5 1.5 0 0 1-1.47-1.22L4.45 5.5H4a1 1 0 0 1-1-1Z"
-        fill="#0F61FF"
-      />
-      <circle cx="9.5" cy="20" r="1.6" fill="#0F61FF" />
-      <circle cx="17.5" cy="20" r="1.6" fill="#0F61FF" />
-    </svg>
-  ) : (
-    <svg viewBox="0 0 24 24" className="bottom-nav__icon" fill="none" aria-hidden="true">
-      <path
-        d="M3 4.5h2.7l2.1 11.5h11.4l2-7.5H7.5"
-        stroke="#1D2539"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      <circle cx="9.5" cy="20" r="1.5" stroke="#1D2539" strokeWidth="1.6" />
-      <circle cx="17" cy="20" r="1.5" stroke="#1D2539" strokeWidth="1.6" />
-    </svg>
-  );
-}
-
-export function BottomNav({ active, cartCount = 0 }: Props) {
+export function BottomNav({
+  activeTab = 'home',
+  showDeals = true,
+  cartCount = 0,
+  onTabChange,
+}: BottomNavProps) {
   const [hidden, setHidden] = useState(false);
   const lastTopsRef = useRef(new WeakMap<Element, number>());
 
@@ -119,39 +86,82 @@ export function BottomNav({ active, cartCount = 0 }: Props) {
     return () => document.removeEventListener('scroll', onScroll, true);
   }, []);
 
-  const itemClass = (tab: Tab) =>
-    `bottom-nav__item${active === tab ? ' bottom-nav__item--active' : ''}`;
+  const tabs = showDeals ? TABS : TABS.filter((t) => t !== 'deals');
 
   return (
     <nav className={`bottom-nav${hidden ? ' bottom-nav--hidden' : ''}`}>
-      <a href="/supermall" className={itemClass('home')}>
-        <HomeIcon active={active === 'home'} />
-        <span className="bottom-nav__label">Home</span>
-      </a>
+      <div className="bottom-nav__bar">
+        {tabs.map((id) => {
+          const isActive = activeTab === id;
+          return (
+            <button
+              key={id}
+              type="button"
+              className={`bottom-nav__tab${isActive ? ' bottom-nav__tab--active' : ''}`}
+              onClick={() => onTabChange?.(id)}
+              aria-label={TAB_LABELS[id]}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {/* Highlight bar — animate in/out */}
+              <motion.div
+                className="bottom-nav__highlight"
+                animate={{
+                  scaleX: isActive ? 1 : 0,
+                  opacity: isActive ? 1 : 0,
+                }}
+                initial={false}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+                style={{ originX: 0.5 }}
+              />
 
-      <a href="/supermall/shop" className={itemClass('categories')}>
-        <CategoriesIcon active={active === 'categories'} />
-        <span className="bottom-nav__label">Categories</span>
-      </a>
+              <div className="bottom-nav__content">
+                {/* Icon — cross-fade between default/selected */}
+                <div className="bottom-nav__icon">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={`${id}-${isActive}`}
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.85 }}
+                      transition={iconTransition}
+                      style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      {id === 'cart' && cartCount > 0 ? (
+                        <span className="bottom-nav__badge-wrap">
+                          <TabIcon id={id} active={isActive} />
+                          <span className="bottom-nav__badge">
+                            {cartCount > 99 ? '99+' : cartCount}
+                          </span>
+                        </span>
+                      ) : (
+                        <TabIcon id={id} active={isActive} />
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
 
-      <button type="button" className="bottom-nav__brand" aria-label="noon">
-        <span className="bottom-nav__brand-mark">noon</span>
-      </button>
-
-      <a href="/supermall/account" className={itemClass('account')}>
-        <AccountIcon active={active === 'account'} />
-        <span className="bottom-nav__label">Account</span>
-      </a>
-
-      <a href="/supermall/cart" className={itemClass('cart')}>
-        <span className="bottom-nav__cart-wrap">
-          <CartIcon active={active === 'cart'} />
-          {cartCount > 0 && (
-            <span className="bottom-nav__badge">{cartCount > 99 ? '99+' : cartCount}</span>
-          )}
-        </span>
-        <span className="bottom-nav__label">Cart</span>
-      </a>
+                {/* Label — animate color + weight */}
+                <motion.span
+                  className="bottom-nav__label"
+                  animate={{
+                    color: isActive
+                      ? 'var(--color-text-action, #0f61ff)'
+                      : 'var(--color-text-tertiary, #666d85)',
+                    fontWeight: isActive ? 700 : 500,
+                  }}
+                  initial={false}
+                  transition={{ duration: 0.25 }}
+                >
+                  {TAB_LABELS[id]}
+                </motion.span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+      <div className="bottom-nav__home-bar">
+        <div className="bottom-nav__home-bar-pill" />
+      </div>
     </nav>
   );
 }

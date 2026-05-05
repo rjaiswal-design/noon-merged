@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, SearchIcon } from '../../../components/ui/icons';
+import { ChevronLeft, SearchIcon } from '@ui';
 import './PLPHeader.css';
 
 interface PLPHeaderProps {

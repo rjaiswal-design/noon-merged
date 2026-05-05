@@ -2,14 +2,14 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
-import { ProductCard } from '../../components/ui/ProductCard/ProductCard';
 import {
+  ProductCard,
   CameraIcon,
   ChevronDown,
   HeartFilled,
   SearchIcon,
   SparkleIcon,
-} from '../../components/ui/icons';
+} from '@ui';
 import type { Product } from '../../types/product';
 import { DIRHAM } from '../../data/mockProducts';
 import { homeTabIconAssets } from './tabIcons';
@@ -534,7 +534,7 @@ function CategoryShowcase() {
       >
         <div
           className="home-showcase__track"
-          style={{ transform: `translateX(calc(-${current} * (100vw - 32px)))` }}
+          style={{ transform: `translateX(-${current * 343}px)` }}
         >
           {showcaseSlides.map((slide) => (
             <div key={slide.id} className="home-showcase__slide">
@@ -551,7 +551,12 @@ function CategoryShowcase() {
               <div className="home-showcase__grid">
                 {slide.images.map((img, i) => (
                   <div key={i} className="home-showcase__grid-item">
-                    <img src={img} alt="" loading="lazy" />
+                    <img
+                      src={img}
+                      alt=""
+                      loading="lazy"
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                    />
                   </div>
                 ))}
               </div>

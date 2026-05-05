@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
-import { ChevronLeft, ChevronDown, ChevronRight } from '../../components/ui/icons';
+import { ChevronLeft, ChevronDown, ChevronRight } from '@ui';
 import './Cart.css';
 import '../Home/Home.css';
 import { CouponBottomSheet, SHEET_COUPONS } from './CouponBottomSheet';

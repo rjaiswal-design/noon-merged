@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: var(--color-surface-primary, #F9F9FB);
+  font-family: 'Noontree', ui-sans-serif, system-ui, sans-serif;
+  color: var(--color-text-primary, rgba(2, 6, 12, 0.92));
+}

@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
-import type { Product } from '../../../types/product';
+import type { Product } from '@/apps/supermall/types/product';
 import { AddToCart } from '../AddToCart/AddToCart';
 import { HeartOutline, HeartFilled, StarFilled, MoonIcon } from '../icons';
 import './ProductCard.css';

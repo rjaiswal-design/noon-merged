@@ -239,7 +239,7 @@ function MainInfo() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto -mx-1 px-1">
+        <div className="flex items-center gap-2 overflow-x-auto -mx-1 px-1 hide-scrollbar">
           <div className="flex shrink-0 items-center gap-2 rounded-lg border border-dashed border-emerald-700/40 bg-[#f6fefd] py-1.5 pl-1.5 pr-2">
             <CouponIcon />
             <span className="text-[14px] font-semibold leading-[18px] tracking-[-0.14px] text-bluegray-900 whitespace-nowrap">Extra 15%, CODE: ENDD15</span>
@@ -272,7 +272,7 @@ function ComboCard() {
   return (
     <section className="mx-3 rounded-2xl bg-white px-4 py-3">
       <h3 className="text-base leading-5 font-semibold text-bluegray-1000">In this combo</h3>
-      <div className="mt-3 flex gap-2 overflow-x-auto pb-1 h-[72px]">
+      <div className="mt-3 flex gap-2 overflow-x-auto pb-1 h-[72px] hide-scrollbar">
         {[1, 2].map((item) => (
           <article key={item} className="min-w-[228px] rounded-2xl border border-bluegray-200 p-1.5">
             <div className="flex gap-3 items-center">

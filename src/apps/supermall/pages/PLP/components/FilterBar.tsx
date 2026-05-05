@@ -1,4 +1,4 @@
-import { FilterIcon, SortIcon, ChevronDown } from '../../../components/ui/icons';
+import { FilterIcon, SortIcon, ChevronDown } from '@ui';
 import './FilterBar.css';
 
 const CHIPS = [
