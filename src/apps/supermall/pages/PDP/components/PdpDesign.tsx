@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./PdpDesign.css";
 
 // — Product images (PNG) —
@@ -136,11 +137,17 @@ const ASSETS = {
 };
 
 function HeaderButtons() {
+  const navigate = useNavigate();
   const btn =
     "h-10 w-10 rounded-full border border-bluegray-200 bg-white/90 flex items-center justify-center";
   return (
     <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between p-3">
-      <button className={btn} aria-label="Back">
+      <button
+        type="button"
+        className={btn}
+        aria-label="Back"
+        onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/shop'); }}
+      >
         <img src={ASSETS.back} alt="" className="h-5 w-5" />
       </button>
       <div className="flex gap-2">
@@ -994,7 +1001,7 @@ function BottomBar() {
 
 export default function PdpDesign() {
   return (
-    <main className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-gradient-to-b from-white to-[#F3F3F7] flex flex-col gap-3 overflow-y-auto">
+    <div className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-gradient-to-b from-white to-[#F3F3F7] flex flex-col gap-3 overflow-y-auto">
       <section className="relative">
         <HeaderButtons />
         <img src={ASSETS.productImage} alt="iPhone" className="h-[512px] w-full object-cover" />
@@ -1021,6 +1028,6 @@ export default function PdpDesign() {
       <SellerWidget />
       <ProductFeatures />
       <BottomBar />
-    </main>
+    </div>
   );
 }
