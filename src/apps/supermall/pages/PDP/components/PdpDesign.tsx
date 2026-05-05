@@ -1001,7 +1001,7 @@ function BottomBar() {
 
 export default function PdpDesign() {
   return (
-    <div className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-gradient-to-b from-white to-[#F3F3F7] flex flex-col gap-3 overflow-y-auto">
+    <div className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-[#F9F9FB] flex flex-col gap-3 overflow-y-auto">
       <section className="relative">
         <HeaderButtons />
         <img src={ASSETS.productImage} alt="iPhone" className="h-[512px] w-full object-cover" />
