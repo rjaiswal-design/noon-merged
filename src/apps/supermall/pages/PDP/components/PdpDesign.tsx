@@ -271,7 +271,7 @@ function MainInfo() {
 function ComboCard() {
   return (
     <section className="mx-3 rounded-2xl bg-white px-4 py-3">
-      <h3 className="text-base leading-5 font-bold text-bluegray-1000">In this combo</h3>
+      <h3 className="text-base leading-5 font-semibold text-bluegray-1000">In this combo</h3>
       <div className="mt-3 flex gap-2 overflow-x-auto pb-1 h-[72px]">
         {[1, 2].map((item) => (
           <article key={item} className="min-w-[228px] rounded-2xl border border-bluegray-200 p-1.5">
@@ -321,7 +321,7 @@ function DeliveryCard() {
   return (
     <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-2">
       <div className="flex items-center justify-between">
-        <h3 className="text-[15px] leading-[19px] font-bold text-bluegray-1000">Delivery Information</h3>
+        <h3 className="text-[15px] leading-[19px] font-semibold text-bluegray-1000">Delivery Information</h3>
         <span className="flex items-center gap-1 rounded-full bg-[#fff7ed] px-1.5 py-0.5 text-[11px] font-semibold text-bluegray-900">
           <span className="rounded bg-[#FEEE00] px-1.5 py-px text-[10px] font-bold italic leading-[14px] text-bluegray-1000">one</span>
           member
@@ -390,7 +390,7 @@ function FreeGifts() {
   ];
   return (
     <section className="mx-3 rounded-2xl bg-white px-3 py-3">
-      <h3 className="text-[15px] leading-[19px] font-bold text-bluegray-1000">Free gifts for you</h3>
+      <h3 className="text-[15px] leading-[19px] font-semibold text-bluegray-1000">Free gifts for you</h3>
       <div className="mt-3 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
         {gifts.map((g) => (
           <article
@@ -477,7 +477,7 @@ function VariantPicker() {
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 px-0.5">
-            <p className="flex-1 text-[15px] font-bold leading-[17px] text-bluegray-1000">Versions</p>
+            <p className="flex-1 text-[15px] font-semibold leading-[17px] text-bluegray-1000">Versions</p>
             <div className="flex items-center gap-0.5">
               <img src={ASSETS.info} alt="" className="h-4 w-4" />
               <span className="text-[13px] font-semibold leading-[15px] text-accent-700">Learn more</span>
@@ -488,7 +488,7 @@ function VariantPicker() {
 
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2">
-            <p className="flex-1 text-[15px] font-bold leading-[17px] text-bluegray-1000">Charger Model</p>
+            <p className="flex-1 text-[15px] font-semibold leading-[17px] text-bluegray-1000">Charger Model</p>
             <span className="text-[13px] font-semibold leading-[15px] text-accent-700">Size Guide</span>
           </div>
           <ChipGroup options={["UK 3 PIN", "US 2 PIN"]} selectedIndex={0} />
@@ -496,7 +496,7 @@ function VariantPicker() {
 
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 px-0.5">
-            <p className="flex-1 text-[15px] font-bold leading-[17px] text-bluegray-1000">Colour</p>
+            <p className="flex-1 text-[15px] font-semibold leading-[17px] text-bluegray-1000">Colour</p>
             <span className="text-[13px] font-semibold leading-[15px] text-accent-700">View All</span>
           </div>
           <div className="flex gap-3">
@@ -552,7 +552,7 @@ function PaymentOffers() {
   const logoBox = "h-10 w-[60px] shrink-0 flex items-center justify-center overflow-hidden rounded-lg";
   return (
     <section className="mx-3 rounded-2xl bg-white px-0 py-3 flex flex-col gap-3">
-      <h2 className="px-3.5 text-[15px] font-bold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
+      <h2 className="px-3.5 text-[15px] font-semibold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
         Payment offers
       </h2>
       <div className="flex gap-2 overflow-x-auto px-3 pb-1">
@@ -854,7 +854,7 @@ function SellerWidget() {
 function ProductFeatures() {
   return (
     <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-3">
-      <h2 className="px-0.5 text-[15px] font-bold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
+      <h2 className="px-0.5 text-[15px] font-semibold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
         Product Features
       </h2>
       <div className="relative w-full overflow-hidden rounded-lg">
@@ -898,7 +898,7 @@ function AdditionalInformation() {
   ];
   return (
     <section className="mx-3 rounded-2xl bg-white px-3 py-4 flex flex-col gap-3">
-      <h2 className="px-0.5 text-[15px] font-bold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
+      <h2 className="px-0.5 text-[15px] font-semibold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
         Additional Information
       </h2>
       <div className="flex flex-col gap-2">
@@ -923,7 +923,7 @@ function ExtendedWarranty() {
     <section className="mx-3 rounded-2xl bg-white px-3 py-4 flex flex-col gap-3">
       {/* Header */}
       <div className="flex items-center justify-between px-0.5">
-        <h2 className="text-[15px] font-bold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
+        <h2 className="text-[15px] font-semibold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
           Extended warranty
         </h2>
         <div className="flex items-center gap-1 opacity-80">
@@ -1000,7 +1000,7 @@ function ProductDetails() {
 
   return (
     <section className="mx-3 rounded-2xl bg-white px-3 py-4 flex flex-col gap-3">
-      <h2 className="px-0.5 text-[15px] font-bold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
+      <h2 className="px-0.5 text-[15px] font-semibold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
         Product Details
       </h2>
       <div className="flex flex-col gap-2">
@@ -1058,7 +1058,7 @@ function FrequentlyBoughtTogether() {
   ];
   return (
     <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-3">
-      <h2 className="text-[15px] font-bold leading-[19px] text-bluegray-1000">Frequently bought together</h2>
+      <h2 className="text-[15px] font-semibold leading-[19px] text-bluegray-1000">Frequently bought together</h2>
       <div className="flex items-stretch gap-1.5">
         {items.map((item, idx) => (
           <div key={item.name} className="flex flex-1 items-stretch gap-1">
@@ -1105,7 +1105,7 @@ function RatingsReviews() {
   return (
     <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-3">
       <div className="flex flex-col gap-1">
-        <h2 className="text-[15px] font-bold leading-[19px] text-bluegray-1000">Ratings & Reviews</h2>
+        <h2 className="text-[15px] font-semibold leading-[19px] text-bluegray-1000">Ratings & Reviews</h2>
         <div className="flex items-center gap-1.5">
           <span className="text-[24px] font-bold leading-7 text-bluegray-1000">4.8</span>
           <span className="flex gap-0.5 text-emerald-700 text-[18px]">★★★★<span className="text-bluegray-300">★</span></span>
@@ -1132,7 +1132,7 @@ function RatingsReviews() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-[14px] font-bold text-bluegray-1000">Photo Reviews (64)</h3>
+        <h3 className="text-[14px] font-semibold text-bluegray-1000">Photo Reviews (64)</h3>
         <div className="flex gap-1.5 overflow-x-auto -mx-1 px-1">
           {[ASSETS.airpods, ASSETS.adThumb, ASSETS.airpods, ASSETS.adThumb].map((img, i) => (
             <div key={i} className="h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-bluegray-100">
@@ -1143,7 +1143,7 @@ function RatingsReviews() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-[14px] font-bold text-bluegray-1000">Top Reviews (64)</h3>
+        <h3 className="text-[14px] font-semibold text-bluegray-1000">Top Reviews (64)</h3>
         {reviews.map((r, i) => (
           <article key={i} className="flex flex-col gap-2 rounded-xl border border-bluegray-200 p-3">
             <div className="flex items-center justify-between">
@@ -1206,7 +1206,7 @@ function ProductCarousel({ title, highlightWord }: { title: string; highlightWor
   ];
   return (
     <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-3">
-      <h2 className="text-[15px] font-bold leading-[19px] text-bluegray-1000">
+      <h2 className="text-[15px] font-semibold leading-[19px] text-bluegray-1000">
         {highlightWord
           ? <>{title.replace(highlightWord, '')} <span className="text-accent-700">"{highlightWord}"</span></>
           : title}
