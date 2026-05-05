@@ -1,6 +1,6 @@
 import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RootShell } from './shell/RootShell'
 import '@tokens/index.css'
@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/share-address/*" element={<ShareAddressApp />} />
               <Route path="/one-flows/*"     element={<OneFlowsApp />} />
               <Route path="/wishlist/*"      element={<WishlistApp />} />
-              <Route path="/"                element={<Hub />} />
+              <Route path="/"                element={<Navigate to="/supermall" replace />} />
             </Routes>
           </Suspense>
         </RootShell>
