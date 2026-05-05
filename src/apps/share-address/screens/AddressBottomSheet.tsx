@@ -28,7 +28,7 @@ const initialAddresses: AddressItem[] = [
   },
   {
     id: 'ayush-home',
-    title: "Ayush’s Home",
+    title: "Ayush's Home",
     distance: '24 km',
     address: 'Burj Khalifa, 1 Sheikh Mohammed bin Rashid Blvd, Downtown Dubai',
     contactName: 'Ahmed Ali,',
@@ -37,7 +37,7 @@ const initialAddresses: AddressItem[] = [
   },
   {
     id: 'ayush-home-2',
-    title: "Ayush’s Home 02",
+    title: "Ayush's Home 02",
     distance: '24 m',
     address: 'Burj Khalifa, 1 Sheikh Mohammed bin Rashid Blvd, Downtown Dubai',
     contactName: 'Ahmed Ali,',
@@ -65,6 +65,27 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
   const [tabSqueezing, setTabSqueezing] = useState(false)
   const [addressList, setAddressList] = useState<AddressItem[]>(initialAddresses)
   const [deletingId, setDeletingId] = useState<string | null>(null)
+
+  // ── GST state ──────────────────────────────────────────────────────────
+  const [gstEnabled, setGstEnabled] = useState(false)
+  const [gstin, setGstin] = useState('')
+  const [gstCompany, setGstCompany] = useState('')
+  const [gstSaved, setGstSaved] = useState(false)
+
+  const handleGstToggle = () => {
+    if (gstEnabled) {
+      setGstEnabled(false)
+      setGstSaved(false)
+      setGstin('')
+      setGstCompany('')
+    } else {
+      setGstEnabled(true)
+    }
+  }
+
+  const handleGstSave = () => setGstSaved(true)
+  const handleGstEdit = () => setGstSaved(false)
+  // ───────────────────────────────────────────────────────────────────────
 
   const secondaryTarget =
     secondary !== null ? addressList.find((a) => a.id === secondary.addressId) ?? null : null
@@ -115,7 +136,25 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
       </div>
 
       <SheetShell open={open} onDragClose={onClose}>
-        <div className="flex flex-col gap-3 p-3">
+        <div
+          className="flex flex-col gap-3 p-3 overflow-y-auto overscroll-contain"
+          style={{ maxHeight: 'calc(100vh - 120px)' }}
+        >
+
+          {/* ── GST Flow ────────────────────────────────────────────────── */}
+          <GSTSection
+            enabled={gstEnabled}
+            onToggle={handleGstToggle}
+            gstin={gstin}
+            company={gstCompany}
+            onGstinChange={setGstin}
+            onCompanyChange={setGstCompany}
+            onSave={handleGstSave}
+            onEdit={handleGstEdit}
+            saved={gstSaved}
+          />
+          {/* ─────────────────────────────────────────────────────────── */}
+
           <div
             role="tablist"
             className="relative flex h-[42px] w-full items-center rounded-[999px] bg-blue-gray-200 p-1"
@@ -213,6 +252,258 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
     </>
   )
 }
+
+// ─── GST Section ────────────────────────────────────────────────────────────
+
+type GSTSectionProps = {
+  enabled: boolean
+  onToggle: () => void
+  gstin: string
+  company: string
+  onGstinChange: (v: string) => void
+  onCompanyChange: (v: string) => void
+  onSave: () => void
+  onEdit: () => void
+  saved: boolean
+}
+
+function GSTSection({
+  enabled,
+  onToggle,
+  gstin,
+  company,
+  onGstinChange,
+  onCompanyChange,
+  onSave,
+  onEdit,
+  saved,
+}: GSTSectionProps) {
+  const isValid = gstin.trim().length === 15 && company.trim().length > 0
+
+  const subtitleText =
+    enabled && saved
+      ? `${gstin}  •  ${company.length > 22 ? company.slice(0, 22) + '…' : company}`
+      : 'Add your GSTIN for a business invoice'
+
+  return (
+    <Squircle
+      cornerRadius={16}
+      cornerSmoothing={0.6}
+      borderColor={enabled ? '#D0E3FF' : '#EAECF0'}
+      className="bg-neutral-white"
+    >
+      <div
+        className={cn(
+          'flex flex-col transition-colors duration-300',
+          enabled ? 'bg-[#EFF7FF]' : 'bg-neutral-white',
+        )}
+      >
+        {/* Header row */}
+        <div className="flex items-center gap-3 px-3.5 py-3">
+          {/* Icon */}
+          <Squircle
+            cornerRadius={8}
+            cornerSmoothing={0.6}
+            borderColor={enabled ? '#D0E3FF' : '#EAECF0'}
+            className={cn(
+              'size-8 flex-shrink-0 transition-colors duration-300',
+              enabled ? 'bg-[#D0E3FF]' : 'bg-neutral-white',
+            )}
+          >
+            <div className="flex h-full w-full items-center justify-center">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 1.5H4C3.72 1.5 3.5 1.72 3.5 2V14.5L5.5 13.5L8 14.5L10.5 13.5L12.5 14.5V2C12.5 1.72 12.28 1.5 12 1.5Z"
+                  stroke={enabled ? '#0076FF' : '#6B7787'}
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M5.5 5.5H10.5"
+                  stroke={enabled ? '#0076FF' : '#6B7787'}
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M5.5 8H9"
+                  stroke={enabled ? '#0076FF' : '#6B7787'}
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+          </Squircle>
+
+          {/* Labels */}
+          <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+            <span className="text-[14px] font-semibold tracking-[-0.14px] text-neutral-black">
+              GST Invoice
+            </span>
+            <span
+              className={cn(
+                'truncate text-[11px] font-medium tracking-[-0.11px]',
+                enabled && saved ? 'text-[#0076FF]' : 'text-blue-gray-600',
+              )}
+            >
+              {subtitleText}
+            </span>
+          </div>
+
+          {/* Toggle */}
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-label={enabled ? 'Disable GST invoice' : 'Enable GST invoice'}
+            aria-pressed={enabled}
+            className="flex-shrink-0 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-blue-700/50"
+          >
+            <span
+              className={cn(
+                'relative flex h-[24px] w-[42px] items-center rounded-full transition-colors duration-300',
+                enabled ? 'bg-[#0076FF]' : 'bg-blue-gray-400',
+              )}
+            >
+              <span
+                className={cn(
+                  'absolute h-[18px] w-[18px] rounded-full bg-neutral-white shadow-[0_1px_3px_rgba(0,0,0,0.22)] transition-transform duration-300',
+                  enabled ? 'translate-x-[21px]' : 'translate-x-[3px]',
+                )}
+              />
+            </span>
+          </button>
+        </div>
+
+        {/* Expandable form — grid-row height animation */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateRows: enabled && !saved ? '1fr' : '0fr',
+            transition: 'grid-template-rows 420ms cubic-bezier(0.32, 0.72, 0, 1)',
+          }}
+        >
+          <div style={{ overflow: 'hidden' }}>
+            <div className="flex flex-col gap-2.5 px-3 pb-3">
+              {/* Divider */}
+              <div className="h-px w-full rounded-full bg-[#D0E3FF]" />
+
+              {/* GSTIN */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] font-bold uppercase tracking-[0.5px] text-blue-gray-600">
+                  GSTIN Number
+                </label>
+                <Squircle
+                  cornerRadius={10}
+                  cornerSmoothing={0.6}
+                  borderColor={gstin.length === 15 ? '#D0E3FF' : '#EAECF0'}
+                  className="bg-neutral-white"
+                >
+                  <div className="flex h-11 items-center px-3">
+                    <input
+                      value={gstin}
+                      onChange={(e) =>
+                        onGstinChange(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))
+                      }
+                      placeholder="e.g. 29ABCDE1234F1Z5"
+                      maxLength={15}
+                      className="w-full bg-transparent font-mono text-[13px] font-medium tracking-[0.5px] text-neutral-black placeholder:font-sans placeholder:tracking-[-0.13px] placeholder:text-blue-gray-500 focus:outline-none"
+                      autoComplete="off"
+                      spellCheck={false}
+                    />
+                    {gstin.length === 15 && (
+                      <img
+                        src="/share-address/icons/verified.svg"
+                        alt="Valid"
+                        className="ml-2 h-4 w-4 flex-shrink-0"
+                      />
+                    )}
+                  </div>
+                </Squircle>
+              </div>
+
+              {/* Business Name */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] font-bold uppercase tracking-[0.5px] text-blue-gray-600">
+                  Registered Business Name
+                </label>
+                <Squircle
+                  cornerRadius={10}
+                  cornerSmoothing={0.6}
+                  borderColor="#EAECF0"
+                  className="bg-neutral-white"
+                >
+                  <div className="flex h-11 items-center px-3">
+                    <input
+                      value={company}
+                      onChange={(e) => onCompanyChange(e.target.value)}
+                      placeholder="e.g. Acme Retail Pvt. Ltd."
+                      className="w-full bg-transparent text-[13px] font-medium tracking-[-0.13px] text-neutral-black placeholder:text-blue-gray-500 focus:outline-none"
+                      autoComplete="organization"
+                    />
+                  </div>
+                </Squircle>
+              </div>
+
+              {/* Save button */}
+              <button
+                type="button"
+                onClick={onSave}
+                disabled={!isValid}
+                className={cn(
+                  'mt-0.5 flex h-11 w-full items-center justify-center rounded-[12px] text-[14px] font-semibold tracking-[-0.14px] transition-all duration-200',
+                  isValid
+                    ? 'bg-[#0076FF] text-neutral-white active:scale-[0.97]'
+                    : 'cursor-not-allowed bg-blue-gray-200 text-blue-gray-500',
+                )}
+              >
+                Save GST Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Saved footer — edit link */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateRows: enabled && saved ? '1fr' : '0fr',
+            transition: 'grid-template-rows 420ms cubic-bezier(0.32, 0.72, 0, 1)',
+          }}
+        >
+          <div style={{ overflow: 'hidden' }}>
+            <div className="flex items-center justify-between px-3.5 pb-3">
+              <div className="flex items-center gap-1.5">
+                <img
+                  src="/share-address/icons/verified.svg"
+                  alt=""
+                  className="h-3.5 w-3.5"
+                />
+                <span className="text-[11px] font-semibold tracking-[-0.11px] text-[#0076FF]">
+                  GST details saved
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={onEdit}
+                className="text-[11px] font-semibold tracking-[-0.11px] text-blue-gray-600 underline underline-offset-2 outline-none focus-visible:ring-1 focus-visible:ring-blue-700/50 rounded"
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Squircle>
+  )
+}
+
+// ─── SheetShell ──────────────────────────────────────────────────────────────
 
 type SheetShellProps = {
   open: boolean

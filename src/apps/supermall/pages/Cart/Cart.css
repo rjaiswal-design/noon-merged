@@ -541,6 +541,112 @@
 .cart-chip--blue   { background: #1A4FFF; }
 .cart-chip--purple { background: #7c3aed; }
 
+/* ─── Coupon ──────────────────────────────────────────────────────────────── */
+.cart-coupon { gap: 10px; }
+
+.cart-coupon__input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.cart-coupon__input {
+  flex: 1;
+  height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid var(--grey-300);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--grey-1000);
+  background: var(--grey-100);
+  outline: none;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.cart-coupon__input:focus {
+  border-color: var(--blue-700);
+  background: #fff;
+}
+.cart-coupon__input::placeholder {
+  color: var(--grey-500);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.cart-coupon__apply-btn {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 10px;
+  border: 0;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--grey-300);
+  color: var(--grey-600);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.cart-coupon__apply-btn--active {
+  background: var(--blue-700);
+  color: #fff;
+}
+.cart-coupon__apply-btn:disabled { cursor: default; }
+
+.cart-coupon__applied {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ecfdf5;
+  border: 1.5px solid #10b981;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.cart-coupon__applied-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.cart-coupon__applied-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cart-coupon__applied-code {
+  font-size: 14px;
+  font-weight: 700;
+  color: #065f46;
+  letter-spacing: 0.5px;
+}
+.cart-coupon__applied-sub {
+  font-size: 12px;
+  color: #059669;
+}
+.cart-coupon__remove {
+  border: 0;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+.cart-coupon__error {
+  margin: 0;
+  font-size: 12px;
+  color: #dc2626;
+  letter-spacing: -0.12px;
+}
+
 /* ─── Pay With ────────────────────────────────────────────────────────────── */
 .cart-paywith { gap: 12px; }
 .cart-paywith__sub {

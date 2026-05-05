@@ -3,6 +3,8 @@ import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ChevronLeft, ChevronDown, ChevronRight } from '../../components/ui/icons';
 import './Cart.css';
+import '../Home/Home.css';
+import { CouponBottomSheet, SHEET_COUPONS } from './CouponBottomSheet';
 
 /* ── Cart assets (downloaded from Figma) ──────────────────────────────────── */
 import IMG_PRODUCT from '../../assets/cart/product.png';
@@ -373,6 +375,122 @@ function PointsVouchers() {
   );
 }
 
+/* ── Coupon ───────────────────────────────────────────────────────────────── */
+const CART_VALID_COUPONS: Record<string, { label: string }> = {
+  SAVE20:  { label: 'AED 20 off on your order' },
+  NOON10:  { label: '10% off on your order' },
+  FIRST50: { label: 'AED 50 off on your first order' },
+};
+
+function CouponSection() {
+  const [input, setInput] = useState('');
+  const [applied, setApplied] = useState<{ code: string; label: string } | null>(null);
+  const [error, setError] = useState('');
+  const [shake, setShake] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+
+  function applyByCode(code: string, label: string) {
+    setApplied({ code, label });
+    setError('');
+    setInput('');
+    setSheetOpen(false);
+  }
+
+  function handleApply() {
+    const code = input.trim().toUpperCase();
+    if (!code) {
+      setError('Please enter a coupon code.');
+      return;
+    }
+    const found = CART_VALID_COUPONS[code];
+    if (found) {
+      setApplied({ code, ...found });
+      setError('');
+      setInput('');
+    } else {
+      setError('Invalid code. Try SAVE20, NOON10 or FIRST50.');
+      setShake(true);
+      setTimeout(() => setShake(false), 600);
+    }
+  }
+
+  function handleRemove() {
+    setApplied(null);
+    setInput('');
+    setError('');
+  }
+
+  return (
+    <section className="home-coupon">
+      <button
+        type="button"
+        onClick={() => setSheetOpen(true)}
+        className="home-coupon__header"
+        style={{
+          background: 'none',
+          border: 'none',
+          padding: 0,
+          width: '100%',
+          textAlign: 'left',
+          cursor: 'pointer',
+        }}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"
+            stroke="rgba(33,34,184,1)"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="7" cy="7" r="1.5" fill="rgba(33,34,184,1)" />
+        </svg>
+        <span>{applied ? 'Coupon applied' : 'Have a coupon code?'}</span>
+        <span style={{ marginLeft: 'auto', fontSize: 12, color: 'rgba(33,34,184,1)', fontWeight: 600 }}>
+          Browse →
+        </span>
+      </button>
+
+      {applied ? (
+        <div className="home-coupon__applied">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="8" fill="rgba(0,140,64,1)" />
+            <path d="M4.5 8l2.5 2.5 4.5-4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="home-coupon__badge">{applied.code}</span>
+          <span className="home-coupon__applied-label">{applied.label}</span>
+          <button onClick={handleRemove} className="home-coupon__remove" aria-label="Remove coupon">✕</button>
+        </div>
+      ) : (
+        <div className={`home-coupon__row${shake ? ' home-coupon__row--shake' : ''}`}>
+          <input
+            className="home-coupon__input"
+            value={input}
+            onChange={(e) => { setInput(e.target.value); setError(''); }}
+            onKeyDown={(e) => e.key === 'Enter' && handleApply()}
+            placeholder="Enter coupon code"
+            autoCapitalize="characters"
+            autoCorrect="off"
+            spellCheck={false}
+          />
+          <button className="home-coupon__btn" onClick={handleApply}>Apply</button>
+        </div>
+      )}
+      {error && <p className="home-coupon__error">{error}</p>}
+
+      <CouponBottomSheet
+        open={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        onApply={(code, headline) => applyByCode(code, headline)}
+        manualInput={input}
+        onManualChange={(v) => { setInput(v); setError(''); }}
+        onManualApply={handleApply}
+        manualError={error}
+      />
+    </section>
+  );
+}
+
 /* ── Pay With ─────────────────────────────────────────────────────────────── */
 function PayWith() {
   const [credits, setCredits] = useState(true);
@@ -698,6 +816,7 @@ export default function CartPage() {
             <DeliveryInstructions />
             <ReceiverDetails />
             <PointsVouchers />
+            <CouponSection />
             <PayWith />
             <PaymentSummary />
           </div>

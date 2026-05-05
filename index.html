@@ -8,5 +8,186 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!--
+      Element-inspect bridge — only active when this app is embedded as an
+      iframe by the noon-ui-platform and the parent posts a "start" message.
+      Lets the platform receive { tag, classes, text, path, route, html }
+      for whatever the user clicks on. No effect when running standalone.
+    -->
+    <script>
+      (function () {
+        if (window.parent === window) return; // only inside an iframe
+        let active = false;
+        let outline = null;
+
+        // Some routes (e.g. /supermall/account) embed their own iframe
+        // (one-flows) inside this page. The inspect script also runs in
+        // those nested iframes, but they only know about THEIR parent
+        // (us) — not the platform. So we relay: when the platform tells
+        // us to start/stop, we forward the message to every child
+        // iframe; when a nested iframe sends us a "selected" event, we
+        // bubble it up to the platform.
+        function forwardToChildren(msg) {
+          const frames = document.querySelectorAll('iframe');
+          frames.forEach(function (f) {
+            try { f.contentWindow && f.contentWindow.postMessage(msg, '*'); }
+            catch (_) { /* cross-origin — ignore */ }
+          });
+        }
+
+        function setOutline(el) {
+          if (!outline) {
+            outline = document.createElement('div');
+            outline.style.cssText =
+              'position:fixed;pointer-events:none;border:2px solid #ff5800;' +
+              'background:rgba(255,88,0,0.10);z-index:2147483647;' +
+              'transition:left 80ms ease, top 80ms ease, width 80ms ease, height 80ms ease;' +
+              'box-shadow:0 0 0 9999px rgba(0,0,0,0);will-change:left,top,width,height';
+            document.body.appendChild(outline);
+          }
+          if (!el) { outline.style.display = 'none'; return; }
+          const r = el.getBoundingClientRect();
+          outline.style.display = 'block';
+          outline.style.left = r.left + 'px';
+          outline.style.top = r.top + 'px';
+          outline.style.width = r.width + 'px';
+          outline.style.height = r.height + 'px';
+        }
+
+        function getPath(el) {
+          const parts = [];
+          let cur = el;
+          while (cur && cur.tagName && parts.length < 6) {
+            let part = cur.tagName.toLowerCase();
+            if (cur.id) {
+              part += '#' + cur.id;
+            } else if (typeof cur.className === 'string' && cur.className) {
+              const cls = cur.className.trim().split(/\s+/).slice(0, 2).join('.');
+              if (cls) part += '.' + cls;
+            }
+            parts.unshift(part);
+            cur = cur.parentElement;
+          }
+          return parts.join(' > ');
+        }
+
+        function send(target) {
+          const html = target.outerHTML;
+          const trimmed = html.length > 1800 ? html.slice(0, 1800) + '… (truncated)' : html;
+          window.parent.postMessage({
+            type: 'noon-inspect:selected',
+            tag: target.tagName.toLowerCase(),
+            classes: typeof target.className === 'string' ? target.className : '',
+            text: (target.textContent || '').slice(0, 240).trim(),
+            path: getPath(target),
+            html: trimmed,
+            route: window.location.pathname,
+          }, '*');
+        }
+
+        // Pick the topmost element at (x, y) using elementFromPoint so we
+        // always get the deepest hit — robust against parents that capture
+        // events via pointer-events or that are stacked above their kids.
+        // Briefly hide the outline so it never picks itself.
+        function pickAt(x, y) {
+          const prev = outline ? outline.style.display : '';
+          if (outline) outline.style.display = 'none';
+          const el = document.elementFromPoint(x, y);
+          if (outline) outline.style.display = prev;
+          return el;
+        }
+
+        // Walk down a single-child chain when the picked element is
+        // suspiciously large (e.g. > 92% of viewport in BOTH dimensions —
+        // that's the page wrapper, not the thing the user wants).
+        function refineTarget(el, x, y) {
+          if (!el) return el;
+          const vw = window.innerWidth, vh = window.innerHeight;
+          let cur = el;
+          // Cap depth to avoid loops on weird DOMs
+          for (let i = 0; i < 6; i++) {
+            const r = cur.getBoundingClientRect();
+            const huge = r.width >= vw * 0.92 && r.height >= vh * 0.92;
+            if (!huge) break;
+            // Find the child that contains the cursor
+            let next = null;
+            for (const c of cur.children) {
+              const cr = c.getBoundingClientRect();
+              if (x >= cr.left && x <= cr.right && y >= cr.top && y <= cr.bottom) {
+                next = c;
+                break;
+              }
+            }
+            if (!next || next === cur) break;
+            cur = next;
+          }
+          return cur;
+        }
+
+        function onMove(e) {
+          if (!active) return;
+          const t = refineTarget(pickAt(e.clientX, e.clientY), e.clientX, e.clientY);
+          if (t && t !== outline) setOutline(t);
+        }
+        function onClick(e) {
+          if (!active) return;
+          e.preventDefault();
+          e.stopPropagation();
+          const t = refineTarget(pickAt(e.clientX, e.clientY), e.clientX, e.clientY) || e.target;
+          send(t);
+          stop();
+        }
+        function onKeyDown(e) { if (active && e.key === 'Escape') stop(); }
+
+        function start() {
+          if (active) return;
+          active = true;
+          document.body.style.cursor = 'crosshair';
+          // mousemove gives coord-precise updates; mouseover falls back to
+          // whatever DOM element bubbles, which on some pages is the wrong
+          // (over-large) wrapper.
+          document.addEventListener('mousemove', onMove, true);
+          document.addEventListener('click', onClick, true);
+          document.addEventListener('keydown', onKeyDown, true);
+          window.parent.postMessage({ type: 'noon-inspect:active' }, '*');
+        }
+        function stop() {
+          if (!active) return;
+          active = false;
+          document.body.style.cursor = '';
+          setOutline(null);
+          document.removeEventListener('mousemove', onMove, true);
+          document.removeEventListener('click', onClick, true);
+          document.removeEventListener('keydown', onKeyDown, true);
+          window.parent.postMessage({ type: 'noon-inspect:idle' }, '*');
+        }
+
+        window.addEventListener('message', function (e) {
+          if (!e.data || typeof e.data !== 'object') return;
+          const t = e.data.type;
+          if (t === 'noon-inspect:start') {
+            start();
+            forwardToChildren(e.data);
+          } else if (t === 'noon-inspect:stop') {
+            stop();
+            forwardToChildren(e.data);
+          } else if (
+            t === 'noon-inspect:selected' ||
+            t === 'noon-inspect:active' ||
+            t === 'noon-inspect:idle'
+          ) {
+            // Bubble events from nested iframes up to the platform.
+            // Only relay if the event came from a child window — never
+            // re-send our own messages back to ourselves.
+            if (e.source !== window && e.source !== window.parent) {
+              try { window.parent.postMessage(e.data, '*'); } catch (_) {}
+              // If a nested iframe reported a selection, also stop our
+              // own inspect mode so we don't keep listening.
+              if (t === 'noon-inspect:selected') stop();
+            }
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

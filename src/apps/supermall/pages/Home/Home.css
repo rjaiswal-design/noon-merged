@@ -781,6 +781,132 @@
   aspect-ratio: auto;
 }
 
+/* ─── Trending This Week Carousel ─────────────────────────────────────────── */
+.home-showcase {
+  padding: 24px 0 8px;
+  background: var(--colour-neutral-white);
+  /* Clips the peeking next card on the right */
+  overflow: hidden;
+}
+
+.home-showcase__viewport {
+  position: relative;
+  /* Left margin only — no right margin so the next card peeks in */
+  margin: 14px 0 0 12px;
+  overflow: visible;
+  touch-action: pan-y;
+}
+
+.home-showcase__track {
+  display: flex;
+  gap: 12px;
+  transition: transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+/* Each card is viewport-width minus the left margin (12px) and the right peek (32px) */
+.home-showcase__slide {
+  width: calc(100vw - 44px);
+  flex: 0 0 calc(100vw - 44px);
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid var(--grey-100);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.home-showcase__slide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.home-showcase__badge {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--grey-900);
+  line-height: 20px;
+}
+
+/* 2×2 product image grid */
+.home-showcase__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.home-showcase__grid-item {
+  aspect-ratio: 1;
+  background: #f5f5f7;
+  border-radius: 12px;
+  border: 1px solid var(--grey-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.home-showcase__grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.home-showcase__cta {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 100px;
+  border: 1.5px solid;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home-showcase__cta:active {
+  opacity: 0.7;
+}
+
+.home-showcase__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding-bottom: 2px;
+}
+
+.home-showcase__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grey-300);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+              border-radius 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+              background 0.35s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home-showcase__dot--active {
+  width: 22px;
+  border-radius: 3px;
+}
+
 /* ─── Loading skeleton ─────────────────────────────────────────────────────── */
 @keyframes home-skel-shimmer {
   0%   { background-position: -200% 0; }
@@ -943,4 +1069,246 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
+}
+
+/* ─── Coupon & Bill Section ──────────────────────────────────────────────── */
+.home-bill-section {
+  margin: 4px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Coupon card */
+.home-coupon {
+  background: var(--colour-neutral-white);
+  border-radius: 16px;
+  border: 1px solid var(--grey-100);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.home-coupon__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--grey-900);
+  letter-spacing: -0.2px;
+}
+
+.home-coupon__row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+@keyframes coupon-shake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-6px); }
+  30%       { transform: translateX(6px); }
+  45%       { transform: translateX(-4px); }
+  60%       { transform: translateX(4px); }
+  75%       { transform: translateX(-2px); }
+  90%       { transform: translateX(2px); }
+}
+
+.home-coupon__row--shake {
+  animation: coupon-shake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.home-coupon__input {
+  flex: 1;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--grey-200);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--grey-900);
+  background: #f8f9fb;
+  outline: none;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home-coupon__input:focus {
+  border-color: rgba(33, 34, 184, 1);
+  background: var(--colour-neutral-white);
+}
+
+.home-coupon__input::placeholder {
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--grey-400);
+  font-weight: 500;
+}
+
+.home-coupon__btn {
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(33, 34, 184, 1);
+  color: var(--colour-neutral-white);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home-coupon__btn:active {
+  opacity: 0.82;
+  transform: scale(0.97);
+}
+
+.home-coupon__error {
+  margin: 0;
+  font-size: 12px;
+  color: #e53935;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.home-coupon__applied {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 164, 74, 0.06);
+  border: 1.5px dashed rgba(0, 164, 74, 0.45);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.home-coupon__badge {
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(0, 130, 60, 1);
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+}
+
+.home-coupon__applied-label {
+  flex: 1;
+  font-size: 12px;
+  color: rgba(0, 110, 50, 1);
+  font-weight: 500;
+  min-width: 0;
+}
+
+.home-coupon__remove {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.07);
+  color: var(--grey-700);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease;
+}
+
+.home-coupon__remove:active {
+  background: rgba(0, 0, 0, 0.14);
+}
+
+/* Bill Summary card */
+.home-bill {
+  background: var(--colour-neutral-white);
+  border-radius: 16px;
+  border: 1px solid var(--grey-100);
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.home-bill__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--grey-900);
+  letter-spacing: -0.2px;
+  margin: 0 0 14px;
+}
+
+.home-bill__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-bill__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--grey-600);
+  font-weight: 500;
+}
+
+.home-bill__row span:last-child {
+  font-weight: 600;
+  color: var(--grey-800);
+}
+
+.home-bill__row--saving span:last-child {
+  color: rgba(0, 130, 60, 1);
+  font-weight: 700;
+}
+
+.home-bill__free {
+  color: rgba(0, 130, 60, 1) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  background: rgba(0, 164, 74, 0.1);
+  padding: 2px 9px;
+  border-radius: 20px;
+}
+
+.home-bill__divider {
+  height: 1px;
+  background: var(--grey-100);
+  margin: 14px 0;
+}
+
+.home-bill__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--grey-1000);
+  letter-spacing: -0.3px;
+}
+
+.home-bill__savings-banner {
+  margin-top: 14px;
+  background: linear-gradient(135deg, rgba(0, 164, 74, 0.1) 0%, rgba(0, 200, 90, 0.06) 100%);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(0, 120, 54, 1);
+  text-align: center;
+  border: 1px solid rgba(0, 164, 74, 0.18);
+  animation: bill-savings-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bill-savings-pop {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
 }

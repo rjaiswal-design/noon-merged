@@ -234,6 +234,55 @@ const homeProducts: Product[] = [
   },
 ];
 
+// ─── Trending This Week data ───────────────────────────────────────────────
+const showcaseSlides = [
+  {
+    id: 'beauty',
+    category: 'Beauty & Skincare',
+    images: [IMG_MAKEUP, IMG_PRODUCT_3, IMG_PRODUCT_2, IMG_PRODUCT_1],
+    accent: '#c2185b',
+    cta: 'Shop Beauty',
+  },
+  {
+    id: 'electronics',
+    category: 'Electronics',
+    images: [IMG_PRODUCT_4, IMG_ELECTRONICS_CARD_HEADPHONES, IMG_PRODUCT_1, IMG_PRODUCT_2],
+    accent: '#5833b5',
+    cta: 'Shop Electronics',
+  },
+  {
+    id: 'grocery',
+    category: 'Grocery & Snacks',
+    images: [IMG_SNACKS, IMG_BEVERAGES, IMG_HOUSEHOLD, IMG_PRODUCT_2],
+    accent: '#15803d',
+    cta: 'Shop Grocery',
+  },
+  {
+    id: 'baby',
+    category: 'Baby Care',
+    images: [IMG_BABY, IMG_PRODUCT_1, IMG_SNACKS, IMG_PRODUCT_3],
+    accent: '#1d4ed8',
+    cta: 'Shop Baby Care',
+  },
+];
+
+// ─── Coupon & Bill Summary ─────────────────────────────────────────────────
+type AppliedCoupon = {
+  code: string;
+  type: 'percent' | 'flat';
+  value: number;
+  label: string;
+  discount: number;
+};
+
+const VALID_COUPONS: Record<string, { type: 'percent' | 'flat'; value: number; label: string }> = {
+  SAVE10:    { type: 'percent', value: 10, label: '10% off on your order' },
+  NOON20:    { type: 'flat',    value: 20, label: 'AED 20 flat off' },
+  WELCOME15: { type: 'percent', value: 15, label: '15% off on your order' },
+};
+
+const CART_SUBTOTAL = 352; // sum of the 4 homeProducts selling prices
+
 function ServiceTile({ label, variant }: { label: string; variant: string }) {
   const onClick =
     variant === 'noon'
@@ -307,7 +356,7 @@ function HomeHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange
 
       <div className="home-search" onClick={openSearch} role="button" tabIndex={0} aria-label="Search">
         <SearchIcon size={22} color="var(--grey-600)" />
-        <span className="home-search__placeholder">Search for "Maybelline 1014"</span>
+        <span className="home-search__placeholder">Search for &quot;Maybelline 1014&quot;</span>
         <span className="home-search__divider" />
         <button
           type="button"
@@ -433,6 +482,99 @@ function ProductRail({ title, tone }: { title: string; tone?: 'blue' }) {
   );
 }
 
+function CategoryShowcase() {
+  const [current, setCurrent] = useState(0);
+  const intervalRef = useRef<number | null>(null);
+  const touchStartX = useRef(0);
+  const TOTAL = showcaseSlides.length;
+
+  const resetTimer = () => {
+    if (intervalRef.current !== null) clearInterval(intervalRef.current);
+    intervalRef.current = window.setInterval(() => {
+      setCurrent((prev) => (prev + 1) % TOTAL);
+    }, 4000);
+  };
+
+  useEffect(() => {
+    intervalRef.current = window.setInterval(() => {
+      setCurrent((prev) => (prev + 1) % TOTAL);
+    }, 4000);
+    return () => {
+      if (intervalRef.current !== null) clearInterval(intervalRef.current);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    if (intervalRef.current !== null) clearInterval(intervalRef.current);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) {
+      setCurrent((prev) => {
+        const next = prev + (delta > 0 ? 1 : -1);
+        return ((next % TOTAL) + TOTAL) % TOTAL;
+      });
+    }
+    resetTimer();
+  };
+
+  return (
+    <section className="home-showcase" aria-label="Featured categories">
+      <div className="home-section-header">
+        <h2>Trending This Week</h2>
+        <Link to="/shop">View all ›</Link>
+      </div>
+      <div
+        className="home-showcase__viewport"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div
+          className="home-showcase__track"
+          style={{ transform: `translateX(calc(-${current} * (100vw - 32px)))` }}
+        >
+          {showcaseSlides.map((slide) => (
+            <div key={slide.id} className="home-showcase__slide">
+              <div className="home-showcase__slide-header">
+                <span className="home-showcase__badge">{slide.category}</span>
+                <Link
+                  to="/shop"
+                  className="home-showcase__cta"
+                  style={{ color: slide.accent, borderColor: slide.accent }}
+                >
+                  {slide.cta}
+                </Link>
+              </div>
+              <div className="home-showcase__grid">
+                {slide.images.map((img, i) => (
+                  <div key={i} className="home-showcase__grid-item">
+                    <img src={img} alt="" loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="home-showcase__dots">
+        {showcaseSlides.map((slide, i) => (
+          <button
+            key={slide.id}
+            className={`home-showcase__dot${i === current ? ' home-showcase__dot--active' : ''}`}
+            onClick={() => { setCurrent(i); resetTimer(); }}
+            style={i === current ? { background: slide.accent } : undefined}
+            aria-label={`Slide ${i + 1}: ${slide.category}`}
+            aria-current={i === current ? true : undefined}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ShopByCategory() {
   const [activeFilter, setActiveFilter] = useState<string>('For you');
   const [indicatorStyle, setIndicatorStyle] = useState({ left: '0px', width: '0px' });
@@ -515,6 +657,122 @@ function ShopByCategory() {
           ))}
         </motion.div>
       </AnimatePresence>
+    </section>
+  );
+}
+
+function CouponAndBillSection() {
+  const [input, setInput] = useState('');
+  const [applied, setApplied] = useState<AppliedCoupon | null>(null);
+  const [error, setError] = useState('');
+  const [shake, setShake] = useState(false);
+
+  const handleApply = () => {
+    const code = input.trim().toUpperCase();
+    if (!code) {
+      setError('Please enter a coupon code.');
+      return;
+    }
+    const found = VALID_COUPONS[code];
+    if (found) {
+      const discount =
+        found.type === 'percent'
+          ? Math.round((CART_SUBTOTAL * found.value) / 100)
+          : Math.min(found.value, CART_SUBTOTAL);
+      setApplied({ code, ...found, discount });
+      setError('');
+    } else {
+      setError('Invalid code. Try SAVE10, NOON20 or WELCOME15.');
+      setShake(true);
+      setTimeout(() => setShake(false), 600);
+    }
+  };
+
+  const handleRemove = () => {
+    setApplied(null);
+    setInput('');
+    setError('');
+  };
+
+  const discount = applied?.discount ?? 0;
+  const total = CART_SUBTOTAL - discount;
+
+  return (
+    <section className="home-bill-section">
+
+      {/* ── Coupon widget ── */}
+      <div className="home-coupon">
+        <div className="home-coupon__header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"
+              stroke="rgba(33,34,184,1)"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle cx="7" cy="7" r="1.5" fill="rgba(33,34,184,1)" />
+          </svg>
+          <span>Have a coupon code?</span>
+        </div>
+
+        {applied ? (
+          <div className="home-coupon__applied">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="8" fill="rgba(0,140,64,1)" />
+              <path d="M4.5 8l2.5 2.5 4.5-4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="home-coupon__badge">{applied.code}</span>
+            <span className="home-coupon__applied-label">{applied.label}</span>
+            <button onClick={handleRemove} className="home-coupon__remove" aria-label="Remove coupon">✕</button>
+          </div>
+        ) : (
+          <div className={`home-coupon__row${shake ? ' home-coupon__row--shake' : ''}`}>
+            <input
+              className="home-coupon__input"
+              value={input}
+              onChange={(e) => { setInput(e.target.value); setError(''); }}
+              onKeyDown={(e) => e.key === 'Enter' && handleApply()}
+              placeholder="Enter coupon code"
+              autoCapitalize="characters"
+              autoCorrect="off"
+              spellCheck={false}
+            />
+            <button className="home-coupon__btn" onClick={handleApply}>Apply</button>
+          </div>
+        )}
+        {error && <p className="home-coupon__error">{error}</p>}
+      </div>
+
+      {/* ── Bill Summary ── */}
+      <div className="home-bill">
+        <h3 className="home-bill__title">Bill Summary</h3>
+        <div className="home-bill__rows">
+          <div className="home-bill__row">
+            <span>Item total (4 items)</span>
+            <span>AED {CART_SUBTOTAL}</span>
+          </div>
+          <div className={`home-bill__row${applied ? ' home-bill__row--saving' : ''}`}>
+            <span>Coupon discount</span>
+            <span>{applied ? `− AED ${discount}` : '—'}</span>
+          </div>
+          <div className="home-bill__row">
+            <span>Delivery fee</span>
+            <span className="home-bill__free">FREE</span>
+          </div>
+        </div>
+        <div className="home-bill__divider" />
+        <div className="home-bill__total">
+          <span>Total payable</span>
+          <span>AED {total}</span>
+        </div>
+        {applied && (
+          <div className="home-bill__savings-banner">
+            🎉 You saved AED {discount} on this order!
+          </div>
+        )}
+      </div>
+
     </section>
   );
 }
@@ -617,7 +875,9 @@ export default function HomePage() {
       <div className="home-page">
         <HomeHeader activeTab={activeTab} onTabChange={setActiveTab} />
         <HeroCategories activeTab={activeTab} />
+        <CategoryShowcase />
         <ProductRail title="Recommended for you" />
+        <CouponAndBillSection />
         <ShopByCategory />
         <ProductRail title="New arrivals" />
         <ProductRail title="Maximise your savings" tone="blue" />
