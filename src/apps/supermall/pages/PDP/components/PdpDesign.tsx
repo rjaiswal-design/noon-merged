@@ -176,88 +176,93 @@ function CouponIcon() {
 
 function MainInfo() {
   return (
-    <section className="mx-3 rounded-[16px] bg-accent-100 flex flex-col">
-      <div className="flex items-center justify-between px-3 py-2">
-        <div className="flex items-center gap-1 text-sm font-bold text-accent-700">
-          <img src={ASSETS.store} alt="" className="h-6 w-6" />
-          Apple
+    <section className="mx-3 rounded-[16px] bg-accent-100 flex flex-col gap-2 pt-2.5">
+      <div className="flex items-center justify-between px-3">
+        <div className="flex items-center gap-1 text-[14px] font-bold leading-[18px] tracking-[-0.14px] text-accent-700">
+          <img src={ASSETS.verified} alt="" className="h-[17px] w-[17px]" />
+          Anker
         </div>
-        <div className="flex items-center gap-1 text-[13px] font-semibold text-accent-700">
+        <div className="flex items-center gap-0.5 text-[13px] font-semibold leading-[15px] tracking-[-0.12px] text-accent-700">
           Visit Store
-          <img src={ASSETS.chevronRight} alt="" className="h-3 w-3" />
+          <img src={ASSETS.chevronRight} alt="" className="h-[12.8px] w-3" />
         </div>
       </div>
 
-      <div className="rounded-2xl bg-white p-3 flex flex-col">
-        <h1 className="text-base leading-5 font-medium text-bluegray-1000">
-          iPhone Air 256GB Sky Blue 5G (eSim only) With FaceTime - International Version
-        </h1>
+      <div className="rounded-2xl bg-white p-3 flex flex-col gap-3">
+        <div className="flex flex-col gap-1 pr-3 relative">
+          <h1 className="text-[16px] leading-[20px] font-medium tracking-[-0.16px] text-[#212121] line-clamp-2">
+            USB C Plug, 735 Charger (Nano II 65W), PPS 3-Port Fast Compact USB C Charger for MacBook Pro/Air, iPad Pro, Galaxy S25/S24/S23/S22/S21/S20/S10
+          </h1>
+          <span className="absolute right-0 top-[20px] flex h-5 w-5 items-center justify-center rounded-full bg-bluegray-100">
+            <img src={ASSETS.chevronDown} alt="" className="h-2.5 w-2.5" />
+          </span>
 
-        <div className="mt-2 flex gap-1 text-[13px]">
-          <span className="flex items-center gap-1 rounded-md bg-bluegray-100 px-2 py-1 text-bluegray-1000 font-semibold leading-[18px]">
-            <img src={ASSETS.star} alt="" className="h-3.5 w-3.5" />
-            4.6 <span className="font-semibold text-bluegray-800">(1541 reviews)</span>
-          </span>
-          <span className="flex items-center gap-1 rounded-md bg-orange-50 px-2 py-1 text-bluegray-1000 font-medium leading-[18px]">
-            <img src={ASSETS.card} alt="" className="h-4 w-4" />
-            Prepaid Only
-          </span>
+          <div className="mt-1 flex gap-1 text-[13px]">
+            <span className="flex items-center gap-1 rounded-md bg-[#f7f8fa] px-1 py-0.5 text-bluegray-1000 leading-[14px]">
+              <img src={ASSETS.star} alt="" className="h-3 w-3" />
+              <span className="font-semibold">4.3</span>
+              <span className="font-medium text-bluegray-800">(126 reviews)</span>
+            </span>
+            <span className="flex items-center gap-1 rounded-md bg-orange-50 px-1 py-1 text-bluegray-1000 font-medium leading-[14px]">
+              <img src={ASSETS.card} alt="" className="h-4 w-4" />
+              Prepaid Only
+            </span>
+          </div>
         </div>
 
-        <div className="mt-3 flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           <div className="flex items-end gap-1">
-            <span className="text-[22px] leading-6 font-bold text-bluegray-1000">AED 3699</span>
-            <span className="text-base leading-5 text-bluegray-600 line-through">AED 4299</span>
-            <span className="text-sm leading-[18px] font-semibold text-green-700">14%</span>
-            <span className="text-sm leading-[18px] text-bluegray-600">(incl. of VAT)</span>
+            <span className="text-[22px] leading-6 font-bold tracking-[-0.2px] text-bluegray-1000">Đ109</span>
+            <span className="pb-px text-[16px] leading-5 tracking-[-0.16px] text-bluegray-600 line-through">Đ209</span>
+            <span className="pb-px text-[14px] leading-[18px] font-semibold tracking-[-0.14px] text-green-700">47% OFF</span>
+            <span className="pb-px text-[14px] leading-[18px] tracking-[-0.14px] text-bluegray-600">(incl. of VAT)</span>
+            <img src={ASSETS.info} alt="" className="ml-auto h-4 w-4" />
           </div>
-          <div className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent-50 to-white px-2 py-2 text-bluegray-800">
-            <div className="flex items-center gap-2">
-              <img src={ASSETS.combo} alt="" className="h-5 w-5" />
-              <span className="text-sm font-medium">Saving 45 with Combo</span>
-            </div>
-            <img src={ASSETS.info} alt="" className="h-4 w-4" />
+          <div className="flex h-8 items-center gap-1 rounded-lg bg-gradient-to-r from-[#eaf4fe] to-white from-0% to-[51%] px-1.5 py-2">
+            <img src={ASSETS.combo} alt="" className="h-5 w-5" />
+            <span className="text-[14px] font-medium text-bluegray-800">Saving Đ45 with Combo</span>
+            <img src={ASSETS.info} alt="" className="ml-auto h-4 w-4" />
           </div>
 
-          <div className="inline-flex items-center gap-1.5 self-start rounded bg-bluegray-100 px-1.5 py-1 text-sm text-bluegray-800">
+          <div className="inline-flex items-center gap-1.5 self-start rounded bg-[#f9f9fb] px-1.5 py-1 text-[14px] leading-[14px] text-bluegray-800">
             <span>500ml</span>
             <span className="h-3 w-px bg-bluegray-400" />
-            <span>Ð2.35/ml</span>
+            <span>Đ2.35/ml</span>
           </div>
 
           <div className="flex items-center gap-1.5">
-            <span className="rounded bg-bg-supermall px-1.5 py-0.5 text-[13px] font-semibold leading-[17px] text-white">Mega Deal</span>
+            <span className="rounded bg-[#2122b8] px-1.5 py-0.5 text-[13px] font-semibold leading-[17px] tracking-[-0.14px] text-white">Mega Deal</span>
             <span className="flex items-center gap-1 rounded bg-gradient-to-r from-[#f3f5fc] to-white px-1 py-0.5">
-              <img src={ASSETS.lowPrice} alt="" className="h-[18px] w-[18px]" />
-              <span className="text-sm font-medium leading-[18px] text-bluegray-700">Lowest Price in 30 days</span>
+              <img src={ASSETS.lowPrice} alt="" className="h-[14px] w-[14px]" />
+              <span className="text-[14px] font-medium leading-[18px] tracking-[-0.14px] text-bluegray-700">Lowest Price in 30 days</span>
             </span>
           </div>
+        </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto">
-            <div className="flex shrink-0 items-center gap-2 rounded-lg border border-dashed border-emerald-700/40 bg-[#f6fefd] py-1.5 pl-1.5 pr-2">
-              <CouponIcon />
-              <div className="flex items-center gap-1 text-sm font-semibold leading-[18px] text-text-primary">
-                <span>Extra 10% Off</span>
-                <span>CODE: SAVEBIG</span>
-              </div>
-              <img src={ASSETS.chevronRight} alt="" className="h-2.5 w-2.5" />
-            </div>
-            <div className="flex shrink-0 items-center gap-2 rounded-lg border border-dashed border-emerald-700/40 bg-[#f6fefd] py-1.5 pl-1.5 pr-2">
-              <CouponIcon />
-              <span className="text-sm font-semibold leading-[18px] text-text-primary whitespace-nowrap">Extra 10% off up to Ð150</span>
-            </div>
+        <div className="flex items-center gap-2 overflow-x-auto -mx-1 px-1">
+          <div className="flex shrink-0 items-center gap-2 rounded-lg border border-dashed border-emerald-700/40 bg-[#f6fefd] py-1.5 pl-1.5 pr-2">
+            <CouponIcon />
+            <span className="text-[14px] font-semibold leading-[18px] tracking-[-0.14px] text-bluegray-900 whitespace-nowrap">Extra 15%, CODE: ENDD15</span>
+            <img src={ASSETS.chevronRight} alt="" className="h-2.5 w-2.5" />
+          </div>
+          <div className="flex shrink-0 items-center gap-2 rounded-lg border border-dashed border-emerald-700/40 bg-[#f6fefd] py-1.5 pl-1.5 pr-2">
+            <CouponIcon />
+            <span className="text-[14px] font-semibold leading-[18px] tracking-[-0.14px] text-bluegray-900 whitespace-nowrap">Extra 10% off up to Đ150</span>
           </div>
         </div>
 
-        <div className="mt-3 flex h-9 items-center justify-between rounded-[10px] bg-bluegray-100 px-2 py-3">
-          <div className="flex items-center gap-2">
-            <img src={ASSETS.bestseller} alt="" className="h-6 w-6" />
-            <p className="text-sm italic leading-[19px] text-bluegray-900">
-              Bestseller #27 in <span className="font-semibold text-accent-700">Chargers</span>
-            </p>
-          </div>
-          <img src={ASSETS.chevronRight} alt="" className="h-3 w-3" />
-        </div>
+        <button type="button" className="flex h-9 items-center justify-between rounded-[10px] bg-[#f9f9fb] pl-3 pr-2">
+          <span className="flex items-center gap-2">
+            <span className="relative h-4 w-4 inline-flex items-center justify-center">
+              <img src={ASSETS.bestsellerBadge} alt="" className="h-4 w-4" />
+              <span className="absolute inset-0 -mt-px flex items-center justify-center text-[10px] font-bold leading-3 tracking-[-0.16px] text-white">1</span>
+            </span>
+            <span className="text-[14px] leading-[19px] text-bluegray-900">
+              Bestseller #1 in <span className="font-semibold text-accent-700">Chargers</span>
+            </span>
+          </span>
+          <img src={ASSETS.miniChevronRight} alt="" className="h-2.5 w-2.5" />
+        </button>
       </div>
     </section>
   );
@@ -293,56 +298,117 @@ function ComboCard() {
 
 function AdCard() {
   return (
-    <section className="mx-3 rounded-lg bg-white">
-      <div className="flex items-center justify-between rounded-md border border-border-primary px-2 h-8">
-        <div className="flex items-center gap-2">
-          <img src={ASSETS.adThumb} alt="" className="h-8 w-8 rounded bg-bluegray-50" />
-          <p className="max-w-[160px] truncate text-xs italic text-noon-black">TCF09 40W Dual USB-C / Type-C...</p>
-        </div>
+    <section className="mx-3 relative flex items-center gap-2 rounded-2xl border border-bluegray-200 bg-white p-2">
+      <img src={ASSETS.adThumb} alt="" className="h-12 w-12 shrink-0 rounded-lg bg-bluegray-50" />
+      <div className="flex flex-1 flex-col gap-1 min-w-0">
+        <p className="line-clamp-2 text-[13px] leading-[16px] font-medium text-bluegray-900">
+          TCF09 40W Dual USB-C / Type-C 2PD Mini USB-C / Type-C 2PD Mini
+        </p>
         <div className="flex items-center gap-1.5">
-          <span className="text-base font-bold text-noon-black">Ð125</span>
-          <img src={ASSETS.express} alt="" className="h-4 w-[53px]" />
+          <span className="text-[14px] leading-[18px] font-bold text-bluegray-1000">Đ125</span>
+          <span className="text-[12px] leading-[16px] text-bluegray-600 line-through">Đ209</span>
+          <span className="text-[12px] leading-[16px] font-semibold text-green-700">47% OFF</span>
+          <span className="rounded bg-[#FEEE00] px-1.5 py-px text-[10px] font-bold italic leading-[14px] text-bluegray-1000">express</span>
         </div>
       </div>
+      <span className="absolute right-2 top-2 text-[10px] leading-[12px] text-bluegray-500">Ad</span>
     </section>
   );
 }
 
 function DeliveryCard() {
+  const [open, setOpen] = useState(true);
   return (
-    <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col">
-      <div className="mb-2 flex items-center justify-between">
-        <h3 className="text-[15px] leading-5 font-bold text-bluegray-1000">Delivery Information</h3>
-        <span className="text-xs text-bluegray-600">one member</span>
+    <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-2">
+      <div className="flex items-center justify-between">
+        <h3 className="text-[15px] leading-[19px] font-bold text-bluegray-1000">Delivery Information</h3>
+        <span className="flex items-center gap-1 rounded-full bg-[#fff7ed] px-1.5 py-0.5 text-[11px] font-semibold text-bluegray-900">
+          <span className="rounded bg-[#FEEE00] px-1.5 py-px text-[10px] font-bold italic leading-[14px] text-bluegray-1000">one</span>
+          member
+        </span>
       </div>
-      <div className="rounded-xl border border-bluegray-200 px-3 py-2">
-        <p className="text-sm text-bluegray-900">Get it Tomorrow before 12 PM</p>
+      <div className="flex items-center justify-between rounded-xl border border-bluegray-200 px-3 py-2">
+        <span className="flex items-center gap-2 text-[13px] leading-[16px] text-bluegray-900">
+          <span className="rounded bg-[#FEEE00] px-1.5 py-px text-[10px] font-bold italic leading-[14px] text-bluegray-1000">express</span>
+          Get by 7th Sep
+        </span>
+        <span className="text-[12px] font-medium text-orange-600">Order in 21 hrs</span>
       </div>
-      <button className="mt-2 flex w-full items-center justify-between rounded-xl bg-bluegray-100 px-3 py-3 text-sm leading-5 font-semibold text-bluegray-700">
-        Other Delivery Options
-        <img src={ASSETS.chevronDown} alt="" className="h-5 w-5" />
+      <div className="rounded-xl bg-bluegray-100">
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="flex w-full items-center justify-between px-3 py-3 text-[14px] leading-[18px] font-semibold text-bluegray-900"
+        >
+          Faster Delivery Options
+          <img
+            src={ASSETS.chevronDown}
+            alt=""
+            className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`}
+          />
+        </button>
+        {open && (
+          <div className="border-t border-bluegray-200 px-3 py-2 flex flex-col gap-1.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[13px] leading-[18px] text-bluegray-900">
+                Get it <span className="font-semibold">Today</span>
+              </span>
+              <span className="text-[13px] font-semibold text-bluegray-900">+ Đ 14.00</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-[13px] leading-[18px] text-bluegray-900">
+                Get it <span className="font-semibold">Tomorrow</span>{' '}
+                <span className="text-bluegray-600">[before 12pm]</span>
+              </span>
+              <span className="text-[13px] font-semibold text-bluegray-900">+ Đ 12.00</span>
+            </div>
+          </div>
+        )}
+        <div className="flex items-center gap-1 px-3 pb-2 text-[11px] text-bluegray-600">
+          <img src={ASSETS.info} alt="" className="h-3 w-3" />
+          Select these options on checkout
+        </div>
+      </div>
+      <button
+        type="button"
+        className="flex w-full items-center justify-between rounded-xl bg-bluegray-1000 px-3 py-3 text-[13px] font-semibold text-white"
+      >
+        <span className="flex items-center gap-1.5">
+          Get it today for free with{' '}
+          <span className="rounded bg-[#FEEE00] px-1.5 py-px text-[11px] font-bold italic leading-[14px] text-bluegray-1000">one</span>
+        </span>
+        <img src={ASSETS.chevronRight} alt="" className="h-3 w-3 [filter:invert(1)]" />
       </button>
     </section>
   );
 }
 
 function FreeGifts() {
+  const gifts = [
+    { title: 'Pepsi Gift Hamper', sub: 'Pack of 6 cans & Hoodie or tote bag' },
+    { title: 'Anker Travel Pouch', sub: 'Microfiber pouch + cleaning cloth' },
+  ];
   return (
-    <section className="mx-3 rounded-2xl bg-white px-3 py-4">
-      <h3 className="text-base leading-5 font-bold text-bluegray-1000">Free gifts for you</h3>
-      <article className="mt-3 rounded-xl border border-bluegray-300 p-2">
-        <div className="flex gap-3">
-          <div className="relative h-[55px] w-14 rounded-lg border border-bluegray-100 bg-white">
-            <img src={ASSETS.gift} alt="" className="h-full w-full object-contain" />
-            <span className="absolute bottom-0 left-0 right-0 rounded-b-md bg-[#1155cb] text-center text-[13px] font-bold italic text-white">Free</span>
-          </div>
-          <div className="flex flex-col gap-1">
-            <p className="text-[15px] font-semibold italic leading-[18px] text-[#242a34]">Pepsi Gift Hamper</p>
-            <p className="text-xs italic font-medium text-[#67778e]">Pack of 6 cans &amp; Hoodie or tote bag</p>
-            <p className="text-[13px] font-semibold text-accent-700">View eligible products &gt;</p>
-          </div>
-        </div>
-      </article>
+    <section className="mx-3 rounded-2xl bg-white px-3 py-3">
+      <h3 className="text-[15px] leading-[19px] font-bold text-bluegray-1000">Free gifts for you</h3>
+      <div className="mt-3 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+        {gifts.map((g) => (
+          <article
+            key={g.title}
+            className="flex shrink-0 w-[270px] gap-3 rounded-xl border border-bluegray-300 p-2"
+          >
+            <div className="relative h-[55px] w-14 shrink-0 overflow-hidden rounded-lg border border-bluegray-100 bg-white">
+              <img src={ASSETS.gift} alt="" className="h-full w-full object-contain" />
+              <span className="absolute bottom-0 left-0 right-0 rounded-b-md bg-[#1155cb] text-center text-[13px] font-bold italic text-white">Free</span>
+            </div>
+            <div className="flex flex-col gap-0.5 min-w-0">
+              <p className="text-[14px] font-semibold leading-[18px] text-[#242a34]">{g.title}</p>
+              <p className="text-[12px] font-medium leading-[16px] text-bluegray-600">{g.sub}</p>
+              <p className="mt-auto text-[13px] font-semibold text-accent-700">View eligible products &gt;</p>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
@@ -377,12 +443,12 @@ function ChipGroup({ options, selectedIndex }: { options: string[]; selectedInde
 }
 
 const TRUST_MARKERS = [
-  { icon: ASSETS.aiReturns,         label: "Low\nReturn",           bg: "bg-white border border-bluegray-200", size: "w-[104px]", weight: "font-semibold" },
+  { icon: ASSETS.sellerRatings,     label: "High\nRated",           bg: "bg-accent-50",                        size: "w-[104px]", weight: "font-semibold" },
+  { icon: ASSETS.sellerLowReturn,   label: "Low & Easy\nReturns",   bg: "bg-accent-50",                        size: "w-[104px]", weight: "font-semibold" },
+  { icon: ASSETS.aiWarranty,        label: "Secure\nTransactions",  bg: "bg-accent-50",                        size: "w-[104px]", weight: "font-semibold" },
+  { icon: ASSETS.aiReturns,         label: "Low\nReturn",           bg: "bg-white border border-bluegray-200", size: "w-[94px]",  weight: "font-semibold" },
   { icon: ASSETS.sellerPartner,     label: "Partner\nSince",        bg: "bg-white border border-bluegray-200", size: "w-[94px]",  weight: "font-semibold" },
   { icon: ASSETS.sellerDescribed,   label: "Product\nAs Described", bg: "bg-white border border-bluegray-200", size: "w-[94px]",  weight: "font-semibold" },
-  { icon: ASSETS.sellerRatings,     label: "High\nRated",           bg: "bg-white border border-bluegray-200", size: "w-[94px]",  weight: "font-semibold" },
-  { icon: ASSETS.sellerLowReturn,   label: "Low & Easy\nReturns",   bg: "bg-accent-50",                        size: "w-[94px]",  weight: "font-medium" },
-  { icon: ASSETS.aiWarranty,        label: "Secure\nTransactions",  bg: "bg-accent-50",                        size: "w-[94px]",  weight: "font-medium" },
 ];
 
 function TrustMarkers() {
@@ -490,10 +556,10 @@ function PaymentOffers() {
         Payment offers
       </h2>
       <div className="flex gap-2 overflow-x-auto px-3 pb-1">
-        {/* Noon pay wallet icon */}
+        {/* Noon VISA card — primary */}
         <div className={cardBase}>
           <div className={logoBox}>
-            <img src={ASSETS.noonPayIcon} alt="Noon Pay" className="h-10 w-[60px] object-contain" />
+            <img src={ASSETS.noonVisaCard} alt="Noon VISA" className="h-10 w-[60px] object-cover rounded-md" />
           </div>
           <p className="text-[12px] leading-[14px] tracking-[-0.12px] text-[#0e0e0e] line-clamp-3">
             <span className="font-bold">Get extra 5% cashback</span>
@@ -512,21 +578,6 @@ function PaymentOffers() {
               Get extra 5% cashback
             </p>
             <p className="text-[12px] leading-[14px] tracking-[-0.12px] text-bluegray-600 line-clamp-2">
-              on using ENBD noon VISA credit card
-            </p>
-          </div>
-        </div>
-
-        {/* Noon VISA card */}
-        <div className={cardBase}>
-          <div className={logoBox}>
-            <img src={ASSETS.noonVisaCard} alt="Noon VISA" className="h-10 w-[60px] object-cover rounded-md" />
-          </div>
-          <div className="flex flex-col gap-0.5 min-w-0 flex-1">
-            <p className="text-[14px] font-semibold leading-[18px] tracking-[-0.14px] text-bluegray-900 truncate">
-              Get extra 5% cashback
-            </p>
-            <p className="text-[12px] leading-[14px] tracking-[-0.12px] text-[#959595] line-clamp-2">
               on using ENBD noon VISA credit card
             </p>
           </div>
@@ -841,9 +892,9 @@ function BestsellerBanner() {
 
 function AdditionalInformation() {
   const rows = [
-    { icon: ASSETS.aiReturns,  label: "Free 7 day returns" },
-    { icon: ASSETS.aiWarranty, label: "Warranty" },
-    { icon: ASSETS.aiSoldBy,   label: "Sold by" },
+    { icon: ASSETS.aiReturns,  label: "Not eligible for returns" },
+    { icon: ASSETS.aiSoldBy,   label: "Free delivery with Lockers & Pickup" },
+    { icon: ASSETS.aiWarranty, label: "1 year warranty applicable" },
   ];
   return (
     <section className="mx-3 rounded-2xl bg-white px-3 py-4 flex flex-col gap-3">
@@ -999,12 +1050,214 @@ function BottomBar() {
   );
 }
 
+function FrequentlyBoughtTogether() {
+  const items = [
+    { name: 'USB C Plug, 735 Charger (Nano I...', price: 'Đ110', img: ASSETS.airpods, brand: '' },
+    { name: '60W USB Type C Cable Nylon Bra...', price: 'Đ25', img: ASSETS.adThumb, brand: 'UGREEN' },
+    { name: 'Anker 737 Power Bank (PowerCor...', price: 'Đ325', img: ASSETS.airpods, brand: '' },
+  ];
+  return (
+    <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-3">
+      <h2 className="text-[15px] font-bold leading-[19px] text-bluegray-1000">Frequently bought together</h2>
+      <div className="flex items-stretch gap-1.5">
+        {items.map((item, idx) => (
+          <div key={item.name} className="flex flex-1 items-stretch gap-1">
+            <div className="flex flex-1 flex-col gap-1">
+              <div className="relative aspect-square overflow-hidden rounded-lg bg-bluegray-50">
+                <img src={item.img} alt={item.name} className="h-full w-full object-contain" />
+                <span className="absolute right-1.5 top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-accent-700">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                {item.brand && (
+                  <span className="absolute left-1.5 top-1.5 rounded bg-[#0a4f4a] px-1 py-px text-[8px] font-bold text-white">{item.brand}</span>
+                )}
+              </div>
+              <p className="line-clamp-2 text-[11px] leading-[14px] text-bluegray-1000">{item.name}</p>
+              <p className="text-[13px] font-bold leading-4 text-bluegray-1000 line-through">{item.price}</p>
+              <span className="self-start rounded bg-[#FEEE00] px-1 py-px text-[9px] font-bold italic leading-[12px] text-bluegray-1000">express Today</span>
+            </div>
+            {idx < items.length - 1 && (
+              <span className="flex shrink-0 items-center text-bluegray-400 text-[14px] font-bold">+</span>
+            )}
+          </div>
+        ))}
+      </div>
+      <button type="button" className="mt-1 h-10 w-full rounded-[10px] border border-noon-blue text-[14px] font-semibold text-noon-blue">
+        Buy all for Đ460
+      </button>
+    </section>
+  );
+}
+
+function RatingsReviews() {
+  const summaryBullets = [
+    'The portrait mode includes a fantastic wide-angle',
+    'Users appreciate the overall performance of phone.',
+    'Enjoy the wide-angle capability while using portrait a fantastic wide-angle',
+    'Users appreciate the overall performance of this phone.',
+  ];
+  const reviews = [
+    { name: 'John Anderson', stars: 4, when: '8 days ago', body: 'If the camera had the wide angle feature in the portrait mode. If the camera has more fe..', helpful: 15 },
+    { name: 'John Anderson', stars: 5, when: '6 months ago', body: 'If the camera had the wide angle feature in the portrait mode. If the camera has more fewer features than than the last one it will be worse better than others.', helpful: 14 },
+  ];
+  return (
+    <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-3">
+      <div className="flex flex-col gap-1">
+        <h2 className="text-[15px] font-bold leading-[19px] text-bluegray-1000">Ratings & Reviews</h2>
+        <div className="flex items-center gap-1.5">
+          <span className="text-[24px] font-bold leading-7 text-bluegray-1000">4.8</span>
+          <span className="flex gap-0.5 text-emerald-700 text-[18px]">★★★★<span className="text-bluegray-300">★</span></span>
+        </div>
+        <p className="flex items-center gap-1 text-[12px] leading-4 text-bluegray-600">
+          Avg. rating based on 64 reviews from trusted sources
+          <img src={ASSETS.info} alt="" className="h-3 w-3" />
+        </p>
+      </div>
+
+      <div className="rounded-xl bg-purple-50 p-3 flex flex-col gap-1.5">
+        <p className="flex items-center gap-1 text-[13px] font-semibold text-bluegray-1000">
+          64 reviews, summarised by noon AI
+          <span className="text-purple-700">✦</span>
+        </p>
+        <ul className="flex flex-col gap-1">
+          {summaryBullets.map((b) => (
+            <li key={b} className="flex items-start gap-1 text-[13px] leading-[18px] text-bluegray-1000">
+              <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-bluegray-1000" />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <h3 className="text-[14px] font-bold text-bluegray-1000">Photo Reviews (64)</h3>
+        <div className="flex gap-1.5 overflow-x-auto -mx-1 px-1">
+          {[ASSETS.airpods, ASSETS.adThumb, ASSETS.airpods, ASSETS.adThumb].map((img, i) => (
+            <div key={i} className="h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-bluegray-100">
+              <img src={img} alt="" className="h-full w-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <h3 className="text-[14px] font-bold text-bluegray-1000">Top Reviews (64)</h3>
+        {reviews.map((r, i) => (
+          <article key={i} className="flex flex-col gap-2 rounded-xl border border-bluegray-200 p-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[13px] font-semibold text-bluegray-1000">{r.name}</span>
+              <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-700">
+                <img src={ASSETS.verified} alt="" className="h-3 w-3" />
+                Verified Buy
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[11px] text-bluegray-600">
+              <span className="text-emerald-700 text-[12px]">
+                {Array.from({length: r.stars}).map((_, j) => <span key={j}>★</span>)}
+                <span className="text-bluegray-300">{Array.from({length: 5 - r.stars}).map((_, j) => <span key={j}>★</span>)}</span>
+              </span>
+              <span>·</span>
+              <span>{r.when}</span>
+            </div>
+            <div className="flex flex-wrap gap-x-2 gap-y-1 text-[11px] text-bluegray-700">
+              <span>Mac OS</span>
+              <span>·</span>
+              <span>8 GB RAM</span>
+              <span>·</span>
+              <span>Internal Version</span>
+              <span>·</span>
+              <span>256 GB</span>
+            </div>
+            <div className="text-[11px] text-bluegray-700">
+              Dual core memory <span className="font-semibold text-accent-700">View product &gt;</span>
+            </div>
+            <p className="text-[13px] font-semibold text-bluegray-1000">This is simply amazing!</p>
+            <p className="text-[12px] leading-[16px] text-bluegray-700">
+              {r.body} <span className="font-semibold text-accent-700">{i === 0 ? 'More' : 'Less'}</span>
+            </p>
+            <p className="text-[12px] font-semibold text-accent-700">Translate to عربي</p>
+            <div className="flex gap-1.5">
+              {[ASSETS.airpods, ASSETS.adThumb].map((img, j) => (
+                <div key={j} className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-bluegray-100">
+                  <img src={img} alt="" className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </div>
+            <button type="button" className="self-start flex items-center gap-1 rounded-full border border-bluegray-300 px-2.5 py-1 text-[11px] font-medium text-bluegray-700">
+              <span>👍</span> Helpful ({r.helpful})
+            </button>
+          </article>
+        ))}
+        <button type="button" className="mx-auto mt-1 flex items-center gap-1 text-[14px] font-semibold text-accent-700">
+          All customer reviews <img src={ASSETS.miniChevronRight} alt="" className="h-3 w-3" />
+        </button>
+      </div>
+    </section>
+  );
+}
+
+function ProductCarousel({ title, highlightWord }: { title: string; highlightWord?: string }) {
+  const products = [
+    { name: 'Apple Airpods Pro 2 Wireless Earbuds', price: 'Đ899', orig: '1399', off: '33%', bestSeller: true },
+    { name: 'Apple Airpods Pro 2 Wireless Earbuds', price: 'Đ899', orig: '1399', off: '33%' },
+    { name: 'Apple Airpods Pro 2 Wireless Earbuds', price: 'Đ899', orig: '1399', off: '33%' },
+  ];
+  return (
+    <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-3">
+      <h2 className="text-[15px] font-bold leading-[19px] text-bluegray-1000">
+        {highlightWord
+          ? <>{title.replace(highlightWord, '')} <span className="text-accent-700">"{highlightWord}"</span></>
+          : title}
+      </h2>
+      <div className="flex gap-2 overflow-x-auto -mx-1 px-1 pb-1">
+        {products.map((p, i) => (
+          <article key={i} className="flex w-[140px] shrink-0 flex-col gap-1.5 rounded-xl border border-bluegray-200 p-2">
+            <div className="relative aspect-square overflow-hidden rounded-lg bg-bluegray-50">
+              {p.bestSeller && (
+                <span className="absolute left-1 top-1 rounded bg-[#0a4f4a] px-1.5 py-0.5 text-[9px] font-bold text-white">Best Seller</span>
+              )}
+              <button className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-white/90">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21l-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.18L12 21z" stroke="#1D2539" strokeWidth="1.6" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <img src={ASSETS.airpods} alt="" className="h-full w-full object-contain" />
+              <span className="absolute bottom-1 left-1 rounded bg-bluegray-100 px-1 text-[9px] text-bluegray-700">Ad</span>
+              <button className="absolute bottom-1 right-1 flex h-6 w-6 items-center justify-center rounded-md border border-bluegray-300 bg-white text-bluegray-1000">
+                <span className="text-[14px] font-bold leading-none">+</span>
+              </button>
+            </div>
+            <p className="line-clamp-2 text-[12px] leading-[15px] text-bluegray-1000">{p.name}</p>
+            <div className="flex items-center gap-1 text-[11px]">
+              <span className="text-emerald-700 text-[12px]">★</span>
+              <span className="font-semibold text-bluegray-1000">4.3</span>
+              <span className="text-bluegray-600">(128)</span>
+            </div>
+            <div className="flex items-center gap-1 text-[12px]">
+              <span className="font-bold text-bluegray-1000 line-through">{p.price}</span>
+              <span className="text-bluegray-600 line-through">{p.orig}</span>
+              <span className="font-semibold text-green-700">{p.off}</span>
+            </div>
+            <p className="flex items-center gap-1 text-[10px] text-red-700">
+              <span className="flex h-3 w-3 items-center justify-center rounded-full bg-red-700 text-white">↓</span>
+              Lowest price in 30...
+            </p>
+            <span className="self-start rounded bg-[#FEEE00] px-1 py-px text-[9px] font-bold italic leading-[12px] text-bluegray-1000">express Today</span>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function PdpDesign() {
   return (
     <div className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-[#F9F9FB] flex flex-col gap-3 overflow-y-auto">
       <section className="relative">
         <HeaderButtons />
-        <img src={ASSETS.productImage} alt="iPhone" className="h-[512px] w-full object-cover" />
+        <img src={ASSETS.productImage} alt="" className="h-[512px] w-full object-cover" />
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5" aria-hidden="true">
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-1000" />
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-300" />
@@ -1019,14 +1272,19 @@ export default function PdpDesign() {
       <DeliveryCard />
       <FreeGifts />
       <VariantPicker />
-      <TrustMarkers />
       <PaymentOffers />
+      <TrustMarkers />
       <ProductDetails />
-      <ExtendedWarranty />
       <AdditionalInformation />
       <BestsellerBanner />
       <SellerWidget />
       <ProductFeatures />
+      <SponsoredProducts />
+      <ExtendedWarranty />
+      <FrequentlyBoughtTogether />
+      <RatingsReviews />
+      <ProductCarousel title="Similar Products" />
+      <ProductCarousel title="Top Products in chargers" highlightWord="chargers" />
       <BottomBar />
     </div>
   );
