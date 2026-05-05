@@ -1,28 +1,9 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 
-/* ---------- Field DS tokens (from Figma 718:29694 var defs) ---------- */
-const T = {
-  color: {
-    text: {
-      primary: "#0e0e0e",
-      deep: "#101628",
-      heading: "#1d2539",
-      strong: "#343d54",
-      body: "#475067",
-      muted: "#666d85",
-      subtle: "#7E859B",
-      highEmphasis: "rgba(2,6,12,0.92)",
-      secondary: "rgba(2,6,12,0.6)",
-    },
-    surface: { canvas: "#ffffff", page: "#f9f9fb", scrim50: "#fcfcfd" },
-    border: { divider: "#eaecf0", subtle: "#f2f3f7" },
-    brand: { blue: "#3866DF", blueDeep: "#0057ff", blueMid: "#0076ff", blueSoft: "#e1efff", blueScrim: "#eff7ff" },
-    verified: "#108757",
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
 function BackChevron({ className = "" }: { className?: string }) {

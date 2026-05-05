@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import {
   SavingsCard,
   PromoStrip,

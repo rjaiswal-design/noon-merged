@@ -20,7 +20,7 @@ import CancelConfirmation from "./components/CancelConfirmation";
 import PostCancel from "./components/PostCancel";
 import PaymentMethod from "./components/PaymentMethod";
 import SplashScreen from "./components/SplashScreen";
-import SmoothCorners from "./components/SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import {
   SkeletonGate,
   HomeSkeleton,

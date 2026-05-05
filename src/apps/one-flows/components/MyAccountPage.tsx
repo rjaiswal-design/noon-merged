@@ -1,34 +1,10 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import { ConfirmSheet } from "./AccountSheets";
 
-/* ---------- Field DS tokens (Figma 1550:164001) ---------- */
-const T = {
-  color: {
-    text: {
-      primary: "#0e0e0e",
-      deep: "#101628",
-      heading: "#1d2539",
-      body: "#475067",
-      muted: "#666d85",
-      strong: "#343d54",
-    },
-    surface: {
-      canvas: "#ffffff",
-      page: "#f9f9fb",
-      scrim50: "#fcfcfd",
-    },
-    border: {
-      divider: "#eaecf0",
-      subtle: "#f2f3f7",
-      strong: "#d0d4dd",
-    },
-    brand: { green: "#108757" },
-    accent: { orange: "#f36302", orangeLight: "#fdba74" },
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
 function BackChevron({ className = "" }: { className?: string }) {

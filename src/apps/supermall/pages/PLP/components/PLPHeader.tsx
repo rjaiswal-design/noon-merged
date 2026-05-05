@@ -14,7 +14,7 @@ export function PLPHeader({ title }: PLPHeaderProps) {
         <ChevronLeft size={24} color="var(--grey-900)" />
       </button>
       <h1 className="plp-header__title">{title}</h1>
-      <button className="plp-header__search" aria-label="Search" onClick={() => navigate('/search')}>
+      <button className="plp-header__search" aria-label="Search" onClick={() => navigate('/supermall/search')}>
         <SearchIcon size={24} color="var(--grey-900)" />
       </button>
     </header>

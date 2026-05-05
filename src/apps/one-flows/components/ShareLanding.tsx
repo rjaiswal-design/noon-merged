@@ -1,19 +1,11 @@
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import oneLogoFrame from "../assets/one-logo-frame.svg";
 import oneLogoGroup from "../assets/one-logo-group.svg";
 import ellipse3931 from "../assets/ellipse3931.svg";
 
-/* ---------- Field DS tokens (mirrored from Figma 1530:11950 variable defs) ---------- */
-const T = {
-  color: {
-    brand: { green: "#108757", greenSoft: "#cef3da", grass500: "#5a9674" },
-    text: { primary: "#0e0e0e", heading: "#1d2539", deep: "#101628", body: "#475067", strong: "#343d54", muted: "#666d85" },
-    surface: { canvas: "#ffffff", subtle: "#f9f9fb", scrim50: "#fcfcfd", scrim: "#f3f3f5", page: "#f2f3f7" },
-    border: { divider: "#eaecf0", hairline: "#f5f5f5", muted: "#d0d4dd", subtle: "#f2f3f7" },
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
 function BackChevron({ className = "" }: { className?: string }) {

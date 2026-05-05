@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import ReviewAndConfirmSheet, {
   type ConfirmPlanId,
 } from "./ReviewAndConfirmSheet";

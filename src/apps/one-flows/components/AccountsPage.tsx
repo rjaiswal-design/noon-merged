@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
-import { BottomNav as SharedBottomNav } from "../../../shell/BottomNav";
+import SmoothCorners from "@ui/SmoothCorners";
 import {
   CountrySelectorSheet,
   SignOutSheet,
@@ -20,39 +19,8 @@ import wishlistRacket from "../assets/figma-products/wishlist-racket.svg";
 import wishlistHeart from "../assets/figma-products/wishlist-heart.svg";
 import creditCardBg from "../assets/figma-products/credit-card-bg.png";
 
-/* ---------- Field DS tokens (mirrored from Figma 733:13629) ---------- */
-const T = {
-  color: {
-    text: {
-      primary: "#0e0e0e",
-      deep: "#101628",
-      heading: "#1d2539",
-      strong: "#343d54",
-      body: "#475067",
-      muted: "#666d85",
-      subtle: "#989fb3",
-    },
-    surface: {
-      canvas: "#ffffff",
-      page: "#f9f9fb",
-      scrim50: "#fcfcfd",
-    },
-    border: {
-      divider: "#eaecf0",
-      hairline: "#f5f5f5",
-      subtle: "#f2f3f7",
-    },
-    brand: { green: "#108757" },
-    accent: {
-      info: "#0076ff",
-      infoDeep: "#0057ff",
-      yellow: "#FFE600",
-      yellowSoft: "#FFF6BF",
-    },
-    danger: "#f43333",
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
 function ChevronRight({ className = "", color = T.color.text.muted }: { className?: string; color?: string }) {
@@ -943,13 +911,6 @@ export default function AccountsPage({
         }}
       />
 
-      {/* Bottom nav — hidden when embedded inside the supermall shell;
-          the host app provides the real navigation in that mode. */}
-      {!embedded && (
-        <div className="absolute bottom-0 left-0 right-0">
-          <SharedBottomNav active="account" />
-        </div>
-      )}
     </div>
   );
 }

@@ -1,20 +1,8 @@
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import chevronStroke from "../assets/chevron-stroke.svg";
 
-/* ---------- Field DS tokens ---------- */
-const T = {
-  color: {
-    text: { row: "#262626", heading: "#1d2539", body: "#475067", muted: "#666d85" },
-    surface: { canvas: "#ffffff", subtle: "#f9f9fb" },
-    border: { hairline: "#f5f5f5" },
-    brand: { green: "#108757", greenSoft: "#e7f6f0" },
-    /** Avatar identity hues — visual zone only, the single colour moment
-     *  on this card. Everything else is neutral so the card reads as a
-     *  quiet settings nudge consistent with CurrentPlanCard above it. */
-    avatar: { a: "#3D5BFF", b: "#FF6FA3", c: "#7B47E0" },
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /**
  * Share noon One — discovery card on the home screen (PRD §5.1.4
  * "App-open nudge"). Architecture mirrors CurrentPlanCard exactly:

@@ -1,18 +1,10 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 
-/* ---------- Field DS tokens ---------- */
-const T = {
-  color: {
-    brand: { green: "#108757", greenSoft: "#e7f6f0", greenSurface: "#f7fffc" },
-    text: { primary: "#0e0e0e", heading: "#1d2539", body: "#475067", muted: "#666d85" },
-    surface: { canvas: "#ffffff", subtle: "#f9f9fb", scrim: "#f3f3f5" },
-    border: { divider: "#eaecf0", hairline: "#f5f5f5", muted: "#d0d5dd", subtle: "#f2f3f7" },
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
 function BackChevron({ className = "" }: { className?: string }) {

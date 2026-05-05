@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import AddNewCardSheet from "./AddNewCardSheet";
 import visaLogo from "../assets/visa-logo.png";
 import mastercardLogo from "../assets/mastercard-logo.png";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import visaLogoLarge from "../assets/visa-logo-large.svg";
 import mastercardLogoLarge from "../assets/mastercard-logo-large.svg";
 import amexLogoLarge from "../assets/amex-logo-large.png";

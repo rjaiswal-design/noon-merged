@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useWishlistStore } from '../../store/wishlistStore';
+import { useWishlistStore } from '@state/wishlistStore';
 import './WishlistOverlay.css';
 
 const WISHLIST_HOST = import.meta.env.DEV

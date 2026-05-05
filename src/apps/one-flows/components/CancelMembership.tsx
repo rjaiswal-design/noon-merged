@@ -1,5 +1,5 @@
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import SlotNumber from "./SlotNumber";
 import deliveryIllustration from "../assets/cancel/delivery-illustration.png";
 import dealsIllustration from "../assets/cancel/deals-illustration.png";

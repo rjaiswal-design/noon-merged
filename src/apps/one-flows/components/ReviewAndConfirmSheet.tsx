@@ -1,4 +1,4 @@
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import applePayLogo from "../assets/apple-pay.svg";
 
 const AED_GLYPH = "";

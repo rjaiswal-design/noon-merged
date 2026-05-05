@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import applePayLogo from "../assets/apple-pay.svg";
 
 /* ---------- Inline icons (kept local so this screen has no extra assets) ---------- */

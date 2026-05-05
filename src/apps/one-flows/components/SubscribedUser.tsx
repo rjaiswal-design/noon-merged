@@ -9,7 +9,7 @@ import lines from "../assets/lines.svg";
 import ellipse2080 from "../assets/ellipse2080.svg";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import heroLogoLottie from "../assets/lottie/hero-logo.lottie?url";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import SlotNumber from "./SlotNumber";
 import ShareWithOthersCard from "./ShareWithOthersCard";
 import iconTruck from "../assets/icon-truck.svg";

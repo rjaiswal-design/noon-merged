@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
+import { T } from '../lib/dsTokens';
 import {
   HANDOFF_LABEL,
   HANDOFF_DESC,
@@ -13,14 +14,6 @@ import {
 /* ================================================================
  *  Field DS tokens
  * ================================================================ */
-const T = {
-  color: {
-    text: { primary: "#0e0e0e", deep: "#101628", body: "#475067", muted: "#666d85", strong: "#343d54" },
-    surface: { canvas: "#ffffff", page: "#f9f9fb" },
-    border: { divider: "#eaecf0", subtle: "#f2f3f7", strong: "#d0d4dd" },
-    brand: { green: "#108757" },
-  },
-};
 
 /* ================================================================
  *  Sheet shell — gray floating card sliding from the bottom

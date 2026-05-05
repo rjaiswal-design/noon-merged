@@ -1,7 +1,8 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import DeliveryPreferenceSheet from "./DeliveryPreferenceSheet";
+import { T } from '../lib/dsTokens';
 import {
   findOrder,
   MARKETPLACES,
@@ -17,31 +18,6 @@ import {
 /* ================================================================
  *  Field DS tokens
  * ================================================================ */
-const T = {
-  color: {
-    text: {
-      primary: "#0e0e0e",
-      deep: "#101628",
-      heading: "#1d2539",
-      strong: "#343d54",
-      body: "#475067",
-      muted: "#666d85",
-    },
-    surface: {
-      canvas: "#ffffff",
-      page: "#f9f9fb",
-      mapBg: "#e8eef6",
-      mapRoad: "#ffffff",
-    },
-    border: { divider: "#eaecf0", subtle: "#f2f3f7", strong: "#d0d4dd" },
-    brand: {
-      transit: "#1d4ed8",
-      transitDot: "#3b82f6",
-      transitSoft: "#e8efff",
-      green: "#108757",
-    },
-  },
-};
 
 /* ================================================================
  *  Inline icons

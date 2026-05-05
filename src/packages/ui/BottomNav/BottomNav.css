@@ -1,24 +1,23 @@
 .bottom-nav {
   --bottom-nav-height: 64px;
-  flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 375px;
   height: var(--bottom-nav-height);
   display: flex;
   align-items: stretch;
-  background: #ffffff;
-  border-top: 1px solid #EAECF0;
+  background: var(--color-surface-primary, #ffffff);
+  border-top: 1px solid var(--color-border-primary, #EAECF0);
   z-index: 100;
-  transform: translateY(0);
-  margin-bottom: 0;
-  transition:
-    transform     0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    margin-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, margin-bottom;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 .bottom-nav--hidden {
-  transform: translateY(100%);
-  margin-bottom: calc(-1 * var(--bottom-nav-height));
+  transform: translate(-50%, 100%);
 }
 
 .bottom-nav__item {

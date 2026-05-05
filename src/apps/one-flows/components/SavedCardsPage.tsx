@@ -14,15 +14,8 @@ import card12 from "../assets/figma-products/card-12.png";
 import sparkleL from "../assets/figma-products/sparkle-divider-l.svg";
 import sparkleR from "../assets/figma-products/sparkle-divider-r.svg";
 
-/* ---------- Field DS tokens (from Figma 718:30835 var defs) ---------- */
-const T = {
-  color: {
-    text: { primary: "#0e0e0e", deep: "#101628", heading: "#1d2539", body: "#475067", muted: "#666d85" },
-    surface: { canvas: "#ffffff", scrim50: "#fcfcfd" },
-    border: { divider: "#eaecf0", subtle: "#f2f3f7" },
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
 function BackChevron({ className = "" }: { className?: string }) {

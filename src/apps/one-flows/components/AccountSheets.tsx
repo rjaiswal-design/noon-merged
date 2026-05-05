@@ -1,19 +1,9 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 
-/* ---------- Field DS tokens (pulled from Figma 718:29052/30991/28473) ---------- */
-const T = {
-  color: {
-    text: { primary: "#0e0e0e", deep: "#101628", heading: "#1d2539", body: "#475067", muted: "#666d85" },
-    surface: { canvas: "#ffffff", page: "#f9f9fb", scrim50: "#fcfcfd" },
-    border: { divider: "#eaecf0", subtle: "#f2f3f7" },
-    brand: { green: "#108757", greenSoft: "#e7f6f0" },
-    danger: "#de1c1c",
-    dangerSoft: "#fde6e6",
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ============================================================
  *  Generic sheet shell — notch + sliding card from bottom
  * ============================================================ */

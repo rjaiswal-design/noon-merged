@@ -146,7 +146,7 @@ function HeaderButtons() {
         type="button"
         className={btn}
         aria-label="Back"
-        onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/shop'); }}
+        onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/supermall/shop'); }}
       >
         <img src={ASSETS.back} alt="" className="h-5 w-5" />
       </button>

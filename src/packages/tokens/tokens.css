@@ -1,0 +1,424 @@
+/* ============================================================================
+   Field Design System — Design Tokens
+   Generated from .context/field-team/references/tokens/{Base.Mode 1,Semantic.Value}.tokens.json
+   Source of truth: Figma file wFRKiKskxZ4vjIHbDVvngJ
+   ============================================================================ */
+
+:root {
+  /* ─── BASE: NEUTRAL ────────────────────────────────────────────────────── */
+  --neutral-white: #ffffff;
+  --neutral-black: #000000;
+
+  /* ─── BASE: GREY ───────────────────────────────────────────────────────── */
+  --grey-50:   #fcfcfd;
+  --grey-100:  #f9f9fb;
+  --grey-200:  #f2f3f7;
+  --grey-300:  #eaecf0;
+  --grey-400:  #d0d4dd;
+  --grey-500:  #989fb3;
+  --grey-600:  #666d85;
+  --grey-700:  #475067;
+  --grey-800:  #343d54;
+  --grey-900:  #1d2539;
+  --grey-1000: #101628;
+
+  /* ─── BASE: SUPERMALL (brand indigo) ──────────────────────────────────── */
+  --supermall-50:   #f6f6fe;
+  --supermall-100:  #edeefd;
+  --supermall-200:  #dbdcfa;
+  --supermall-300:  #c0c2f6;
+  --supermall-400:  #9fa2ef;
+  --supermall-500:  #757adb;
+  --supermall-600:  #4f52d4;
+  --supermall-700:  #3536da;
+  --supermall-800:  #2122b8;
+  --supermall-900:  #19198a;
+  --supermall-1000: #12136d;
+
+  /* ─── BASE: BRAND BLUE ─────────────────────────────────────────────────── */
+  --brand-blue-50:   #f5faff;
+  --brand-blue-100:  #ebf4ff;
+  --brand-blue-200:  #d6e9ff;
+  --brand-blue-300:  #bddbff;
+  --brand-blue-400:  #85bdff;
+  --brand-blue-500:  #3392ff;
+  --brand-blue-600:  #0f7eff;
+  --brand-blue-700:  #0f61ff;
+  --brand-blue-800:  #0a49b8;
+  --brand-blue-900:  #082f8c;
+  --brand-blue-1000: #001f6b;
+
+  /* ─── BASE: EMERALD ────────────────────────────────────────────────────── */
+  /* (Field DS JSON spells this "emereld"; canonical CSS uses "emerald".) */
+  --emerald-50:   #edfdfb;
+  --emerald-100:  #e3fcfa;
+  --emerald-200:  #cef3f0;
+  --emerald-300:  #b8ebe7;
+  --emerald-400:  #7fccc8;
+  --emerald-500:  #3fa199;
+  --emerald-600:  #2f8e88;
+  --emerald-700:  #1f7a74;
+  --emerald-800:  #115a56;
+  --emerald-900:  #083f3b;
+  --emerald-1000: #022c29;
+
+  /* ─── BASE: GREEN ──────────────────────────────────────────────────────── */
+  --green-50:   #f6fefb;
+  --green-100:  #e3fcf2;
+  --green-200:  #cbf6e5;
+  --green-300:  #adf0d5;
+  --green-400:  #71d6ad;
+  --green-500:  #26b57c;
+  --green-600:  #12a168;
+  --green-700:  #0f8857;
+  --green-800:  #0b623f;
+  --green-900:  #07422a;
+  --green-1000: #082b1d;
+
+  /* ─── BASE: NOON (brand yellow) ───────────────────────────────────────── */
+  --noon-50:   #fefeeb;
+  --noon-100:  #fefdc8;
+  --noon-200:  #fff7c2;
+  --noon-300:  #fff77a;
+  --noon-400:  #feee00;
+  --noon-500:  #ffd91a;
+  --noon-600:  #f5c400;
+  --noon-700:  #cc8500;
+  --noon-800:  #a36200;
+  --noon-900:  #804600;
+  --noon-1000: #522c00;
+
+  /* ─── BASE: ORANGE ─────────────────────────────────────────────────────── */
+  --orange-50:   #fffaf5;
+  --orange-100:  #fff1e0;
+  --orange-200:  #fee7cd;
+  --orange-300:  #fedbb4;
+  --orange-400:  #ffcb8f;
+  --orange-500:  #ffa852;
+  --orange-600:  #fd8835;
+  --orange-700:  #e5641a;
+  --orange-800:  #ae3a13;
+  --orange-900:  #73260d;
+  --orange-1000: #491604;
+
+  /* ─── BASE: RED ────────────────────────────────────────────────────────── */
+  --red-50:   #fff5f5;
+  --red-100:  #fff0f0;
+  --red-200:  #fed2d2;
+  --red-300:  #fdb5b5;
+  --red-400:  #f6a2a2;
+  --red-500:  #f48f8f;
+  --red-600:  #f04242;
+  --red-700:  #d92626;
+  --red-800:  #b81414;
+  --red-900:  #7b1414;
+  --red-1000: #510b0b;
+
+  /* ─── BASE: PURPLE ─────────────────────────────────────────────────────── */
+  --purple-50:   #fdf6ff;
+  --purple-100:  #fbf0fe;
+  --purple-200:  #f5defd;
+  --purple-300:  #efcafc;
+  --purple-400:  #e290fe;
+  --purple-500:  #c655ec;
+  --purple-600:  #bd3ae9;
+  --purple-700:  #ad24db;
+  --purple-800:  #741b92;
+  --purple-900:  #491759;
+  --purple-1000: #320f3d;
+
+  /* ─── BASE: PINK ───────────────────────────────────────────────────────── */
+  --pink-50:   #fff4f8;
+  --pink-100:  #fce9ef;
+  --pink-200:  #fcdfe8;
+  --pink-300:  #faccdc;
+  --pink-400:  #fe9fbd;
+  --pink-500:  #fb73a0;
+  --pink-600:  #f7306f;
+  --pink-700:  #e01854;
+  --pink-800:  #b3093d;
+  --pink-900:  #6e0323;
+  --pink-1000: #520018;
+
+  /* ─── BASE: ALPHA LIGHT ────────────────────────────────────────────────── */
+  --alpha-light-4:  #ffffff0a;
+  --alpha-light-8:  #ffffff14;
+  --alpha-light-16: #ffffff29;
+  --alpha-light-24: #ffffff3d;
+  --alpha-light-50: #ffffff80;
+  --alpha-light-64: #ffffffa3;
+  --alpha-light-80: #ffffffcc;
+
+  /* ─── BASE: ALPHA DARK ─────────────────────────────────────────────────── */
+  --alpha-dark-4:  #0000000a;
+  --alpha-dark-8:  #00000014;
+  --alpha-dark-16: #00000029;
+  --alpha-dark-24: #0000003d;
+  --alpha-dark-50: #00000080;
+  --alpha-dark-64: #000000a3;
+  --alpha-dark-80: #000000cc;
+
+  /* ─── BASE: FONT FAMILY ────────────────────────────────────────────────── */
+  --font-primary: 'Noontree', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* ─── BASE: FONT WEIGHTS ───────────────────────────────────────────────── */
+  --font-weight-regular:   400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
+  --font-weight-extrabold: 800;
+
+  /* ─── BASE: NUMBERS / DIMENSIONS ───────────────────────────────────────── */
+  --size-0:   0px;
+  --size-1:   1px;
+  --size-2:   2px;
+  --size-4:   4px;
+  --size-6:   6px;
+  --size-8:   8px;
+  --size-10:  10px;
+  --size-11:  11px;
+  --size-12:  12px;
+  --size-14:  14px;
+  --size-16:  16px;
+  --size-17:  17px;
+  --size-18:  18px;
+  --size-20:  20px;
+  --size-22:  22px;
+  --size-24:  24px;
+  --size-28:  28px;
+  --size-32:  32px;
+  --size-36:  36px;
+  --size-40:  40px;
+  --size-44:  44px;
+  --size-48:  48px;
+  --size-52:  52px;
+  --size-56:  56px;
+  --size-60:  60px;
+  --size-64:  64px;
+  --size-72:  72px;
+  --size-80:  80px;
+  --size-88:  88px;
+  --size-96:  96px;
+  --size-128: 128px;
+  --size-9999: 9999px;
+
+  /* ─── SEMANTIC: SPACE ──────────────────────────────────────────────────── */
+  --space-0:  var(--size-0);
+  --space-1:  var(--size-1);
+  --space-2:  var(--size-2);
+  --space-4:  var(--size-4);
+  --space-6:  var(--size-6);
+  --space-8:  var(--size-8);
+  --space-10: var(--size-10);
+  --space-12: var(--size-12);
+  --space-14: var(--size-14);
+  --space-16: var(--size-16);
+  --space-18: var(--size-18);
+  --space-20: var(--size-20);
+  --space-24: var(--size-24);
+  --space-28: var(--size-28);
+  --space-32: var(--size-32);
+  --space-36: var(--size-36);
+  --space-40: var(--size-40);
+  --space-44: var(--size-44);
+  --space-48: var(--size-48);
+  --space-52: var(--size-52);
+  --space-56: var(--size-56);
+  --space-60: var(--size-60);
+  --space-64: var(--size-64);
+  --space-72: var(--size-72);
+  --space-neg-2:  -2px;
+  --space-neg-4:  -4px;
+  --space-neg-6:  -6px;
+  --space-neg-8:  -8px;
+  --space-neg-12: -12px;
+
+  /* ─── SEMANTIC: RADIUS ─────────────────────────────────────────────────── */
+  --radius-0:  var(--size-0);
+  --radius-2:  var(--size-2);
+  --radius-4:  var(--size-4);
+  --radius-6:  var(--size-6);
+  --radius-8:  var(--size-8);
+  --radius-10: var(--size-10);
+  --radius-12: var(--size-12);
+  --radius-14: var(--size-14);
+  --radius-16: var(--size-16);
+  --radius-18: var(--size-18);
+  --radius-20: var(--size-20);
+  --radius-24: var(--size-24);
+  --radius-28: var(--size-28);
+  --radius-32: var(--size-32);
+  --radius-36: var(--size-36);
+  --radius-40: var(--size-40);
+  --radius-rounded: var(--size-9999);
+
+  /* ─── SEMANTIC: FONT — HEADING SCALE ───────────────────────────────────── */
+  --font-h40-size:           40px;
+  --font-h40-line-height:    48px;
+  --font-h40-letter-spacing: -0.25px;
+  --font-h32-size:           32px;
+  --font-h32-line-height:    40px;
+  --font-h32-letter-spacing: -0.25px;
+  --font-h28-size:           28px;
+  --font-h28-line-height:    36px;
+  --font-h28-letter-spacing: -0.25px;
+  --font-h24-size:           24px;
+  --font-h24-line-height:    32px;
+  --font-h24-letter-spacing: -0.25px;
+  --font-h20-size:           20px;
+  --font-h20-line-height:    28px;
+  --font-h20-letter-spacing: -0.25px;
+  --font-h18-size:           18px;
+  --font-h18-line-height:    24px;
+  --font-h18-letter-spacing: -0.15px;
+  --font-h16-size:           16px;
+  --font-h16-line-height:    20px;
+  --font-h16-letter-spacing: -0.15px;
+
+  /* ─── SEMANTIC: FONT — BODY SCALE ──────────────────────────────────────── */
+  --font-b16-size:           16px;
+  --font-b16-line-height:    20px;
+  --font-b16-letter-spacing: -0.15px;
+  --font-b14-size:           14px;
+  --font-b14-line-height:    18px;
+  --font-b14-letter-spacing: -0.1px;
+  --font-b12-size:           12px;
+  --font-b12-line-height:    16px;
+  --font-b12-letter-spacing: -0.1px;
+  --font-b11-size:           11px;
+  --font-b11-line-height:    14px;
+  --font-b11-letter-spacing: -0.1px;
+
+  /* ─── SEMANTIC: FONT — ACTION SCALE ────────────────────────────────────── */
+  --font-a17-size:           17px;
+  --font-a17-line-height:    24px;
+  --font-a17-letter-spacing: -0.25px;
+  --font-a16-size:           16px;
+  --font-a16-line-height:    24px;
+  --font-a16-letter-spacing: 0px;
+  --font-a14-size:           14px;
+  --font-a14-line-height:    20px;
+  --font-a14-letter-spacing: 0px;
+  --font-a12-size:           12px;
+  --font-a12-line-height:    16px;
+  --font-a12-letter-spacing: 0px;
+
+  /* ─── SEMANTIC: TEXT & ICON ────────────────────────────────────────────── */
+  --color-text-primary:           var(--grey-900);
+  --color-text-secondary:         var(--grey-700);
+  --color-text-tertiary:          var(--grey-600);
+  --color-text-muted:             var(--grey-500);
+  --color-text-on-surface-bold:   var(--neutral-white);
+  --color-text-on-surface-subtle: var(--alpha-light-80);
+  --color-text-action:            var(--brand-blue-700);
+  --color-text-supermall:         var(--supermall-800);
+  --color-text-error:             var(--red-700);
+  --color-text-warning:           var(--orange-700);
+  --color-text-yellow-light:      var(--noon-400);
+  --color-text-yellow-dark:       var(--noon-800);
+  --color-text-success:           var(--green-700);
+
+  /* ─── SEMANTIC: SURFACE ────────────────────────────────────────────────── */
+  --color-surface-primary:            var(--neutral-white);
+  --color-surface-secondary:          var(--grey-100);
+  --color-surface-tertiary:           var(--grey-200);
+  --color-surface-muted:              var(--grey-300);
+  --color-surface-tertiary-inverted:  var(--grey-800);
+  --color-surface-secondary-inverted: var(--grey-900);
+  --color-surface-primary-inverted:   var(--grey-1000);
+  --color-surface-action-subtle:      var(--brand-blue-100);
+  --color-surface-action-bold:        var(--brand-blue-600);
+  --color-surface-action-extrabold:   var(--brand-blue-700);
+  --color-surface-supermall-subtle:   var(--supermall-100);
+  --color-surface-supermall-bold:     var(--supermall-800);
+  --color-surface-error-subtle:       var(--red-100);
+  --color-surface-error-bold:         var(--red-700);
+  --color-surface-warning-subtle:     var(--orange-100);
+  --color-surface-warning-bold:       var(--orange-700);
+  --color-surface-yellow-subtle:      var(--noon-100);
+  --color-surface-yellow-mild:        var(--noon-200);
+  --color-surface-brand-primary:      var(--noon-400);
+  --color-surface-yellow-bold:        var(--noon-600);
+  --color-surface-success-subtle:     var(--green-100);
+  --color-surface-success-bold:       var(--green-700);
+  --color-surface-overlay-subtle:     var(--alpha-dark-24);
+  --color-surface-overlay-bold:       var(--alpha-dark-80);
+
+  /* ─── SEMANTIC: BORDER ─────────────────────────────────────────────────── */
+  --color-border-primary:     var(--grey-300);
+  --color-border-subtle:      var(--grey-200);
+  --color-border-medium:      var(--grey-400);
+  --color-border-bold:        var(--grey-600);
+  --color-border-extrabold:   var(--grey-1000);
+  --color-border-action:      var(--brand-blue-300);
+  --color-border-action-bold: var(--brand-blue-700);
+  --color-border-supermall:   var(--supermall-300);
+  --color-border-error:       var(--red-300);
+  --color-border-warning:     var(--orange-300);
+  --color-border-yellow:      var(--noon-200);
+  --color-border-success:     var(--green-300);
+
+  /* ─── BACK-COMPAT ALIASES ──────────────────────────────────────────────── */
+  /* Older surfaces use British spelling and shorter base ramp names. These
+     aliases let pre-migration CSS keep resolving to Field DS values during
+     the Phase C/D/E rollout. Once each surface is migrated and grepped
+     clean of these names, the aliases can be removed. */
+  --colour-neutral-white:  var(--neutral-white);
+  --colour-neutral-black:  var(--neutral-black);
+
+  --blue-50:   var(--brand-blue-50);
+  --blue-100:  var(--brand-blue-100);
+  --blue-200:  var(--brand-blue-200);
+  --blue-300:  var(--brand-blue-300);
+  --blue-400:  var(--brand-blue-400);
+  --blue-500:  var(--brand-blue-500);
+  --blue-600:  var(--brand-blue-600);
+  --blue-700:  var(--brand-blue-700);
+  --blue-800:  var(--brand-blue-800);
+  --blue-900:  var(--brand-blue-900);
+  --blue-1000: var(--brand-blue-1000);
+
+  --colour-text-primary:           var(--color-text-primary);
+  --colour-text-secondary:         var(--color-text-secondary);
+  --colour-text-tertiary:          var(--color-text-tertiary);
+  --colour-text-muted:             var(--color-text-muted);
+  --colour-text-on-surface-bold:   var(--color-text-on-surface-bold);
+  --colour-text-on-surface-subtle: var(--color-text-on-surface-subtle);
+  --colour-text-action:            var(--color-text-action);
+  --colour-text-supermall:         var(--color-text-supermall);
+  --colour-text-error:             var(--color-text-error);
+  --colour-text-warning:           var(--color-text-warning);
+  --colour-text-success:           var(--color-text-success);
+
+  --colour-surface-primary:           var(--color-surface-primary);
+  --colour-surface-secondary:         var(--color-surface-secondary);
+  --colour-surface-tertiary:          var(--color-surface-tertiary);
+  --colour-surface-muted:             var(--color-surface-muted);
+  --colour-surface-action-bold:       var(--color-surface-action-bold);
+  --colour-surface-action-subtle:     var(--color-surface-action-subtle);
+  --colour-surface-primary-inverted:  var(--color-surface-primary-inverted);
+  --colour-surface-overlay-subtle:    var(--color-surface-overlay-subtle);
+  --colour-surface-overlay-bold:      var(--color-surface-overlay-bold);
+
+  --colour-border-primary:    var(--color-border-primary);
+  --colour-border-subtle:     var(--color-border-subtle);
+  --colour-border-bold:       var(--color-border-bold);
+  --colour-border-action:     var(--color-border-action);
+
+  /* Legacy supermall typography vars (5 CSS files still consume these). */
+  --text-h40-size: var(--font-h40-size); --text-h40-lh: var(--font-h40-line-height); --text-h40-ls: var(--font-h40-letter-spacing);
+  --text-h32-size: var(--font-h32-size); --text-h32-lh: var(--font-h32-line-height); --text-h32-ls: var(--font-h32-letter-spacing);
+  --text-h28-size: var(--font-h28-size); --text-h28-lh: var(--font-h28-line-height); --text-h28-ls: var(--font-h28-letter-spacing);
+  --text-h24-size: var(--font-h24-size); --text-h24-lh: var(--font-h24-line-height); --text-h24-ls: var(--font-h24-letter-spacing);
+  --text-h20-size: var(--font-h20-size); --text-h20-lh: var(--font-h20-line-height); --text-h20-ls: var(--font-h20-letter-spacing);
+  --text-h18-size: var(--font-h18-size); --text-h18-lh: var(--font-h18-line-height); --text-h18-ls: var(--font-h18-letter-spacing);
+  --text-h16-size: var(--font-h16-size); --text-h16-lh: var(--font-h16-line-height); --text-h16-ls: var(--font-h16-letter-spacing);
+  --text-b16-size: var(--font-b16-size); --text-b16-lh: var(--font-b16-line-height); --text-b16-ls: var(--font-b16-letter-spacing);
+  --text-b14-size: var(--font-b14-size); --text-b14-lh: var(--font-b14-line-height); --text-b14-ls: var(--font-b14-letter-spacing);
+  --text-b12-size: var(--font-b12-size); --text-b12-lh: var(--font-b12-line-height); --text-b12-ls: var(--font-b12-letter-spacing);
+  --text-b11-size: var(--font-b11-size); --text-b11-lh: var(--font-b11-line-height); --text-b11-ls: var(--font-b11-letter-spacing);
+  --text-a17-size: var(--font-a17-size); --text-a17-lh: var(--font-a17-line-height); --text-a17-ls: var(--font-a17-letter-spacing);
+  --text-a16-size: var(--font-a16-size); --text-a16-lh: var(--font-a16-line-height); --text-a16-ls: var(--font-a16-letter-spacing);
+  --text-a14-size: var(--font-a14-size); --text-a14-lh: var(--font-a14-line-height); --text-a14-ls: var(--font-a14-letter-spacing);
+  --text-a12-size: var(--font-a12-size); --text-a12-lh: var(--font-a12-line-height); --text-a12-ls: var(--font-a12-letter-spacing);
+}

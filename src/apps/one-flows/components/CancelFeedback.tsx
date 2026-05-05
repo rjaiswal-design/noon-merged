@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 
 /* ---------- Inline icons ---------- */
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
+import { T } from '../lib/dsTokens';
 import {
   ORDERS,
   MARKETPLACES,
@@ -12,36 +13,6 @@ import {
 /* ================================================================
  *  Field DS tokens
  * ================================================================ */
-const T = {
-  color: {
-    text: {
-      primary: "#0e0e0e",
-      deep: "#101628",
-      heading: "#1d2539",
-      strong: "#343d54",
-      body: "#475067",
-      muted: "#666d85",
-    },
-    surface: {
-      canvas: "#ffffff",
-      page: "#f9f9fb",
-      scrim: "#fcfcfd",
-    },
-    border: {
-      divider: "#eaecf0",
-      subtle: "#f2f3f7",
-      strong: "#d0d4dd",
-    },
-    status: {
-      transit: { fg: "#1d4ed8", bg: "#e8efff", dot: "#3b82f6" },
-      preparing: { fg: "#92400e", bg: "#fef3c7", dot: "#d97706" },
-      delivered: { fg: "#108757", bg: "#e7f6f0", dot: "#108757" },
-      cancelled: { fg: "#991b1b", bg: "#fee2e2", dot: "#dc2626" },
-      returned: { fg: "#475067", bg: "#f2f3f7", dot: "#666d85" },
-    },
-    brand: { green: "#108757" },
-  },
-};
 
 /* ================================================================
  *  Inline icons

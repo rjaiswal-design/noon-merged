@@ -328,7 +328,7 @@ function ServiceTile({ label, variant }: { label: string; variant: string }) {
 
 function HomeHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange: (tab: TopTab) => void }) {
   const navigate = useNavigate();
-  const openSearch = () => navigate('/search');
+  const openSearch = () => navigate('/supermall/search');
   return (
     <section
       className={`home-top${activeTab === 'Electronics' ? ' home-top--electronics' : ''}`}
@@ -433,7 +433,7 @@ function HeroCategories({ activeTab }: { activeTab: TopTab }) {
         {isElectronics
           ? electronicsHeroCategories.map((category) => (
               <Link
-                to="/shop"
+                to="/supermall/shop"
                 className="home-hero-card home-hero-card--electronics"
                 key={category.label}
               >
@@ -451,7 +451,7 @@ function HeroCategories({ activeTab }: { activeTab: TopTab }) {
             ))
           : heroCategories.map((category) => (
               <Link
-                to="/shop"
+                to="/supermall/shop"
                 className="home-hero-card"
                 key={category.label}
               >
@@ -469,7 +469,7 @@ function ProductRail({ title, tone }: { title: string; tone?: 'blue' }) {
     <section className={`home-rail${tone === 'blue' ? ' home-rail--blue' : ''}`}>
       <div className="home-section-header">
         <h2>{title}</h2>
-        <Link to="/shop">View all ›</Link>
+        <Link to="/supermall/shop">View all ›</Link>
       </div>
       <div className="home-product-rail">
         {homeProducts.map((product) => (
@@ -525,7 +525,7 @@ function CategoryShowcase() {
     <section className="home-showcase" aria-label="Featured categories">
       <div className="home-section-header">
         <h2>Trending This Week</h2>
-        <Link to="/shop">View all ›</Link>
+        <Link to="/supermall/shop">View all ›</Link>
       </div>
       <div
         className="home-showcase__viewport"
@@ -541,7 +541,7 @@ function CategoryShowcase() {
               <div className="home-showcase__slide-header">
                 <span className="home-showcase__badge">{slide.category}</span>
                 <Link
-                  to="/shop"
+                  to="/supermall/shop"
                   className="home-showcase__cta"
                   style={{ color: slide.accent, borderColor: slide.accent }}
                 >
@@ -607,7 +607,7 @@ function ShopByCategory() {
 
       <div className="home-section-header">
         <h2>Shop by category</h2>
-        <Link to="/shop">View all ›</Link>
+        <Link to="/supermall/shop">View all ›</Link>
       </div>
 
       {/* Horizontal scrollable filter tabs */}
@@ -645,7 +645,7 @@ function ShopByCategory() {
         >
           {gridItems.map((category) => (
             <Link
-              to="/shop"
+              to="/supermall/shop"
               className="home-category"
               key={category.label}
             >

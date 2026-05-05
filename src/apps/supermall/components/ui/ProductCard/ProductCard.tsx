@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useCartStore } from '../../../store/cartStore';
-import { useWishlistStore } from '../../../store/wishlistStore';
+import { useCartStore } from '@state/cartStore';
+import { useWishlistStore } from '@state/wishlistStore';
 import type { Product } from '../../../types/product';
 import { AddToCart } from '../AddToCart/AddToCart';
 import { HeartOutline, HeartFilled, StarFilled, MoonIcon } from '../icons';
@@ -14,7 +14,7 @@ const TAG_STYLES: Record<string, { bg: string; color: string }> = {
   sale:       { bg: 'var(--red-700)', color: 'var(--colour-neutral-white)' },
 };
 
-const PDP_ROUTE = '/product/galaxy-s25-ultra';
+const PDP_ROUTE = '/supermall/product/galaxy-s25-ultra';
 
 interface ProductCardProps {
   product: Product;
