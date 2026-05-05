@@ -169,7 +169,7 @@ function CouponIcon() {
   return (
     <div className="relative h-6 w-6 shrink-0">
       <img src={ASSETS.couponBg} alt="" className="absolute inset-0 h-full w-full" />
-      <img src={ASSETS.couponPercent} alt="" className="absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2" />
+      <img src={ASSETS.couponPercent} alt="" className="absolute left-1/2 top-1/2 h-3.5 w-3.5 [transform:translate(-50%,-50%)]" />
     </div>
   );
 }
@@ -713,6 +713,7 @@ const SPONSORED_PRODUCTS = [
 ];
 
 function SponsoredProducts() {
+  const navigate = useNavigate();
   return (
     <section className="mx-3 rounded-2xl border border-white bg-bluegray-100 overflow-hidden">
       <div className="flex flex-col gap-1 bg-white pb-3 rounded-xl">
@@ -744,7 +745,10 @@ function SponsoredProducts() {
           {SPONSORED_PRODUCTS.map((p) => (
             <div
               key={p.name}
-              className="flex-shrink-0 w-[216px] flex items-start gap-0 rounded-[10px] border border-bluegray-100 p-1 overflow-hidden"
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate('/supermall/product/galaxy-s25-ultra')}
+              className="flex-shrink-0 w-[216px] flex items-start gap-0 rounded-[10px] border border-bluegray-100 p-1 overflow-hidden cursor-pointer"
             >
               <div className="relative h-[71px] w-16 shrink-0 rounded-lg overflow-hidden bg-bluegray-50">
                 <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
@@ -1258,7 +1262,7 @@ export default function PdpDesign() {
       <section className="relative">
         <HeaderButtons />
         <img src={ASSETS.productImage} alt="" className="h-[512px] w-full object-cover" />
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5" aria-hidden="true">
+        <div className="absolute bottom-5 left-1/2 [transform:translateX(-50%)] flex items-center gap-1.5" aria-hidden="true">
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-1000" />
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-300" />
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-300" />
