@@ -15,6 +15,8 @@
   color: var(--color-text-primary);
   display: flex;
   flex-direction: column;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 0;
 }
 
 .home-page__spacer { flex: 1; }
@@ -45,8 +47,20 @@
   padding: 0 0 var(--space-14);
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  /* gap replaced with margin-top on children so the address row's gap can
+     collapse with its height when the morph compacts the header. */
+  gap: 0;
   border-radius: 0 0 var(--radius-12) var(--radius-12);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.home-header > * + * {
+  margin-top: var(--space-12);
+}
+
+.home-section--snap-start {
+  scroll-snap-align: start;
 }
 
 /* ── Service tiles — 76 × 76 rounded-20 ──────────────────────────────── */
