@@ -61,11 +61,6 @@ a {
   flex-direction: column;
 }
 
-@keyframes page-skel-shimmer {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
 .page {
   width: 100%;
   min-height: 100dvh;

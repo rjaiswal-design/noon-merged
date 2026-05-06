@@ -46,26 +46,15 @@ export default function AccountPage() {
             setTimeout(() => setIframeLoaded(true), remaining);
           }}
         />
+        {/* Neutral chrome-only host silhouette — per docs/INTERACTION_DESIGN.md §2
+            ("Iframe boundaries"). The host doesn't know which one-flows screen
+            will mount first, so it paints only what's universally true: status
+            bar + a single full-bleed content rectangle. The iframe owns its
+            own per-screen skeleton from there. */}
         <div className={`account-skeleton${skeletonHidden ? ' account-skeleton--hidden' : ''}`}>
           <div className="account-skeleton__frame">
             <StatusBar tone="dark" />
-            <div className="skel-profile">
-              <div className="skel-block skel-profile__avatar" />
-              <div className="skel-profile__lines">
-                <div className="skel-block skel-profile__line-1" />
-                <div className="skel-block skel-profile__line-2" />
-              </div>
-              <div className="skel-block skel-profile__edit" />
-            </div>
-            <div className="skel-block skel-banner" />
-            <div className="skel-tiles">
-              <div className="skel-block skel-tile" />
-              <div className="skel-block skel-tile" />
-            </div>
-            <div className="skel-block skel-credits" />
-            <div className="skel-block skel-carousel" />
-            <div className="skel-block skel-menu" />
-            <div className="skel-block skel-menu--short" />
+            <div className="skel-block account-skeleton__body" />
           </div>
         </div>
       </div>

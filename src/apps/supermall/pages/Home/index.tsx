@@ -353,7 +353,6 @@ export default function HomePage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [addressSheetOpen, setAddressSheetOpen] = useState(false);
-  const [supermallLoading, setSupermallLoading] = useState(false);
   const progress = useMotionValue(0);
 
   useEffect(() => {
@@ -383,11 +382,9 @@ export default function HomePage() {
 
   const handleTileTap = (aria: string) => {
     if (aria === 'super mall') {
-      setSupermallLoading(true);
-      window.setTimeout(() => {
-        setSupermallLoading(false);
-        navigate('/supermall/mall');
-      }, 900);
+      // Navigate immediately. The destination owns its own loading skeleton
+      // per docs/INTERACTION_DESIGN.md §2 ("one skeleton per screen load").
+      navigate('/supermall/mall');
     }
   };
 
@@ -405,29 +402,10 @@ export default function HomePage() {
         <OffersForYou />
         <div className="home-page__spacer" />
       </div>
-      {supermallLoading && <SupermallSkeleton />}
+      {/* AddressBottomSheet is always mounted so AnimatePresence can run its
+          exit animation on close — see commit 9d4866e. The internal `open`
+          prop drives the slide-up/slide-down. */}
       <AddressBottomSheet open={addressSheetOpen} onClose={() => setAddressSheetOpen(false)} />
     </PageTransition>
-  );
-}
-
-/* ─── Supermall skeleton — shown briefly when re-entering supermall flow ─ */
-function SupermallSkeleton() {
-  return (
-    <div className="home-skel" aria-hidden="true">
-      <div className="home-skel__tiles">
-        {Array.from({ length: 7 }).map((_, i) => <div key={i} className="home-skel__tile" />)}
-      </div>
-      <div className="home-skel__address" />
-      <div className="home-skel__search" />
-      <div className="home-skel__title" />
-      <div className="home-skel__cats">
-        {Array.from({ length: 6 }).map((_, i) => <div key={i} className="home-skel__cat" />)}
-      </div>
-      <div className="home-skel__title" />
-      <div className="home-skel__cards">
-        {Array.from({ length: 4 }).map((_, i) => <div key={i} className="home-skel__card" />)}
-      </div>
-    </div>
   );
 }
