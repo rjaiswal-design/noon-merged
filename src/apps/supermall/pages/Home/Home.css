@@ -206,14 +206,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  flex: 1;
+  flex: 0 0 auto;
+  width: auto;
   min-width: 0;
 }
 
 .home-header__chevron {
-  width: 8px;
-  height: 4px;
-  margin-left: 4px;
+  width: 12px;
+  height: 8px;
+  margin-left: 6px;
   flex-shrink: 0;
 }
 
@@ -574,75 +575,3 @@
   width: auto;
 }
 
-/* =============================================================================
-   M-BOTTOMNAV (Field DS) — Home / Categories / Deals / Profile / Cart
-   ========================================================================== */
-.m-bnav {
-  flex-shrink: 0;
-  background: var(--color-surface-primary);
-  position: sticky;
-  bottom: 0;
-}
-
-.m-bnav__tabs {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--space-16);
-}
-
-.m-bnav__tab {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
-  text-decoration: none;
-  cursor: pointer;
-  min-width: 0;
-}
-
-.m-bnav__highlight {
-  width: 43px;
-  height: 4px;
-  border-radius: var(--radius-8);
-  background: transparent;
-}
-
-.m-bnav__highlight--active {
-  background: var(--brand-blue-600);
-}
-
-.m-bnav__icon {
-  width: 32px;
-  height: 32px;
-}
-
-.m-bnav__label {
-  font-family: var(--font-primary);
-  font-size: var(--font-b11-size);
-  line-height: var(--font-b11-line-height);
-  letter-spacing: var(--font-b11-letter-spacing);
-  font-weight: var(--font-weight-medium);
-  color: var(--grey-600);
-  white-space: nowrap;
-}
-
-.m-bnav__tab--active .m-bnav__label {
-  font-weight: var(--font-weight-bold);
-  color: var(--brand-blue-600);
-}
-
-.m-bnav__homebar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-12) 0 var(--space-8);
-}
-
-.m-bnav__homebar-pill {
-  width: 124px;
-  height: 5px;
-  border-radius: var(--radius-8);
-  background: var(--grey-900);
-}
