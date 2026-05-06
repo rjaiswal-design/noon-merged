@@ -415,7 +415,9 @@ export default function HomePage() {
         <div className="home-page__spacer" />
       </div>
       {supermallLoading && <SupermallSkeleton />}
-      <AddressBottomSheet open={addressSheetOpen} onClose={() => setAddressSheetOpen(false)} />
+      {addressSheetOpen && (
+        <AddressBottomSheet open={addressSheetOpen} onClose={() => setAddressSheetOpen(false)} />
+      )}
     </PageTransition>
   );
 }
