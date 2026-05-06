@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
-import { ProductCard, CameraIcon, SearchIcon } from '@ui';
+import { ProductCard, CameraIcon, SearchIcon, StatusBar } from '@ui';
 import { CategoryCard } from '../../components/ui/CategoryCard';
 import type { Product } from '../../types/product';
 import './Home.css';
@@ -79,6 +79,7 @@ function HomeHeader() {
   const navigate = useNavigate();
   return (
     <section className="home-header" aria-label="noon home">
+      <StatusBar tone="dark" />
       {/* Service tiles row */}
       <div className="home-header__tiles">
         {/* noon — yellow bg, vector logo */}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { NavBar, SearchIcon, HeartOutline, ShareIcon } from "@ui";
+import { NavBar, SearchIcon, HeartOutline, ShareIcon, StatusBar } from "@ui";
 import "./PdpDesign.css";
 
 // — Product images (PNG) —
@@ -1237,6 +1237,7 @@ function ProductCarousel({ title, highlightWord }: { title: string; highlightWor
 export default function PdpDesign() {
   return (
     <div className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-[#F9F9FB] flex flex-col gap-3 overflow-y-auto">
+      <StatusBar tone="dark" />
       <section className="relative">
         <HeaderButtons />
         <img src={ASSETS.productImage} alt="" className="h-[512px] w-full object-cover" />

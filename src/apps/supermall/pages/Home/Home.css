@@ -39,7 +39,7 @@
    ========================================================================== */
 .home-header {
   background: url('/header-bg.png') center / cover no-repeat;
-  padding: var(--space-8) 0 var(--space-14);
+  padding: 0 0 var(--space-14);
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
@@ -346,7 +346,15 @@
 .home-rec__rail::-webkit-scrollbar { display: none; }
 
 .home-rec__card-wrap {
-  width: 155px;
+  width: auto;
+  flex-shrink: 0;
+}
+.home-rec__card-wrap .product-card {
+  width: 134px;
+  border: none;
+}
+.home-rec__card-wrap .product-card__text-group {
+  height: auto;
   flex-shrink: 0;
 }
 .rec-card {

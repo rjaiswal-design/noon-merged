@@ -138,6 +138,7 @@
 }
 
 .product-card__name {
+  margin: 0;
   font-family: var(--font-primary);
   font-size: var(--text-b14-size);
   font-weight: 500;
@@ -151,6 +152,7 @@
 }
 
 .product-card__variant {
+  margin: 0;
   font-family: var(--font-primary);
   font-size: var(--text-b12-size);
   font-weight: 500;

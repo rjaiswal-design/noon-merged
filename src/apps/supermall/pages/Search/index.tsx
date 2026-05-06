@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { StatusBar } from '@ui';
 import { PageTransition } from '../../components/layout/PageTransition';
 import './Search.css';
 
@@ -51,6 +52,7 @@ export default function SearchPage() {
   return (
     <PageTransition>
     <div className="search-page">
+      <StatusBar tone="dark" />
       <div className="search-bar">
         <button
           type="button"

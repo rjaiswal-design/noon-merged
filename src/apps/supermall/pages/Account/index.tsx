@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { StatusBar } from '@ui';
 import { PageTransition } from '../../components/layout/PageTransition';
 import './Account.css';
 
@@ -47,6 +48,7 @@ export default function AccountPage() {
         />
         <div className={`account-skeleton${skeletonHidden ? ' account-skeleton--hidden' : ''}`}>
           <div className="account-skeleton__frame">
+            <StatusBar tone="dark" />
             <div className="skel-profile">
               <div className="skel-block skel-profile__avatar" />
               <div className="skel-profile__lines">

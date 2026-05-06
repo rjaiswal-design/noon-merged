@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
-import { ProductCard, NavBar, SearchIcon } from '@ui';
+import { ProductCard, NavBar, SearchIcon, StatusBar } from '@ui';
 import { CategoryTabs } from './components/CategoryTabs';
 import { FilterBar } from './components/FilterBar';
 import { mockCategories, mockProducts } from '../../data/mockProducts';
@@ -24,6 +24,7 @@ function PLPSkeleton() {
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="plp__sticky">
+        <StatusBar tone="dark" />
         <div className="plp-skel-header">
           <SkelBlock className="plp-skel-back" />
           <SkelBlock className="plp-skel-title" />
@@ -88,6 +89,7 @@ export default function PLPPage() {
     <PageTransition>
       <div className="plp">
         <div className="plp__sticky">
+          <StatusBar tone="dark" />
           <NavBar
             title="Make up products"
             onBack={() => navigate(-1)}

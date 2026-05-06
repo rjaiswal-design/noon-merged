@@ -2,6 +2,8 @@ export { BottomNav } from './BottomNav/BottomNav';
 export type { Tab, BottomNavProps } from './BottomNav/BottomNav';
 export { NavBar } from './NavBar/NavBar';
 export type { NavBarProps, NavBarAction, NavBarVariant } from './NavBar/NavBar';
+export { StatusBar } from './StatusBar/StatusBar';
+export type { StatusBarProps, StatusBarTone } from './StatusBar/StatusBar';
 export { default as SmoothCorners } from './SmoothCorners/SmoothCorners';
 export type { SmoothCornersProps } from './SmoothCorners/SmoothCorners';
 export { ProductCard } from './ProductCard/ProductCard';

@@ -119,7 +119,9 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="product-card__info">
         <div className="product-card__text-group">
           <p className="product-card__name">{product.name}</p>
-          <p className="product-card__variant">{product.variant}</p>
+          {product.variant && (
+            <p className="product-card__variant">{product.variant}</p>
+          )}
         </div>
 
         <div className="product-card__bottom">
