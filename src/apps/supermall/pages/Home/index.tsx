@@ -362,6 +362,7 @@ function OffersForYou() {
 
 /* ─── Page ─────────────────────────────────────────────────────────────── */
 export default function HomePage() {
+  const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [addressSheetOpen, setAddressSheetOpen] = useState(false);
@@ -397,7 +398,10 @@ export default function HomePage() {
   const handleTileTap = (aria: string) => {
     if (aria === 'super mall') {
       setSupermallLoading(true);
-      window.setTimeout(() => setSupermallLoading(false), 900);
+      window.setTimeout(() => {
+        setSupermallLoading(false);
+        navigate('/supermall/shop');
+      }, 900);
     }
   };
 

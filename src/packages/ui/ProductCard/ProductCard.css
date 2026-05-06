@@ -232,6 +232,20 @@
   letter-spacing: -0.12px;
 }
 
+/* Official UAE Dirham mark — sized to current text via em. */
+.dhm-mark {
+  width: 0.85em;
+  height: 0.85em;
+  display: inline-block;
+  vertical-align: -0.05em;
+  margin-right: 2px;
+  flex-shrink: 0;
+}
+
+.product-card__original .dhm-mark {
+  opacity: 0.65; /* matches strikethrough tint */
+}
+
 .product-card__discount {
   font-family: var(--font-primary);
   font-size: var(--text-b12-size);
