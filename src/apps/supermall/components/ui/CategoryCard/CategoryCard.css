@@ -1,0 +1,73 @@
+/* =============================================================================
+   CategoryCard — 92 × 128 category tile for the home grid.
+   Blob background + product collage as a single <img>; label as text.
+   All tokens via Field DS.
+   ========================================================================== */
+
+.cat-card {
+  width: 92px;
+  height: 128px;
+  flex: 0 0 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-surface-primary);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Image area (92 × 92 blob) ───────────────────────────────────────── */
+.cat-card__image {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cat-card__image > img {
+  width: 92px;
+  height: 92px;
+}
+
+/* ── SALE badge ──────────────────────────────────────────────────────── */
+.cat-card__sale {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background: linear-gradient(128deg, #E11111 2%, #FF5959 91%);
+  color: var(--neutral-white);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: var(--font-weight-bold);
+  padding: 3px 4px 2px;
+  border-radius: 0 0 var(--radius-4) var(--radius-4);
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-family: 'Proxima Nova', var(--font-primary);
+}
+
+/* ── Label ────────────────────────────────────────────────────────────── */
+.cat-card__label {
+  width: 92px;
+  margin-top: var(--space-4);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  line-height: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: #262A33;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

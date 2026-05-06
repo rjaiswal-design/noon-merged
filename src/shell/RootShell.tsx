@@ -31,6 +31,7 @@ const TAB_ROUTES: Record<Tab, string> = {
 //     host page owns the nav in that case.
 function shouldHide(pathname: string, search: string, noonOneShowsNav: boolean): boolean {
   if (new URLSearchParams(search).get('embedded') === '1') return true;
+  if (pathname === '/supermall' || pathname === '/supermall/') return true;
   if (pathname.startsWith('/supermall/product/')) return true;
   if (pathname.startsWith('/share-address')) return true;
   if (pathname === '/supermall/account' && !noonOneShowsNav) return true;
