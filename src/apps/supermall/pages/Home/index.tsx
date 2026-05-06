@@ -6,6 +6,7 @@ import { ProductCard, CameraIcon, SearchIcon, StatusBar } from '@ui';
 import { CategoryCard } from '../../components/ui/CategoryCard';
 import type { Product } from '../../types/product';
 import { useWishlistStore } from '@state/wishlistStore';
+import { AddressBottomSheet } from '../../../share-address/screens/AddressBottomSheet';
 import './Home.css';
 
 /* ─── Product / chip image assets ──────────────────────────────────────── */
@@ -150,7 +151,13 @@ const TILE_TRANSITION = { duration: MORPH_DURATION, ease: MORPH_EASE };
 const FADE_TRANSITION = { duration: 0.13, ease: MORPH_EASE };
 const ADDRESS_TRANSITION = { duration: MORPH_DURATION, ease: MORPH_EASE };
 
-function HomeHeader({ scrolled }: { scrolled: boolean }) {
+type HomeHeaderProps = {
+  scrolled: boolean;
+  onAddressTap: () => void;
+  onTileTap: (aria: string) => void;
+};
+
+function HomeHeader({ scrolled, onAddressTap, onTileTap }: HomeHeaderProps) {
   const navigate = useNavigate();
   const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
   const tileAnim = scrolled
@@ -174,6 +181,7 @@ function HomeHeader({ scrolled }: { scrolled: boolean }) {
             animate={tileAnim}
             transition={TILE_TRANSITION}
             aria-label={t.aria}
+            onClick={() => onTileTap(t.aria)}
           >
             <AnimatePresence mode="wait" initial={false}>
               {scrolled ? (
@@ -215,7 +223,13 @@ function HomeHeader({ scrolled }: { scrolled: boolean }) {
             transition={ADDRESS_TRANSITION}
             style={{ overflow: 'hidden' }}
           >
-            <div className="home-header__address-info">
+            <div
+              className="home-header__address-info"
+              role="button"
+              tabIndex={0}
+              onClick={onAddressTap}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onAddressTap(); } }}
+            >
               <div className="home-header__address-row1">
                 <img src="/icon-home.svg" alt="" className="home-header__home-icon" />
                 <span className="home-header__address-label">Home -&nbsp;</span>
@@ -350,6 +364,8 @@ function OffersForYou() {
 export default function HomePage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [addressSheetOpen, setAddressSheetOpen] = useState(false);
+  const [supermallLoading, setSupermallLoading] = useState(false);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -378,15 +394,49 @@ export default function HomePage() {
     };
   }, []);
 
+  const handleTileTap = (aria: string) => {
+    if (aria === 'super mall') {
+      setSupermallLoading(true);
+      window.setTimeout(() => setSupermallLoading(false), 900);
+    }
+  };
+
   return (
     <PageTransition>
       <div className="home-page" ref={scrollRef}>
-        <HomeHeader scrolled={scrolled} />
+        <HomeHeader
+          scrolled={scrolled}
+          onAddressTap={() => setAddressSheetOpen(true)}
+          onTileTap={handleTileTap}
+        />
         <ShopByCategory />
         <RecommendedForYou />
         <OffersForYou />
         <div className="home-page__spacer" />
       </div>
+      {supermallLoading && <SupermallSkeleton />}
+      <AddressBottomSheet open={addressSheetOpen} onClose={() => setAddressSheetOpen(false)} />
     </PageTransition>
+  );
+}
+
+/* ─── Supermall skeleton — shown briefly when re-entering supermall flow ─ */
+function SupermallSkeleton() {
+  return (
+    <div className="home-skel" aria-hidden="true">
+      <div className="home-skel__tiles">
+        {Array.from({ length: 7 }).map((_, i) => <div key={i} className="home-skel__tile" />)}
+      </div>
+      <div className="home-skel__address" />
+      <div className="home-skel__search" />
+      <div className="home-skel__title" />
+      <div className="home-skel__cats">
+        {Array.from({ length: 6 }).map((_, i) => <div key={i} className="home-skel__cat" />)}
+      </div>
+      <div className="home-skel__title" />
+      <div className="home-skel__cards">
+        {Array.from({ length: 4 }).map((_, i) => <div key={i} className="home-skel__card" />)}
+      </div>
+    </div>
   );
 }

@@ -168,6 +168,17 @@
   align-items: flex-start;
   min-width: 0;
   flex: 1;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+}
+.home-header__address-info:focus-visible {
+  outline: 2px solid var(--brand-blue-600);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .home-header__address-row1 {
@@ -575,3 +586,100 @@
   width: auto;
 }
 
+/* =============================================================================
+   SUPERMALL SKELETON — full-page shimmer overlay shown when re-entering flow
+   ========================================================================== */
+@keyframes home-skel-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.home-skel {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  background: var(--color-surface-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: 64px var(--space-16) var(--space-16);
+  overflow: hidden;
+  animation: home-skel-fadein 160ms ease-out;
+}
+
+@keyframes home-skel-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.home-skel__tile,
+.home-skel__address,
+.home-skel__search,
+.home-skel__title,
+.home-skel__cat,
+.home-skel__card {
+  background: linear-gradient(
+    90deg,
+    var(--blue-gray-200, #F2F3F7) 0%,
+    var(--blue-gray-300, #EAECF0) 50%,
+    var(--blue-gray-200, #F2F3F7) 100%
+  );
+  background-size: 200% 100%;
+  animation: home-skel-shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-12);
+}
+
+.home-skel__tiles {
+  display: flex;
+  gap: var(--space-6);
+  margin: 0 calc(-1 * var(--space-16));
+  padding: 0 var(--space-12);
+}
+
+.home-skel__tile {
+  flex: 0 0 76px;
+  height: 76px;
+  border-radius: 20px;
+}
+
+.home-skel__address {
+  height: 28px;
+  width: 70%;
+}
+
+.home-skel__search {
+  height: 48px;
+  width: 100%;
+}
+
+.home-skel__title {
+  height: 22px;
+  width: 45%;
+  margin-top: var(--space-8);
+}
+
+.home-skel__cats {
+  display: flex;
+  gap: 16px;
+  margin: 0 calc(-1 * var(--space-16));
+  padding: 0 var(--space-16);
+  overflow: hidden;
+}
+.home-skel__cat {
+  flex: 0 0 92px;
+  height: 92px;
+  border-radius: var(--radius-12);
+}
+
+.home-skel__cards {
+  display: flex;
+  gap: var(--space-10);
+  margin: 0 calc(-1 * var(--space-16));
+  padding: 0 var(--space-16);
+  overflow: hidden;
+}
+.home-skel__card {
+  flex: 0 0 134px;
+  height: 200px;
+  border-radius: var(--radius-12);
+}
