@@ -400,7 +400,7 @@ export default function HomePage() {
       setSupermallLoading(true);
       window.setTimeout(() => {
         setSupermallLoading(false);
-        navigate('/supermall/shop');
+        navigate('/supermall/mall');
       }, 900);
     }
   };
