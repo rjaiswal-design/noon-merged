@@ -2,10 +2,6 @@ import { useEffect } from 'react';
 import { useWishlistStore } from '@state/wishlistStore';
 import './WishlistOverlay.css';
 
-const WISHLIST_HOST = import.meta.env.DEV
-  ? 'http://localhost:5182'
-  : 'https://noon-wishlist-react-native.vercel.app';
-
 export function WishlistOverlay() {
   const mode = useWishlistStore((s) => s.mode);
   const productImage = useWishlistStore((s) => s.productImage);
@@ -21,14 +17,12 @@ export function WishlistOverlay() {
 
   if (!mode) return null;
 
-  let src: string;
-  if (mode === 'drawer') {
-    src = productImage
-      ? `${WISHLIST_HOST}/embed-drawer.html?image=${encodeURIComponent(productImage)}`
-      : `${WISHLIST_HOST}/embed-drawer.html`;
-  } else {
-    src = `${WISHLIST_HOST}/wishlist.html?embedded=1`;
-  }
+  const params = new URLSearchParams();
+  if (mode === 'drawer') params.set('drawer', '1');
+  else params.set('embedded', '1');
+  if (productImage) params.set('image', productImage);
+
+  const src = `/wishlist?${params.toString()}`;
 
   return (
     <iframe

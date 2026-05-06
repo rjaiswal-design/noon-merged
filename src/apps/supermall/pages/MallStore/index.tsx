@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useWishlistStore } from '@state/wishlistStore';
 import { AnimatePresence, motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import {
@@ -234,9 +235,14 @@ const mallProducts: Product[] = [
   },
 ];
 
-function ServiceTile({ label, variant }: { label: string; variant: string }) {
+function ServiceTile({ label, variant, onClick }: { label: string; variant: string; onClick?: () => void }) {
   return (
-    <button className={`mall-service mall-service--${variant}`} aria-label={label}>
+    <button
+      type="button"
+      className={`mall-service mall-service--${variant}`}
+      aria-label={label}
+      onClick={onClick}
+    >
       {variant === 'noon' && (
         <>
           <img className="mall-service__noon-mark" src={IMG_NOON_MARK} alt="" />
@@ -269,6 +275,11 @@ function ServiceTile({ label, variant }: { label: string; variant: string }) {
 }
 
 function MallHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange: (tab: TopTab) => void }) {
+  const navigate = useNavigate();
+  const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
+  const handleTileClick = (variant: string) => {
+    if (variant === 'noon') navigate('/supermall');
+  };
   return (
     <section
       className={`mall-top${activeTab === 'Electronics' ? ' mall-top--electronics' : ''}`}
@@ -276,7 +287,12 @@ function MallHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange
     >
       <div className="mall-services" aria-label="noon services">
         {serviceTiles.map((tile) => (
-          <ServiceTile key={tile.label} label={tile.label} variant={tile.variant} />
+          <ServiceTile
+            key={tile.label}
+            label={tile.label}
+            variant={tile.variant}
+            onClick={() => handleTileClick(tile.variant)}
+          />
         ))}
       </div>
 
@@ -289,7 +305,12 @@ function MallHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange
             <ChevronDown size={14} color="rgba(255,255,255,0.6)" />
           </span>
         </div>
-        <button className="mall-heart" aria-label="Favorites">
+        <button
+          type="button"
+          className="mall-heart"
+          aria-label="Wishlist"
+          onClick={openFullWishlist}
+        >
           <HeartFilled size={19} color="rgba(255,255,255,0.72)" />
         </button>
       </div>

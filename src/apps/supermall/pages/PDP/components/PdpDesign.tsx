@@ -36,7 +36,7 @@ import couponBgIcon      from "./assets/icons/coupon-bg.svg?url";
 import couponPercentIcon from "./assets/icons/coupon-percent.svg?url";
 import bestsellerIcon    from "./assets/icons/bestseller.png?url";
 import bestsellerBadge   from "./assets/icons/bestseller-badge.svg?url";
-import noonOneBadge      from "./assets/icons/noon-one-badge.png?url";
+import noonOneBadge      from "./assets/icons/noon-one-badge.svg?url";
 
 // — Additional Information section icons —
 import aiReturnsIcon  from "./assets/icons/ai-returns.svg?url";

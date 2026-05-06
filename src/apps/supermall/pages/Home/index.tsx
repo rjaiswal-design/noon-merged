@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ProductCard, CameraIcon, SearchIcon, StatusBar } from '@ui';
 import { CategoryCard } from '../../components/ui/CategoryCard';
@@ -144,25 +144,28 @@ const SERVICE_TILES: TileSpec[] = [
   },
 ];
 
-/* Apple-ish smooth-out curve — same on every animated piece so they move in lockstep. */
-const MORPH_EASE: [number, number, number, number] = [0.32, 0.72, 0, 1];
-const MORPH_DURATION = 0.34;
-const TILE_TRANSITION = { duration: MORPH_DURATION, ease: MORPH_EASE };
-const FADE_TRANSITION = { duration: 0.13, ease: MORPH_EASE };
-const ADDRESS_TRANSITION = { duration: MORPH_DURATION, ease: MORPH_EASE };
-
 type HomeHeaderProps = {
+  progress: MotionValue<number>;
   scrolled: boolean;
   onAddressTap: () => void;
   onTileTap: (aria: string) => void;
 };
 
-function HomeHeader({ scrolled, onAddressTap, onTileTap }: HomeHeaderProps) {
+function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderProps) {
   const navigate = useNavigate();
   const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
-  const tileAnim = scrolled
-    ? { height: 40, borderRadius: 12 }
-    : { height: 76, borderRadius: 20 };
+
+  // Continuous, scroll-driven morph values. By binding directly to scroll
+  // progress (no spring/transition), the header's geometry follows the
+  // user's finger 1:1 — eliminating the mid-transition "bounce" that
+  // happened when the previous binary toggle's exit animation ran while
+  // the user was still scrolling.
+  const tileHeight = useTransform(progress, [0, 1], [76, 40]);
+  const tileRadius = useTransform(progress, [0, 1], [20, 12]);
+  const addressHeight = useTransform(progress, [0, 1], [49, 0]);
+  const addressOpacity = useTransform(progress, [0, 0.6], [1, 0]);
+  const fullOpacity = useTransform(progress, [0, 0.45], [1, 0]);
+  const compactOpacity = useTransform(progress, [0.55, 1], [0, 1]);
 
   return (
     <section
@@ -177,79 +180,57 @@ function HomeHeader({ scrolled, onAddressTap, onTileTap }: HomeHeaderProps) {
             key={t.aria}
             type="button"
             className="home-tile"
-            style={{ background: t.bg }}
-            animate={tileAnim}
-            transition={TILE_TRANSITION}
+            style={{ background: t.bg, height: tileHeight, borderRadius: tileRadius }}
             aria-label={t.aria}
             onClick={() => onTileTap(t.aria)}
           >
-            <AnimatePresence mode="wait" initial={false}>
-              {scrolled ? (
-                <motion.span
-                  key="c"
-                  className="home-tile__inner-fill"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={FADE_TRANSITION}
-                >
-                  {t.compact}
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="f"
-                  className="home-tile__inner-fill"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={FADE_TRANSITION}
-                >
-                  {t.full}
-                </motion.span>
-              )}
-            </AnimatePresence>
+            <motion.span
+              className="home-tile__inner-fill"
+              style={{ opacity: fullOpacity }}
+              aria-hidden={scrolled}
+            >
+              {t.full}
+            </motion.span>
+            <motion.span
+              className="home-tile__inner-fill"
+              style={{ opacity: compactOpacity }}
+              aria-hidden={!scrolled}
+            >
+              {t.compact}
+            </motion.span>
           </motion.button>
         ))}
       </div>
 
-      <AnimatePresence initial={false}>
-        {!scrolled && (
-          <motion.div
-            key="address"
-            className="home-header__address"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 49, opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={ADDRESS_TRANSITION}
-            style={{ overflow: 'hidden' }}
-          >
-            <div
-              className="home-header__address-info"
-              role="button"
-              tabIndex={0}
-              onClick={onAddressTap}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onAddressTap(); } }}
-            >
-              <div className="home-header__address-row1">
-                <img src="/icon-home.svg" alt="" className="home-header__home-icon" />
-                <span className="home-header__address-label">Home -&nbsp;</span>
-              </div>
-              <div className="home-header__address-row2">
-                <span className="home-header__address-line">BDA Complex, 100 Feet Rd 3rd Block, Kora...</span>
-                <img src="/icon-chevron-down.svg" alt="" className="home-header__chevron" />
-              </div>
-            </div>
-            <button
-              type="button"
-              className="home-header__heart"
-              aria-label="Wishlist"
-              onClick={openFullWishlist}
-            >
-              <img src="/icon-heart-blue.svg" alt="" width={36} height={36} />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        className="home-header__address"
+        style={{ height: addressHeight, opacity: addressOpacity, overflow: 'hidden' }}
+      >
+        <div
+          className="home-header__address-info"
+          role="button"
+          tabIndex={0}
+          onClick={onAddressTap}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onAddressTap(); } }}
+        >
+          <div className="home-header__address-row1">
+            <img src="/icon-home.svg" alt="" className="home-header__home-icon" />
+            <span className="home-header__address-label">Home -&nbsp;</span>
+          </div>
+          <div className="home-header__address-row2">
+            <span className="home-header__address-line">BDA Complex, 100 Feet Rd 3rd Block, Kora...</span>
+            <img src="/icon-chevron-down.svg" alt="" className="home-header__chevron" />
+          </div>
+        </div>
+        <button
+          type="button"
+          className="home-header__heart"
+          aria-label="Wishlist"
+          onClick={openFullWishlist}
+        >
+          <img src="/icon-heart-blue.svg" alt="" width={36} height={36} />
+        </button>
+      </motion.div>
 
       <div
         className="home-header__search"
@@ -361,39 +342,44 @@ function OffersForYou() {
 }
 
 /* ─── Page ─────────────────────────────────────────────────────────────── */
+// Scroll range over which the header morphs. Picked so the morph completes
+// before the page content meaningfully scrolls past the header's footprint —
+// short enough that users don't see a half-morphed state during normal scroll.
+const MORPH_START = 16;
+const MORPH_END = 96;
+
 export default function HomePage() {
   const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [addressSheetOpen, setAddressSheetOpen] = useState(false);
   const [supermallLoading, setSupermallLoading] = useState(false);
+  const progress = useMotionValue(0);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     let rafId = 0;
-    let isScrolled = false;
-    const ENTER = 80;
-    const EXIT = 48;
     const tick = () => {
       rafId = 0;
       const y = el.scrollTop;
-      const next = isScrolled ? y > EXIT : y > ENTER;
-      if (next !== isScrolled) {
-        isScrolled = next;
-        setScrolled(next);
-      }
+      const p = Math.min(1, Math.max(0, (y - MORPH_START) / (MORPH_END - MORPH_START)));
+      progress.set(p);
+      // `scrolled` is now only used for ARIA hints + an optional CSS class.
+      // The morph itself is driven entirely by `progress`.
+      setScrolled((prev) => (p > 0.5 ? true : prev && p > 0.4 ? true : false));
     };
     const onScroll = () => {
       if (rafId) return;
       rafId = requestAnimationFrame(tick);
     };
     el.addEventListener('scroll', onScroll, { passive: true });
+    tick();
     return () => {
       el.removeEventListener('scroll', onScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [progress]);
 
   const handleTileTap = (aria: string) => {
     if (aria === 'super mall') {
@@ -409,6 +395,7 @@ export default function HomePage() {
     <PageTransition>
       <div className="home-page" ref={scrollRef}>
         <HomeHeader
+          progress={progress}
           scrolled={scrolled}
           onAddressTap={() => setAddressSheetOpen(true)}
           onTileTap={handleTileTap}
