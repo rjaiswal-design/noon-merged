@@ -6,7 +6,7 @@ import amexLogoLarge from "../assets/amex-logo-large.png";
 
 /* ---------- Inline icons ---------- */
 
-function XCircle({ className = "" }: { className?: string }) {
+function XCircle({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 20 20"
@@ -28,10 +28,10 @@ function XCircle({ className = "" }: { className?: string }) {
 
 function CheckmarkBox({ checked }: { checked: boolean }) {
   return checked ? (
-    <div className="size-[16px] rounded-[4px] bg-[#3866df] flex items-center justify-center shrink-0">
+    <div className="size-4 rounded-4 bg-noon-blue flex items-center justify-center shrink-0">
       <svg
         viewBox="0 0 12 12"
-        className="block size-[10px]"
+        className="block size-2.5"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
@@ -46,7 +46,7 @@ function CheckmarkBox({ checked }: { checked: boolean }) {
       </svg>
     </div>
   ) : (
-    <div className="size-[16px] rounded-[4px] border-[1.5px] border-[#d0d4dd] bg-white shrink-0" />
+    <div className="size-4 rounded-4 border-[1.5px] border-bluegray-400 bg-white shrink-0" />
   );
 }
 
@@ -62,11 +62,11 @@ function FieldLabel({
   optional?: boolean;
 }) {
   return (
-    <p className="font-medium text-[14px] leading-[18px] tracking-[-0.14px] text-[#939393] flex gap-[2px] items-start">
+    <p className="font-medium text-label-3p text-[#939393] flex gap-0.5 items-start">
       <span>{label}</span>
-      {required && <span className="text-[#f43333]">*</span>}
+      {required && <span className="text-red-600">*</span>}
       {optional && (
-        <span className="font-normal text-[#959595] text-[14px] leading-[18px] tracking-[-0.14px]">
+        <span className="font-normal text-[#959595] text-label-3p">
           {" (Optional)"}
         </span>
       )}
@@ -76,7 +76,7 @@ function FieldLabel({
 
 function FieldBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-white border border-[#ebebeb] rounded-[12px] h-[48px] flex items-center pl-[14px] pr-[10px] py-[12px] gap-[2px]">
+    <div className="bg-white border border-blue-gray-300 rounded-12 h-12 flex items-center pl-3.5 pr-2.5 py-3 gap-0.5">
       {children}
     </div>
   );
@@ -120,45 +120,45 @@ export default function AddNewCardSheet({
         }`}
       >
         {/* Drag indicator */}
-        <div className="flex justify-center items-center px-[16px] py-[8px] h-[20px]">
-          <div className="bg-[#d0d5dd] h-[4px] w-[34px] rounded-full" />
+        <div className="flex justify-center items-center px-4 py-2 h-5">
+          <div className="bg-bluegray-400 h-1 w-8 rounded-full" />
         </div>
 
         {/* Header — title + accepted card brands */}
-        <div className="flex items-center justify-between px-[24px] pt-[12px] pb-[12px] w-full">
-          <p className="font-bold text-[16px] leading-[20px] tracking-[-0.16px] text-[#0e0e0e]">
+        <div className="flex items-center justify-between px-6 pt-3 pb-3 w-full">
+          <p className="font-bold text-h16 text-[#0e0e0e]">
             Add New Card
           </p>
-          <div className="flex gap-[11px] h-[24px] items-center">
+          <div className="flex gap-2.5 h-6 items-center">
             <img
               src={visaLogoLarge}
               alt="Visa"
-              className="block h-[24px] w-[40px] object-contain"
+              className="block h-6 w-10 object-contain"
             />
             <img
               src={mastercardLogoLarge}
               alt="Mastercard"
-              className="block h-[24px] w-[40px] object-contain"
+              className="block h-6 w-10 object-contain"
             />
             <img
               src={amexLogoLarge}
               alt="American Express"
-              className="block h-[24px] w-[40px] object-contain"
+              className="block h-6 w-10 object-contain"
             />
           </div>
         </div>
 
         {/* Form area — light gray background, scrollable */}
-        <div className="bg-[#f2f3f7] overflow-y-auto">
-          <div className="p-[12px]">
+        <div className="bg-blue-gray-200 overflow-y-auto">
+          <div className="p-3">
             <SmoothCorners
               radius={12}
-              className="bg-white rounded-[12px] py-[8px] flex flex-col"
+              className="bg-white rounded-12 py-2 flex flex-col"
             >
               {/* Card details */}
-              <div className="flex flex-col gap-[16px] p-[12px]">
+              <div className="flex flex-col gap-4 p-3">
                 {/* Card number */}
-                <div className="flex flex-col gap-[4px]">
+                <div className="flex flex-col gap-1">
                   <FieldLabel label="Card number" required />
                   <FieldBox>
                     <input
@@ -166,7 +166,7 @@ export default function AddNewCardSheet({
                       inputMode="numeric"
                       value={cardNumber}
                       onChange={(e) => setCardNumber(e.target.value)}
-                      className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-[14px] leading-[18px] tracking-[-0.14px] text-[#0e0e0e]"
+                      className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-label-3p text-[#0e0e0e]"
                     />
                     {cardNumber !== "" && (
                       <button
@@ -175,15 +175,15 @@ export default function AddNewCardSheet({
                         aria-label="Clear card number"
                         className="shrink-0 cursor-pointer"
                       >
-                        <XCircle className="size-[20px]" />
+                        <XCircle className="size-5" />
                       </button>
                     )}
                   </FieldBox>
                 </div>
 
                 {/* Expiry + CVV side by side */}
-                <div className="flex gap-[16px]">
-                  <div className="flex-1 flex flex-col gap-[4px]">
+                <div className="flex gap-4">
+                  <div className="flex-1 flex flex-col gap-1">
                     <FieldLabel label="Expiry" required />
                     <FieldBox>
                       <input
@@ -191,11 +191,11 @@ export default function AddNewCardSheet({
                         inputMode="numeric"
                         value={expiry}
                         onChange={(e) => setExpiry(e.target.value)}
-                        className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-[14px] leading-[18px] tracking-[-0.14px] text-[#0e0e0e]"
+                        className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-label-3p text-[#0e0e0e]"
                       />
                     </FieldBox>
                   </div>
-                  <div className="flex-1 flex flex-col gap-[4px]">
+                  <div className="flex-1 flex flex-col gap-1">
                     <FieldLabel label="CVV" required />
                     <FieldBox>
                       <input
@@ -204,55 +204,55 @@ export default function AddNewCardSheet({
                         maxLength={4}
                         value={cvv}
                         onChange={(e) => setCvv(e.target.value.replace(/\D/g, ""))}
-                        className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-[14px] leading-[18px] tracking-[-0.14px] text-[#0e0e0e]"
+                        className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-label-3p text-[#0e0e0e]"
                       />
                     </FieldBox>
                   </div>
                 </div>
 
                 {/* Name on Card */}
-                <div className="flex flex-col gap-[4px]">
+                <div className="flex flex-col gap-1">
                   <FieldLabel label="Name on Card" required />
                   <FieldBox>
                     <input
                       type="text"
                       value={nameOnCard}
                       onChange={(e) => setNameOnCard(e.target.value)}
-                      className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-[14px] leading-[18px] tracking-[-0.14px] text-[#0e0e0e]"
+                      className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-label-3p text-[#0e0e0e]"
                     />
                   </FieldBox>
                 </div>
 
                 {/* Card Title (Optional) + helper text */}
-                <div className="flex flex-col gap-[4px]">
+                <div className="flex flex-col gap-1">
                   <FieldLabel label="Card Title" optional />
                   <FieldBox>
                     <input
                       type="text"
                       value={cardTitle}
                       onChange={(e) => setCardTitle(e.target.value)}
-                      className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-[14px] leading-[18px] tracking-[-0.14px] text-[#0e0e0e]"
+                      className="flex-1 min-w-0 bg-transparent border-none outline-none font-medium text-label-3p text-[#0e0e0e]"
                     />
                   </FieldBox>
-                  <p className="pl-[4px] font-medium text-[12px] leading-[14px] tracking-[-0.12px] text-[#959595]">
+                  <p className="pl-1 font-medium text-label-4p text-[#959595]">
                     This can help you identify cards easier on checkout
                   </p>
                 </div>
               </div>
 
               {/* Remember card */}
-              <div className="flex flex-col gap-[6px] p-[12px]">
+              <div className="flex flex-col gap-1.5 p-3">
                 <button
                   type="button"
                   onClick={() => setRemember((v) => !v)}
-                  className="flex gap-[6px] items-center cursor-pointer"
+                  className="flex gap-1.5 items-center cursor-pointer"
                 >
                   <CheckmarkBox checked={remember} />
-                  <p className="font-medium text-[14px] leading-[18px] tracking-[-0.14px] text-[#404553]">
+                  <p className="font-medium text-label-3p text-noon-black">
                     Remember this card
                   </p>
                 </button>
-                <p className="font-normal text-[12px] leading-[14px] tracking-[-0.12px] text-[#7e859b]">
+                <p className="font-normal text-label-4p text-[#7e859b]">
                   noon will securely store this card for a faster payment
                   experience. Your CVV number will not be stored.
                 </p>
@@ -262,18 +262,18 @@ export default function AddNewCardSheet({
         </div>
 
         {/* Sticky CTA + home indicator */}
-        <div className="bg-white drop-shadow-[0px_-2px_2px_rgba(0,0,0,0.08)] flex flex-col items-center pt-[12px] px-[12px]">
+        <div className="bg-white drop-shadow-[0px_-2px_2px_rgba(0,0,0,0.08)] flex flex-col items-center pt-3 px-3">
           <button
             type="button"
             onClick={onAddCard}
-            className="bg-[#0076ff] h-[48px] w-full rounded-[12px] flex items-center justify-center px-[24px] py-[14px] cursor-pointer"
+            className="bg-blue-600 h-12 w-full rounded-12 flex items-center justify-center px-6 py-3.5 cursor-pointer"
           >
-            <p className="font-semibold text-[16px] leading-[20px] tracking-[-0.16px] text-white">
+            <p className="font-semibold text-h16 text-white">
               Add Card
             </p>
           </button>
-          <div className="h-[34px] w-full relative">
-            <div className="absolute bottom-[8px] left-1/2 -translate-x-1/2 bg-black h-[5px] w-[134px] rounded-[100px]" />
+          <div className="h-8 w-full relative">
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black h-1 w-[134px] rounded-32" />
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ import splashUrl from "../assets/lottie/splash.lottie?url";
  */
 export default function SplashScreen({ onDone }: { onDone: () => void }) {
   return (
-    <div className="bg-[#f4f4f4] relative w-[375px] h-[812px] overflow-hidden">
+    <div className="bg-blue-gray-200 relative w-[375px] h-[812px] overflow-hidden">
       {/*
         DotLottieReact renders a <canvas>. CSS class sizing on canvases is
         flaky — give it explicit pixel attrs (width/height) AND a CSS style so

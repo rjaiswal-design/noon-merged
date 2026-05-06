@@ -8,9 +8,9 @@ import cellular from "../assets/cellular.svg";
  */
 export default function StatusBar() {
   return (
-    <div className="absolute h-[42.565px] left-0 top-0 w-[375px] z-10">
-      <div className="absolute h-[21px] left-[21px] top-[7px] w-[54px]">
-        <p className="-translate-x-1/2 absolute font-semibold leading-none left-[27px] text-[15px] text-black text-center top-[calc(50%-3.5px)] tracking-[-0.3px] w-[54px]">
+    <div className="absolute h-11 left-0 top-0 w-[375px] z-10">
+      <div className="absolute h-5 left-5 top-1.5 w-14">
+        <p className="-translate-x-1/2 absolute font-semibold leading-none left-7 text-b14 text-black text-center top-[calc(50%-3.5px)] w-14">
           9:41
         </p>
       </div>
@@ -20,12 +20,12 @@ export default function StatusBar() {
       <div className="absolute inset-[39.39%_11.64%_35.61%_84.27%]">
         <img alt="" className="absolute block inset-0 w-full h-full" src={wifi} />
       </div>
-      <div className="absolute right-[14.34px] top-[17.33px]">
-        <div className="absolute border border-black border-solid h-[11.333px] opacity-35 right-[2.33px] rounded-[2.667px] top-0 w-[22px]" />
-        <div className="absolute h-[4px] right-0 top-[3.67px] w-[1.328px]">
+      <div className="absolute right-3.5 top-4">
+        <div className="absolute border border-black border-solid h-3 opacity-35 right-0.5 rounded-4 top-0 w-5" />
+        <div className="absolute h-1 right-0 top-1 w-px">
           <img alt="" className="absolute block inset-0 w-full h-full" src={cap} />
         </div>
-        <div className="absolute bg-black h-[7.333px] right-[4.33px] rounded-[1.333px] top-[2px] w-[18px]" />
+        <div className="absolute bg-black h-2 right-1 rounded-4 top-0.5 w-4" />
       </div>
     </div>
   );

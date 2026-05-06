@@ -18,7 +18,7 @@ import sparkleR from "../assets/figma-products/sparkle-divider-r.svg";
 import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M12.5 5L7.5 10L12.5 15" stroke={T.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -26,7 +26,7 @@ function BackChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function PlusIcon({ className = "" }: { className?: string }) {
+function PlusIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M10 4v12M4 10h12" stroke={T.color.text.primary} strokeWidth="1.8" strokeLinecap="round" />
@@ -38,15 +38,15 @@ function PlusIcon({ className = "" }: { className?: string }) {
 
 function SectionHeader({ label }: { label: string }) {
   return (
-    <div className="flex items-center justify-center gap-[10px] w-full">
-      <img src={sparkleL} alt="" aria-hidden="true" className="h-[10px] w-[48px]" />
+    <div className="flex items-center justify-center gap-2.5 w-full">
+      <img src={sparkleL} alt="" aria-hidden="true" className="h-2.5 w-12" />
       <p
-        className="font-noontree font-bold text-[18px] leading-[20px] tracking-[-0.15px] whitespace-nowrap"
+        className="font-noontree font-bold text-h18 whitespace-nowrap"
         style={{ color: T.color.text.deep }}
       >
         {label}
       </p>
-      <img src={sparkleR} alt="" aria-hidden="true" className="h-[10px] w-[48px]" />
+      <img src={sparkleR} alt="" aria-hidden="true" className="h-2.5 w-12" />
     </div>
   );
 }
@@ -68,7 +68,7 @@ function CardArt({
 }) {
   return (
     <div
-      className={`relative h-[211px] w-full rounded-[12px] overflow-hidden border shrink-0 ${isLast ? "" : "mb-[-146px]"}`}
+      className={`relative h-[211px] w-full rounded-[12px] overflow-hidden border shrink-0 ${isLast ? "" : "-mb-36"}`}
       style={{
         borderColor: "rgba(0,0,0,0.1)",
         boxShadow: "inset 0 1px 0.5px rgba(255,255,255,0.84)",
@@ -100,7 +100,7 @@ function CardArt({
 function DefaultBadge() {
   return (
     <div
-      className="absolute backdrop-blur-[3px] flex items-center gap-[8px] px-[8px] py-[6px] rounded-[8px] border z-10"
+      className="absolute backdrop-blur-[3px] flex items-center gap-2 px-2 py-1.5 rounded-8 border z-10"
       style={{
         left: "12px",
         top: "169px",
@@ -110,14 +110,14 @@ function DefaultBadge() {
       }}
     >
       <span
-        className="font-noontree font-semibold text-[16px] leading-[18px] tracking-[-0.15px] text-white whitespace-nowrap"
+        className="font-noontree font-semibold text-h16 text-white whitespace-nowrap"
         style={{ fontFeatureSettings: "'case'" }}
       >
         Default
       </span>
-      <span className="block w-px h-[14px] bg-white/40" aria-hidden="true" />
+      <span className="block w-px h-3.5 bg-white/40" aria-hidden="true" />
       <span
-        className="font-noontree font-semibold text-[16px] leading-[18px] tracking-[-0.15px] text-white whitespace-nowrap"
+        className="font-noontree font-semibold text-h16 text-white whitespace-nowrap"
         style={{ fontFeatureSettings: "'case'" }}
       >
         xxxx 3267
@@ -134,15 +134,15 @@ const OTHER_CARDS = [card1, card2, card3, card4, card5, card6, card7, card12];
 
 export default function SavedCardsPage({ onBack }: { onBack: () => void }) {
   return (
-    <div className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px] bg-white">
+    <div className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16 bg-white">
       {/* Scroll body — content padded for the floating header (top) and
           home indicator (bottom). */}
-      <div className="absolute inset-0 overflow-y-auto pt-[110px] pb-[60px]">
-        <div className="flex flex-col gap-[32px] w-[335px] mx-auto">
+      <div className="absolute inset-0 overflow-y-auto pt-28 pb-[60px]">
+        <div className="flex flex-col gap-8 w-[335px] mx-auto">
           {/* Top Cards */}
-          <div className="flex flex-col gap-[16px] w-full">
+          <div className="flex flex-col gap-4 w-full">
             <SectionHeader label="Top Cards" />
-            <div className="flex flex-col items-stretch pb-[146px] w-full">
+            <div className="flex flex-col items-stretch pb-36 w-full">
               {TOP_CARDS.map((src, i) => {
                 const isFeatured = i === TOP_CARDS.length - 1;
                 return (
@@ -162,9 +162,9 @@ export default function SavedCardsPage({ onBack }: { onBack: () => void }) {
           </div>
 
           {/* Other cards */}
-          <div className="flex flex-col gap-[12px] w-full">
+          <div className="flex flex-col gap-3 w-full">
             <SectionHeader label="Other cards" />
-            <div className="flex flex-col items-stretch pb-[146px] w-full">
+            <div className="flex flex-col items-stretch pb-36 w-full">
               {OTHER_CARDS.map((src, i) => (
                 <CardArt key={i} src={src} isLast={false} />
               ))}
@@ -175,37 +175,37 @@ export default function SavedCardsPage({ onBack }: { onBack: () => void }) {
 
       {/* Floating top header — gradient backdrop + back button + add */}
       <div
-        className="absolute top-0 left-0 right-0 z-10 flex flex-col items-center pb-[10px] backdrop-blur-[3px]"
+        className="absolute top-0 left-0 right-0 z-10 flex flex-col items-center pb-2.5 backdrop-blur-[3px]"
         style={{
           background:
             "linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0) 100%)",
         }}
       >
         <StatusBar />
-        <div className="flex items-center justify-between w-[343px] h-[56px] mt-[44px] px-[2px]">
+        <div className="flex items-center justify-between w-[343px] h-14 mt-11 px-0.5">
           <button
             type="button"
             onClick={onBack}
             aria-label="Go back"
-            className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer"
+            className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer"
             style={{ borderColor: T.color.border.subtle }}
           >
-            <BackChevron className="size-[20px]" />
+            <BackChevron className="size-5" />
           </button>
           <button
             type="button"
             aria-label="Add new card"
-            className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer"
+            className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer"
             style={{ borderColor: T.color.border.divider }}
           >
-            <PlusIcon className="size-[18px]" />
+            <PlusIcon className="size-4" />
           </button>
         </div>
       </div>
 
       {/* Home indicator */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-[14px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-3.5 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
     </div>
   );

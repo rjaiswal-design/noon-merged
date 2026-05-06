@@ -22,7 +22,7 @@ export function FilterBar({ activeFilters = [], onChipClick }: FilterBarProps) {
           return (
             <button
               key={id}
-              className={`filter-chip${isActive ? ' filter-chip--active' : ''}`}
+              className={`filter-chip${isActive ? 'filter-chip--active' : ''}`}
               onClick={() => onChipClick?.(id)}
             >
               {id === 'filter' && <Icon size={14} color={isActive ? 'var(--supermall-800)' : 'var(--grey-700)'} />}

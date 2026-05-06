@@ -23,7 +23,7 @@ import {
  *  Inline icons
  * ================================================================ */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M12.5 5L7.5 10L12.5 15" stroke={T.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -31,7 +31,7 @@ function BackChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function ShareIcon({ className = "" }: { className?: string }) {
+function ShareIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="5.5" cy="10" r="2.2" stroke={T.color.text.primary} strokeWidth="1.5" />
@@ -42,7 +42,7 @@ function ShareIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function PhoneIcon({ className = "", color = T.color.text.deep }: { className?: string; color?: string }) {
+function PhoneIcon({ className="", color = T.color.text.deep }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M16 13.6v2a1.5 1.5 0 0 1-1.6 1.5 14.7 14.7 0 0 1-6.4-2.3 14.4 14.4 0 0 1-4.4-4.4 14.7 14.7 0 0 1-2.3-6.5A1.5 1.5 0 0 1 2.8 2.4h2A1.5 1.5 0 0 1 6.3 3.7c.1.8.3 1.6.6 2.3a1.5 1.5 0 0 1-.3 1.6L5.7 8.5a11.6 11.6 0 0 0 4.4 4.4l.9-.9a1.5 1.5 0 0 1 1.6-.3c.7.3 1.5.5 2.3.6a1.5 1.5 0 0 1 1.3 1.5z" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
@@ -50,7 +50,7 @@ function PhoneIcon({ className = "", color = T.color.text.deep }: { className?: 
   );
 }
 
-function MessageIcon({ className = "", color = T.color.text.deep }: { className?: string; color?: string }) {
+function MessageIcon({ className="", color = T.color.text.deep }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M3 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3l-3 3v-3H5a2 2 0 0 1-2-2V6z" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
@@ -58,7 +58,7 @@ function MessageIcon({ className = "", color = T.color.text.deep }: { className?
   );
 }
 
-function HelpIcon({ className = "", color = T.color.brand.transit }: { className?: string; color?: string }) {
+function HelpIcon({ className="", color = T.color.brand.transit }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="8" cy="8" r="6" stroke={color} strokeWidth="1.4" />
@@ -68,7 +68,7 @@ function HelpIcon({ className = "", color = T.color.brand.transit }: { className
   );
 }
 
-function ChevronDownIcon({ className = "", color = T.color.text.body }: { className?: string; color?: string }) {
+function ChevronDownIcon({ className="", color = T.color.text.body }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 12 12" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M3 4.5L6 7.5L9 4.5" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -76,7 +76,7 @@ function ChevronDownIcon({ className = "", color = T.color.text.body }: { classN
   );
 }
 
-function ChevronRightIcon({ className = "", color = T.color.text.muted }: { className?: string; color?: string }) {
+function ChevronRightIcon({ className="", color = T.color.text.muted }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 12 12" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M4.5 3L7.5 6L4.5 9" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -84,7 +84,7 @@ function ChevronRightIcon({ className = "", color = T.color.text.muted }: { clas
   );
 }
 
-function PinIcon({ className = "", color }: { className?: string; color?: string }) {
+function PinIcon({ className="", color }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M8 18s6-6 6-11a6 6 0 0 0-12 0c0 5 6 11 6 11z" stroke={color} strokeWidth="1.6" fill={color} fillOpacity="0.12" strokeLinejoin="round" />
@@ -93,7 +93,7 @@ function PinIcon({ className = "", color }: { className?: string; color?: string
   );
 }
 
-function HandoffGlyph({ className = "", color = T.color.text.deep }: { className?: string; color?: string }) {
+function HandoffGlyph({ className="", color = T.color.text.deep }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 22 22" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M5 14l3-3a1.5 1.5 0 0 1 2 0l5 5a1.5 1.5 0 0 1 0 2l-1 1a1.5 1.5 0 0 1-2 0l-7-7zM12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
@@ -101,7 +101,7 @@ function HandoffGlyph({ className = "", color = T.color.text.deep }: { className
   );
 }
 
-function PencilIcon({ className = "", color = T.color.text.body }: { className?: string; color?: string }) {
+function PencilIcon({ className="", color = T.color.text.body }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M11.5 2.5a1.5 1.5 0 0 1 2.1 0l1.4 1.4a1.5 1.5 0 0 1 0 2.1L6 15H2v-4l9.5-8.5z" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
@@ -117,7 +117,7 @@ function MarketplaceBadge({ marketplace }: { marketplace: Marketplace }) {
   const meta = MARKETPLACES[marketplace];
   return (
     <span
-      className="inline-flex items-center px-[6px] py-[2px] rounded-[4px] font-noontree font-semibold text-[10px] leading-[12px] tracking-[0.4px] uppercase whitespace-nowrap"
+      className="inline-flex items-center px-1.5 py-0.5 rounded-4 font-noontree font-semibold text-tiny uppercase whitespace-nowrap"
       style={{ backgroundColor: meta.color.bg, color: meta.color.fg }}
     >
       {meta.label}
@@ -200,7 +200,7 @@ function MapPreview({ progress }: { progress: number }) {
       </svg>
       <div
         aria-hidden="true"
-        className="absolute bottom-0 left-0 right-0 h-[24px] pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-6 pointer-events-none"
         style={{
           background:
             "linear-gradient(180deg, rgba(249,249,251,0) 0%, #f9f9fb 100%)",
@@ -221,12 +221,12 @@ function MapPreview({ progress }: { progress: number }) {
 function TimelineDot({ state }: { state: LifecycleStep["state"] }) {
   if (state === "done") {
     return (
-      <div className="relative size-[20px] flex items-center justify-center shrink-0">
+      <div className="relative size-5 flex items-center justify-center shrink-0">
         <div
-          className="size-[20px] rounded-full flex items-center justify-center"
+          className="size-5 rounded-full flex items-center justify-center"
           style={{ backgroundColor: T.color.brand.green }}
         >
-          <svg viewBox="0 0 14 14" className="block size-[10px]" fill="none" aria-hidden="true">
+          <svg viewBox="0 0 14 14" className="block size-2.5" fill="none" aria-hidden="true">
             <path d="M3 7.5L6 10.5L11 4.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
@@ -235,13 +235,13 @@ function TimelineDot({ state }: { state: LifecycleStep["state"] }) {
   }
   if (state === "current") {
     return (
-      <div className="relative size-[20px] flex items-center justify-center shrink-0">
+      <div className="relative size-5 flex items-center justify-center shrink-0">
         <span
-          className="absolute inline-flex size-[20px] rounded-full opacity-40 animate-ping"
+          className="absolute inline-flex size-5 rounded-full opacity-40 animate-ping"
           style={{ backgroundColor: T.color.brand.transitDot }}
         />
         <div
-          className="relative size-[16px] rounded-full border-[3px]"
+          className="relative size-4 rounded-full border-[3px]"
           style={{
             backgroundColor: T.color.brand.transitDot,
             borderColor: "white",
@@ -252,9 +252,9 @@ function TimelineDot({ state }: { state: LifecycleStep["state"] }) {
     );
   }
   return (
-    <div className="size-[20px] flex items-center justify-center shrink-0">
+    <div className="size-5 flex items-center justify-center shrink-0">
       <div
-        className="size-[12px] rounded-full border-[2px] bg-white"
+        className="size-3 rounded-full border-[2px] bg-white"
         style={{ borderColor: T.color.border.strong }}
       />
     </div>
@@ -271,17 +271,17 @@ function StatusTimeline({ steps }: { steps: LifecycleStep[] }) {
           : step.state === "current" ? T.color.brand.transitDot
           : T.color.border.subtle;
         return (
-          <div key={step.stage + i} className="flex gap-[14px]">
+          <div key={step.stage + i} className="flex gap-3.5">
             <div className="flex flex-col items-center">
               <TimelineDot state={step.state} />
               {!isLast && (
                 <div
-                  className="w-[2px] flex-1 my-[4px]"
+                  className="w-0.5 flex-1 my-1"
                   style={{ backgroundColor: lineColor, minHeight: "28px" }}
                 />
               )}
             </div>
-            <div className={`flex flex-col gap-[2px] ${isLast ? "pb-0" : "pb-[16px]"}`}>
+            <div className={`flex flex-col gap-[2px] ${isLast ? "pb-0" : "pb-4"}`}>
               <p
                 className={`font-noontree text-[14px] leading-[18px] tracking-[-0.14px] ${step.state === "current" || step.state === "done" ? "font-bold" : "font-medium"}`}
                 style={{
@@ -292,7 +292,7 @@ function StatusTimeline({ steps }: { steps: LifecycleStep[] }) {
               </p>
               {step.time && (
                 <p
-                  className="font-noontree text-[12px] leading-[16px] tracking-[-0.1px]"
+                  className="font-noontree text-b12"
                   style={{
                     color: step.state === "current" ? T.color.brand.transit : T.color.text.muted,
                     fontWeight: step.state === "current" ? 600 : 400,
@@ -316,49 +316,49 @@ function StatusTimeline({ steps }: { steps: LifecycleStep[] }) {
 function OrderSummary({ order }: { order: Order }) {
   const [open, setOpen] = useState(false);
   return (
-    <SmoothCorners radius={12} className="bg-white rounded-[12px] flex flex-col w-full">
+    <SmoothCorners radius={12} className="bg-white rounded-12 flex flex-col w-full">
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between px-[14px] py-[14px] cursor-pointer w-full"
+        className="flex items-center justify-between px-3.5 py-3.5 cursor-pointer w-full"
       >
-        <div className="flex items-center gap-[12px]">
+        <div className="flex items-center gap-3">
           <div
-            className="size-[40px] rounded-[8px] border overflow-hidden flex items-center justify-center shrink-0"
+            className="size-10 rounded-8 border overflow-hidden flex items-center justify-center shrink-0"
             style={{
               background: "linear-gradient(180deg, #ffffff 32%, #eff0f3 143%)",
               borderColor: T.color.border.subtle,
             }}
           >
-            <img src={order.items[0].image} alt="" aria-hidden="true" className="size-[28px] object-contain" />
+            <img src={order.items[0].image} alt="" aria-hidden="true" className="size-7 object-contain" />
           </div>
-          <div className="flex flex-col gap-[2px] text-left">
-            <p className="font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px]" style={{ color: T.color.text.deep }}>
+          <div className="flex flex-col gap-0.5 text-left">
+            <p className="font-noontree font-semibold text-label-3p" style={{ color: T.color.text.deep }}>
               {order.items.length} item{order.items.length === 1 ? "" : "s"} · AED {order.totalAed}
             </p>
-            <p className="font-noontree text-[12px] leading-[14px] tracking-[-0.1px]" style={{ color: T.color.text.muted }}>
+            <p className="font-noontree text-label-4p" style={{ color: T.color.text.muted }}>
               Order summary
             </p>
           </div>
         </div>
         <ChevronDownIcon
-          className="size-[14px] transition-transform duration-200"
+          className="size-3.5 transition-transform duration-200"
           color={T.color.text.body}
         />
       </button>
       {open && (
-        <div className="px-[14px] pb-[14px] flex flex-col gap-[10px]">
+        <div className="px-3.5 pb-3.5 flex flex-col gap-2.5">
           <div className="h-0 border-t border-dashed ml-[52px]" style={{ borderColor: T.color.border.divider }} />
           {order.items.map((it, i) => (
-            <div key={i} className="flex justify-between items-center pl-[52px] gap-[8px]">
+            <div key={i} className="flex justify-between items-center pl-[52px] gap-2">
               <span
-                className="font-noontree text-[13px] leading-[18px] truncate"
+                className="font-noontree text-label-3 truncate"
                 style={{ color: T.color.text.body }}
               >
                 {it.name}
               </span>
               <span
-                className="font-noontree font-semibold text-[13px] shrink-0"
+                className="font-noontree font-semibold text-label-3 shrink-0"
                 style={{ color: T.color.text.deep }}
               >
                 {i === 0 ? `AED ${order.totalAed}` : "—"}
@@ -367,17 +367,17 @@ function OrderSummary({ order }: { order: Order }) {
           ))}
           <div className="h-0 border-t border-dashed" style={{ borderColor: T.color.border.divider }} />
           <div className="flex justify-between">
-            <span className="font-noontree text-[13px]" style={{ color: T.color.text.body }}>Subtotal</span>
-            <span className="font-noontree font-medium text-[13px]" style={{ color: T.color.text.deep }}>AED {order.totalAed}</span>
+            <span className="font-noontree text-label-3" style={{ color: T.color.text.body }}>Subtotal</span>
+            <span className="font-noontree font-medium text-label-3" style={{ color: T.color.text.deep }}>AED {order.totalAed}</span>
           </div>
           <div className="flex justify-between">
-            <span className="font-noontree text-[13px]" style={{ color: T.color.text.body }}>Delivery</span>
-            <span className="font-noontree font-medium text-[13px]" style={{ color: T.color.brand.green }}>Free</span>
+            <span className="font-noontree text-label-3" style={{ color: T.color.text.body }}>Delivery</span>
+            <span className="font-noontree font-medium text-label-3" style={{ color: T.color.brand.green }}>Free</span>
           </div>
           <div className="h-0 border-t border-dashed" style={{ borderColor: T.color.border.divider }} />
           <div className="flex justify-between">
-            <span className="font-bold text-[14px]" style={{ color: T.color.text.deep }}>Total</span>
-            <span className="font-bold text-[14px]" style={{ color: T.color.text.deep }}>AED {order.totalAed}</span>
+            <span className="font-bold text-b14" style={{ color: T.color.text.deep }}>Total</span>
+            <span className="font-bold text-b14" style={{ color: T.color.text.deep }}>AED {order.totalAed}</span>
           </div>
         </div>
       )}
@@ -404,38 +404,38 @@ function DeliveryPrefsCard({
     <SmoothCorners
       radius={12}
       onClick={onEdit}
-      className="bg-white rounded-[12px] flex items-center gap-[12px] px-[14px] py-[12px] w-full cursor-pointer"
+      className="bg-white rounded-12 flex items-center gap-3 px-3.5 py-3 w-full cursor-pointer"
     >
       <div
-        className="size-[40px] rounded-[10px] flex items-center justify-center shrink-0"
+        className="size-10 rounded-8 flex items-center justify-center shrink-0"
         style={{ backgroundColor: T.color.surface.page }}
       >
         <HandoffGlyph color={T.color.text.deep} />
       </div>
-      <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
-        <div className="flex items-center gap-[6px]">
+      <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+        <div className="flex items-center gap-1.5">
           <p
-            className="font-noontree font-bold text-[13px] leading-[16px] tracking-[-0.1px]"
+            className="font-noontree font-bold text-label-3"
             style={{ color: T.color.text.deep }}
           >
             {HANDOFF_LABEL[prefs.handoff]}
           </p>
-          <span aria-hidden="true" className="size-[3px] rounded-full" style={{ backgroundColor: T.color.border.strong }} />
+          <span aria-hidden="true" className="size-0.5 rounded-full" style={{ backgroundColor: T.color.border.strong }} />
           <p
-            className="font-noontree text-[12px] leading-[14px] tracking-[-0.1px]"
+            className="font-noontree text-label-4p"
             style={{ color: T.color.text.muted }}
           >
             {CONTACT_LABEL[prefs.contact]}
           </p>
         </div>
         <p
-          className="font-noontree text-[12px] leading-[16px] tracking-[-0.1px] truncate"
+          className="font-noontree text-b12 truncate"
           style={{ color: T.color.text.body }}
         >
           {prefs.instructions || "No special instructions"}
         </p>
       </div>
-      <PencilIcon className="size-[16px] shrink-0" />
+      <PencilIcon className="size-4 shrink-0" />
     </SmoothCorners>
   );
 }
@@ -489,30 +489,30 @@ export default function TrackOrderPage({
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{ backgroundColor: T.color.surface.page }}
     >
       {/* Sticky header */}
       <div
-        className="absolute top-0 left-0 right-0 z-20 bg-white flex flex-col items-stretch pt-[47px] pb-[12px] relative"
+        className="absolute top-0 left-0 right-0 z-20 bg-white flex flex-col items-stretch pt-12 pb-3 relative"
         style={{ boxShadow: "0 2px 5px rgba(26,26,26,0.04)" }}
       >
         <StatusBar />
         <div className="flex items-center justify-between w-[343px] mx-auto">
-          <div className="flex items-center gap-[12px] min-w-0 flex-1">
+          <div className="flex items-center gap-3 min-w-0 flex-1">
             <button
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer shrink-0"
+              className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer shrink-0"
               style={{ borderColor: T.color.border.subtle }}
             >
-              <BackChevron className="size-[20px]" />
+              <BackChevron className="size-5" />
             </button>
             <div className="flex flex-col min-w-0">
-              <div className="flex items-center gap-[8px]">
+              <div className="flex items-center gap-2">
                 <p
-                  className="font-bold text-[16px] leading-[20px] tracking-[-0.16px]"
+                  className="font-bold text-h16"
                   style={{ color: T.color.text.deep }}
                 >
                   Track order
@@ -520,7 +520,7 @@ export default function TrackOrderPage({
                 <MarketplaceBadge marketplace={order.marketplace} />
               </div>
               <p
-                className="font-noontree text-[11px] leading-[14px] tracking-[-0.1px]"
+                className="font-noontree text-b11"
                 style={{ color: T.color.text.muted }}
               >
                 {order.id}
@@ -530,10 +530,10 @@ export default function TrackOrderPage({
           <button
             type="button"
             aria-label="Share"
-            className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer shrink-0"
+            className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer shrink-0"
             style={{ borderColor: T.color.border.subtle }}
           >
-            <ShareIcon className="size-[18px]" />
+            <ShareIcon className="size-4" />
           </button>
         </div>
       </div>
@@ -543,13 +543,13 @@ export default function TrackOrderPage({
         {/* Map preview — only for live orders */}
         {isLive && <MapPreview progress={progress} />}
 
-        <div className={`flex flex-col gap-[14px] w-[343px] mx-auto ${isLive ? "-mt-[12px]" : "mt-[12px]"}`}>
+        <div className={`flex flex-col gap-[14px] w-[343px] mx-auto ${isLive ? "-mt-3" : "mt-3"}`}>
           {/* ETA hero — plain white surface in every state. Status
               colour lives in the pill (and the timeline dot), not on
               the card surface itself. */}
           <SmoothCorners
             radius={16}
-            className="rounded-[16px] flex flex-col gap-[12px] px-[16px] py-[16px] w-full relative overflow-hidden"
+            className="rounded-16 flex flex-col gap-3 px-4 py-4 w-full relative overflow-hidden"
             style={{
               backgroundColor: T.color.surface.canvas,
               border: `1px solid ${T.color.border.subtle}`,
@@ -558,21 +558,21 @@ export default function TrackOrderPage({
             <div className="flex items-center justify-between">
               {isLive ? (
                 <div
-                  className="inline-flex items-center gap-[6px] px-[10px] py-[5px] rounded-full"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full"
                   style={{ backgroundColor: T.color.brand.transitSoft }}
                 >
-                  <span className="relative flex size-[8px] items-center justify-center" aria-hidden="true">
+                  <span className="relative flex size-2 items-center justify-center" aria-hidden="true">
                     <span
                       className="absolute inline-flex size-full rounded-full opacity-50 animate-ping"
                       style={{ backgroundColor: T.color.brand.transitDot }}
                     />
                     <span
-                      className="relative inline-flex size-[7px] rounded-full"
+                      className="relative inline-flex size-1.5 rounded-full"
                       style={{ backgroundColor: T.color.brand.transitDot }}
                     />
                   </span>
                   <span
-                    className="font-noontree font-semibold text-[12px] leading-[14px] tracking-[-0.1px]"
+                    className="font-noontree font-semibold text-label-4p"
                     style={{ color: T.color.brand.transit }}
                   >
                     {STAGE_LABEL[order.lifecycle.find((s) => s.state === "current")?.stage ?? "out_for_delivery"]}
@@ -580,7 +580,7 @@ export default function TrackOrderPage({
                 </div>
               ) : (
                 <span
-                  className="font-noontree font-semibold text-[12px] leading-[14px] tracking-[-0.1px]"
+                  className="font-noontree font-semibold text-label-4p"
                   style={{ color: T.color.text.muted }}
                 >
                   Order details
@@ -589,15 +589,15 @@ export default function TrackOrderPage({
               <MarketplaceBadge marketplace={order.marketplace} />
             </div>
 
-            <div className="flex flex-col gap-[2px]">
+            <div className="flex flex-col gap-0.5">
               <p
-                className="font-noontree font-medium text-[12px] leading-[14px] tracking-[-0.1px]"
+                className="font-noontree font-medium text-label-4p"
                 style={{ color: T.color.text.body }}
               >
                 {order.status === "delivered" ? "Delivered" : order.status === "cancelled" ? "Status" : "Arriving"}
               </p>
               <p
-                className="font-bold text-[24px] leading-[28px] tracking-[-0.4px]"
+                className="font-bold text-h24"
                 style={{ color: T.color.text.deep }}
               >
                 {headerSub}
@@ -606,45 +606,45 @@ export default function TrackOrderPage({
 
             {order.courier && (
               <div
-                className="flex items-center gap-[12px] mt-[2px] pt-[12px]"
+                className="flex items-center gap-3 mt-0.5 pt-3"
                 style={{ borderTop: `1px dashed ${T.color.border.divider}` }}
               >
                 <div
-                  className="size-[42px] rounded-full flex items-center justify-center shrink-0 text-white font-noontree font-bold text-[15px]"
+                  className="size-10 rounded-full flex items-center justify-center shrink-0 text-white font-noontree font-bold text-b14"
                   style={{ background: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)" }}
                 >
                   {order.courier.initials}
                 </div>
-                <div className="flex flex-col gap-[2px] flex-1 min-w-0">
+                <div className="flex flex-col gap-0.5 flex-1 min-w-0">
                   <p
-                    className="font-noontree font-bold text-[14px] leading-[18px] tracking-[-0.14px]"
+                    className="font-noontree font-bold text-label-3p"
                     style={{ color: T.color.text.deep }}
                   >
                     {order.courier.name}
                   </p>
                   <p
-                    className="font-noontree text-[12px] leading-[14px] tracking-[-0.1px]"
+                    className="font-noontree text-label-4p"
                     style={{ color: T.color.text.muted }}
                   >
                     Your delivery partner · {order.courier.vehicle}
                   </p>
                 </div>
-                <div className="flex items-center gap-[6px] shrink-0">
+                <div className="flex items-center gap-1.5 shrink-0">
                   <button
                     type="button"
                     aria-label="Call"
-                    className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer"
+                    className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer"
                     style={{ borderColor: T.color.border.divider }}
                   >
-                    <PhoneIcon className="size-[16px]" />
+                    <PhoneIcon className="size-4" />
                   </button>
                   <button
                     type="button"
                     aria-label="Message"
-                    className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer"
+                    className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer"
                     style={{ borderColor: T.color.border.divider }}
                   >
-                    <MessageIcon className="size-[16px]" />
+                    <MessageIcon className="size-4" />
                   </button>
                 </div>
               </div>
@@ -654,18 +654,18 @@ export default function TrackOrderPage({
           {/* Delivery address */}
           <SmoothCorners
             radius={12}
-            className="bg-white rounded-[12px] flex items-center gap-[12px] px-[14px] py-[12px] w-full"
+            className="bg-white rounded-12 flex items-center gap-3 px-3.5 py-3 w-full"
           >
-            <PinIcon className="size-[20px] shrink-0" color={T.color.brand.transit} />
-            <div className="flex flex-col gap-[2px] flex-1 min-w-0">
+            <PinIcon className="size-5 shrink-0" color={T.color.brand.transit} />
+            <div className="flex flex-col gap-0.5 flex-1 min-w-0">
               <p
-                className="font-noontree font-bold text-[13px] leading-[16px] tracking-[-0.1px]"
+                className="font-noontree font-bold text-label-3"
                 style={{ color: T.color.text.deep }}
               >
                 {order.address.label}
               </p>
               <p
-                className="font-noontree text-[12px] leading-[16px] tracking-[-0.1px] truncate"
+                className="font-noontree text-b12 truncate"
                 style={{ color: T.color.text.muted }}
               >
                 {order.address.line}
@@ -679,17 +679,17 @@ export default function TrackOrderPage({
           {/* Status timeline */}
           <SmoothCorners
             radius={12}
-            className="bg-white rounded-[12px] flex flex-col gap-[14px] px-[16px] py-[16px] w-full"
+            className="bg-white rounded-12 flex flex-col gap-3.5 px-4 py-4 w-full"
           >
             <div className="flex items-center justify-between">
               <p
-                className="font-bold text-[14px] leading-[18px] tracking-[-0.14px]"
+                className="font-bold text-label-3p"
                 style={{ color: T.color.text.heading }}
               >
                 Order journey
               </p>
               <span
-                className="font-noontree text-[11px] leading-[14px]"
+                className="font-noontree text-b11"
                 style={{ color: T.color.text.muted }}
               >
                 {order.lifecycle.filter((s) => s.state === "done").length}/{order.lifecycle.length} steps
@@ -704,11 +704,11 @@ export default function TrackOrderPage({
           {/* Help link */}
           <button
             type="button"
-            className="self-center inline-flex items-center gap-[6px] mt-[2px] cursor-pointer"
+            className="self-center inline-flex items-center gap-1.5 mt-0.5 cursor-pointer"
           >
-            <HelpIcon className="size-[14px]" />
+            <HelpIcon className="size-3.5" />
             <span
-              className="font-noontree font-semibold text-[13px] leading-[16px] tracking-[-0.1px]"
+              className="font-noontree font-semibold text-label-3"
               style={{ color: T.color.brand.transit }}
             >
               Need help with this order?
@@ -718,8 +718,8 @@ export default function TrackOrderPage({
       </div>
 
       {/* Home indicator */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-[14px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-3.5 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
 
       {/* Delivery preferences sheet */}

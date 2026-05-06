@@ -4,7 +4,7 @@ import ToastCard from "./components/ToastCard";
 export default function ToastApp() {
   return (
     <>
-      <div className="flex min-h-full w-full flex-col items-center justify-start bg-[#e9ebf0] py-8">
+      <div className="flex min-h-full w-full flex-col items-center justify-start bg-blue-gray-300 py-8">
         <div
           className="flex w-[375px] flex-col items-center gap-10 px-3 py-12"
           style={{ background: "#3F3F3F" }}

@@ -18,7 +18,7 @@ export default function Cart({
   image = defaultPrimary,
   secondaryImage = defaultSecondary,
   onClick,
-  className = "",
+  className="",
 }: CartProps) {
   const showSecondary = secondaryImage !== null && secondaryImage !== undefined;
   const itemsLabel = itemCount === 1 ? "1 item" : `${itemCount} items`;
@@ -29,30 +29,30 @@ export default function Cart({
       onClick={onClick}
       data-component="cart"
       className={
-        "relative inline-flex items-center gap-[10px] rounded-[16px] border border-white/[0.24] bg-surface-action-bold py-[12px] pl-[24px] pr-[20px] font-primary shadow-[inset_0_4px_8px_0_rgba(0,0,0,0.08)] " +
+        "relative inline-flex items-center gap-2.5 rounded-16 border border-white/[0.24] bg-surface-action-bold py-3 pl-6 pr-5 font-primary shadow-[inset_0_4px_8px_0_rgba(0,0,0,0.08)]" +
         className
       }
     >
       {/* Stacked thumbnail */}
-      <span className="relative block size-[32px] shrink-0">
+      <span className="relative block size-8 shrink-0">
         <img
           src={image}
           alt=""
           aria-hidden
-          className="absolute inset-0 size-[32px] rounded-[6px] object-cover"
+          className="absolute inset-0 size-8 rounded-4 object-cover"
         />
         {showSecondary && (
           <img
             src={secondaryImage}
             alt=""
             aria-hidden
-            className="absolute left-[-9px] top-[1.85px] h-[31.958px] w-[12.836px]"
+            className="absolute -left-2 top-0.5 h-8 w-3"
           />
         )}
       </span>
 
       {/* Text */}
-      <span className="flex flex-col items-start justify-center gap-[2px] whitespace-nowrap">
+      <span className="flex flex-col items-start justify-center gap-0.5 whitespace-nowrap">
         <span className="font-primary text-h16 font-bold text-text-on-surface-bold">
           View Cart
         </span>

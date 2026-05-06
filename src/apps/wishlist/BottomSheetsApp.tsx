@@ -98,7 +98,7 @@ function BulkFlow({ items }: { items: AvatarItem[] }) {
 export default function BottomSheetsApp() {
   return (
     <>
-      <div className="flex min-h-full w-full flex-col items-center justify-start bg-[#e9ebf0] py-10">
+      <div className="flex min-h-full w-full flex-col items-center justify-start bg-blue-gray-300 py-10">
         <div className="flex w-full max-w-[1700px] flex-col items-center gap-12 px-6">
           {/* Interactive bulk flow */}
           <div className="flex w-full flex-col items-center gap-4">

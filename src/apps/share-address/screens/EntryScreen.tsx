@@ -22,7 +22,7 @@ export function EntryScreen() {
         type="button"
         onClick={() => { window.location.assign(SUPERMALL_URL); }}
         aria-label="Open supermall"
-        className="absolute z-10 rounded-[20px] outline-none transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-700/60 hover:ring-2 hover:ring-blue-700/40"
+        className="absolute z-10 rounded-16 outline-none transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-700/60 hover:ring-2 hover:ring-blue-700/40"
         style={{ left: 88, top: 64, width: 80, height: 82 }}
       />
 

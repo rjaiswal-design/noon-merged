@@ -140,11 +140,11 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
       <div
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-x-0 bottom-0 z-[80] flex h-[34px] items-end justify-center pb-2 transition-opacity duration-[420ms]',
+          'pointer-events-none absolute inset-x-0 bottom-0 z-[80] flex h-8 items-end justify-center pb-2 transition-opacity duration-[420ms]',
           anyOpen ? 'opacity-100' : 'opacity-0',
         )}
       >
-        <span className="block h-[5px] w-[134px] rounded-full bg-neutral-white" />
+        <span className="block h-1 w-[134px] rounded-full bg-neutral-white" />
       </div>
 
       <SheetShell open={open} onDragClose={onClose}>
@@ -169,7 +169,7 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
 
           <div
             role="tablist"
-            className="relative flex h-[42px] w-full items-center rounded-[999px] bg-blue-gray-200 p-1"
+            className="relative flex h-10 w-full items-center rounded-32 bg-blue-gray-200 p-1"
             style={{ boxShadow: 'inset 0 0 4px 0 rgba(14,14,14,0.06)' }}
           >
             <span
@@ -181,7 +181,7 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
               }}
             >
               <span
-                className="block h-full w-full rounded-[32px] border-[0.5px] border-blue-gray-100 bg-neutral-white shadow-[0_1px_3px_rgba(34,34,34,0.06)] transition-transform duration-[160ms] ease-out"
+                className="block h-full w-full rounded-32 border-[0.5px] border-blue-gray-100 bg-neutral-white shadow-[0_1px_3px_rgba(34,34,34,0.06)] transition-transform duration-[160ms] ease-out"
                 style={{ transform: tabSqueezing ? 'scaleX(0.94)' : 'scaleX(1)' }}
               />
             </span>
@@ -200,7 +200,7 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for your building, area..."
-                className="flex-1 bg-transparent text-[13px] font-medium tracking-[-0.26px] text-blue-gray-1000 placeholder:font-medium placeholder:text-blue-gray-600 focus:outline-none"
+                className="flex-1 bg-transparent text-label-3 font-medium text-blue-gray-1000 placeholder:font-medium placeholder:text-blue-gray-600 focus:outline-none"
               />
             </div>
           </Squircle>
@@ -220,14 +220,14 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
                   style={{ filter: 'brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(2300%) hue-rotate(202deg)' }}
                 />
               </span>
-              <span className="flex-1 text-left text-[14px] font-semibold tracking-[-0.14px] text-neutral-black">
+              <span className="flex-1 text-left text-b14 font-semibold text-neutral-black">
                 Add new Address
               </span>
               <span className="flex size-5 items-center justify-center">
                 <img
                   src="/share-address/icons/chevron-left.svg"
                   alt=""
-                  className="h-[10px] w-[6px] rotate-180"
+                  className="h-2.5 w-1.5 rotate-180"
                   style={{ filter: 'brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(2300%) hue-rotate(202deg)' }}
                 />
               </span>
@@ -305,7 +305,7 @@ function GSTSection({
       <div
         className={cn(
           'flex flex-col transition-colors duration-300',
-          enabled ? 'bg-[#EFF7FF]' : 'bg-neutral-white',
+          enabled ? 'bg-blue-50' : 'bg-neutral-white',
         )}
       >
         {/* Header row */}
@@ -353,13 +353,13 @@ function GSTSection({
 
           {/* Labels */}
           <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-            <span className="text-[14px] font-semibold tracking-[-0.14px] text-neutral-black">
+            <span className="text-b14 font-semibold text-neutral-black">
               GST Invoice
             </span>
             <span
               className={cn(
-                'truncate text-[11px] font-medium tracking-[-0.11px]',
-                enabled && saved ? 'text-[#0076FF]' : 'text-blue-gray-600',
+                'truncate text-b11 font-medium',
+                enabled && saved ? 'text-blue-600' : 'text-blue-gray-600',
               )}
             >
               {subtitleText}
@@ -376,14 +376,14 @@ function GSTSection({
           >
             <span
               className={cn(
-                'relative flex h-[24px] w-[42px] items-center rounded-full transition-colors duration-300',
-                enabled ? 'bg-[#0076FF]' : 'bg-blue-gray-400',
+                'relative flex h-6 w-10 items-center rounded-full transition-colors duration-300',
+                enabled ? 'bg-blue-600' : 'bg-blue-gray-400',
               )}
             >
               <span
                 className={cn(
-                  'absolute h-[18px] w-[18px] rounded-full bg-neutral-white shadow-[0_1px_3px_rgba(0,0,0,0.22)] transition-transform duration-300',
-                  enabled ? 'translate-x-[21px]' : 'translate-x-[3px]',
+                  'absolute h-4 w-4 rounded-full bg-neutral-white shadow-[0_1px_3px_rgba(0,0,0,0.22)] transition-transform duration-300',
+                  enabled ? 'translate-x-5' : 'translate-x-0.5',
                 )}
               />
             </span>
@@ -405,7 +405,7 @@ function GSTSection({
 
               {/* GSTIN */}
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold uppercase tracking-[0.5px] text-blue-gray-600">
+                <label className="text-tiny font-bold uppercase text-blue-gray-600">
                   GSTIN Number
                 </label>
                 <Squircle
@@ -422,7 +422,7 @@ function GSTSection({
                       }
                       placeholder="e.g. 29ABCDE1234F1Z5"
                       maxLength={15}
-                      className="w-full bg-transparent font-mono text-[13px] font-medium tracking-[0.5px] text-neutral-black placeholder:font-sans placeholder:tracking-[-0.13px] placeholder:text-blue-gray-500 focus:outline-none"
+                      className="w-full bg-transparent font-mono text-label-3 font-medium text-neutral-black placeholder:font-sans placeholder:tracking-[-0.13px] placeholder:text-blue-gray-500 focus:outline-none"
                       autoComplete="off"
                       spellCheck={false}
                     />
@@ -439,7 +439,7 @@ function GSTSection({
 
               {/* Business Name */}
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold uppercase tracking-[0.5px] text-blue-gray-600">
+                <label className="text-tiny font-bold uppercase text-blue-gray-600">
                   Registered Business Name
                 </label>
                 <Squircle
@@ -452,7 +452,7 @@ function GSTSection({
                       value={company}
                       onChange={(e) => onCompanyChange(e.target.value)}
                       placeholder="e.g. Acme Retail Pvt. Ltd."
-                      className="w-full bg-transparent text-[13px] font-medium tracking-[-0.13px] text-neutral-black placeholder:text-blue-gray-500 focus:outline-none"
+                      className="w-full bg-transparent text-label-3 font-medium text-neutral-black placeholder:text-blue-gray-500 focus:outline-none"
                       autoComplete="organization"
                     />
                   </div>
@@ -465,9 +465,9 @@ function GSTSection({
                 onClick={onSave}
                 disabled={!isValid}
                 className={cn(
-                  'mt-0.5 flex h-11 w-full items-center justify-center rounded-[12px] text-[14px] font-semibold tracking-[-0.14px] transition-all duration-200',
+                  'mt-0.5 flex h-11 w-full items-center justify-center rounded-12 text-b14 font-semibold transition-all duration-200',
                   isValid
-                    ? 'bg-[#0076FF] text-neutral-white active:scale-[0.97]'
+                    ? 'bg-blue-600 text-neutral-white active:scale-[0.97]'
                     : 'cursor-not-allowed bg-blue-gray-200 text-blue-gray-500',
                 )}
               >
@@ -493,14 +493,14 @@ function GSTSection({
                   alt=""
                   className="h-3.5 w-3.5"
                 />
-                <span className="text-[11px] font-semibold tracking-[-0.11px] text-[#0076FF]">
+                <span className="text-b11 font-semibold text-blue-600">
                   GST details saved
                 </span>
               </div>
               <button
                 type="button"
                 onClick={onEdit}
-                className="text-[11px] font-semibold tracking-[-0.11px] text-blue-gray-600 underline underline-offset-2 outline-none focus-visible:ring-1 focus-visible:ring-blue-700/50 rounded"
+                className="text-b11 font-semibold text-blue-gray-600 underline underline-offset-2 outline-none focus-visible:ring-1 focus-visible:ring-blue-700/50 rounded"
               >
                 Edit
               </button>
@@ -616,11 +616,11 @@ function SheetShell({
                 onPointerUp={endDrag}
                 onPointerCancel={endDrag}
               >
-                <span className="block h-[5px] w-10 rounded-full bg-neutral-white/90" />
+                <span className="block h-1 w-10 rounded-full bg-neutral-white/90" />
               </div>
             ) : null}
             <div
-              className={cn('relative overflow-hidden rounded-[24px]', bgClass)}
+              className={cn('relative overflow-hidden rounded-24', bgClass)}
               style={borderColor ? { boxShadow: `0 0 0 1px ${borderColor}` } : undefined}
             >
               {children}
@@ -652,12 +652,12 @@ function SegmentButton({ label, selected, onClick }: SegmentButtonProps) {
       role="tab"
       aria-selected={selected}
       onClick={onClick}
-      className="relative z-10 flex h-[34px] flex-1 items-center justify-center px-3 outline-none"
+      className="relative z-10 flex h-8 flex-1 items-center justify-center px-3 outline-none"
       style={{ transform: 'translateZ(0)' }}
     >
       <span
         className={cn(
-          'whitespace-nowrap text-[14px] tracking-[-0.26px]',
+          'whitespace-nowrap text-b14',
           selected ? 'font-semibold text-ink' : 'font-medium text-ink-secondary',
         )}
       >
@@ -711,7 +711,7 @@ function AddressCard({ item, isSelected, isDeleting = false, onSelect, onMore }:
         }}
         className={cn(
           'flex w-full cursor-pointer items-center gap-2 py-2 pl-2 pr-1 outline-none',
-          isSelected ? 'bg-[#EFF7FF]' : 'bg-blue-gray-100',
+          isSelected ? 'bg-blue-50' : 'bg-blue-gray-100',
         )}
       >
         <Squircle
@@ -730,7 +730,7 @@ function AddressCard({ item, isSelected, isDeleting = false, onSelect, onMore }:
         </Squircle>
         <span
           className={cn(
-            'font-primary text-[14px] tracking-[-0.14px] text-neutral-black',
+            'font-primary text-b14 text-neutral-black',
             isSelected ? 'font-semibold' : 'font-medium',
           )}
         >
@@ -739,8 +739,8 @@ function AddressCard({ item, isSelected, isDeleting = false, onSelect, onMore }:
         <Squircle cornerRadius={6} cornerSmoothing={0.6} className="bg-neutral-white">
           <div
             className={cn(
-              'flex min-w-[37px] items-center justify-center whitespace-nowrap pb-[4px] pl-[7px] pr-[6px] pt-[3px] font-primary text-[10px] font-bold leading-[12px]',
-              isSelected ? 'text-[#0076FF]' : 'text-blue-gray-700',
+              'flex min-w-9 items-center justify-center whitespace-nowrap pb-1 pl-1.5 pr-1.5 pt-0.5 font-primary text-tiny font-bold',
+              isSelected ? 'text-blue-600' : 'text-blue-gray-700',
             )}
           >
             {item.distance}
@@ -764,13 +764,13 @@ function AddressCard({ item, isSelected, isDeleting = false, onSelect, onMore }:
             className="flex size-6 items-center justify-center"
             aria-label="More"
           >
-            <img src="/share-address/icons/more-vertical.svg" alt="" className="h-4 w-[3px]" />
+            <img src="/share-address/icons/more-vertical.svg" alt="" className="h-4 w-0.5" />
           </button>
         </div>
       </div>
 
       <div className="px-3 pt-2 pb-2">
-        <p className="text-[13px] font-medium leading-[18px] tracking-[-0.26px] text-blue-gray-700">
+        <p className="text-label-3 font-medium text-blue-gray-700">
           {item.address}
         </p>
       </div>
@@ -778,10 +778,10 @@ function AddressCard({ item, isSelected, isDeleting = false, onSelect, onMore }:
       <div className="mx-3 border-t border-dashed border-blue-gray-300" />
 
       <div className="flex items-center gap-1.5 px-3 py-2.5">
-        <span className="text-[13px] font-medium tracking-[-0.26px] text-blue-gray-700">
+        <span className="text-label-3 font-medium text-blue-gray-700">
           {item.contactName}
         </span>
-        <span className="text-[13px] font-medium tracking-[-0.26px] text-blue-gray-700">
+        <span className="text-label-3 font-medium text-blue-gray-700">
           {item.contactPhone}
         </span>
         <img
@@ -891,12 +891,12 @@ function SecondarySheet({
                         onClose()
                       }
                     }}
-                    className="flex w-[82px] items-center gap-4 py-2 outline-none"
+                    className="flex w-20 items-center gap-4 py-2 outline-none"
                   >
                     <span className="flex size-5 items-center justify-center">
                       <img src={item.icon} alt="" className="h-3.5 w-3.5" />
                     </span>
-                    <span className="font-primary text-[12px] font-semibold tracking-[-0.12px] text-[#262A33]">
+                    <span className="font-primary text-b12 font-semibold text-blue-gray-900">
                       {item.label}
                     </span>
                   </button>
@@ -929,20 +929,20 @@ function SecondarySheet({
                     'transform 560ms cubic-bezier(0.32, 0.72, 0, 1) 120ms',
                 }}
               >
-                <p className="font-primary text-[17px] font-bold leading-6 tracking-[-0.16px] text-blue-gray-900">
+                <p className="font-primary text-a17 font-bold leading-6 text-blue-gray-900">
                   Delete this address?
                 </p>
                 <Squircle
                   cornerRadius={12}
                   cornerSmoothing={0.6}
                   borderColor="#F2F3F7"
-                  className="bg-[#FCFCFD]"
+                  className="bg-bluegray-50"
                 >
                   <div className="flex flex-col gap-1.5 p-3">
-                    <p className="font-primary text-[14px] font-semibold leading-[18px] tracking-[-0.14px] text-blue-gray-900">
+                    <p className="font-primary text-label-3p font-semibold text-blue-gray-900">
                       {target?.title ?? 'Address'}
                     </p>
-                    <p className="font-primary text-[12px] leading-[14px] tracking-[-0.12px] text-blue-gray-700">
+                    <p className="font-primary text-label-4p text-blue-gray-700">
                       {target?.address ?? ''}
                     </p>
                   </div>
@@ -966,7 +966,7 @@ function SecondarySheet({
                   className="flex-1 bg-blue-gray-100"
                   onClick={onClose}
                 >
-                  <div className="flex h-11 items-center justify-center px-6 text-[15px] font-semibold tracking-[-0.26px] text-ink">
+                  <div className="flex h-11 items-center justify-center px-6 text-b14 font-semibold text-ink">
                     Cancel
                   </div>
                 </Squircle>
@@ -976,7 +976,7 @@ function SecondarySheet({
                   className="flex-1 bg-red-700"
                   onClick={onConfirmDelete}
                 >
-                  <div className="flex h-11 items-center justify-center px-6 text-[15px] font-semibold tracking-[-0.26px] text-neutral-white">
+                  <div className="flex h-11 items-center justify-center px-6 text-b14 font-semibold text-neutral-white">
                     Yes
                   </div>
                 </Squircle>

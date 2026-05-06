@@ -58,8 +58,8 @@ function CollectionRow({
       className="flex w-full items-center justify-between text-left"
     >
       <span className="flex items-center gap-4">
-        <span className="flex shrink-0 items-center rounded-[8px] bg-surface-tertiary p-1">
-          <span className="relative size-8 shrink-0 overflow-hidden rounded-[6px]">
+        <span className="flex shrink-0 items-center rounded-8 bg-surface-tertiary p-1">
+          <span className="relative size-8 shrink-0 overflow-hidden rounded-4">
             <img src={src} alt="" className="block size-full object-cover" />
           </span>
         </span>
@@ -68,7 +68,7 @@ function CollectionRow({
         </span>
       </span>
       {selected ? (
-        <span className="flex shrink-0 items-center p-[3px]">
+        <span className="flex shrink-0 items-center p-0.5">
           <CheckCircle />
         </span>
       ) : (
@@ -98,7 +98,7 @@ export default function MoveOrCopyItemsSheet({
   const enabled = selectedCollections.size > 0;
   return (
     <BottomSheet>
-      <div className="flex w-[343px] flex-col items-start gap-2 rounded-[16px] bg-surface-tertiary p-2">
+      <div className="flex w-[343px] flex-col items-start gap-2 rounded-16 bg-surface-tertiary p-2">
         <HeaderBar
           showBack
           onBack={onBack}
@@ -106,7 +106,7 @@ export default function MoveOrCopyItemsSheet({
           items={items}
         />
 
-        <div className="flex w-full flex-col items-start gap-6 rounded-[12px] bg-surface-primary px-3 pb-3 pt-4">
+        <div className="flex w-full flex-col items-start gap-6 rounded-12 bg-surface-primary px-3 pb-3 pt-4">
           <div className="flex w-full flex-col items-start gap-5">
             {MOVE_COPY_COLLECTIONS.map((c) => (
               <CollectionRow

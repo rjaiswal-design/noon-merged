@@ -15,10 +15,10 @@ export default function DeleteCollectionSheet({
 }: DeleteCollectionSheetProps) {
   return (
     <BottomSheet>
-      <div className="relative flex w-[351px] flex-col items-start gap-4 overflow-hidden rounded-[16px] border border-border-subtle bg-surface-primary px-4 pb-3 pt-6">
+      <div className="relative flex w-[351px] flex-col items-start gap-4 overflow-hidden rounded-16 border border-border-subtle bg-surface-primary px-4 pb-3 pt-6">
         <GridRadialBg height={484} />
 
-        <div className="relative flex w-full flex-col items-start gap-[56px] pb-3 pt-6">
+        <div className="relative flex w-full flex-col items-start gap-14 pb-3 pt-6">
           <div className="flex w-full flex-col items-center gap-10">
             <MasterSwatch />
             <CollectionTitle title={title} itemCount={itemCount} />

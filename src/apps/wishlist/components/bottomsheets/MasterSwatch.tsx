@@ -13,10 +13,10 @@ type CardProps = {
 
 function Card({ src, variant = "image" }: CardProps) {
   return (
-    <div className="flex items-center rounded-[20px] border-[1.25px] border-[var(--colour-border-subtle)] bg-surface-primary p-1">
+    <div className="flex items-center rounded-16 border-[1.25px] border-[var(--colour-border-subtle)] bg-surface-primary p-1">
       {variant === "framed" ? (
-        <div className="relative size-[70px] rounded-[16px] bg-surface-secondary">
-          <div className="absolute left-1/2 top-1/2 size-[52.5px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[8px]">
+        <div className="relative size-[70px] rounded-16 bg-surface-secondary">
+          <div className="absolute left-1/2 top-1/2 size-[52.5px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-8">
             <img
               src={src}
               alt=""
@@ -25,7 +25,7 @@ function Card({ src, variant = "image" }: CardProps) {
           </div>
         </div>
       ) : (
-        <div className="relative size-[70px] overflow-hidden rounded-[14px]">
+        <div className="relative size-[70px] overflow-hidden rounded-12">
           <img
             src={src}
             alt=""

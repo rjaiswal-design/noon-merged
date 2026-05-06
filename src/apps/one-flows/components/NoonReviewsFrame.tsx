@@ -31,7 +31,7 @@ export default function NoonReviewsFrame({ onBack }: { onBack: () => void }) {
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{ backgroundColor: "#f9f9fb" }}
     >
       <StatusBar />
@@ -43,13 +43,13 @@ export default function NoonReviewsFrame({ onBack }: { onBack: () => void }) {
         type="button"
         onClick={onBack}
         aria-label="Back"
-        className="absolute top-[50px] left-[12px] z-30 size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer"
+        className="absolute top-12 left-3 z-30 size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer"
         style={{
           borderColor: "#eaecf0",
           boxShadow: "0 4px 12px rgba(15,15,25,0.08)",
         }}
       >
-        <svg viewBox="0 0 16 16" className="size-[16px]" fill="none" aria-hidden="true">
+        <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
           <path
             d="M10 3 5 8l5 5"
             stroke="#101628"
@@ -80,11 +80,11 @@ export default function NoonReviewsFrame({ onBack }: { onBack: () => void }) {
           Same shimmer treatment as the supermall skeleton — keeps the
           transition feeling continuous. */}
       {!ready && (
-        <div className="absolute inset-0 pt-[80px] px-[16px] flex flex-col gap-[12px] pointer-events-none">
-          <div className="h-[44px] rounded-[12px] skel-shimmer" />
-          <div className="h-[120px] rounded-[16px] skel-shimmer" />
-          <div className="h-[160px] rounded-[16px] skel-shimmer" />
-          <div className="h-[160px] rounded-[16px] skel-shimmer" />
+        <div className="absolute inset-0 pt-20 px-4 flex flex-col gap-3 pointer-events-none">
+          <div className="h-11 rounded-12 skel-shimmer" />
+          <div className="h-[120px] rounded-16 skel-shimmer" />
+          <div className="h-40 rounded-16 skel-shimmer" />
+          <div className="h-40 rounded-16 skel-shimmer" />
         </div>
       )}
 

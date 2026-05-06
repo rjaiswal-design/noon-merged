@@ -7,7 +7,7 @@ function ChevronLeftIcon() {
       viewBox="0 0 9 16.5"
       fill="none"
       aria-hidden
-      className="block h-[12.5px] w-[6.25px]"
+      className="block h-3 w-1.5"
     >
       <path
         d="M8.25 0.75L0.75 8.25L8.25 15.75"
@@ -40,21 +40,21 @@ function PlusIcon() {
 
 function StatusBar() {
   return (
-    <div className="relative h-[47px] w-full shrink-0 overflow-hidden">
+    <div className="relative h-12 w-full shrink-0 overflow-hidden">
       <img
         src={notchImg}
         alt=""
         aria-hidden
-        className="absolute left-1/2 top-[-2px] block h-8 w-[164px] -translate-x-1/2"
+        className="absolute left-1/2 -top-0.5 block h-8 w-[164px] -translate-x-1/2"
       />
-      <span className="absolute left-[27px] top-[15px] block w-[54px] text-center font-['SF_Pro_Text','SF_Pro','-apple-system',system-ui] text-[17px] font-semibold leading-[22px] text-[#010101] tracking-[-0.408px]">
+      <span className="absolute left-7 top-3.5 block w-14 text-center font-['SF_Pro_Text','SF_Pro','-apple-system',system-ui] text-a17 font-semibold text-black">
         9:41
       </span>
       <img
         src={rightSideImg}
         alt=""
         aria-hidden
-        className="absolute right-[26.6px] top-[19px] block h-[13px] w-[77.4px]"
+        className="absolute right-7 top-5 block h-3 w-[77.4px]"
       />
     </div>
   );

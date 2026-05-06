@@ -23,7 +23,7 @@ export function NavBar({
   title,
   actions = [],
   onBack,
-  className = '',
+  className='',
 }: NavBarProps) {
   const base = `nav-bar nav-bar--${variant}`;
 

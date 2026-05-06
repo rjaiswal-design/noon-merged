@@ -61,7 +61,7 @@ export default function App() {
 
   return (
     <>
-      <div className="flex min-h-full w-full flex-col items-stretch justify-start bg-[#e9ebf0] py-8">
+      <div className="flex min-h-full w-full flex-col items-stretch justify-start bg-blue-gray-300 py-8">
         <div className="relative mx-auto flex h-[812px] w-[375px] flex-col overflow-hidden bg-surface-primary">
           <img src={topImg} alt="" className="block w-full shrink-0" />
           <div className="min-h-0 flex-1 overflow-hidden">

@@ -22,7 +22,7 @@ export default function CopyToNewCollectionSheet({
       contentToFooterGap={16}
       footer={keyboardOpen ? <IosKeyboardMock /> : undefined}
     >
-      <div className="flex w-[343px] flex-col items-start rounded-[16px] bg-surface-primary p-2">
+      <div className="flex w-[343px] flex-col items-start rounded-16 bg-surface-primary p-2">
         <HeaderBar
           showBack
           onBack={onBack}

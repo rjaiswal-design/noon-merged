@@ -1,22 +1,22 @@
 function Mini56({ image, tiltClass }: { image?: string; tiltClass: string }) {
   return (
-    <div className={"flex-none " + tiltClass}>
-      <div className="relative size-[56px] overflow-hidden rounded-[12px] bg-surface-primary shadow-[0px_0px_8.96px_0px_rgba(0,0,0,0.06)]">
-        <div className="absolute left-[2.24px] top-[2.24px] size-[51.52px] overflow-hidden rounded-[6.571px]">
-          <div aria-hidden className="absolute inset-0 rounded-[6.571px] bg-white" />
+    <div className={"flex-none" + tiltClass}>
+      <div className="relative size-14 overflow-hidden rounded-12 bg-surface-primary shadow-[0px_0px_8.96px_0px_rgba(0,0,0,0.06)]">
+        <div className="absolute left-0.5 top-0.5 size-[51.52px] overflow-hidden rounded-8">
+          <div aria-hidden className="absolute inset-0 rounded-8 bg-white" />
           {image ? (
             <img
               src={image}
               alt=""
               aria-hidden
-              className="absolute inset-0 size-full rounded-[1.882px] object-cover"
+              className="absolute inset-0 size-full rounded-4 object-cover"
             />
           ) : (
-            <div className="absolute inset-0 rounded-[1.882px] bg-surface-tertiary" />
+            <div className="absolute inset-0 rounded-4 bg-surface-tertiary" />
           )}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 rounded-[6.571px] shadow-[inset_0px_0px_7.36px_0px_rgba(0,0,0,0.06)]"
+            className="pointer-events-none absolute inset-0 rounded-8 shadow-[inset_0px_0px_7.36px_0px_rgba(0,0,0,0.06)]"
           />
         </div>
       </div>
@@ -26,22 +26,22 @@ function Mini56({ image, tiltClass }: { image?: string; tiltClass: string }) {
 
 function Mini64({ image }: { image?: string }) {
   return (
-    <div className="relative size-[64px] overflow-hidden rounded-[12px] bg-surface-primary shadow-[0px_0px_10.24px_0px_rgba(0,0,0,0.06)]">
-      <div className="absolute left-[2.56px] top-[2.56px] size-[58.88px] overflow-hidden rounded-[6.571px]">
-        <div aria-hidden className="absolute inset-0 rounded-[6.571px] bg-white" />
+    <div className="relative size-16 overflow-hidden rounded-12 bg-surface-primary shadow-[0px_0px_10.24px_0px_rgba(0,0,0,0.06)]">
+      <div className="absolute left-0.5 top-0.5 size-[58.88px] overflow-hidden rounded-8">
+        <div aria-hidden className="absolute inset-0 rounded-8 bg-white" />
         {image ? (
           <img
             src={image}
             alt=""
             aria-hidden
-            className="absolute inset-0 size-full rounded-[2.458px] object-cover"
+            className="absolute inset-0 size-full rounded-4 object-cover"
           />
         ) : (
-          <div className="absolute inset-0 rounded-[2.458px] bg-surface-tertiary" />
+          <div className="absolute inset-0 rounded-4 bg-surface-tertiary" />
         )}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-[6.571px] shadow-[inset_0px_0px_8.411px_0px_rgba(0,0,0,0.06)]"
+          className="pointer-events-none absolute inset-0 rounded-8 shadow-[inset_0px_0px_8.411px_0px_rgba(0,0,0,0.06)]"
         />
       </div>
     </div>
@@ -73,7 +73,7 @@ export default function CollectionCard({
     <Wrapper
       onClick={onClick}
       type={onClick ? "button" : undefined}
-      className="relative flex h-[140px] w-[126px] shrink-0 flex-col items-center gap-2 overflow-hidden rounded-[12px] border border-surface-tertiary bg-surface-secondary px-3 pb-3 pt-4 font-primary"
+      className="relative flex h-[140px] w-32 shrink-0 flex-col items-center gap-2 overflow-hidden rounded-12 border border-surface-tertiary bg-surface-secondary px-3 pb-3 pt-4 font-primary"
     >
       <span
         aria-hidden
@@ -82,7 +82,7 @@ export default function CollectionCard({
 
       <div className="relative flex h-[68px] w-[102px] shrink-0 items-center justify-center">
         {assets.back ? (
-          <div className="order-3 -ml-[50px] flex size-[66.42px] items-center justify-center">
+          <div className="order-3 -ml-12 flex size-[66.42px] items-center justify-center">
             <Mini56 image={assets.back} tiltClass="rotate-12" />
           </div>
         ) : null}
@@ -91,7 +91,7 @@ export default function CollectionCard({
             <Mini56 image={assets.middle} tiltClass="-rotate-12" />
           </div>
         ) : null}
-        <div className={"order-2 " + (assets.middle ? "-ml-[48.42px]" : "")}>
+        <div className={"order-2" + (assets.middle ? "-ml-12" : "")}>
           <Mini64 image={assets.front} />
         </div>
       </div>

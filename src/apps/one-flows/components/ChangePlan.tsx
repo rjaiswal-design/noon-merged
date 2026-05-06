@@ -8,7 +8,7 @@ import ReviewAndConfirmSheet, {
 
 /* ---------- Inline icons ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 20 20"
@@ -29,7 +29,7 @@ function BackChevron({ className = "" }: { className?: string }) {
 }
 
 function CheckMark({
-  className = "",
+  className="",
   color = "#108757",
 }: {
   className?: string;
@@ -57,11 +57,11 @@ function CheckMark({
 /** Empty/filled radio circle on the right side of selectable plan cards. */
 function RadioCircle({ selected }: { selected: boolean }) {
   return selected ? (
-    <div className="size-[20px] rounded-full bg-[#108757] flex items-center justify-center shrink-0">
-      <div className="size-[8px] rounded-full bg-white" />
+    <div className="size-5 rounded-full bg-green-600 flex items-center justify-center shrink-0">
+      <div className="size-2 rounded-full bg-white" />
     </div>
   ) : (
-    <div className="size-[20px] rounded-full border-[1.5px] border-[#d0d5dd] shrink-0" />
+    <div className="size-5 rounded-full border-[1.5px] border-bluegray-400 shrink-0" />
   );
 }
 
@@ -69,7 +69,7 @@ function RadioCircle({ selected }: { selected: boolean }) {
 /** Noontree's PUA glyph U+E001 — the noon dirham (AED) wordmark. */
 const AED_GLYPH = "";
 
-function Aed({ className = "" }: { className?: string }) {
+function Aed({ className="" }: { className?: string }) {
   return (
     <span
       aria-label="AED"
@@ -136,9 +136,9 @@ function PlanCard({
     >
       {/* Top row: name + radio (or empty space for current plan) */}
       <div
-        className={`flex items-center justify-between w-full ${plan.isCurrent ? "mt-[24px]" : ""}`}
+        className={`flex items-center justify-between w-full ${plan.isCurrent ? "mt-6" : ""}`}
       >
-        <p className="font-bold leading-[20px] text-[#1d2539] text-[16px] tracking-[-0.16px]">
+        <p className="font-bold text-blue-gray-900 text-h16">
           {plan.name}
         </p>
         {!plan.isCurrent && <RadioCircle selected={selected} />}
@@ -148,31 +148,31 @@ function PlanCard({
           edge (16px) so it sits in the same column as the title and benefits
           below, rather than flush to the card edge. */}
       {plan.isCurrent && (
-        <div className="absolute left-[16px] top-0 bg-[#108757] flex h-[24px] items-center justify-center px-[12px] py-[4px] rounded-bl-[12px] rounded-br-[12px] shrink-0">
-          <p className="font-noontree font-semibold text-white text-[12px] leading-none whitespace-nowrap shrink-0">
+        <div className="absolute left-4 top-0 bg-green-600 flex h-6 items-center justify-center px-3 py-1 rounded-bl-12 rounded-br-12 shrink-0">
+          <p className="font-noontree font-semibold text-white text-b12 leading-none whitespace-nowrap shrink-0">
             Current plan
           </p>
         </div>
       )}
 
       {/* Price line — leading dhm symbol (Aed) instead of calendar icon */}
-      <div className="flex items-baseline gap-[4px]">
-        <Aed className="text-[16px] text-[#1d2539]" />
-        <p className="font-noontree font-semibold text-[#1d2539] text-[14px] leading-[18px] tracking-[-0.14px]">
+      <div className="flex items-baseline gap-1">
+        <Aed className="text-h16 text-blue-gray-900" />
+        <p className="font-noontree font-semibold text-blue-gray-900 text-label-3p">
           {plan.price}/month
         </p>
       </div>
 
       {/* Optional pricing detail + badge row */}
       {(plan.pricingDetail || plan.badge) && (
-        <div className="flex items-center gap-[8px] flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
           {plan.pricingDetail && (
-            <p className="font-noontree text-[#666d85] text-[12px] leading-[14px] tracking-[-0.12px]">
+            <p className="font-noontree text-blue-gray-600 text-label-4p">
               {plan.pricingDetail}
             </p>
           )}
           {plan.badge && (
-            <span className="bg-[#e7f6f0] text-[#108757] font-noontree font-semibold text-[12px] leading-none px-[8px] py-[4px] rounded-[6px] whitespace-nowrap">
+            <span className="bg-green-100 text-green-600 font-noontree font-semibold text-b12 leading-none px-2 py-1 rounded-4 whitespace-nowrap">
               {plan.badge}
             </span>
           )}
@@ -180,14 +180,14 @@ function PlanCard({
       )}
 
       {/* Dashed separator */}
-      <div className="h-px w-full border-t border-dashed border-[#eaecf0]" />
+      <div className="h-px w-full border-t border-dashed border-blue-gray-300" />
 
       {/* Benefits list */}
-      <div className="flex flex-col gap-[10px]">
+      <div className="flex flex-col gap-2.5">
         {benefits.map((b, i) => (
-          <div key={i} className="flex gap-[10px] items-center">
-            <CheckMark className="size-[16px] shrink-0" color="#475067" />
-            <p className="font-noontree font-medium text-[#475067] text-[12px] leading-[14px] tracking-[-0.12px]">
+          <div key={i} className="flex gap-2.5 items-center">
+            <CheckMark className="size-4 shrink-0" color="#475067" />
+            <p className="font-noontree font-medium text-blue-gray-700 text-label-4p">
               {b}
             </p>
           </div>
@@ -226,7 +226,7 @@ const OTHER_PLANS: Plan[] = [
     benefits: [
       <>
         Free for{" "}
-        <span className="text-[#108757] font-semibold">15 days</span>
+        <span className="text-green-600 font-semibold">15 days</span>
       </>,
       "Unlimited free delivery",
       "Watch HBO, OSN+ originals on demand.",
@@ -234,7 +234,7 @@ const OTHER_PLANS: Plan[] = [
     selectedBenefits: [
       <>
         Get additional{" "}
-        <span className="text-[#108757] font-semibold">free 15 day trial</span>
+        <span className="text-green-600 font-semibold">free 15 day trial</span>
       </>,
       "Unlimited free delivery",
       "Watch HBO, OSN+ originals on demand.",
@@ -278,7 +278,7 @@ export default function ChangePlan({
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{
         backgroundImage: "linear-gradient(180deg, #ffffff 31%, #f3f3f5 100%)",
       }}
@@ -291,12 +291,12 @@ export default function ChangePlan({
       >
         {/* Bottom padding accounts for the sticky CTA bar (≈ 96px) so the
             last card isn't hidden behind it when fully scrolled. */}
-        <div className={`w-full ${canConfirm ? "pb-[110px]" : "pb-[20px]"}`}>
+        <div className={`w-full ${canConfirm ? "pb-28" : "pb-5"}`}>
           {/* Sticky header */}
           <div
             className={`sticky top-0 z-10 flex items-center gap-[8px] px-[18px] pt-[52px] pb-[12px] w-full transition-[background-color,border-color] duration-150 border-b ${
               scrolled
-                ? "bg-white border-[#eaecf0]"
+                ? "bg-white border-blue-gray-300"
                 : "bg-transparent border-transparent"
             }`}
           >
@@ -304,29 +304,29 @@ export default function ChangePlan({
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="bg-white border border-[#f2f3f7] flex items-center justify-center p-[8px] rounded-[18px] cursor-pointer shrink-0"
+              className="bg-white border border-blue-gray-200 flex items-center justify-center p-2 rounded-16 cursor-pointer shrink-0"
             >
-              <BackChevron className="size-[20px]" />
+              <BackChevron className="size-5" />
             </button>
-            <p className="flex-1 font-bold text-[#0e0e0e] text-[16px] leading-[20px] tracking-[-0.16px]">
+            <p className="flex-1 font-bold text-[#0e0e0e] text-h16">
               Change Plan
             </p>
           </div>
 
           {/* Current plan card */}
-          <div className="flex flex-col px-[16px] mt-[16px]">
+          <div className="flex flex-col px-4 mt-4">
             <PlanCard plan={CURRENT_PLAN} selected={false} onSelect={() => {}} />
           </div>
 
           {/* "Explore other plans" section */}
-          <div className="px-[16px] mt-[24px] mb-[12px]">
-            <p className="font-bold text-[#1d2539] text-[16px] leading-[20px] tracking-[-0.16px]">
+          <div className="px-4 mt-6 mb-3">
+            <p className="font-bold text-blue-gray-900 text-h16">
               Explore other plans
             </p>
           </div>
 
           {/* Other plans */}
-          <div className="flex flex-col px-[16px] gap-[16px]">
+          <div className="flex flex-col px-4 gap-4">
             {OTHER_PLANS.map((plan) => (
               <PlanCard
                 key={plan.id}
@@ -349,12 +349,12 @@ export default function ChangePlan({
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 320, mass: 0.9 }}
-            className="absolute bottom-0 left-0 right-0 z-20 bg-white border-t border-[#eaecf0] rounded-tl-[12px] rounded-tr-[12px] px-[16px] pt-[12px] pb-[36px]"
+            className="absolute bottom-0 left-0 right-0 z-20 bg-white border-t border-blue-gray-300 rounded-tl-12 rounded-tr-12 px-4 pt-3 pb-9"
           >
             <button
               type="button"
               onClick={() => setSheetOpen(true)}
-              className="w-full bg-black text-white font-bold text-[14px] rounded-[12px] py-[18px] cursor-pointer"
+              className="w-full bg-black text-white font-bold text-b14 rounded-12 py-4 cursor-pointer"
             >
               Change my plan
             </button>
@@ -363,8 +363,8 @@ export default function ChangePlan({
       </AnimatePresence>
 
       {/* iPhone home indicator */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-[14px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-3.5 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
 
       {/* Confirmation bottom sheet */}

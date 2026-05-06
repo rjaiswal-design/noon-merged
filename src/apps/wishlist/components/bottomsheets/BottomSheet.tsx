@@ -10,8 +10,8 @@ export function DragHandle() {
 
 export function HomeIndicator() {
   return (
-    <div className="relative flex h-[34px] w-full items-center justify-center">
-      <div className="absolute bottom-2 left-1/2 h-[5px] w-[134px] -translate-x-1/2 rounded-full bg-text-primary" />
+    <div className="relative flex h-8 w-full items-center justify-center">
+      <div className="absolute bottom-2 left-1/2 h-1 w-[134px] -translate-x-1/2 rounded-full bg-text-primary" />
     </div>
   );
 }

@@ -3,7 +3,7 @@ const COLS = 8;
 const ROWS = 11;
 
 export default function CollectionWallpaper({
-  className = "",
+  className="",
 }: {
   className?: string;
 }) {
@@ -11,7 +11,7 @@ export default function CollectionWallpaper({
   return (
     <div
       className={
-        "pointer-events-none absolute inset-x-0 top-0 z-0 h-[515.625px] overflow-hidden " +
+        "pointer-events-none absolute inset-x-0 top-0 z-0 h-[515.625px] overflow-hidden" +
         className
       }
     >
