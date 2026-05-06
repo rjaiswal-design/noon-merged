@@ -417,6 +417,13 @@ export default function HomePage() {
     const section = firstSectionRef.current;
     const container = scrollRef.current;
     if (!section || !container) return;
+    // Reset scroll to top on every mount. Without this, returning to Home
+    // from another bottom-nav tab preserves the DOM scrollTop while
+    // useScroll's MotionValue initialises at 0, so the morph progress and
+    // the actual scroll position end up out of sync — the header renders
+    // at progress 0 (full size + sticky) while the page is already scrolled
+    // past it, producing a half-morphed double-paint.
+    container.scrollTop = 0;
     const measure = () => {
       // Distance from container top → section top, in scroll coordinates.
       // This is the scrollTop value at which the section will snap to the

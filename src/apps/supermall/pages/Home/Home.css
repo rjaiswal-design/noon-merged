@@ -52,7 +52,11 @@
   gap: 0;
   border-radius: 0 0 var(--radius-12) var(--radius-12);
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  /* `scroll-snap-stop: always` forces the snap to halt on the header even
+     while the user is scrolling past it. Combined with the scroll-driven
+     morph, that produced an oscillation between the expanded and compact
+     resting positions, which surfaced as a half-morphed double-painted
+     header. The `proximity` snap on `.home-page` is enough on its own. */
 }
 
 .home-header > * + * {
