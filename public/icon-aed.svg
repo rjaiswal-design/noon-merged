@@ -1,0 +1,8 @@
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="UAE Dirham">
+  <!-- New official UAE Dirham mark: a stylised D with two horizontal bars,
+       inspired by the Feb 2025 Central Bank reveal. -->
+  <path d="M3.5 2.25 V11.75 H6.6 C9.6 11.75 11.25 9.85 11.25 7 C11.25 4.15 9.6 2.25 6.6 2.25 Z M5.25 3.75 H6.6 C8.65 3.75 9.6 5 9.6 7 C9.6 9 8.65 10.25 6.6 10.25 H5.25 Z"
+        fill="currentColor"/>
+  <rect x="1.5" y="6.05" width="11" height="0.95" rx="0.45" fill="currentColor"/>
+  <rect x="1.5" y="7.85" width="11" height="0.95" rx="0.45" fill="currentColor"/>
+</svg>

@@ -191,15 +191,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  flex: 1;
+  width: auto;
+  flex: 0 0 auto;
   min-width: 0;
 }
 
 .home-header__chevron {
-  width: 8px;
-  height: 4px;
+  width: 20px;
+  height: 20px;
   margin-left: 4px;
   flex-shrink: 0;
+  display: block;
 }
 
 .home-header__heart {
@@ -317,6 +319,10 @@
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
   white-space: nowrap;
+}
+
+.home-rec__chip--active {
+  background: linear-gradient(180deg, rgba(63, 92, 255, 0.10) 0%, rgba(63, 92, 255, 0.00) 100%);
 }
 
 .home-rec__chip--active .home-rec__chip-label {

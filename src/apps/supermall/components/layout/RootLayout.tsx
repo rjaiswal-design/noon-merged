@@ -5,6 +5,8 @@ import { WishlistOverlay } from './WishlistOverlay';
 import { BottomNav } from '@ui/BottomNav';
 import type { Tab } from '@ui/BottomNav/BottomNav';
 import { useCartStore } from '@state/cartStore';
+import { useAddressSheetStore } from '@state/addressSheetStore';
+import { AddressBottomSheet } from '@/apps/share-address/screens/AddressBottomSheet';
 
 const TAB_ROUTES: Record<Tab, string> = {
   home: '/supermall',
@@ -34,6 +36,8 @@ export function RootLayout() {
   const cartCount = useCartStore((s) => s.itemCount());
   const activeTab = tabForPath(location.pathname);
   const hideNav = shouldHideNav(location.pathname);
+  const addressSheetOpen = useAddressSheetStore((s) => s.open);
+  const closeAddressSheet = useAddressSheetStore((s) => s.closeSheet);
 
   return (
     <div className="root-layout">
@@ -43,6 +47,7 @@ export function RootLayout() {
         </AnimatePresence>
       </main>
       <WishlistOverlay />
+      <AddressBottomSheet open={addressSheetOpen} onClose={closeAddressSheet} />
       <Retune />
       {!hideNav && (
         <BottomNav

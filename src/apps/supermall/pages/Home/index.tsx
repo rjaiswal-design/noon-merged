@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ProductCard, CameraIcon, SearchIcon, StatusBar } from '@ui';
 import { CategoryCard } from '../../components/ui/CategoryCard';
+import { useWishlistStore } from '@state/wishlistStore';
+import { useAddressSheetStore } from '@state/addressSheetStore';
 import type { Product } from '../../types/product';
 import './Home.css';
 
@@ -77,6 +79,8 @@ const recProducts: Record<ChipLabel, Product[]> = {
 /* ─── Header ───────────────────────────────────────────────────────────── */
 function HomeHeader() {
   const navigate = useNavigate();
+  const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
+  const openAddressSheet = useAddressSheetStore((s) => s.openSheet);
   return (
     <section className="home-header" aria-label="noon home">
       <StatusBar tone="dark" />
@@ -89,7 +93,13 @@ function HomeHeader() {
         </button>
 
         {/* super mall — white bg, single SVG logo */}
-        <button type="button" className="home-tile" style={{ background: 'rgba(255,255,255,0.95)' }} aria-label="super mall">
+        <button
+          type="button"
+          className="home-tile"
+          style={{ background: 'rgba(255,255,255,0.95)' }}
+          aria-label="super mall"
+          onClick={() => navigate('/supermall/shop')}
+        >
           <img src="/logo-supermall.svg" alt="super mall" className="home-tile__center-logo" style={{ width: 54, height: 34 }} />
         </button>
 
@@ -127,7 +137,14 @@ function HomeHeader() {
 
       {/* Address row — two-line stacked layout */}
       <div className="home-header__address">
-        <div className="home-header__address-info">
+        <div
+          className="home-header__address-info"
+          role="button"
+          tabIndex={0}
+          onClick={openAddressSheet}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openAddressSheet(); }}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="home-header__address-row1">
             <img src="/icon-home.svg" alt="" className="home-header__home-icon" />
             <span className="home-header__address-label">Home -&nbsp;</span>
@@ -137,7 +154,12 @@ function HomeHeader() {
             <img src="/icon-chevron-down.svg" alt="" className="home-header__chevron" />
           </div>
         </div>
-        <button type="button" className="home-header__heart" aria-label="Wishlist">
+        <button
+          type="button"
+          className="home-header__heart"
+          aria-label="Wishlist"
+          onClick={openFullWishlist}
+        >
           <img src="/icon-heart-blue.svg" alt="" width={36} height={36} />
         </button>
       </div>
@@ -252,38 +274,6 @@ function OffersForYou() {
   );
 }
 
-/* ─── M-Bottomnav (Field DS) — Home / Categories / Deals / Profile / Cart */
-const bnavTabs = [
-  { id: 'home',       label: 'Home',       href: '/supermall',         icon: '/bnav-home.svg',    activeIcon: '/bnav-home-active.svg' },
-  { id: 'categories', label: 'Categories', href: '/supermall/shop',    icon: '/bnav-cat.svg',     activeIcon: '/bnav-cat-active.svg' },
-  { id: 'deals',      label: 'Deals',      href: '/supermall/shop',    icon: '/bnav-deals.svg',   activeIcon: '/bnav-deals-active.svg' },
-  { id: 'profile',    label: 'Profile',    href: '/supermall/account', icon: '/bnav-profile.svg', activeIcon: '/bnav-profile-active.svg' },
-  { id: 'cart',        label: 'Cart',       href: '/supermall/cart',    icon: '/bnav-cart.svg',    activeIcon: '/bnav-cart-active.svg' },
-] as const;
-
-function HomeBottomNav() {
-  const activeTab = 'home';
-  return (
-    <nav className="m-bnav" aria-label="Main navigation">
-      <div className="m-bnav__tabs">
-        {bnavTabs.map((tab) => {
-          const isActive = tab.id === activeTab;
-          return (
-            <a key={tab.id} href={tab.href} className={`m-bnav__tab${isActive ? ' m-bnav__tab--active' : ''}`}>
-              <span className={`m-bnav__highlight${isActive ? ' m-bnav__highlight--active' : ''}`} />
-              <img src={isActive ? tab.activeIcon : tab.icon} alt="" className="m-bnav__icon" />
-              <span className="m-bnav__label">{tab.label}</span>
-            </a>
-          );
-        })}
-      </div>
-      <div className="m-bnav__homebar">
-        <span className="m-bnav__homebar-pill" />
-      </div>
-    </nav>
-  );
-}
-
 /* ─── Page ─────────────────────────────────────────────────────────────── */
 export default function HomePage() {
   return (
@@ -294,7 +284,6 @@ export default function HomePage() {
         <RecommendedForYou />
         <OffersForYou />
         <div className="home-page__spacer" />
-        <HomeBottomNav />
       </div>
     </PageTransition>
   );
