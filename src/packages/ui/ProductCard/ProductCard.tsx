@@ -5,6 +5,7 @@ import { useWishlistStore } from '@state/wishlistStore';
 import type { Product } from '@/apps/supermall/types/product';
 import { AddToCart } from '../AddToCart/AddToCart';
 import { HeartOutline, HeartFilled, StarFilled, MoonIcon } from '../icons';
+import { NudgeFlipper } from './NudgeFlipper';
 import './ProductCard.css';
 
 const TAG_STYLES: Record<string, { bg: string; color: string }> = {
@@ -150,6 +151,9 @@ export function ProductCard({ product }: ProductCardProps) {
               <span className="product-card__discount">{discount}% off</span>
             )}
           </div>
+
+          {/* Nudge flipper – cycles through social-proof badges */}
+          <NudgeFlipper seed={product.id.length} />
 
           {/* Deal badge */}
           {product.deal && (

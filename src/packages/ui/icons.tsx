@@ -178,6 +178,55 @@ export function MoonIcon({ size = 12, color = 'currentColor', className }: IconP
   );
 }
 
+export function ArrowDownCircleSolid({ size = 14, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" className={className}>
+      <circle cx="7" cy="7" r="7" fill={color} />
+      <path d="M7 3.6V10M7 10L4.4 7.4M7 10L9.6 7.4" stroke="#fff" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function TruckSolid({ size = 14, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill={color} className={className}>
+      <path d="M1 3.5C1 2.95 1.45 2.5 2 2.5H7.5C8.05 2.5 8.5 2.95 8.5 3.5V8.5H1V3.5Z" />
+      <path d="M8.5 5H11L13 7.2V8.5H8.5V5Z" />
+      <circle cx="3.6" cy="10.2" r="1.4" />
+      <circle cx="10.4" cy="10.2" r="1.4" />
+      <circle cx="3.6" cy="10.2" r="0.5" fill="#fff" />
+      <circle cx="10.4" cy="10.2" r="0.5" fill="#fff" />
+    </svg>
+  );
+}
+
+export function BoltSolid({ size = 14, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill={color} className={className}>
+      <path d="M8.2 1L2.5 8H6.4L5.5 13L11.5 5.8H7.4L8.2 1Z" />
+    </svg>
+  );
+}
+
+export function ShoppingCartSolid({ size = 14, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill={color} className={className}>
+      <path d="M1 2H2.5L3.2 4M3.2 4L4.4 8.5C4.5 8.9 4.85 9.2 5.25 9.2H10.4C10.8 9.2 11.15 8.95 11.27 8.55L12.5 4H3.2Z" stroke={color} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <circle cx="5.6" cy="11.5" r="1.1" />
+      <circle cx="10.2" cy="11.5" r="1.1" />
+    </svg>
+  );
+}
+
+export function CheckBadgeSolid({ size = 14, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill={color} className={className}>
+      <path d="M7 0.5L8.4 1.6L10.2 1.4L10.9 3.1L12.5 3.85L12.3 5.65L13.4 7L12.3 8.35L12.5 10.15L10.9 10.9L10.2 12.6L8.4 12.4L7 13.5L5.6 12.4L3.8 12.6L3.1 10.9L1.5 10.15L1.7 8.35L0.6 7L1.7 5.65L1.5 3.85L3.1 3.1L3.8 1.4L5.6 1.6L7 0.5Z" />
+      <path d="M4.4 7L6.2 8.7L9.6 5.3" stroke="#fff" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
 export function ShareIcon({ size = 20, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="none" className={className}>
