@@ -39,7 +39,7 @@ export default function AccountPage() {
         <iframe
           src={NOON_ONE_URL}
           title="noon Account"
-          className={`account-page__iframe${skeletonHidden ? 'account-page__iframe--ready' : ''}`}
+          className={`account-page__iframe ${skeletonHidden ? 'account-page__iframe--ready' : ''}`}
           onLoad={() => {
             const elapsed = Date.now() - mountedAt.current;
             const remaining = Math.max(0, SKELETON_MIN_MS - elapsed);
@@ -51,7 +51,7 @@ export default function AccountPage() {
             will mount first, so it paints only what's universally true: status
             bar + a single full-bleed content rectangle. The iframe owns its
             own per-screen skeleton from there. */}
-        <div className={`account-skeleton${skeletonHidden ? 'account-skeleton--hidden' : ''}`}>
+        <div className={`account-skeleton ${skeletonHidden ? 'account-skeleton--hidden' : ''}`}>
           <div className="account-skeleton__frame">
             <StatusBar tone="dark" />
             <div className="skel-block account-skeleton__body" />
