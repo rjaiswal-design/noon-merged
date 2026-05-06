@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion, useMotionValue } from 'framer-motion'
 import { cn } from '../lib/cn'
 import { Squircle } from '../components/Squircle'
 import { useSheetOpen } from '@state/uiStore'
@@ -57,7 +58,12 @@ type AddressBottomSheetProps = {
 }
 
 const sheetEaseOpen = 'cubic-bezier(0.22, 1.22, 0.42, 1)'
-const sheetEaseClose = 'cubic-bezier(0.32, 0.72, 0, 1)'
+const sheetSpringOpen = { type: 'spring' as const, damping: 28, stiffness: 320, mass: 0.9 }
+const sheetTweenClose = {
+  type: 'tween' as const,
+  duration: 0.34,
+  ease: [0.32, 0.72, 0, 1] as [number, number, number, number],
+}
 
 type SecondaryView = 'menu' | 'confirm-delete'
 type SecondaryState = { view: SecondaryView; addressId: string } | null
@@ -538,96 +544,98 @@ function SheetShell({
   enterMode = 'slide',
 }: SheetShellProps) {
   const dragStartY = useRef<number | null>(null)
-  const draggingRef = useRef(false)
-  const [dragOffset, setDragOffset] = useState(0)
   const [stretchPx, setStretchPx] = useState(0)
-  const [, forceRender] = useState(0)
+  const dragY = useMotionValue(0)
 
   const handlePointerDown = (e: React.PointerEvent) => {
     if (!onDragClose) return
     e.currentTarget.setPointerCapture(e.pointerId)
     dragStartY.current = e.clientY
-    draggingRef.current = true
-    forceRender((n) => n + 1)
   }
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (dragStartY.current === null) return
     const delta = e.clientY - dragStartY.current
     if (delta < 0) {
-      // Drag upward: rubber-band stretch (sheet grows taller, bottom anchored)
       setStretchPx(Math.min(60, -delta * 0.3))
-      setDragOffset(0)
+      dragY.set(0)
     } else {
-      // Drag downward: translate down (sheet moves toward closed)
-      setDragOffset(delta)
+      dragY.set(delta)
       setStretchPx(0)
     }
   }
 
   const endDrag = () => {
     if (dragStartY.current === null) return
-    const offset = dragOffset
+    const offset = dragY.get()
     dragStartY.current = null
-    draggingRef.current = false
     if (offset > 80 && onDragClose) {
       onDragClose()
     }
-    setDragOffset(0)
+    dragY.set(0)
     setStretchPx(0)
   }
 
-  const slideTransform = !open
-    ? 'translateY(110%)'
-    : `translateY(${dragOffset}px)`
-  const scaleTransform = !open ? 'scale(0)' : 'scale(1)'
-  const transform = enterMode === 'scale' ? scaleTransform : slideTransform
-  const opacity = enterMode === 'scale' ? (open ? 1 : 0) : 1
+  const slideVariants = {
+    initial: { y: '110%' },
+    animate: { y: 0, transition: sheetSpringOpen },
+    exit: { y: '110%', transition: sheetTweenClose },
+  }
+  const scaleVariants = {
+    initial: { scale: 0, opacity: 0 },
+    animate: {
+      scale: 1,
+      opacity: 1,
+      transition: { ...sheetSpringOpen, opacity: { duration: 0.32, ease: 'easeOut' as const } },
+    },
+    exit: {
+      scale: 0,
+      opacity: 0,
+      transition: { duration: 0.32, ease: [0.32, 0.72, 0, 1] as [number, number, number, number] },
+    },
+  }
+  const variants = enterMode === 'scale' ? scaleVariants : slideVariants
 
   return (
-    <div
-      className={cn('absolute', bottomOffsetClass, insetClass, zClass)}
-      style={{
-        transform,
-        opacity,
-        // For 'scale' mode, anchor at the bottom edge so the sheet grows
-        // upward from the bottom of the main sheet (since both share the same
-        // bottom anchor inside the clipped main-sheet container).
-        transformOrigin: 'center bottom',
-        transition: draggingRef.current
-          ? 'none'
-          : enterMode === 'scale'
-            ? `transform 540ms ${sheetEaseOpen}, opacity 320ms ease-out`
-            : `transform 520ms ${open ? sheetEaseOpen : sheetEaseClose}`,
-      }}
-    >
-      {showNotch ? (
-        <div
-          className="flex touch-none justify-center py-2"
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={endDrag}
-          onPointerCancel={endDrag}
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className={cn('absolute', bottomOffsetClass, insetClass, zClass)}
+          style={{ transformOrigin: 'center bottom' }}
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
         >
-          <span className="block h-[5px] w-10 rounded-full bg-neutral-white/90" />
-        </div>
-      ) : null}
-      <div
-        className={cn('relative overflow-hidden rounded-[24px]', bgClass)}
-        style={borderColor ? { boxShadow: `0 0 0 1px ${borderColor}` } : undefined}
-      >
-        {children}
-        {/* Stretch spacer at bottom — grows on upward drag so content visibly moves up */}
-        <div
-          style={{
-            height: stretchPx,
-            transition: draggingRef.current ? 'none' : `height 420ms ${sheetEaseOpen}`,
-          }}
-        />
-      </div>
-      {/* Spacer so the sheet floats above the system home indicator at the bottom */}
-      <div className={cn('w-full', bottomSpacerClass)} />
-    </div>
+          <motion.div style={{ y: enterMode === 'slide' ? dragY : 0 }}>
+            {showNotch ? (
+              <div
+                className="flex touch-none justify-center py-2"
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={endDrag}
+                onPointerCancel={endDrag}
+              >
+                <span className="block h-[5px] w-10 rounded-full bg-neutral-white/90" />
+              </div>
+            ) : null}
+            <div
+              className={cn('relative overflow-hidden rounded-[24px]', bgClass)}
+              style={borderColor ? { boxShadow: `0 0 0 1px ${borderColor}` } : undefined}
+            >
+              {children}
+              <div
+                style={{
+                  height: stretchPx,
+                  transition: dragStartY.current !== null ? 'none' : `height 420ms ${sheetEaseOpen}`,
+                }}
+              />
+            </div>
+            <div className={cn('w-full', bottomSpacerClass)} />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 

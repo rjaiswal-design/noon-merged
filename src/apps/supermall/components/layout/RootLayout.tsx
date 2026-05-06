@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Outlet, useLocation, useNavigate, useNavigationType } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Retune } from 'retune';
 import { WishlistOverlay } from './WishlistOverlay';
@@ -8,6 +8,8 @@ import type { Tab } from '@ui/BottomNav/BottomNav';
 import { useCartStore } from '@state/cartStore';
 import { useUIStore } from '@state/uiStore';
 import { useWishlistStore } from '@state/wishlistStore';
+import { NavDirectionContext } from '../../lib/navDirection';
+import type { PageDirection } from '../../lib/transitions';
 
 const TAB_ROUTES: Record<Tab, string> = {
   home: '/supermall',
@@ -34,10 +36,23 @@ function shouldHideNav(pathname: string): boolean {
 export function RootLayout() {
   const location = useLocation();
   const navigate = useNavigate();
+  const navType = useNavigationType();
   const cartCount = useCartStore((s) => s.itemCount());
   const sheetOpen = useUIStore((s) => s.sheetCount > 0);
   const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
   const [noonOneHidesNav, setNoonOneHidesNav] = useState(false);
+
+  // Track navigation direction synchronously during render so AnimatePresence
+  // sees the right `custom` value when the new <Outlet> mounts. POP (browser
+  // back/forward) → 'back'. PUSH or REPLACE → 'forward'. We hold the resolved
+  // direction in a ref so re-renders that don't change pathname keep it stable.
+  const prevPathRef = useRef(location.pathname);
+  const directionRef = useRef<PageDirection>('forward');
+  if (prevPathRef.current !== location.pathname) {
+    directionRef.current = navType === 'POP' ? 'back' : 'forward';
+    prevPathRef.current = location.pathname;
+  }
+  const direction = directionRef.current;
 
   useEffect(() => {
     function onMessage(e: MessageEvent) {
@@ -64,10 +79,12 @@ export function RootLayout() {
 
   return (
     <div className="root-layout">
-      <main>
-        <AnimatePresence mode="wait" initial={false}>
-          <Outlet key={location.pathname} />
-        </AnimatePresence>
+      <main style={{ position: 'relative', overflow: 'hidden' }}>
+        <NavDirectionContext.Provider value={direction}>
+          <AnimatePresence mode="sync" initial={false} custom={direction}>
+            <Outlet key={location.pathname} />
+          </AnimatePresence>
+        </NavDirectionContext.Provider>
       </main>
       <WishlistOverlay />
       <Retune />
