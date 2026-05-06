@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useMotionValue, useTransform, type MotionValue
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ProductCard, CameraIcon, SearchIcon, StatusBar } from '@ui';
 import { CategoryCard } from '../../components/ui/CategoryCard';
+import { homeCategories as categories } from '../../data/categories';
 import type { Product } from '../../types/product';
 import { useWishlistStore } from '@state/wishlistStore';
 import { AddressBottomSheet } from '../../../share-address/screens/AddressBottomSheet';
@@ -19,19 +20,6 @@ const IMG_AIRPODS    = 'https://www.figma.com/api/mcp/asset/094c04ac-f79c-4c06-8
 const IMG_WASHER     = 'https://www.figma.com/api/mcp/asset/05966a58-1b4c-4271-b032-1e826704f394';
 
 /* ─── Static data ──────────────────────────────────────────────────────── */
-
-const categories = [
-  { label: 'Beauty & Skin Care',  image: '/categories/cat-r1-1.svg', sale: true },
-  { label: 'Toys & Games',        image: '/categories/cat-r2-1.svg', sale: false },
-  { label: 'Grocery & Kitchen',   image: '/categories/cat-r1-2.svg', sale: false },
-  { label: 'Electronics & Tools', image: '/categories/cat-r2-2.svg', sale: false },
-  { label: 'Home Appliances',     image: '/categories/cat-r1-3.svg', sale: false },
-  { label: 'Hair Care',           image: '/categories/cat-r2-3.svg', sale: false },
-  { label: 'Beauty & Skin Care',  image: '/categories/cat-r1-4.svg', sale: false },
-  { label: 'Shoes & Clothes',     image: '/categories/cat-r2-4.svg', sale: false },
-  { label: 'Grocery & Kitchen',   image: '/categories/cat-r1-5.svg', sale: false },
-  { label: 'Toys & Games',        image: '/categories/cat-r2-5.svg', sale: false },
-] as const;
 
 const recommendedChips = [
   { label: 'For you',     icon: '/icon-chip-foryou.svg' },

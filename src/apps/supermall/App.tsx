@@ -6,6 +6,7 @@ import './index.css';
 
 const HomePage     = lazy(() => import('./pages/Home'));
 const MallStorePage = lazy(() => import('./pages/MallStore'));
+const CategoriesPage = lazy(() => import('./pages/Categories'));
 const PLPPage      = lazy(() => import('./pages/PLP'));
 const PDPPage      = lazy(() => import('./pages/PDP'));
 const CartPage     = lazy(() => import('./pages/Cart'));
@@ -22,6 +23,7 @@ export default function App() {
             <Route index                      element={<HomePage />} />
             <Route path="mall"                element={<MallStorePage />} />
             <Route path="search"              element={<SearchPage />} />
+            <Route path="categories"          element={<CategoriesPage />} />
             <Route path="shop"                element={<PLPPage />} />
             <Route path="shop/:category"      element={<PLPPage />} />
             <Route path="product/:productId"  element={<PDPPage />} />

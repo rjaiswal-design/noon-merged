@@ -7,7 +7,7 @@ import { useWishlistStore } from '@state/wishlistStore';
 
 function tabForPath(p: string): Tab | undefined {
   if (p === '/supermall' || p === '/supermall/') return 'home';
-  if (p.startsWith('/supermall/shop')) return 'categories';
+  if (p.startsWith('/supermall/categories')) return 'categories';
   if (p === '/supermall/account') return 'profile';
   if (p === '/supermall/cart') return 'cart';
   return undefined;
@@ -15,7 +15,7 @@ function tabForPath(p: string): Tab | undefined {
 
 const TAB_ROUTES: Record<Tab, string> = {
   home: '/supermall',
-  categories: '/supermall/shop',
+  categories: '/supermall/categories',
   deals: '/supermall',
   profile: '/supermall/account',
   cart: '/supermall/cart',
