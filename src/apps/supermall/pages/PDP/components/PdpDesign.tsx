@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { NavBar, SearchIcon, HeartOutline, ShareIcon } from "@ui";
 import "./PdpDesign.css";
 
 // — Product images (PNG) —
@@ -16,12 +17,6 @@ import tamaraLogo   from "./assets/offers/tamara-logo.png?url";
 import shieldGold       from "./assets/warranty/shield-gold.png?url";
 import shieldBlue       from "./assets/warranty/shield-blue.png?url";
 import protect4lessLogo from "./assets/warranty/protect4less-logo.png?url";
-
-// — Navigation / header icons —
-import backIcon     from "./assets/icons/back.svg?url";
-import searchIcon   from "./assets/icons/search.svg?url";
-import wishlistIcon from "./assets/icons/wishlist.svg?url";
-import shareIcon    from "./assets/icons/share.svg?url";
 
 // — Chevrons —
 import chevronRightIcon     from "./assets/icons/chevron-right.svg?url";
@@ -90,11 +85,6 @@ const ASSETS = {
   shieldBlue,
   protect4lessLogo,
 
-  back:     backIcon,
-  search:   searchIcon,
-  wishlist: wishlistIcon,
-  share:    shareIcon,
-
   chevronRight:     chevronRightIcon,
   chevronDown:      chevronDownIcon,
   miniChevronRight: miniChevronRightIcon,
@@ -140,30 +130,16 @@ const ASSETS = {
 
 function HeaderButtons() {
   const navigate = useNavigate();
-  const btn =
-    "h-10 w-10 rounded-full border border-bluegray-200 bg-white/90 flex items-center justify-center";
   return (
-    <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between p-3">
-      <button
-        type="button"
-        className={btn}
-        aria-label="Back"
-        onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/supermall/shop'); }}
-      >
-        <img src={ASSETS.back} alt="" className="h-5 w-5" />
-      </button>
-      <div className="flex gap-2">
-        <button className={btn} aria-label="Search">
-          <img src={ASSETS.search} alt="" className="h-5 w-5" />
-        </button>
-        <button className={btn} aria-label="Wishlist">
-          <img src={ASSETS.wishlist} alt="" className="h-5 w-5" />
-        </button>
-        <button className={btn} aria-label="Share">
-          <img src={ASSETS.share} alt="" className="h-5 w-5" />
-        </button>
-      </div>
-    </div>
+    <NavBar
+      variant="overlay"
+      onBack={() => { if (window.history.length > 1) navigate(-1); else navigate('/supermall/shop'); }}
+      actions={[
+        { icon: <SearchIcon size={20} />, label: 'Search' },
+        { icon: <HeartOutline size={20} />, label: 'Wishlist' },
+        { icon: <ShareIcon size={20} />, label: 'Share' },
+      ]}
+    />
   );
 }
 

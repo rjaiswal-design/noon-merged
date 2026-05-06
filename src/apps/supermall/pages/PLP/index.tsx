@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
-import { ProductCard } from '@ui';
-import { PLPHeader } from './components/PLPHeader';
+import { ProductCard, NavBar, SearchIcon } from '@ui';
 import { CategoryTabs } from './components/CategoryTabs';
 import { FilterBar } from './components/FilterBar';
 import { mockCategories, mockProducts } from '../../data/mockProducts';
@@ -82,11 +82,19 @@ export default function PLPPage() {
     );
   }
 
+  const navigate = useNavigate();
+
   return (
     <PageTransition>
       <div className="plp">
         <div className="plp__sticky">
-          <PLPHeader title="Make up products" />
+          <NavBar
+            title="Make up products"
+            onBack={() => navigate(-1)}
+            actions={[
+              { icon: <SearchIcon size={24} color="var(--grey-900)" />, label: 'Search', onClick: () => navigate('/supermall/search') },
+            ]}
+          />
           <CategoryTabs
             categories={mockCategories}
             activeId={activeCategoryId}
