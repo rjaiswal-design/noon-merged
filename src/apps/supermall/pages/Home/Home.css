@@ -38,6 +38,9 @@
    HEADER — yellow band
    ========================================================================== */
 .home-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background: url('/header-bg.png') center / cover no-repeat;
   padding: 0 0 var(--space-14);
   display: flex;
@@ -70,6 +73,18 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  will-change: height, border-radius;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.home-tile__inner-fill {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
 }
 
 .home-tile__watermark {

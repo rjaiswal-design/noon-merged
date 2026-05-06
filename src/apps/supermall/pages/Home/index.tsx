@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
@@ -75,74 +75,161 @@ const recProducts: Record<ChipLabel, Product[]> = {
 /* ─── Service tiles — built from Figma vectors ────────────────────────── */
 
 /* ─── Header ───────────────────────────────────────────────────────────── */
-function HomeHeader() {
+type TileSpec = {
+  bg: string;
+  aria: string;
+  full: React.ReactNode;
+  compact: React.ReactNode;
+};
+
+const SERVICE_TILES: TileSpec[] = [
+  {
+    bg: '#FEEE00',
+    aria: 'noon',
+    full: (
+      <>
+        <img src="/logo-noon-mark.svg" alt="" className="home-tile__watermark" />
+        <img src="/logo-noon-word.svg" alt="noon" className="home-tile__center-logo" style={{ width: 50, height: 13 }} />
+      </>
+    ),
+    compact: <img src="/logo-noon-compact.svg" alt="noon" style={{ width: 58, height: 15 }} />,
+  },
+  {
+    bg: 'rgba(255,255,255,0.95)',
+    aria: 'super mall',
+    full: <img src="/logo-supermall.svg" alt="super mall" className="home-tile__center-logo" style={{ width: 54, height: 34 }} />,
+    compact: <img src="/logo-supermall-compact.svg" alt="super mall" style={{ width: 63, height: 15 }} />,
+  },
+  {
+    bg: '#FFFFFF',
+    aria: 'noon FOOD',
+    full: <img src="/tile-food.png" alt="noon FOOD" className="home-tile__fill" />,
+    compact: <img src="/logo-food-compact.svg" alt="noon FOOD" style={{ width: 51, height: 13 }} />,
+  },
+  {
+    bg: '#FFFFFF',
+    aria: '15 MINUTES',
+    full: <img src="/logo-15min.gif" alt="15 min" className="home-tile__center-logo" style={{ width: 50, height: 50 }} />,
+    compact: <img src="/logo-15min-compact.gif" alt="15 min" style={{ width: 64, height: 14, objectFit: 'contain' }} />,
+  },
+  {
+    bg: '#FFFFFF',
+    aria: 'now now',
+    full: <img src="/logo-nownow.svg" alt="now now" className="home-tile__center-logo" style={{ width: 33, height: 45 }} />,
+    compact: <img src="/logo-nownow-compact.svg" alt="now now" style={{ width: 23, height: 31 }} />,
+  },
+  {
+    bg: 'rgba(255,255,255,0.95)',
+    aria: 'Namshi',
+    full: (
+      <div className="home-tile__stack">
+        <img src="/logo-namshi.png" alt="" style={{ width: 41, height: 27, objectFit: 'cover' }} />
+        <span className="home-tile__label">Namshi</span>
+      </div>
+    ),
+    compact: <img src="/logo-namshi-compact.svg" alt="Namshi" style={{ width: 23, height: 31 }} />,
+  },
+  {
+    bg: 'rgba(255,255,255,0.95)',
+    aria: 'Pay',
+    full: (
+      <div className="home-tile__stack">
+        <span className="home-tile__pay-icon" />
+        <span className="home-tile__label">Pay</span>
+      </div>
+    ),
+    compact: <span className="home-tile__pay-icon" />,
+  },
+];
+
+/* Apple-ish smooth-out curve — same on every animated piece so they move in lockstep. */
+const MORPH_EASE: [number, number, number, number] = [0.32, 0.72, 0, 1];
+const MORPH_DURATION = 0.34;
+const TILE_TRANSITION = { duration: MORPH_DURATION, ease: MORPH_EASE };
+const FADE_TRANSITION = { duration: 0.13, ease: MORPH_EASE };
+const ADDRESS_TRANSITION = { duration: MORPH_DURATION, ease: MORPH_EASE };
+
+function HomeHeader({ scrolled }: { scrolled: boolean }) {
   const navigate = useNavigate();
+  const tileAnim = scrolled
+    ? { height: 40, borderRadius: 12 }
+    : { height: 76, borderRadius: 20 };
+
   return (
-    <section className="home-header" aria-label="noon home">
+    <section
+      className={`home-header${scrolled ? ' is-scrolled' : ''}`}
+      aria-label="noon home"
+    >
       <StatusBar tone="dark" />
-      {/* Service tiles row */}
+
       <div className="home-header__tiles">
-        {/* noon — yellow bg, vector logo */}
-        <button type="button" className="home-tile" style={{ background: '#FEEE00' }} aria-label="noon">
-          <img src="/logo-noon-mark.svg" alt="" className="home-tile__watermark" />
-          <img src="/logo-noon-word.svg" alt="noon" className="home-tile__center-logo" style={{ width: 50, height: 13 }} />
-        </button>
-
-        {/* super mall — white bg, single SVG logo */}
-        <button type="button" className="home-tile" style={{ background: 'rgba(255,255,255,0.95)' }} aria-label="super mall">
-          <img src="/logo-supermall.svg" alt="super mall" className="home-tile__center-logo" style={{ width: 54, height: 34 }} />
-        </button>
-
-        {/* noon FOOD — white bg, tile image */}
-        <button type="button" className="home-tile" style={{ background: '#FFFFFF' }} aria-label="noon FOOD">
-          <img src="/tile-food.png" alt="noon FOOD" className="home-tile__fill" />
-        </button>
-
-        {/* 15 MINUTES — white bg, GIF badge */}
-        <button type="button" className="home-tile" style={{ background: '#FFFFFF' }} aria-label="15 MINUTES">
-          <img src="/logo-15min.gif" alt="15 min" className="home-tile__center-logo" style={{ width: 50, height: 50 }} />
-        </button>
-
-        {/* now now — white bg, vector logo */}
-        <button type="button" className="home-tile" style={{ background: '#FFFFFF' }} aria-label="now now">
-          <img src="/logo-nownow.svg" alt="now now" className="home-tile__center-logo" style={{ width: 33, height: 45 }} />
-        </button>
-
-        {/* Namshi — white bg, image + text */}
-        <button type="button" className="home-tile" style={{ background: 'rgba(255,255,255,0.95)' }} aria-label="Namshi">
-          <div className="home-tile__stack">
-            <img src="/logo-namshi.png" alt="" style={{ width: 41, height: 27, objectFit: 'cover' }} />
-            <span className="home-tile__label">Namshi</span>
-          </div>
-        </button>
-
-        {/* Pay — white bg, gradient icon + text */}
-        <button type="button" className="home-tile" style={{ background: 'rgba(255,255,255,0.95)' }} aria-label="Pay">
-          <div className="home-tile__stack">
-            <span className="home-tile__pay-icon" />
-            <span className="home-tile__label">Pay</span>
-          </div>
-        </button>
+        {SERVICE_TILES.map((t) => (
+          <motion.button
+            key={t.aria}
+            type="button"
+            className="home-tile"
+            style={{ background: t.bg }}
+            animate={tileAnim}
+            transition={TILE_TRANSITION}
+            aria-label={t.aria}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {scrolled ? (
+                <motion.span
+                  key="c"
+                  className="home-tile__inner-fill"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={FADE_TRANSITION}
+                >
+                  {t.compact}
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="f"
+                  className="home-tile__inner-fill"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={FADE_TRANSITION}
+                >
+                  {t.full}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        ))}
       </div>
 
-      {/* Address row — two-line stacked layout */}
-      <div className="home-header__address">
-        <div className="home-header__address-info">
-          <div className="home-header__address-row1">
-            <img src="/icon-home.svg" alt="" className="home-header__home-icon" />
-            <span className="home-header__address-label">Home -&nbsp;</span>
-          </div>
-          <div className="home-header__address-row2">
-            <span className="home-header__address-line">BDA Complex, 100 Feet Rd 3rd Block, Kora...</span>
-            <img src="/icon-chevron-down.svg" alt="" className="home-header__chevron" />
-          </div>
-        </div>
-        <button type="button" className="home-header__heart" aria-label="Wishlist">
-          <img src="/icon-heart-blue.svg" alt="" width={36} height={36} />
-        </button>
-      </div>
+      <AnimatePresence initial={false}>
+        {!scrolled && (
+          <motion.div
+            key="address"
+            className="home-header__address"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 49, opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={ADDRESS_TRANSITION}
+            style={{ overflow: 'hidden' }}
+          >
+            <div className="home-header__address-info">
+              <div className="home-header__address-row1">
+                <img src="/icon-home.svg" alt="" className="home-header__home-icon" />
+                <span className="home-header__address-label">Home -&nbsp;</span>
+              </div>
+              <div className="home-header__address-row2">
+                <span className="home-header__address-line">BDA Complex, 100 Feet Rd 3rd Block, Kora...</span>
+                <img src="/icon-chevron-down.svg" alt="" className="home-header__chevron" />
+              </div>
+            </div>
+            <button type="button" className="home-header__heart" aria-label="Wishlist">
+              <img src="/icon-heart-blue.svg" alt="" width={36} height={36} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Search */}
       <div
         className="home-header__search"
         role="button"
@@ -286,10 +373,40 @@ function HomeBottomNav() {
 
 /* ─── Page ─────────────────────────────────────────────────────────────── */
 export default function HomePage() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let rafId = 0;
+    let isScrolled = false;
+    const ENTER = 80;
+    const EXIT = 48;
+    const tick = () => {
+      rafId = 0;
+      const y = el.scrollTop;
+      const next = isScrolled ? y > EXIT : y > ENTER;
+      if (next !== isScrolled) {
+        isScrolled = next;
+        setScrolled(next);
+      }
+    };
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(tick);
+    };
+    el.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <PageTransition>
-      <div className="home-page">
-        <HomeHeader />
+      <div className="home-page" ref={scrollRef}>
+        <HomeHeader scrolled={scrolled} />
         <ShopByCategory />
         <RecommendedForYou />
         <OffersForYou />
