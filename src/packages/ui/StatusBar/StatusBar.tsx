@@ -11,7 +11,7 @@ export type StatusBarProps = {
 export function StatusBar({
   tone = 'dark',
   time = '9:41',
-  className = '',
+  className='',
 }: StatusBarProps) {
   const fg = tone === 'light' ? '#FFFFFF' : '#000000';
   return (

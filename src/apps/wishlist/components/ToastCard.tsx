@@ -142,7 +142,7 @@ function ToastBody({
           {content.action}
           <span
             aria-hidden
-            className="dashed-underline-fine pointer-events-none absolute -bottom-[3px] left-0 right-0 h-px"
+            className="dashed-underline-fine pointer-events-none absolute -bottom-0.5 left-0 right-0 h-px"
           />
         </span>
       </button>
@@ -157,14 +157,14 @@ export default function ToastCard(props: ToastCardProps) {
     imageAlt = "",
     onAction,
     onLink,
-    className = "",
+    className="",
   } = props;
   const content = resolve(variant, props);
 
   return (
     <div
       className={
-        "corner-smooth-card flex w-[351px] items-center bg-surface-primary p-3 font-primary " +
+        "corner-smooth-card flex w-[351px] items-center bg-surface-primary p-3 font-primary" +
         className
       }
     >

@@ -283,7 +283,7 @@ function MallHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange
   };
   return (
     <section
-      className={`mall-top${activeTab === 'Electronics' ? ' mall-top--electronics' : ''}`}
+      className={`mall-top${activeTab === 'Electronics' ? 'mall-top--electronics' : ''}`}
       aria-label="Supermall delivery and search"
     >
       <div className="mall-services" aria-label="noon services">
@@ -297,7 +297,7 @@ function MallHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange
         ))}
       </div>
 
-      <div className={`mall-delivery${activeTab === 'Electronics' ? ' mall-delivery--electronics' : ''}`}>
+      <div className={`mall-delivery${activeTab === 'Electronics' ? 'mall-delivery--electronics' : ''}`}>
         <div className="mall-delivery__copy">
           <strong>⚡ 1 hr 15 mins delivery</strong>
           <span>
@@ -330,7 +330,7 @@ function MallHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange
           return (
             <button
               aria-pressed={isActive}
-              className={`mall-tab${isActive ? ' mall-tab--active' : ''}`}
+              className={`mall-tab${isActive ? 'mall-tab--active' : ''}`}
               key={tab.label}
               onClick={() => onTabChange(tab.label)}
             >
@@ -354,7 +354,7 @@ function HeroCategories({ activeTab }: { activeTab: TopTab }) {
 
   return (
     <section
-      className={`mall-hero${isElectronics ? ' mall-hero--electronics' : ''}`}
+      className={`mall-hero${isElectronics ? 'mall-hero--electronics' : ''}`}
       aria-label={isElectronics ? 'Electronics highlights' : 'Fast delivery categories'}
     >
       {isElectronics ? (
@@ -385,7 +385,7 @@ function HeroCategories({ activeTab }: { activeTab: TopTab }) {
           <p>at lightning speed ⚡</p>
         </>
       )}
-      <div className={`mall-hero__rail${isElectronics ? ' mall-hero__rail--electronics' : ''}`}>
+      <div className={`mall-hero__rail${isElectronics ? 'mall-hero__rail--electronics' : ''}`}>
         {isElectronics
           ? electronicsHeroCategories.map((category) => (
               <Link
@@ -422,7 +422,7 @@ function HeroCategories({ activeTab }: { activeTab: TopTab }) {
 
 function ProductRail({ title, tone }: { title: string; tone?: 'blue' }) {
   return (
-    <section className={`mall-rail${tone === 'blue' ? ' mall-rail--blue' : ''}`}>
+    <section className={`mall-rail${tone === 'blue' ? 'mall-rail--blue' : ''}`}>
       <div className="mall-section-header">
         <h2>{title}</h2>
         <Link to="/supermall/shop">View all ›</Link>
@@ -482,7 +482,7 @@ function ShopByCategory() {
         {shopFilters.map((filter) => (
           <button
             onClick={() => setActiveFilter(filter.label)}
-            className={`mall-category-filter${activeFilter === filter.label ? ' mall-category-filter--active' : ''}`}
+            className={`mall-category-filter${activeFilter === filter.label ? 'mall-category-filter--active' : ''}`}
             key={filter.label}
           >
             <span className="mall-category-filter__icon">

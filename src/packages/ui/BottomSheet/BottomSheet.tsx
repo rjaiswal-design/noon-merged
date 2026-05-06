@@ -33,7 +33,7 @@ export function BottomSheet({
   children,
   floating = false,
   showHandle = true,
-  className = '',
+  className='',
   dismissOnScrimTap = true,
   ariaLabel,
 }: BottomSheetProps) {
@@ -50,7 +50,7 @@ export function BottomSheet({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
             onClick={dismissOnScrimTap ? onClose : undefined}
-            className="absolute inset-0 z-30 bg-black/40 rounded-[20px]"
+            className="absolute inset-0 z-30 bg-black/40 rounded-16"
           />
           <motion.div
             key="card"
@@ -62,17 +62,17 @@ export function BottomSheet({
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 32, stiffness: 320, mass: 0.85 }}
             className={`absolute z-40 ${
-              floating ? 'left-[12px] right-[12px] bottom-[16px]' : 'left-0 right-0 bottom-0'
+              floating ? 'left-3 right-3 bottom-4' : 'left-0 right-0 bottom-0'
             }`}
           >
             <div
               className={`relative overflow-hidden bg-white shadow-sheet ${
-                floating ? 'rounded-[16px]' : 'rounded-tl-[20px] rounded-tr-[20px]'
+                floating ? 'rounded-16' : 'rounded-tl-16 rounded-tr-16'
               } ${className}`}
             >
               {showHandle && (
-                <div className="flex justify-center pt-[10px] pb-[6px]">
-                  <div className="bg-[#dadde6] h-[5px] w-[40px] rounded-[3px]" />
+                <div className="flex justify-center pt-2.5 pb-1.5">
+                  <div className="bg-blue-gray-400 h-1 w-10 rounded-4" />
                 </div>
               )}
               {children}

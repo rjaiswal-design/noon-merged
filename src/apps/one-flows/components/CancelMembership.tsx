@@ -10,7 +10,7 @@ import perfume from "../assets/cancel/perfume.png";
 
 /* ---------- Inline icons ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 20 20"
@@ -31,7 +31,7 @@ function BackChevron({ className = "" }: { className?: string }) {
 }
 
 /** Tiny lightning bolt for the "Coming up in 7 days" pill. */
-function LightningBolt({ className = "" }: { className?: string }) {
+function LightningBolt({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 10 12"
@@ -49,7 +49,7 @@ function LightningBolt({ className = "" }: { className?: string }) {
 }
 
 /** Tiny green sparkle for the "you'll lose savings" pill. */
-function Sparkle({ className = "" }: { className?: string }) {
+function Sparkle({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 8 8"
@@ -69,7 +69,7 @@ function Sparkle({ className = "" }: { className?: string }) {
 /** Dirham (AED) glyph from the Noontree font (PUA U+E001). */
 const AED_GLYPH = "";
 
-function Aed({ className = "" }: { className?: string }) {
+function Aed({ className="" }: { className?: string }) {
   return (
     <span
       aria-label="AED"
@@ -94,13 +94,13 @@ function BenefitCallout({
   return (
     <SmoothCorners
       radius={17}
-      className="bg-white border border-[#f2f3f7] flex-1 h-[118px] relative overflow-hidden rounded-[17px]"
+      className="bg-white border border-blue-gray-200 flex-1 h-[118px] relative overflow-hidden rounded-16"
     >
-      <div className="absolute left-[12px] top-[12px] right-[12px] flex flex-col gap-[10px]">
-        <p className="font-medium text-[#343d54] text-[14px] leading-[17px] tracking-[-0.22px]">
+      <div className="absolute left-3 top-3 right-3 flex flex-col gap-2.5">
+        <p className="font-medium text-bluegray-800 text-b14">
           {label}
         </p>
-        <p className="font-noontree font-bold text-[#343d54] text-[20px] leading-[20px] tracking-[-0.22px]">
+        <p className="font-noontree font-bold text-bluegray-800 text-h20">
           <Aed />
           {amount}
         </p>
@@ -110,7 +110,7 @@ function BenefitCallout({
       <img
         src={illustration}
         alt=""
-        className="absolute right-[-4px] bottom-[-4px] size-[78px] object-contain pointer-events-none"
+        className="absolute -right-1 -bottom-1 size-20 object-contain pointer-events-none"
       />
     </SmoothCorners>
   );
@@ -120,12 +120,12 @@ function ProductTile({ src }: { src: string }) {
   return (
     <SmoothCorners
       radius={10}
-      className="bg-[#f9fafb] border-[1.2px] border-[#f3f5f7] rounded-[10px] size-[68px] relative overflow-hidden shrink-0"
+      className="bg-blue-gray-100 border-[1.2px] border-blue-gray-200 rounded-8 size-[68px] relative overflow-hidden shrink-0"
     >
       <img
         src={src}
         alt=""
-        className="absolute inset-[8px] w-[calc(100%-16px)] h-[calc(100%-16px)] object-contain pointer-events-none"
+        className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-contain pointer-events-none"
       />
     </SmoothCorners>
   );
@@ -144,7 +144,7 @@ export default function CancelMembership({
 }) {
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{
         backgroundImage:
           "linear-gradient(180deg, #ffffff 31%, #f3f3f5 100%)",
@@ -157,28 +157,28 @@ export default function CancelMembership({
         type="button"
         onClick={onBack}
         aria-label="Go back"
-        className="absolute left-[14px] top-[59px] z-20 bg-white border border-[#f2f3f7] flex items-center justify-center p-[8px] rounded-[18px] cursor-pointer"
+        className="absolute left-3.5 top-[59px] z-20 bg-white border border-blue-gray-200 flex items-center justify-center p-2 rounded-16 cursor-pointer"
       >
-        <BackChevron className="size-[20px]" />
+        <BackChevron className="size-5" />
       </button>
 
       {/* Scrollable content area — leaves room at the bottom for the fixed
           action bar (~158px). */}
-      <div className="absolute inset-0 pt-[110px] pb-[180px] overflow-y-auto">
-        <div className="px-[14px] flex flex-col gap-[16px]">
+      <div className="absolute inset-0 pt-28 pb-[180px] overflow-y-auto">
+        <div className="px-3.5 flex flex-col gap-4">
           {/* Title */}
-          <div className="flex flex-col gap-[2px]">
-            <p className="font-noontree font-bold text-[#343d54] text-[28px] leading-[31px] tracking-[-0.68px]">
+          <div className="flex flex-col gap-0.5">
+            <p className="font-noontree font-bold text-bluegray-800 text-h28">
               You saved <Aed />
               <SlotNumber value={343} height={31} shimmer />
             </p>
-            <p className="font-noontree text-[#666d85] text-[16px] leading-[22px] tracking-[-0.28px]">
+            <p className="font-noontree text-blue-gray-600 text-h16">
               that's more than what you paid for
             </p>
           </div>
 
           {/* Two benefit callout cards */}
-          <div className="flex gap-[12px] items-center">
+          <div className="flex gap-3 items-center">
             <BenefitCallout
               illustration={deliveryIllustration}
               label={
@@ -206,23 +206,23 @@ export default function CancelMembership({
           {/* One Day Sale card */}
           <SmoothCorners
             radius={16}
-            className="bg-white border border-[#f2f3f7] rounded-[16px] w-full p-[16px] flex flex-col gap-[12px]"
+            className="bg-white border border-blue-gray-200 rounded-16 w-full p-4 flex flex-col gap-3"
           >
             {/* Header row — title + "Coming up in 7 days" pill */}
             <div className="flex items-center justify-between">
-              <p className="font-bold text-[18px] leading-[20px] tracking-[-0.16px]">
-                <span className="text-[#1d2539]">One Day</span>
-                <span className="text-[#101628]"> Sale</span>
+              <p className="font-bold text-h18">
+                <span className="text-blue-gray-900">One Day</span>
+                <span className="text-blue-gray-1000"> Sale</span>
               </p>
               <div
-                className="flex items-center gap-[4px] pl-[8px] pr-[10px] py-[5px] rounded-[39px]"
+                className="flex items-center gap-1 pl-2 pr-2.5 py-1 rounded-32"
                 style={{
                   backgroundImage:
                     "linear-gradient(90.28deg, #ffd7d7 0%, #ffffff 95%)",
                 }}
               >
-                <LightningBolt className="w-[12px] h-[14px] shrink-0" />
-                <p className="font-noontree font-medium text-black text-[12px] leading-[14px] tracking-[-0.12px] whitespace-nowrap">
+                <LightningBolt className="w-3 h-3.5 shrink-0" />
+                <p className="font-noontree font-medium text-black text-label-4p whitespace-nowrap">
                   Coming up in 7 days
                 </p>
               </div>
@@ -238,25 +238,25 @@ export default function CancelMembership({
 
             {/* Cashback line */}
             <p
-              className="font-noontree font-bold text-[16px] leading-[20px] tracking-[-0.14px]"
+              className="font-noontree font-bold text-h16"
               style={{ fontFeatureSettings: "'case' 1" }}
             >
-              <span className="text-[#108757]">10% cashback </span>
-              <span className="text-[#343d54]">
+              <span className="text-green-600">10% cashback </span>
+              <span className="text-bluegray-800">
                 up to <Aed />75{" "}
               </span>
             </p>
 
             {/* "You'll lose 10% savings" pill */}
             <div
-              className="self-start flex items-center gap-[4px] pl-[8px] pr-[10px] py-[4px] rounded-[39px]"
+              className="self-start flex items-center gap-1 pl-2 pr-2.5 py-1 rounded-32"
               style={{
                 backgroundImage:
                   "linear-gradient(90.7deg, #edfef0 1.7%, #ffffff 94.3%)",
               }}
             >
-              <Sparkle className="size-[8px] shrink-0" />
-              <p className="font-noontree font-medium text-[#101628] text-[12px] leading-[14px] tracking-[-0.12px]">
+              <Sparkle className="size-2 shrink-0" />
+              <p className="font-noontree font-medium text-blue-gray-1000 text-label-4p">
                 You'll lose <span className="font-bold">10% savings</span> on
                 every order if you go now.
               </p>
@@ -266,11 +266,11 @@ export default function CancelMembership({
           {/* Support pill */}
           <SmoothCorners
             radius={39}
-            className="bg-[#fcfcfd] flex items-center px-[13px] py-[7px] rounded-[39px] w-full"
+            className="bg-bluegray-50 flex items-center px-3 py-1.5 rounded-32 w-full"
           >
-            <p className="font-medium text-[#343d54] text-[12px] leading-[20px] tracking-[-0.22px]">
+            <p className="font-medium text-bluegray-800 text-b12">
               We're here to help with your membership.{" "}
-              <span className="text-[#0057ff]">Contact support</span>
+              <span className="text-blue-700">Contact support</span>
             </p>
           </SmoothCorners>
         </div>
@@ -278,26 +278,26 @@ export default function CancelMembership({
 
       {/* Bottom fixed action bar */}
       <div
-        className="absolute bottom-0 left-0 right-0 bg-white pt-[12px] pb-[16px] px-[16px] flex flex-col gap-[12px] rounded-tl-[12px] rounded-tr-[12px]"
+        className="absolute bottom-0 left-0 right-0 bg-white pt-3 pb-4 px-4 flex flex-col gap-3 rounded-tl-12 rounded-tr-12"
         style={{ boxShadow: "0px -4px 17.6px rgba(0, 0, 0, 0.1)" }}
       >
         <button
           type="button"
           onClick={onKeepMembership}
-          className="bg-[#101628] text-white font-semibold text-[15px] leading-[20px] tracking-[-0.26px] h-[52px] rounded-[12px] cursor-pointer"
+          className="bg-blue-gray-1000 text-white font-semibold text-b14 h-[52px] rounded-12 cursor-pointer"
         >
           Keep membership
         </button>
         <button
           type="button"
           onClick={onContinueCancellation}
-          className="bg-[#f9f9fb] border border-[#eaecf0] text-[#0e0e0e] font-semibold text-[15px] leading-[20px] tracking-[-0.26px] h-[52px] rounded-[12px] cursor-pointer"
+          className="bg-blue-gray-100 border border-blue-gray-300 text-[#0e0e0e] font-semibold text-b14 h-[52px] rounded-12 cursor-pointer"
         >
           Continue Cancellation
         </button>
         {/* iPhone home indicator */}
-        <div className="flex justify-center pt-[8px]">
-          <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+        <div className="flex justify-center pt-2">
+          <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
         </div>
       </div>
     </div>

@@ -148,7 +148,7 @@ export default function WishlistPage({ onBack }: { onBack?: () => void } = {}) {
       <Header onBack={onBack} />
 
       <div className="flex flex-1 min-h-0 flex-col gap-8 overflow-y-auto pt-4">
-        <div className="flex shrink-0 items-center gap-[19px] overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex shrink-0 items-center gap-5 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {collections.map((c) => (
             <CollectionCard
               key={c.name}
@@ -161,7 +161,7 @@ export default function WishlistPage({ onBack }: { onBack?: () => void } = {}) {
 
         <div className="flex shrink-0 flex-col">
           <div className="flex items-center justify-between px-4 pb-3">
-            <h2 className="font-primary text-[16px] font-bold leading-5 text-text-primary tracking-[-0.16px]">
+            <h2 className="font-primary text-h16 font-bold leading-5 text-text-primary">
               All Saved Items
             </h2>
             <button
@@ -174,7 +174,7 @@ export default function WishlistPage({ onBack }: { onBack?: () => void } = {}) {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-[15px] px-4 pt-3">
+          <div className="grid grid-cols-2 gap-3.5 px-4 pt-3">
             {products.map((p, i) => {
               const qty = cart[i] ?? 0;
               const variant = qty > 0 ? "added-to-cart" : "default";

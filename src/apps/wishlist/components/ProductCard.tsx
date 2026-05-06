@@ -42,9 +42,9 @@ const MOVE_CANCEL_PX = 10;
 
 function PageDots() {
   return (
-    <div className="absolute bottom-[6px] left-1/2 flex -translate-x-1/2 items-center justify-center gap-[3px] overflow-hidden rounded-full bg-alpha-dark-4 px-1 py-0.5">
+    <div className="absolute bottom-1.5 left-1/2 flex -translate-x-1/2 items-center justify-center gap-0.5 overflow-hidden rounded-full bg-alpha-dark-4 px-1 py-0.5">
       <span className="block size-1 rounded-full bg-surface-primary-inverted" />
-      <span className="block size-[3px] rounded-full bg-surface-overlay-subtle" />
+      <span className="block size-0.5 rounded-full bg-surface-overlay-subtle" />
       <span className="block size-0.5 rounded-full bg-surface-overlay-subtle" />
       <span className="block size-px rounded-full bg-surface-overlay-subtle" />
     </div>
@@ -57,7 +57,7 @@ function HeartButton({ onClick }: { onClick?: () => void }) {
       type="button"
       aria-label="Wishlist"
       onClick={onClick}
-      className="absolute right-[6px] top-[6px] flex items-center justify-center rounded-full bg-alpha-light-16 p-1"
+      className="absolute right-1.5 top-1.5 flex items-center justify-center rounded-full bg-alpha-light-16 p-1"
     >
       <img src={heartIcon} alt="" aria-hidden className="size-4" />
     </button>
@@ -82,7 +82,7 @@ function CheckboxControl({
         onClick?.();
       }}
       className={
-        "absolute right-[6px] top-[6px] flex size-7 items-center justify-center overflow-hidden rounded-lg " +
+        "absolute right-1.5 top-1.5 flex size-7 items-center justify-center overflow-hidden rounded-lg" +
         (checked
           ? "border-[1.4px] border-surface-action-subtle bg-surface-action-bold"
           : "border-[1.077px] border-surface-tertiary bg-surface-primary")
@@ -94,7 +94,7 @@ function CheckboxControl({
             src={tickIcon}
             alt=""
             aria-hidden
-            className="block h-[10.67px] w-[11.67px]"
+            className="block h-2.5 w-3"
           />
         </span>
       ) : null}
@@ -107,14 +107,14 @@ function AddToCartButton({ onClick }: { onClick?: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="flex h-9 w-[110px] max-h-9 items-center justify-center gap-0.5 rounded-lg border border-surface-action-subtle bg-surface-action-subtle px-2 py-2.5"
+      className="flex h-9 w-28 max-h-9 items-center justify-center gap-0.5 rounded-lg border border-surface-action-subtle bg-surface-action-subtle px-2 py-2.5"
     >
       <span className="flex size-4 shrink-0 items-center justify-center">
         <img
           src={cartIcon}
           alt=""
           aria-hidden
-          className="block h-[9px] w-[9px]"
+          className="block h-2 w-2"
         />
       </span>
       <span className="font-primary text-l3 font-semibold text-text-action">
@@ -134,7 +134,7 @@ function QuantityStepper({
   onDecrement?: () => void;
 }) {
   return (
-    <div className="flex h-9 w-[110px] max-h-9 items-center justify-between overflow-hidden rounded-lg border-[1.2px] border-border-action bg-surface-action-subtle px-3 py-1">
+    <div className="flex h-9 w-28 max-h-9 items-center justify-between overflow-hidden rounded-lg border-[1.2px] border-border-action bg-surface-action-subtle px-3 py-1">
       <button
         type="button"
         aria-label="Decrease quantity"
@@ -145,11 +145,11 @@ function QuantityStepper({
           src={trashIcon}
           alt=""
           aria-hidden
-          className="block h-[13px] w-[11.67px]"
+          className="block h-3 w-3"
         />
       </button>
       <div className="flex size-6 items-center justify-center">
-        <span className="font-primary text-[18px] font-medium leading-6 text-text-action">
+        <span className="font-primary text-h18 font-medium leading-6 text-text-action">
           {quantity}
         </span>
       </div>
@@ -163,7 +163,7 @@ function QuantityStepper({
           src={plusIcon}
           alt=""
           aria-hidden
-          className="block h-[11px] w-[11px]"
+          className="block h-2.5 w-2.5"
         />
       </button>
     </div>
@@ -183,7 +183,7 @@ function ShareButton({ onClick }: { onClick?: () => void }) {
           src={uploadIcon}
           alt=""
           aria-hidden
-          className="block h-[11px] w-[11.67px]"
+          className="block h-2.5 w-3"
         />
       </span>
     </button>
@@ -209,7 +209,7 @@ export default function ProductCard({
   onIncrement,
   onDecrement,
   onShare,
-  className = "",
+  className="",
 }: ProductCardProps) {
   const showButtonsRow = variant === "default" || variant === "added-to-cart";
   const isCheckable = variant === "selected" || variant === "unselected";
@@ -263,8 +263,8 @@ export default function ProductCard({
       role={isCheckable ? "button" : undefined}
       tabIndex={isCheckable ? 0 : undefined}
       className={
-        "flex w-[164px] flex-col items-stretch overflow-hidden rounded-[12px] border-[0.75px] border-surface-tertiary bg-surface-primary font-primary touch-manipulation select-none " +
-        (isCheckable ? "cursor-pointer " : "") +
+        "flex w-[164px] flex-col items-stretch overflow-hidden rounded-12 border-[0.75px] border-surface-tertiary bg-surface-primary font-primary touch-manipulation select-none" +
+        (isCheckable ? "cursor-pointer" : "") +
         className
       }
     >
@@ -314,12 +314,12 @@ export default function ProductCard({
             {name}
           </p>
           <div className="flex items-center gap-0.5">
-            <div className="flex h-[18px] items-center gap-0.5 rounded-[4.067px] bg-surface-tertiary px-1 py-0.5">
+            <div className="flex h-4 items-center gap-0.5 rounded-4 bg-surface-tertiary px-1 py-0.5">
               <img
                 src={starIcon}
                 alt=""
                 aria-hidden
-                className="h-[11.5px] w-3 shrink-0"
+                className="h-3 w-3 shrink-0"
               />
               <span
                 className="whitespace-nowrap font-primary"
@@ -357,7 +357,7 @@ export default function ProductCard({
         <img
           src={hpEtaImg}
           alt="Express Today"
-          className="h-[18px] w-[122px] max-w-full shrink-0 object-contain object-left"
+          className="h-4 w-[122px] max-w-full shrink-0 object-contain object-left"
         />
 
         {/* Buttons row (default & added-to-cart) */}

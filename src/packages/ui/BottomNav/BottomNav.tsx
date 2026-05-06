@@ -89,7 +89,7 @@ export function BottomNav({
   const tabs = showDeals ? TABS : TABS.filter((t) => t !== 'deals');
 
   return (
-    <nav className={`bottom-nav${hidden ? ' bottom-nav--hidden' : ''}`}>
+    <nav className={`bottom-nav${hidden ? 'bottom-nav--hidden' : ''}`}>
       <div className="bottom-nav__bar">
         {tabs.map((id) => {
           const isActive = activeTab === id;
@@ -97,7 +97,7 @@ export function BottomNav({
             <button
               key={id}
               type="button"
-              className={`bottom-nav__tab${isActive ? ' bottom-nav__tab--active' : ''}`}
+              className={`bottom-nav__tab${isActive ? 'bottom-nav__tab--active' : ''}`}
               onClick={() => onTabChange?.(id)}
               aria-label={TAB_LABELS[id]}
               aria-current={isActive ? 'page' : undefined}

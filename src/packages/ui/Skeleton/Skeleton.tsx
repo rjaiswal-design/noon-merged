@@ -17,7 +17,7 @@ export interface SkelProps {
  *  gates — an anti-pattern that causes two skeletons in series. */
 const InsideSkeletonGate = createContext(false);
 
-export function Skel({ className = '', style }: SkelProps) {
+export function Skel({ className='', style }: SkelProps) {
   return (
     <div
       className={`relative overflow-hidden bg-[#eef0f3] ${className}`}

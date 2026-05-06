@@ -233,7 +233,7 @@ export default function CollectionPage({
 
   return (
     <div
-      className="relative h-[812px] w-[375px] shrink-0 overflow-hidden rounded-[20px] bg-surface-primary font-primary"
+      className="relative h-[812px] w-[375px] shrink-0 overflow-hidden rounded-16 bg-surface-primary font-primary"
       data-page-variant={variant}
     >
       {variant !== "scroll" && <CollectionWallpaper />}
@@ -248,7 +248,7 @@ export default function CollectionPage({
           style={{ top: 103 + listTopOffset }}
           onScroll={handleScroll}
         >
-          <div className="flex flex-wrap content-center items-start justify-start gap-[15px] px-4 py-3">
+          <div className="flex flex-wrap content-center items-start justify-start gap-3.5 px-4 py-3">
             {cards.map((c) => {
               const cardVariant: ProductCardVariant = selectMode
                 ? c.selected

@@ -16,7 +16,7 @@ export function CategoryTabs({ categories, activeId, onSelect }: CategoryTabsPro
           return (
             <button
               key={cat.id}
-              className={`category-tabs__item${isActive ? ' category-tabs__item--active' : ''}`}
+              className={`category-tabs__item${isActive ? 'category-tabs__item--active' : ''}`}
               onClick={() => onSelect(cat.id)}
             >
               <div className="category-tabs__img-wrap">

@@ -10,12 +10,12 @@ export type CollectionOptionsMenuProps = {
 export default function CollectionOptionsMenu({
   onRename,
   onDelete,
-  className = "",
+  className="",
 }: CollectionOptionsMenuProps) {
   return (
     <div
       className={
-        "flex w-[190px] flex-col items-start gap-8 rounded-2xl bg-surface-primary pl-4 pr-5 py-6 font-primary shadow-[0px_4px_8px_rgba(0,0,0,0.08)] " +
+        "flex w-48 flex-col items-start gap-8 rounded-2xl bg-surface-primary pl-4 pr-5 py-6 font-primary shadow-[0px_4px_8px_rgba(0,0,0,0.08)]" +
         className
       }
     >
@@ -29,7 +29,7 @@ export default function CollectionOptionsMenu({
             src={editIcon}
             alt=""
             aria-hidden
-            className="block h-[13px] w-[13px]"
+            className="block h-3 w-3"
           />
         </span>
         <span className="whitespace-nowrap font-primary text-b16 font-normal text-text-primary">
@@ -47,7 +47,7 @@ export default function CollectionOptionsMenu({
             src={trashIcon}
             alt=""
             aria-hidden
-            className="block h-[17.5px] w-[15px]"
+            className="block h-4 w-3.5"
           />
         </span>
         <span className="whitespace-nowrap font-primary text-b16 font-normal text-text-error">

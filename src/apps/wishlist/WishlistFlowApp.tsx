@@ -657,7 +657,7 @@ function WishlistLanding(props: LandingProps) {
               </button>
             </div>
           ) : (
-            <div className="flex shrink-0 items-center gap-[19px] overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex shrink-0 items-center gap-5 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {props.collections.map((c) => {
                 const itemCount = Object.values(props.membership).filter(
                   (s) => s.has(c.id),
@@ -677,7 +677,7 @@ function WishlistLanding(props: LandingProps) {
 
           <div className="flex shrink-0 flex-col">
             <div className="flex items-center justify-between px-4">
-              <h2 className="font-primary text-[16px] font-bold leading-5 text-text-primary tracking-[-0.16px]">
+              <h2 className="font-primary text-h16 font-bold leading-5 text-text-primary">
                 All Saved Items
               </h2>
               <button
@@ -782,7 +782,7 @@ function FlowSidebar({
             type="button"
             onClick={() => setScene(s.id)}
             className={
-              "flex items-center justify-between rounded-lg px-3 py-2 text-left " +
+              "flex items-center justify-between rounded-lg px-3 py-2 text-left" +
               (scene === s.id
                 ? "bg-surface-action-subtle"
                 : "bg-transparent hover:bg-surface-tertiary")
@@ -790,7 +790,7 @@ function FlowSidebar({
           >
             <span
               className={
-                "font-primary text-b14 " +
+                "font-primary text-b14" +
                 (scene === s.id
                   ? "font-semibold text-text-action"
                   : "font-medium text-text-primary")
@@ -812,7 +812,7 @@ function FlowSidebar({
         <ul className="flex flex-col gap-2">
           {MISSING_NOTES.map((m) => (
             <li key={m.title} className="flex items-start gap-2">
-              <span className="mt-[6px] block size-1.5 shrink-0 rounded-full bg-yellow-600" />
+              <span className="mt-1.5 block size-1.5 shrink-0 rounded-full bg-yellow-600" />
               <span>
                 <span className="block font-primary text-b14 font-medium text-text-primary">
                   {m.title}
@@ -1313,13 +1313,13 @@ export default function WishlistFlowApp() {
           closeDrawer();
         }}
         className={
-          "absolute inset-0 bg-black/80 transition-opacity duration-300 " +
+          "absolute inset-0 bg-black/80 transition-opacity duration-300" +
           (drawerOpen ? "opacity-100" : "opacity-0")
         }
       />
       <div
         className={
-          "relative transition-transform duration-300 ease-out " +
+          "relative transition-transform duration-300 ease-out" +
           (drawerOpen ? "translate-y-0" : "translate-y-full")
         }
       >
@@ -1551,14 +1551,14 @@ export default function WishlistFlowApp() {
 
   return (
     <>
-      <div className="flex min-h-full w-full justify-center bg-[#e9ebf0] py-8">
+      <div className="flex min-h-full w-full justify-center bg-blue-gray-300 py-8">
         <div className="flex items-start gap-6 px-6">
           <FlowSidebar scene={scene} setScene={setScene} />
           <div className="flex flex-col items-center gap-2">
             <p className="font-primary text-l4 text-text-tertiary">
               375 × 812 — iPhone preview
             </p>
-            <div className="overflow-hidden rounded-[20px] shadow-[0_8px_32px_rgba(29,37,57,0.14)]">
+            <div className="overflow-hidden rounded-16 shadow-[0_8px_32px_rgba(29,37,57,0.14)]">
               <div key={scene} className={sceneAnimClass}>
                 {sceneEl}
               </div>

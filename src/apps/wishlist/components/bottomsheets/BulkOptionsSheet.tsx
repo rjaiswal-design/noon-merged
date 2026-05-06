@@ -72,9 +72,9 @@ export default function BulkOptionsSheet({
 }: BulkOptionsSheetProps) {
   return (
     <BottomSheet>
-      <div className="flex w-[343px] flex-col items-start gap-2 rounded-[16px] bg-surface-tertiary p-2">
+      <div className="flex w-[343px] flex-col items-start gap-2 rounded-16 bg-surface-tertiary p-2">
         {/* Header */}
-        <div className="flex w-full items-center justify-between rounded-[12px] bg-surface-primary p-3">
+        <div className="flex w-full items-center justify-between rounded-12 bg-surface-primary p-3">
           <p className="whitespace-nowrap font-primary text-b16 font-semibold text-text-primary">
             {items.length} items selected
           </p>
@@ -82,7 +82,7 @@ export default function BulkOptionsSheet({
         </div>
 
         {/* Organise card */}
-        <div className="flex w-full flex-col items-start gap-6 rounded-[12px] bg-surface-primary px-3 py-4">
+        <div className="flex w-full flex-col items-start gap-6 rounded-12 bg-surface-primary px-3 py-4">
           <p className="whitespace-nowrap font-primary text-b16 font-semibold text-text-primary">
             Organise
           </p>
@@ -95,14 +95,14 @@ export default function BulkOptionsSheet({
         <button
           type="button"
           onClick={onRemoveItems}
-          className="flex w-full items-center justify-between rounded-[12px] bg-surface-primary p-3 text-left"
+          className="flex w-full items-center justify-between rounded-12 bg-surface-primary p-3 text-left"
         >
           <span className="flex items-center gap-3">
             <span className="flex size-5 shrink-0 items-center justify-center overflow-hidden">
               <img src={trashIcon} alt="" aria-hidden className="block" />
             </span>
             <span
-              className="whitespace-nowrap font-primary text-[16px] font-normal leading-5 tracking-[-0.16px] text-text-error"
+              className="whitespace-nowrap font-primary text-h16 font-normal leading-5 text-text-error"
               style={{ fontFeatureSettings: "'case' 1, 'lnum' 1, 'pnum' 1" }}
             >
               Remove items

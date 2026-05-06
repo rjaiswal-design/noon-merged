@@ -7,7 +7,7 @@ import { ConfirmSheet } from "./AccountSheets";
 import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M12.5 5L7.5 10L12.5 15" stroke={T.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -15,7 +15,7 @@ function BackChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function ChevronDown({ className = "" }: { className?: string }) {
+function ChevronDown({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 12 12" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M3 4.5L6 7.5L9 4.5" stroke={T.color.text.body} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -23,7 +23,7 @@ function ChevronDown({ className = "" }: { className?: string }) {
   );
 }
 
-function CalendarIcon({ className = "" }: { className?: string }) {
+function CalendarIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`block ${className}`} fill="none" aria-hidden="true">
       <rect x="4" y="6" width="16" height="14" rx="2" stroke={T.color.text.muted} strokeWidth="1.5" />
@@ -34,7 +34,7 @@ function CalendarIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function SearchIcon({ className = "" }: { className?: string }) {
+function SearchIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="9" cy="9" r="5.5" stroke={T.color.text.body} strokeWidth="1.5" />
@@ -43,7 +43,7 @@ function SearchIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function CheckCircleSolid({ className = "" }: { className?: string }) {
+function CheckCircleSolid({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="12" cy="12" r="12" fill={T.color.brand.green} />
@@ -52,7 +52,7 @@ function CheckCircleSolid({ className = "" }: { className?: string }) {
   );
 }
 
-function RadioEmpty({ className = "" }: { className?: string }) {
+function RadioEmpty({ className="" }: { className?: string }) {
   return (
     <div
       className={`size-[20px] rounded-full border bg-white ${className}`}
@@ -64,7 +64,7 @@ function RadioEmpty({ className = "" }: { className?: string }) {
 /* ---------- Gender glyphs (♂ ♀) ---------- */
 function MaleGlyph({ color = T.color.text.strong }: { color?: string }) {
   return (
-    <svg viewBox="0 0 20 20" className="block size-[18px]" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 20 20" className="block size-4" fill="none" aria-hidden="true">
       <circle cx="8" cy="12" r="4" stroke={color} strokeWidth="1.5" />
       <path d="M11.5 8.5L16 4M16 4H12.5M16 4V7.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
@@ -72,7 +72,7 @@ function MaleGlyph({ color = T.color.text.strong }: { color?: string }) {
 }
 function FemaleGlyph({ color = T.color.text.strong }: { color?: string }) {
   return (
-    <svg viewBox="0 0 20 20" className="block size-[18px]" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 20 20" className="block size-4" fill="none" aria-hidden="true">
       <circle cx="10" cy="7.5" r="4" stroke={color} strokeWidth="1.5" />
       <path d="M10 11.5V17M7.5 14.5H12.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
     </svg>
@@ -82,21 +82,21 @@ function FemaleGlyph({ color = T.color.text.strong }: { color?: string }) {
 /* ---------- Tourism question icons ---------- */
 function PlaneIcon({ color = T.color.text.strong }: { color?: string }) {
   return (
-    <svg viewBox="0 0 20 20" className="block size-[18px]" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 20 20" className="block size-4" fill="none" aria-hidden="true">
       <path d="M3 12.5l13-7-2 6.5-2.5 1L11 16l-1.5-.5-.5-3-4-1L3 12.5z" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
     </svg>
   );
 }
 function HomeIcon({ color = T.color.text.strong }: { color?: string }) {
   return (
-    <svg viewBox="0 0 20 20" className="block size-[18px]" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 20 20" className="block size-4" fill="none" aria-hidden="true">
       <path d="M3.5 9.5L10 4l6.5 5.5V16a1 1 0 0 1-1 1h-3v-4.5h-5V17h-3a1 1 0 0 1-1-1V9.5z" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
     </svg>
   );
 }
 
 /* ---------- Mini flag SVGs (24×18 for inline use) ---------- */
-function FlagAEmini({ className = "" }: { className?: string }) {
+function FlagAEmini({ className="" }: { className?: string }) {
   return (
     <div className={`${className} flex overflow-hidden`} style={{ width: "24px", height: "18px", borderRadius: "2px", border: "0.5px solid rgba(0,0,0,0.06)", boxShadow: "0 1.5px 1px rgba(0,0,0,0.08)" }}>
       <div style={{ backgroundColor: "#EF3340", width: "6px", height: "100%" }} />
@@ -108,7 +108,7 @@ function FlagAEmini({ className = "" }: { className?: string }) {
     </div>
   );
 }
-function FlagEGmini({ className = "" }: { className?: string }) {
+function FlagEGmini({ className="" }: { className?: string }) {
   return (
     <div className={`${className} flex flex-col overflow-hidden`} style={{ width: "24px", height: "18px", borderRadius: "2px", border: "0.5px solid rgba(0,0,0,0.06)", boxShadow: "0 1.5px 1px rgba(0,0,0,0.08)" }}>
       <div style={{ backgroundColor: "#CE1126", flex: 1 }} />
@@ -117,7 +117,7 @@ function FlagEGmini({ className = "" }: { className?: string }) {
     </div>
   );
 }
-function FlagSAmini({ className = "" }: { className?: string }) {
+function FlagSAmini({ className="" }: { className?: string }) {
   return (
     <div className={`${className} relative`} style={{ width: "24px", height: "18px", borderRadius: "2px", border: "0.5px solid rgba(0,0,0,0.06)", boxShadow: "0 1.5px 1px rgba(0,0,0,0.08)", backgroundColor: "#67BD23", overflow: "hidden" }}>
       <svg viewBox="0 0 24 18" className="absolute inset-0 w-full h-full" aria-hidden="true">
@@ -148,10 +148,10 @@ function FloatingInput({
   // pretends to be the floated label (Figma references a placeholder-only
   // empty state for first/last name).
   return (
-    <label className="bg-white rounded-[12px] flex flex-col h-[56px] px-[12px] py-[10px] cursor-text w-full">
+    <label className="bg-white rounded-12 flex flex-col h-14 px-3 py-2.5 cursor-text w-full">
       {label && value ? (
         <span
-          className="font-noontree font-medium text-[11px] leading-[14px] tracking-[-0.1px] mb-[2px]"
+          className="font-noontree font-medium text-b11 mb-0.5"
           style={{ color: T.color.text.muted }}
         >
           {label}{required ? "*" : ""}
@@ -162,7 +162,7 @@ function FloatingInput({
         value={value}
         placeholder={value ? "" : placeholder ?? `${label}${required ? "*" : ""}`}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-transparent outline-none border-0 font-noontree font-semibold text-[16px] leading-[20px] tracking-[-0.15px] placeholder:font-normal placeholder:text-[13px] placeholder:tracking-[-0.26px]"
+        className="bg-transparent outline-none border-0 font-noontree font-semibold text-h16 placeholder:font-normal placeholder:text-label-3"
         style={{ color: T.color.text.primary, caretColor: T.color.brand.green }}
       />
     </label>
@@ -183,24 +183,24 @@ function SectionCard({
   children: React.ReactNode;
 }) {
   return (
-    <SmoothCorners radius={16} className="bg-white rounded-[16px] overflow-hidden flex flex-col gap-[6px] pb-[12px]">
-      <div className="flex flex-col items-start pt-[12px] px-[12px] pb-[8px] gap-[2px]">
+    <SmoothCorners radius={16} className="bg-white rounded-16 overflow-hidden flex flex-col gap-1.5 pb-3">
+      <div className="flex flex-col items-start pt-3 px-3 pb-2 gap-0.5">
         <p
-          className="font-noontree font-bold text-[16px] leading-[20px] tracking-[-0.16px]"
+          className="font-noontree font-bold text-h16"
           style={{ color: T.color.text.heading }}
         >
           {title}
         </p>
         {sub && (
           <p
-            className="font-noontree font-medium text-[12px] leading-[16px]"
+            className="font-noontree font-medium text-b12"
             style={{ color: T.color.text.body }}
           >
             {sub}
           </p>
         )}
       </div>
-      <div className="px-[12px]">{children}</div>
+      <div className="px-3">{children}</div>
     </SmoothCorners>
   );
 }
@@ -221,15 +221,15 @@ function OptionTile({
     <button
       type="button"
       onClick={onClick}
-      className="flex-1 h-[56px] rounded-[16px] border bg-[#fcfcfd] flex items-center justify-between px-[12px] py-[16px] cursor-pointer"
+      className="flex-1 h-14 rounded-16 border bg-bluegray-50 flex items-center justify-between px-3 py-4 cursor-pointer"
       style={{
         borderColor: selected ? T.color.border.divider : T.color.border.subtle,
       }}
     >
-      <div className="flex items-center gap-[4px]">
+      <div className="flex items-center gap-1">
         {icon}
         <span
-          className="font-noontree text-[14px] leading-[18px] tracking-[-0.14px]"
+          className="font-noontree text-label-3p"
           style={{
             color: T.color.text.strong,
             fontWeight: selected ? 600 : 500,
@@ -238,7 +238,7 @@ function OptionTile({
           {label}
         </span>
       </div>
-      {selected ? <CheckCircleSolid className="size-[24px]" /> : <RadioEmpty />}
+      {selected ? <CheckCircleSolid className="size-6" /> : <RadioEmpty />}
     </button>
   );
 }
@@ -257,12 +257,12 @@ function NationalityChip({
     <button
       type="button"
       onClick={onClick}
-      className="flex-1 h-[56px] rounded-[12px] border bg-[#fcfcfd] flex flex-col items-center justify-center gap-[6px] cursor-pointer"
+      className="flex-1 h-14 rounded-12 border bg-bluegray-50 flex flex-col items-center justify-center gap-1.5 cursor-pointer"
       style={{ borderColor: T.color.border.subtle }}
     >
       {flag}
       <span
-        className="font-noontree font-medium text-[12px] leading-[14px] tracking-[-0.12px]"
+        className="font-noontree font-medium text-label-4p"
         style={{ color: T.color.text.strong }}
       >
         {label}
@@ -285,7 +285,7 @@ function DietChip({
     <button
       type="button"
       onClick={onClick}
-      className="px-[16px] py-[7px] rounded-full cursor-pointer transition-colors duration-150"
+      className="px-4 py-1.5 rounded-full cursor-pointer transition-colors duration-150"
       style={{
         backgroundColor: selected ? T.color.text.heading : T.color.surface.scrim50,
         border: `1px solid ${selected ? T.color.text.heading : T.color.border.divider}`,
@@ -324,7 +324,7 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{ backgroundColor: T.color.surface.page }}
     >
       {/* Sticky white header — status bar + back + title.
@@ -332,22 +332,22 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
           so we pad-top by 47px before the back/title row to avoid the
           time/notch clipping the back button. */}
       <div
-        className="absolute top-0 left-0 right-0 z-20 bg-white flex flex-col items-center pt-[47px] pb-[12px] relative"
+        className="absolute top-0 left-0 right-0 z-20 bg-white flex flex-col items-center pt-12 pb-3 relative"
         style={{ boxShadow: "0 2px 5px rgba(26,26,26,0.06)" }}
       >
         <StatusBar />
-        <div className="flex items-center w-[338px] gap-[12px]">
+        <div className="flex items-center w-[338px] gap-3">
           <button
             type="button"
             onClick={onBack}
             aria-label="Go back"
-            className="size-[36px] rounded-[18px] bg-white border flex items-center justify-center cursor-pointer"
+            className="size-9 rounded-16 bg-white border flex items-center justify-center cursor-pointer"
             style={{ borderColor: T.color.border.subtle }}
           >
-            <BackChevron className="size-[20px]" />
+            <BackChevron className="size-5" />
           </button>
           <p
-            className="font-noontree font-bold text-[18px] leading-[24px] tracking-[-0.18px]"
+            className="font-noontree font-bold text-h18"
             style={{ color: T.color.text.deep }}
           >
             Your profile
@@ -356,10 +356,10 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
       </div>
 
       {/* Scroll body — padded for header (top) + sticky footer (bottom) */}
-      <div className="absolute inset-0 overflow-y-auto pt-[110px] pb-[180px]">
-        <div className="flex flex-col gap-[12px] w-[351px] mx-auto">
+      <div className="absolute inset-0 overflow-y-auto pt-28 pb-[180px]">
+        <div className="flex flex-col gap-3 w-[351px] mx-auto">
           {/* Name row */}
-          <div className="flex gap-[8px] w-full">
+          <div className="flex gap-2 w-full">
             <FloatingInput
               label="First name"
               value={first}
@@ -377,28 +377,28 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
           </div>
 
           {/* Phone row — country selector + phone input */}
-          <div className="flex items-stretch gap-[8px] w-full">
+          <div className="flex items-stretch gap-2 w-full">
             <button
               type="button"
-              className="bg-white rounded-[12px] flex items-center gap-[4px] px-[11px] py-[8px] cursor-pointer"
+              className="bg-white rounded-12 flex items-center gap-1 px-2.5 py-2 cursor-pointer"
             >
               <FlagAEmini />
               <span
-                className="font-noontree font-semibold text-[16px] leading-[20px] tracking-[0.025px]"
+                className="font-noontree font-semibold text-h16"
                 style={{ color: T.color.text.strong }}
               >
                 +971
               </span>
-              <ChevronDown className="size-[12px]" />
+              <ChevronDown className="size-3" />
             </button>
             {/* Float-on-fill: when empty the placeholder pretends to be
                 the label (matches First/Last name treatment). Once the
                 user types, the small "Phone number" label slides into
                 view above the value. */}
-            <label className="bg-white rounded-[12px] flex flex-col flex-1 h-[56px] px-[12px] py-[10px] cursor-text">
+            <label className="bg-white rounded-12 flex flex-col flex-1 h-14 px-3 py-2.5 cursor-text">
               {phone ? (
                 <span
-                  className="font-noontree font-medium text-[11px] leading-[14px] tracking-[-0.1px] mb-[2px]"
+                  className="font-noontree font-medium text-b11 mb-0.5"
                   style={{ color: T.color.text.muted }}
                 >
                   Phone number
@@ -409,7 +409,7 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
                 value={phone}
                 placeholder={phone ? "" : "Phone number"}
                 onChange={(e) => setPhone(e.target.value)}
-                className="bg-transparent outline-none border-0 font-noontree font-semibold text-[16px] leading-[20px] tracking-[-0.15px] placeholder:font-normal placeholder:text-[13px] placeholder:tracking-[-0.26px]"
+                className="bg-transparent outline-none border-0 font-noontree font-semibold text-h16 placeholder:font-normal placeholder:text-label-3"
                 style={{ color: T.color.text.primary, caretColor: T.color.brand.green }}
               />
             </label>
@@ -417,7 +417,7 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
 
           {/* Gender */}
           <SectionCard title="What's your gender?">
-            <div className="flex items-center gap-[8px]">
+            <div className="flex items-center gap-2">
               <OptionTile
                 icon={<MaleGlyph />}
                 label="Male"
@@ -435,7 +435,7 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
 
           {/* Tourist */}
           <SectionCard title="Are you a tourist in UAE?">
-            <div className="flex items-center gap-[8px]">
+            <div className="flex items-center gap-2">
               <OptionTile
                 icon={<PlaneIcon />}
                 label="Yes"
@@ -458,16 +458,16 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
           >
             <button
               type="button"
-              className="w-full h-[54px] rounded-[12px] border bg-[#fcfcfd] flex items-center justify-between px-[12px] py-[12px] cursor-pointer"
+              className="w-full h-14 rounded-12 border bg-bluegray-50 flex items-center justify-between px-3 py-3 cursor-pointer"
               style={{ borderColor: T.color.border.subtle }}
             >
               <span
-                className="font-noontree font-medium text-[14px] leading-[18px] tracking-[-0.14px]"
+                className="font-noontree font-medium text-label-3p"
                 style={{ color: T.color.text.strong }}
               >
                 Add your birthday
               </span>
-              <CalendarIcon className="size-[24px]" />
+              <CalendarIcon className="size-6" />
             </button>
           </SectionCard>
 
@@ -476,12 +476,12 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
             title="What's your nationality?"
             sub="Help us curate your catalogue"
           >
-            <div className="flex items-center gap-[6px]">
+            <div className="flex items-center gap-1.5">
               <NationalityChip flag={<FlagAEmini />} label="UAE" onClick={() => {}} />
               <NationalityChip flag={<FlagEGmini />} label="Egypt" onClick={() => {}} />
               <NationalityChip flag={<FlagSAmini />} label="KSA" onClick={() => {}} />
               <NationalityChip
-                flag={<SearchIcon className="size-[20px]" />}
+                flag={<SearchIcon className="size-5" />}
                 label="Search"
                 onClick={() => {}}
               />
@@ -493,7 +493,7 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
             title="Dietary preferences:"
             sub="Help us personalise your experience"
           >
-            <div className="flex flex-wrap gap-[8px]">
+            <div className="flex flex-wrap gap-2">
               <DietChip label="Non veg" selected={diet.has("nonveg")} onClick={() => toggleDiet("nonveg")} />
               <DietChip label="Eggertarian" selected={diet.has("egg")} onClick={() => toggleDiet("egg")} />
               <DietChip label="Veg" selected={diet.has("veg")} onClick={() => toggleDiet("veg")} />
@@ -508,7 +508,7 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
           <button
             type="button"
             onClick={() => setDeleteOpen(true)}
-            className="self-center mt-[6px] mb-[12px] font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px] underline underline-offset-2 cursor-pointer"
+            className="self-center mt-1.5 mb-3 font-noontree font-semibold text-label-3p underline underline-offset-2 cursor-pointer"
             style={{ color: "#de1c1c" }}
           >
             Delete account
@@ -528,26 +528,26 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
 
       {/* Sticky bottom — completion status + Save CTA + home indicator */}
       <div
-        className="absolute bottom-0 left-0 right-0 z-20 bg-white flex flex-col gap-[12px] px-[16px] pt-[14px] pb-[14px] rounded-tl-[12px] rounded-tr-[12px]"
+        className="absolute bottom-0 left-0 right-0 z-20 bg-white flex flex-col gap-3 px-4 pt-3.5 pb-3.5 rounded-tl-12 rounded-tr-12"
         style={{ boxShadow: "0 -4px 17.6px rgba(0,0,0,0.1)" }}
       >
         {/* Profile completion strip */}
-        <div className="flex items-center justify-between w-full px-[12px]">
+        <div className="flex items-center justify-between w-full px-3">
           <p
-            className="font-noontree font-bold text-[14px] leading-[18px] tracking-[-0.14px]"
+            className="font-noontree font-bold text-label-3p"
             style={{ color: T.color.text.strong }}
           >
             Complete your profile
           </p>
           <div
-            className="px-[8px] py-[2px] rounded-full"
+            className="px-2 py-0.5 rounded-full"
             style={{
               border: `1px solid ${T.color.accent.orangeLight}`,
               background: `linear-gradient(205deg, ${T.color.accent.orangeLight} 42%, ${T.color.accent.orange} 134%)`,
             }}
           >
             <span
-              className="font-noontree font-bold text-[12px] leading-[18px] tracking-[-0.14px]"
+              className="font-noontree font-bold text-b12"
               style={{ color: T.color.surface.scrim50 }}
             >
               60%
@@ -558,7 +558,7 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
         {/* Save CTA */}
         <button
           type="button"
-          className="w-full h-[52px] rounded-[12px] cursor-pointer font-noontree font-semibold text-[17px] leading-[20px] tracking-[-0.26px] text-white"
+          className="w-full h-[52px] rounded-12 cursor-pointer font-noontree font-semibold text-a17 text-white"
           style={{ backgroundColor: T.color.text.heading }}
         >
           Save
@@ -566,7 +566,7 @@ export default function MyAccountPage({ onBack }: { onBack: () => void }) {
 
         {/* Home indicator */}
         <div className="flex justify-center">
-          <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+          <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
         </div>
       </div>
     </div>

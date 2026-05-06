@@ -40,7 +40,7 @@ export default function SkuCard({
   return (
     <div className="flex w-[134px] shrink-0 flex-col items-start gap-1 rounded-lg bg-surface-primary font-primary">
       <div
-        className="relative flex h-[174px] w-[134px] shrink-0 flex-col items-center justify-center gap-2 overflow-hidden rounded-[10px]"
+        className="relative flex h-44 w-[134px] shrink-0 flex-col items-center justify-center gap-2 overflow-hidden rounded-8"
         style={{ background: "rgba(7, 47, 143, 0.04)" }}
       >
         <img
@@ -51,7 +51,7 @@ export default function SkuCard({
         />
 
         {badge && (
-          <div className="absolute left-0 top-0 flex h-5 items-center rounded-br-[10px] bg-emerald-800 px-1.5 py-0.5">
+          <div className="absolute left-0 top-0 flex h-5 items-center rounded-br-8 bg-emerald-800 px-1.5 py-0.5">
             <span className="whitespace-nowrap text-b12 font-semibold text-text-on-surface-bold">
               {badge}
             </span>
@@ -62,7 +62,7 @@ export default function SkuCard({
           type="button"
           aria-label="Add to wishlist"
           onClick={onWishlistToggle}
-          className="absolute left-[106px] top-[4px] flex items-center justify-center rounded-full bg-alpha-light-16 p-1"
+          className="absolute left-[106px] top-1 flex items-center justify-center rounded-full bg-alpha-light-16 p-1"
         >
           <img src={heartIcon} alt="" aria-hidden className="block size-4" />
         </button>
@@ -71,7 +71,7 @@ export default function SkuCard({
           type="button"
           aria-label="Add to cart"
           onClick={onAddToCart}
-          className="absolute left-[96px] top-[136px] flex size-8 items-center justify-center rounded-lg border-[1.2px] border-border-subtle bg-surface-primary"
+          className="absolute left-24 top-[136px] flex size-8 items-center justify-center rounded-lg border-[1.2px] border-border-subtle bg-surface-primary"
         >
           <img src={plusIcon} alt="" aria-hidden className="block size-4" />
         </button>
@@ -94,7 +94,7 @@ export default function SkuCard({
               src={starIcon}
               alt=""
               aria-hidden
-              className="block h-[11.5px] w-3 shrink-0"
+              className="block h-3 w-3 shrink-0"
             />
             <span className="whitespace-nowrap text-b12 font-semibold text-text-primary">
               {rating}
@@ -115,7 +115,7 @@ export default function SkuCard({
             </span>
           </div>
           <div className="flex w-full items-start gap-1">
-            <span className="relative block size-[14px] shrink-0 overflow-hidden">
+            <span className="relative block size-3.5 shrink-0 overflow-hidden">
               <img
                 src={truckIcon}
                 alt=""
@@ -139,7 +139,7 @@ export default function SkuCard({
           </div>
         )}
         {expressVariant === "today" && (
-          <div className="relative h-4 w-[97px] overflow-hidden">
+          <div className="relative h-4 w-24 overflow-hidden">
             <img
               src={expressTodayImg}
               alt="express today"

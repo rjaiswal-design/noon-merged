@@ -7,7 +7,7 @@ import SmoothCorners from "@ui/SmoothCorners";
 import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M12.5 5L7.5 10L12.5 15" stroke={T.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -15,7 +15,7 @@ function BackChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function SparkleIcon({ className = "" }: { className?: string }) {
+function SparkleIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 14 14" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -26,7 +26,7 @@ function SparkleIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function InfoIcon({ className = "" }: { className?: string }) {
+function InfoIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 12 12" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="6" cy="6" r="5" stroke={T.color.brand.green} strokeWidth="1.2" />
@@ -35,7 +35,7 @@ function InfoIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function CheckMark({ className = "", color = T.color.text.body }: { className?: string; color?: string }) {
+function CheckMark({ className="", color = T.color.text.body }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M3 8.5L6.5 12L13 5" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -45,16 +45,16 @@ function CheckMark({ className = "", color = T.color.text.body }: { className?: 
 
 function RadioCircle({ selected }: { selected: boolean }) {
   return selected ? (
-    <div className="size-[20px] rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: T.color.brand.green }}>
-      <div className="size-[8px] rounded-full bg-white" />
+    <div className="size-5 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: T.color.brand.green }}>
+      <div className="size-2 rounded-full bg-white" />
     </div>
   ) : (
-    <div className="size-[20px] rounded-full border-[1.5px] shrink-0" style={{ borderColor: T.color.border.muted }} />
+    <div className="size-5 rounded-full border-[1.5px] shrink-0" style={{ borderColor: T.color.border.muted }} />
   );
 }
 
 const AED_GLYPH = "";
-function Aed({ className = "" }: { className?: string }) {
+function Aed({ className="" }: { className?: string }) {
   return (
     <span aria-label="AED" className={`font-noontree tracking-[0] inline-block align-baseline mr-[2px] ${className}`}>
       {AED_GLYPH}
@@ -70,11 +70,11 @@ function AvatarCluster({ tier }: { tier: "duo" | "family" }) {
     : [T.color.accent.family, T.color.accent.duo, "#FF6FA3", "#FFB547", T.color.brand.green];
   const initials = tier === "duo" ? ["R", "A"] : ["R", "A", "M", "J", "S"];
   return (
-    <div className="flex items-center -space-x-[8px]">
+    <div className="flex items-center -space-x-2">
       {Array.from({ length: seats }).map((_, i) => (
         <div
           key={i}
-          className="size-[24px] rounded-full border-[2px] border-white flex items-center justify-center text-[10px] font-noontree font-bold text-white"
+          className="size-6 rounded-full border-[2px] border-white flex items-center justify-center text-tiny font-noontree font-bold text-white"
           style={{ backgroundColor: palette[i % palette.length] }}
         >
           {initials[i]}
@@ -156,20 +156,20 @@ function SharedPlanCard({
         as="button"
         radius={16}
         onClick={onSelect}
-        className="bg-white border-[1.5px] rounded-[16px] w-full flex flex-col text-left cursor-pointer relative transition-colors duration-150 overflow-hidden"
+        className="bg-white border-[1.5px] rounded-16 w-full flex flex-col text-left cursor-pointer relative transition-colors duration-150 overflow-hidden"
         style={{ borderColor: selected ? T.color.brand.green : T.color.border.hairline }}
       >
         {/* Tinted header strip — visual zone */}
-        <div className="flex items-center justify-between px-[16px] py-[12px]" style={{ backgroundColor: tone.soft }}>
-          <div className="flex items-center gap-[10px]">
+        <div className="flex items-center justify-between px-4 py-3" style={{ backgroundColor: tone.soft }}>
+          <div className="flex items-center gap-2.5">
             <AvatarCluster tier={plan.id} />
-            <p className="font-noontree font-semibold text-[12px] tracking-[-0.12px]" style={{ color: tone.ink }}>
+            <p className="font-noontree font-semibold text-b12" style={{ color: tone.ink }}>
               {plan.seats} seats · {plan.tagline}
             </p>
           </div>
           {plan.badge && (
             <span
-              className="font-noontree font-semibold text-[10px] leading-none px-[8px] py-[4px] rounded-[6px] whitespace-nowrap"
+              className="font-noontree font-semibold text-tiny leading-none px-2 py-1 rounded-4 whitespace-nowrap"
               style={{ backgroundColor: T.color.surface.canvas, color: tone.ink }}
             >
               {plan.badge}
@@ -178,33 +178,33 @@ function SharedPlanCard({
         </div>
 
         {/* System zone — body */}
-        <div className="flex flex-col gap-[8px] px-[16px] pt-[14px] pb-[16px]">
+        <div className="flex flex-col gap-2 px-4 pt-3.5 pb-4">
           <div className="flex items-center justify-between w-full">
-            <p className="font-bold leading-[20px] text-[16px] tracking-[-0.16px]" style={{ color: T.color.text.heading }}>
+            <p className="font-bold text-h16" style={{ color: T.color.text.heading }}>
               {plan.name}
             </p>
             <RadioCircle selected={selected} />
           </div>
 
           {/* Per-member math is the headline number */}
-          <div className="flex items-baseline gap-[4px]">
-            <Aed className="text-[16px]" />
-            <p className="font-noontree font-bold text-[20px] leading-[22px] tracking-[-0.2px]" style={{ color: T.color.text.heading }}>
+          <div className="flex items-baseline gap-1">
+            <Aed className="text-h16" />
+            <p className="font-noontree font-bold text-h20" style={{ color: T.color.text.heading }}>
               {plan.perMember}
             </p>
-            <p className="font-noontree font-medium text-[12px] tracking-[-0.12px]" style={{ color: T.color.text.muted }}>
+            <p className="font-noontree font-medium text-b12" style={{ color: T.color.text.muted }}>
               /member/month
             </p>
           </div>
 
-          <div className="flex items-center justify-between flex-wrap gap-y-[6px]">
-            <p className="font-noontree text-[12px] leading-[14px] tracking-[-0.12px]" style={{ color: T.color.text.muted }}>
+          <div className="flex items-center justify-between flex-wrap gap-y-1.5">
+            <p className="font-noontree text-label-4p" style={{ color: T.color.text.muted }}>
               <Aed />
               {plan.totalPrice}/month total · billed to plan owner
             </p>
             {savingsVsCurrent && (
               <span
-                className="font-noontree font-semibold text-[11px] leading-none px-[8px] py-[4px] rounded-[6px] whitespace-nowrap"
+                className="font-noontree font-semibold text-b11 leading-none px-2 py-1 rounded-4 whitespace-nowrap"
                 style={{ backgroundColor: T.color.brand.greenSoft, color: T.color.brand.green }}
               >
                 Save {savingsVsCurrent}/mo
@@ -214,11 +214,11 @@ function SharedPlanCard({
 
           <div className="h-px w-full border-t border-dashed" style={{ borderColor: T.color.border.divider }} />
 
-          <div className="flex flex-col gap-[10px]">
+          <div className="flex flex-col gap-2.5">
             {plan.benefits.map((b, i) => (
-              <div key={i} className="flex gap-[10px] items-center">
-                <CheckMark className="size-[16px] shrink-0" />
-                <p className="font-noontree font-medium text-[12px] leading-[14px] tracking-[-0.12px]" style={{ color: T.color.text.body }}>
+              <div key={i} className="flex gap-2.5 items-center">
+                <CheckMark className="size-4 shrink-0" />
+                <p className="font-noontree font-medium text-label-4p" style={{ color: T.color.text.body }}>
                   {b}
                 </p>
               </div>
@@ -242,50 +242,50 @@ function CompareSheet({ open, onClose }: { open: boolean; onClose: () => void })
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
             onClick={onClose}
-            className="absolute inset-0 z-30 bg-black/40 rounded-[20px]"
+            className="absolute inset-0 z-30 bg-black/40 rounded-16"
           />
           <motion.div
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 32, stiffness: 320, mass: 0.9 }}
-            className="absolute bottom-0 left-0 right-0 z-40 bg-white rounded-tl-[20px] rounded-tr-[20px] px-[20px] pt-[12px] pb-[28px] flex flex-col"
+            className="absolute bottom-0 left-0 right-0 z-40 bg-white rounded-tl-16 rounded-tr-16 px-5 pt-3 pb-7 flex flex-col"
             style={{ boxShadow: "0 -8px 24px rgba(15,15,25,0.08)" }}
           >
-            <div className="self-center bg-[#dadde6] h-[5px] w-[40px] rounded-[3px] mb-[14px]" />
-            <p className="font-bold text-[16px] tracking-[-0.16px] text-center mb-[16px]" style={{ color: T.color.text.heading }}>
+            <div className="self-center bg-blue-gray-400 h-1 w-10 rounded-4 mb-3.5" />
+            <p className="font-bold text-h16 text-center mb-4" style={{ color: T.color.text.heading }}>
               Duo vs Family
             </p>
 
-            <div className="grid grid-cols-2 gap-[12px]">
-              <div className="rounded-[12px] p-[12px] flex flex-col gap-[8px]" style={{ backgroundColor: T.color.accent.duoSoft }}>
-                <p className="font-noontree font-semibold text-[12px]" style={{ color: T.color.accent.duo }}>Duo · 2 seats</p>
-                <div className="flex items-baseline gap-[2px]">
-                  <Aed className="text-[14px]" />
-                  <p className="font-noontree font-bold text-[18px] leading-[20px] tracking-[-0.18px]" style={{ color: T.color.text.heading }}>20.00</p>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-12 p-3 flex flex-col gap-2" style={{ backgroundColor: T.color.accent.duoSoft }}>
+                <p className="font-noontree font-semibold text-b12" style={{ color: T.color.accent.duo }}>Duo · 2 seats</p>
+                <div className="flex items-baseline gap-0.5">
+                  <Aed className="text-b14" />
+                  <p className="font-noontree font-bold text-h18" style={{ color: T.color.text.heading }}>20.00</p>
                 </div>
-                <p className="font-noontree text-[11px]" style={{ color: T.color.text.muted }}>per member / month</p>
+                <p className="font-noontree text-b11" style={{ color: T.color.text.muted }}>per member / month</p>
               </div>
-              <div className="rounded-[12px] p-[12px] flex flex-col gap-[8px]" style={{ backgroundColor: T.color.accent.familySoft }}>
-                <p className="font-noontree font-semibold text-[12px]" style={{ color: T.color.accent.family }}>Family · 5 seats</p>
-                <div className="flex items-baseline gap-[2px]">
-                  <Aed className="text-[14px]" />
-                  <p className="font-noontree font-bold text-[18px] leading-[20px] tracking-[-0.18px]" style={{ color: T.color.text.heading }}>11.00</p>
+              <div className="rounded-12 p-3 flex flex-col gap-2" style={{ backgroundColor: T.color.accent.familySoft }}>
+                <p className="font-noontree font-semibold text-b12" style={{ color: T.color.accent.family }}>Family · 5 seats</p>
+                <div className="flex items-baseline gap-0.5">
+                  <Aed className="text-b14" />
+                  <p className="font-noontree font-bold text-h18" style={{ color: T.color.text.heading }}>11.00</p>
                 </div>
-                <p className="font-noontree text-[11px]" style={{ color: T.color.text.muted }}>per member / month</p>
+                <p className="font-noontree text-b11" style={{ color: T.color.text.muted }}>per member / month</p>
               </div>
             </div>
 
-            <div className="mt-[16px] flex flex-col gap-[10px]">
+            <div className="mt-4 flex flex-col gap-2.5">
               {[
                 "Each member uses their own noon account",
                 "Only the owner's payment is charged",
                 "All members get full noon One benefits",
                 "Members must be in the same country as the owner",
               ].map((line, i) => (
-                <div key={i} className="flex items-start gap-[10px]">
-                  <CheckMark className="size-[14px] shrink-0 mt-[2px]" color={T.color.brand.green} />
-                  <p className="font-noontree text-[12px] leading-[16px] tracking-[-0.12px]" style={{ color: T.color.text.body }}>
+                <div key={i} className="flex items-start gap-2.5">
+                  <CheckMark className="size-3.5 shrink-0 mt-0.5" color={T.color.brand.green} />
+                  <p className="font-noontree text-b12" style={{ color: T.color.text.body }}>
                     {line}
                   </p>
                 </div>
@@ -295,7 +295,7 @@ function CompareSheet({ open, onClose }: { open: boolean; onClose: () => void })
             <button
               type="button"
               onClick={onClose}
-              className="mt-[18px] w-full bg-black text-white font-bold text-[14px] rounded-[12px] py-[16px] cursor-pointer"
+              className="mt-4 w-full bg-black text-white font-bold text-b14 rounded-12 py-4 cursor-pointer"
             >
               Got it
             </button>
@@ -334,7 +334,7 @@ export default function ShareYourPlan({
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{ backgroundImage: `linear-gradient(180deg, ${T.color.surface.canvas} 31%, ${T.color.surface.scrim} 100%)` }}
     >
       <StatusBar />
@@ -343,7 +343,7 @@ export default function ShareYourPlan({
         className="relative h-full overflow-y-auto"
         onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 4)}
       >
-        <div className={`w-full ${canConfirm ? "pb-[110px]" : "pb-[20px]"}`}>
+        <div className={`w-full ${canConfirm ? "pb-28" : "pb-5"}`}>
           {/* Sticky header — Skip text-link sits top-right when this screen
               is being shown as a post-purchase upsell, so the user has a
               clear "no thanks, just confirm my plan" exit. */}
@@ -357,19 +357,19 @@ export default function ShareYourPlan({
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="bg-white flex items-center justify-center p-[8px] rounded-[18px] cursor-pointer shrink-0 border"
+              className="bg-white flex items-center justify-center p-2 rounded-16 cursor-pointer shrink-0 border"
               style={{ borderColor: T.color.border.subtle }}
             >
-              <BackChevron className="size-[20px]" />
+              <BackChevron className="size-5" />
             </button>
-            <p className="flex-1 font-bold text-[16px] leading-[20px] tracking-[-0.16px]" style={{ color: T.color.text.primary }}>
+            <p className="flex-1 font-bold text-h16" style={{ color: T.color.text.primary }}>
               {entry === "postPurchase" ? "One more thing" : "Share your plan"}
             </p>
             {entry === "postPurchase" && onSkip && (
               <button
                 type="button"
                 onClick={onSkip}
-                className="bg-white flex items-center justify-center px-[14px] h-[36px] rounded-full cursor-pointer shrink-0 border font-noontree font-semibold text-[13px] tracking-[-0.12px]"
+                className="bg-white flex items-center justify-center px-3.5 h-9 rounded-full cursor-pointer shrink-0 border font-noontree font-semibold text-label-3"
                 style={{
                   borderColor: T.color.border.subtle,
                   color: T.color.text.heading,
@@ -392,9 +392,9 @@ export default function ShareYourPlan({
             }, 0);
             if (maxSavings <= 0) return null;
             return (
-              <div className="px-[20px] mt-[6px] mb-[14px] flex items-center gap-[8px]">
-                <SparkleIcon className="size-[14px] shrink-0" />
-                <p className="font-noontree text-[12px] leading-[16px] tracking-[-0.1px]" style={{ color: T.color.text.body }}>
+              <div className="px-5 mt-1.5 mb-3.5 flex items-center gap-2">
+                <SparkleIcon className="size-3.5 shrink-0" />
+                <p className="font-noontree text-b12" style={{ color: T.color.text.body }}>
                   <span className="font-semibold" style={{ color: T.color.text.heading }}>
                     Save up to <Aed />{maxSavings.toFixed(2)}/mo
                   </span>{" "}
@@ -404,7 +404,7 @@ export default function ShareYourPlan({
             );
           })()}
 
-          <div className="flex flex-col px-[16px] gap-[12px]">
+          <div className="flex flex-col px-4 gap-3">
             {SHARED_PLANS.map((plan) => {
               const cur = Number.parseFloat(currentPrice);
               const savings = cur - Number.parseFloat(plan.perMember);
@@ -425,14 +425,14 @@ export default function ShareYourPlan({
 
           {/* Compare plans — quiet ghost link below the cards. Optional;
               users who want side-by-side detail can pull up the sheet. */}
-          <div className="px-[16px] mt-[16px] flex justify-center">
+          <div className="px-4 mt-4 flex justify-center">
             <button
               type="button"
               onClick={() => setCompareOpen(true)}
-              className="font-noontree font-semibold text-[12px] leading-[14px] cursor-pointer flex items-center gap-[6px]"
+              className="font-noontree font-semibold text-label-4p cursor-pointer flex items-center gap-1.5"
               style={{ color: T.color.brand.green }}
             >
-              <InfoIcon className="size-[12px]" />
+              <InfoIcon className="size-3" />
               Compare Duo vs Family
             </button>
           </div>
@@ -448,13 +448,13 @@ export default function ShareYourPlan({
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 320, mass: 0.9 }}
-            className="absolute bottom-0 left-0 right-0 z-20 bg-white border-t rounded-tl-[12px] rounded-tr-[12px] px-[16px] pt-[12px] pb-[36px]"
+            className="absolute bottom-0 left-0 right-0 z-20 bg-white border-t rounded-tl-12 rounded-tr-12 px-4 pt-3 pb-9"
             style={{ borderColor: T.color.border.divider }}
           >
             <button
               type="button"
               onClick={() => selectedId && onContinue?.(selectedId)}
-              className="w-full bg-black text-white font-bold text-[14px] rounded-[12px] py-[18px] cursor-pointer"
+              className="w-full bg-black text-white font-bold text-b14 rounded-12 py-4 cursor-pointer"
             >
               Continue with {selectedId === "duo" ? "Duo" : "Family"}
             </button>
@@ -462,8 +462,8 @@ export default function ShareYourPlan({
         )}
       </AnimatePresence>
 
-      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-[14px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-3.5 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
 
       <CompareSheet open={compareOpen} onClose={() => setCompareOpen(false)} />

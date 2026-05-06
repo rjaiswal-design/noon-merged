@@ -8,7 +8,7 @@ import ellipse3931 from "../assets/ellipse3931.svg";
 import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M12.5 5L7.5 10L12.5 15" stroke={T.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -16,7 +16,7 @@ function BackChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function PlusIcon({ className = "" }: { className?: string }) {
+function PlusIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M12 5v14M5 12h14" stroke={T.color.text.primary} strokeWidth="2.2" strokeLinecap="round" />
@@ -24,7 +24,7 @@ function PlusIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function SparkleSmall({ className = "" }: { className?: string }) {
+function SparkleSmall({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 12 12" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M6 1l1.2 3.8L11 6l-3.8 1.2L6 11 4.8 7.2 1 6l3.8-1.2L6 1Z" fill={T.color.text.muted} />
@@ -34,7 +34,7 @@ function SparkleSmall({ className = "" }: { className?: string }) {
 
 /** Sharp 4-point sparkle for value-prop bullets — matches the Figma's
  *  ✦ glyph used to mark each row in the info card. */
-function SparkleBullet({ className = "" }: { className?: string }) {
+function SparkleBullet({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 16 19" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -45,7 +45,7 @@ function SparkleBullet({ className = "" }: { className?: string }) {
   );
 }
 
-function EyeOffIcon({ className = "" }: { className?: string }) {
+function EyeOffIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -60,7 +60,7 @@ function EyeOffIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function ArrowPathIcon({ className = "" }: { className?: string }) {
+function ArrowPathIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -85,17 +85,17 @@ function HeroLockup({ initial = "A" }: { initial?: string }) {
   // Sizing the wrapper to the exact content puts the intersection at the
   // wrapper's center, which is where the noon One badge anchors below.
   return (
-    <div className="relative h-[140px] w-[160px]">
+    <div className="relative h-[140px] w-40">
       {/* Left avatar — green gradient with initial */}
       <div
-        className="absolute left-0 top-0 size-[96px] rounded-full border-[2px] flex items-center justify-center z-[2]"
+        className="absolute left-0 top-0 size-24 rounded-full border-[2px] flex items-center justify-center z-[2]"
         style={{
           background: `linear-gradient(180deg, ${T.color.brand.grass500} 0%, ${T.color.brand.green} 100%)`,
           borderColor: T.color.brand.greenSoft,
         }}
       >
         <p
-          className="font-bold text-white text-[40px] leading-[48px] tracking-[-0.64px]"
+          className="font-bold text-white text-h40"
           style={{ fontFamily: "Figtree, system-ui, sans-serif" }}
         >
           {initial}
@@ -105,10 +105,10 @@ function HeroLockup({ initial = "A" }: { initial?: string }) {
       {/* Right avatar — white with plus, anchored to the right edge so the
           two circles overlap by 32px in the middle. */}
       <div
-        className="absolute right-0 top-0 size-[96px] rounded-full bg-white flex items-center justify-center z-[1]"
+        className="absolute right-0 top-0 size-24 rounded-full bg-white flex items-center justify-center z-[1]"
         style={{ boxShadow: "0 7px 16px rgba(56,56,56,0.03), 0 30px 30px rgba(56,56,56,0.03), 0 67px 40px rgba(56,56,56,0.02)" }}
       >
-        <PlusIcon className="size-[28px]" />
+        <PlusIcon className="size-7" />
       </div>
 
       {/* noon One badge — composite: colorful frame (background) + "one"
@@ -117,7 +117,7 @@ function HeroLockup({ initial = "A" }: { initial?: string }) {
           its <img> explicit pixel dimensions matching its 68×21.4 viewBox
           (3.18:1) — otherwise the SVG content stretches to fill whatever
           h-auto computes and renders as a tall scribble. */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-[12px] h-[36px] w-[62px] z-[3]">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-3 h-9 w-16 z-[3]">
         <img
           src={oneLogoFrame}
           alt=""
@@ -129,7 +129,7 @@ function HeroLockup({ initial = "A" }: { initial?: string }) {
           alt="noon One"
           width={42}
           height={13}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[13px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-3"
         />
       </div>
     </div>
@@ -140,9 +140,9 @@ function HeroLockup({ initial = "A" }: { initial?: string }) {
  * Two thin lines flanking a small 4-point sparkle, centered. */
 function SparkleDivider() {
   return (
-    <div className="flex items-center gap-[8px] w-full px-[40px] mt-[16px] mb-[8px]">
+    <div className="flex items-center gap-2 w-full px-10 mt-4 mb-2">
       <div className="flex-1 h-px" style={{ backgroundColor: T.color.border.divider }} />
-      <SparkleSmall className="size-[12px]" />
+      <SparkleSmall className="size-3" />
       <div className="flex-1 h-px" style={{ backgroundColor: T.color.border.divider }} />
     </div>
   );
@@ -161,19 +161,19 @@ function InfoRow({
 }) {
   return (
     <div className="flex items-center justify-between w-full">
-      <div className="flex flex-1 gap-[12px] items-start min-w-0">
-        <SparkleBullet className="h-[19px] w-[16px] shrink-0 mt-[1px]" />
-        <div className="flex flex-1 flex-col gap-[4px] min-w-0">
-          <p className="font-noontree font-bold text-[14px] leading-[18px] tracking-[-0.14px]" style={{ color: T.color.text.strong }}>
+      <div className="flex flex-1 gap-3 items-start min-w-0">
+        <SparkleBullet className="h-5 w-4 shrink-0 mt-px" />
+        <div className="flex flex-1 flex-col gap-1 min-w-0">
+          <p className="font-noontree font-bold text-label-3p" style={{ color: T.color.text.strong }}>
             {title}
           </p>
-          <p className="font-noontree font-medium text-[12px] leading-[17px] tracking-[-0.12px]" style={{ color: T.color.text.muted }}>
+          <p className="font-noontree font-medium text-b12" style={{ color: T.color.text.muted }}>
             {body}
           </p>
         </div>
       </div>
       <div
-        className="flex items-center justify-center p-[8px] rounded-full border shrink-0 ml-[8px]"
+        className="flex items-center justify-center p-2 rounded-full border shrink-0 ml-2"
         style={{ backgroundColor: T.color.surface.subtle, borderColor: T.color.border.subtle }}
       >
         {icon}
@@ -189,15 +189,15 @@ function InfoRow({
 function PhoneStepsTrack() {
   return (
     <div
-      className="flex flex-col h-[175px] items-center p-[2px] rounded-[32px] shrink-0 w-[28px] relative"
+      className="flex flex-col h-44 items-center p-0.5 rounded-32 shrink-0 w-7 relative"
       style={{ background: `linear-gradient(180deg, ${T.color.border.divider} 0%, ${T.color.border.muted} 100%)` }}
     >
       {/* Top tab — represents the phone's speaker / receiver area; carries "1" */}
       <NumberedTab label="1" />
 
       {/* Spine + middle "user" tile + bottom tab */}
-      <div className="flex-1 w-full flex flex-col items-center justify-between py-[6px]">
-        <div className="flex flex-col items-center gap-[4px] opacity-90">
+      <div className="flex-1 w-full flex flex-col items-center justify-between py-1.5">
+        <div className="flex flex-col items-center gap-1 opacity-90">
           <ChevronDot />
           <ChevronDot />
         </div>
@@ -205,7 +205,7 @@ function PhoneStepsTrack() {
         {/* Middle marker — small rounded plate carrying "2" */}
         <NumberedPlate label="2" />
 
-        <div className="flex flex-col items-center gap-[4px] opacity-90">
+        <div className="flex flex-col items-center gap-1 opacity-90">
           <ChevronDot />
           <ChevronDot />
         </div>
@@ -220,7 +220,7 @@ function PhoneStepsTrack() {
 function NumberedTab({ label, flipped = false }: { label: string; flipped?: boolean }) {
   return (
     <div
-      className={`flex items-center justify-center px-[2.5px] pt-[5px] pb-[2.5px] border ${flipped ? "rounded-tl-[4px] rounded-tr-[4px] rounded-bl-[40px] rounded-br-[40px]" : "rounded-tl-[40px] rounded-tr-[40px] rounded-bl-[4px] rounded-br-[4px]"}`}
+      className={`flex items-center justify-center px-[2.5px] pt-[5px] pb-[2.5px] border ${flipped ? "rounded-tl-4 rounded-tr-4 rounded-bl-32 rounded-br-32" : "rounded-tl-32 rounded-tr-32 rounded-bl-4 rounded-br-4"}`}
       style={{
         backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.32), rgba(255,255,255,0.32)), linear-gradient(90deg, rgba(255,255,255,0.16), rgba(255,255,255,0.16))",
         borderColor: "rgba(245,245,245,0.5)",
@@ -228,7 +228,7 @@ function NumberedTab({ label, flipped = false }: { label: string; flipped?: bool
       }}
     >
       <span
-        className="text-[10px] leading-[15px] tracking-[-0.2px]"
+        className="text-tiny"
         style={{ fontFamily: "Noontree, sans-serif", fontWeight: 800, color: T.color.text.body }}
       >
         {label}
@@ -240,7 +240,7 @@ function NumberedTab({ label, flipped = false }: { label: string; flipped?: bool
 function NumberedPlate({ label }: { label: string }) {
   return (
     <div
-      className="flex items-center justify-center p-[2.5px] rounded-[4px] border"
+      className="flex items-center justify-center p-0.5 rounded-4 border"
       style={{
         backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.32), rgba(255,255,255,0.32)), linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.12))",
         borderColor: "rgba(245,245,245,0.4)",
@@ -249,7 +249,7 @@ function NumberedPlate({ label }: { label: string }) {
       }}
     >
       <span
-        className="text-[10px] leading-[15px] tracking-[-0.2px]"
+        className="text-tiny"
         style={{ fontFamily: "Noontree, sans-serif", fontWeight: 800, color: T.color.text.body }}
       >
         {label}
@@ -260,7 +260,7 @@ function NumberedPlate({ label }: { label: string }) {
 
 function ChevronDot() {
   return (
-    <svg viewBox="0 0 16 16" className="size-[12px] opacity-80" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 16 16" className="size-3 opacity-80" fill="none" aria-hidden="true">
       <path d="M4 6.5L8 10L12 6.5" stroke="white" strokeOpacity="0.7" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -275,16 +275,16 @@ const STEPS: { title: string; body: string }[] = [
 
 function StepsCard() {
   return (
-    <SmoothCorners radius={16} className="bg-white rounded-[16px] flex w-full px-[12px] py-[16px] gap-[14px]">
+    <SmoothCorners radius={16} className="bg-white rounded-16 flex w-full px-3 py-4 gap-3.5">
       <PhoneStepsTrack />
-      <div className="flex flex-1 flex-col gap-[19px] pb-[8px]">
+      <div className="flex flex-1 flex-col gap-5 pb-2">
         {STEPS.map((step, i) => (
-          <div key={step.title} className="flex flex-col gap-[12px]">
-            <div className="flex flex-col gap-[4px]">
-              <p className="font-noontree font-bold text-[14px] leading-[18px] tracking-[-0.14px]" style={{ color: T.color.text.strong }}>
+          <div key={step.title} className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1">
+              <p className="font-noontree font-bold text-label-3p" style={{ color: T.color.text.strong }}>
                 {step.title}
               </p>
-              <p className="font-noontree font-medium text-[12px] leading-[17px] tracking-[-0.12px]" style={{ color: T.color.text.muted }}>
+              <p className="font-noontree font-medium text-b12" style={{ color: T.color.text.muted }}>
                 {step.body}
               </p>
             </div>
@@ -311,14 +311,14 @@ export default function ShareLanding({
 }) {
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{ backgroundColor: T.color.surface.page }}
     >
       <StatusBar />
 
       {/* Decorative warm gradient blob in upper area */}
       <div
-        className="absolute left-0 right-0 top-[-4px] h-[260px] pointer-events-none overflow-hidden"
+        className="absolute left-0 right-0 -top-1 h-[260px] pointer-events-none overflow-hidden"
         style={{
           backgroundImage:
             "linear-gradient(180deg, rgba(242,226,181,0.32) 0%, rgba(238,170,62,0.55) 12%, rgba(251,251,251,0) 70%)",
@@ -328,7 +328,7 @@ export default function ShareLanding({
           src={ellipse3931}
           alt=""
           aria-hidden="true"
-          className="absolute left-1/2 -translate-x-1/2 top-[-32px] w-[420px] h-[420px] mix-blend-color-dodge opacity-70"
+          className="absolute left-1/2 -translate-x-1/2 -top-8 w-[420px] h-[420px] mix-blend-color-dodge opacity-70"
         />
       </div>
 
@@ -337,10 +337,10 @@ export default function ShareLanding({
         type="button"
         onClick={onBack}
         aria-label="Go back"
-        className="absolute left-[16px] top-[58px] size-[40px] rounded-full bg-white border flex items-center justify-center cursor-pointer z-10 shrink-0"
+        className="absolute left-4 top-14 size-10 rounded-full bg-white border flex items-center justify-center cursor-pointer z-10 shrink-0"
         style={{ borderColor: "#e3e3e3" }}
       >
-        <BackChevron className="size-[20px]" />
+        <BackChevron className="size-5" />
       </button>
 
       {/* Scroll body — pb leaves room for the sticky CTA bar (h-52 button
@@ -349,20 +349,20 @@ export default function ShareLanding({
         <div className="flex flex-col items-center w-[343px] mx-auto">
 
           {/* Hero lockup */}
-          <div className="mt-[12px] flex justify-center">
+          <div className="mt-3 flex justify-center">
             <HeroLockup initial={ownerInitial} />
           </div>
 
           {/* Title + subhead */}
-          <div className="flex flex-col items-center gap-[10px] text-center mt-[8px]">
+          <div className="flex flex-col items-center gap-2.5 text-center mt-2">
             <p
-              className="font-noontree font-bold text-[26px] leading-[30px] tracking-[-0.26px] w-[230px]"
+              className="font-noontree font-bold text-h24 w-[230px]"
               style={{ color: T.color.text.heading }}
             >
               Share noon One with your family
             </p>
             <p
-              className="font-noontree font-medium text-[14px] leading-[20px] tracking-[0.07px]"
+              className="font-noontree font-medium text-b14"
               style={{ color: T.color.text.muted }}
             >
               Same perks. No extra cost.
@@ -374,25 +374,25 @@ export default function ShareLanding({
           {/* Two-row info card */}
           <SmoothCorners
             radius={12}
-            className="bg-white rounded-[12px] flex flex-col gap-[12px] px-[16px] py-[14px] w-full"
+            className="bg-white rounded-12 flex flex-col gap-3 px-4 py-3.5 w-full"
           >
             <InfoRow
               title="Your accounts stay separate"
               body="Orders and payment details stay private."
-              icon={<EyeOffIcon className="size-[20px]" />}
+              icon={<EyeOffIcon className="size-5" />}
             />
             <div className="h-px w-full" style={{ backgroundColor: T.color.border.divider }} />
             <InfoRow
               title="Manage members"
               body="Change your +1 once every 30 days."
-              icon={<ArrowPathIcon className="size-[20px]" />}
+              icon={<ArrowPathIcon className="size-5" />}
             />
           </SmoothCorners>
 
           {/* How it works section */}
-          <div className="flex flex-col gap-[8px] w-full mt-[20px]">
+          <div className="flex flex-col gap-2 w-full mt-5">
             <p
-              className="font-noontree font-bold text-[16px] leading-[20px] tracking-[-0.16px] pl-[4px]"
+              className="font-noontree font-bold text-h16 pl-1"
               style={{ color: T.color.text.heading }}
             >
               How it works
@@ -402,7 +402,7 @@ export default function ShareLanding({
 
           {/* Footer */}
           <p
-            className="font-noontree font-medium text-[12px] leading-[16px] tracking-[-0.12px] text-center w-[319px] mt-[20px]"
+            className="font-noontree font-medium text-b12 text-center w-80 mt-5"
             style={{ color: T.color.text.muted }}
           >
             By participating, you can confirm that you have read and agree to our{" "}
@@ -416,24 +416,24 @@ export default function ShareLanding({
       {/* Sticky bottom CTA — sits above the home indicator with a soft
           divider line so the body content scrolls underneath cleanly. */}
       <div
-        className="absolute bottom-0 left-0 right-0 z-20 bg-white border-t px-[16px] pt-[12px] pb-[36px]"
+        className="absolute bottom-0 left-0 right-0 z-20 bg-white border-t px-4 pt-3 pb-9"
         style={{ borderColor: T.color.border.divider }}
       >
         <button
           type="button"
           onClick={onCheckPlans}
-          className="w-full h-[52px] rounded-[12px] flex items-center justify-center cursor-pointer"
+          className="w-full h-[52px] rounded-12 flex items-center justify-center cursor-pointer"
           style={{ backgroundColor: T.color.text.primary }}
         >
-          <span className="font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px] text-white">
+          <span className="font-noontree font-semibold text-label-3p text-white">
             Check plans
           </span>
         </button>
       </div>
 
       {/* Home indicator */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-[14px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-3.5 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
     </div>
   );

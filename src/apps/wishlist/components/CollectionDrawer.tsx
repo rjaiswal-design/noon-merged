@@ -51,7 +51,7 @@ function CollectionRow({
             <img
               src={thumb}
               alt=""
-              className="h-8 w-8 rounded-[6px] object-cover"
+              className="h-8 w-8 rounded-4 object-cover"
             />
           </div>
           {isAll && (
@@ -59,7 +59,7 @@ function CollectionRow({
               src={allItemsSubtract}
               alt=""
               aria-hidden
-              className="absolute left-[38.9px] top-[2.84px] h-[35.754px] w-[10.667px] -scale-y-100 rotate-180"
+              className="absolute left-10 top-0.5 h-9 w-2.5 -scale-y-100 rotate-180"
             />
           )}
         </div>
@@ -113,7 +113,7 @@ function CreateNewCollectionCard({ onPress }: { onPress?: () => void }) {
         src={ellipseGlow}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute -top-[61.5px] left-[174px] h-[185px] w-[185px]"
+        className="pointer-events-none absolute -top-[61.5px] left-44 h-[185px] w-[185px]"
       />
       {/* Phone frame illustration */}
       <img
@@ -132,7 +132,7 @@ function CreateNewCollectionCard({ onPress }: { onPress?: () => void }) {
 
       {/* Text content */}
       <div className="relative flex w-[203px] flex-col gap-1">
-        <div className="flex items-center gap-[2px]">
+        <div className="flex items-center gap-0.5">
           <span className="whitespace-nowrap text-b16 font-semibold text-text-secondary">
             Create a New Collection
           </span>
@@ -166,7 +166,7 @@ function CreateNewCollectionCard({ onPress }: { onPress?: () => void }) {
           <img
             src={ctaCard}
             alt=""
-            className="h-full w-full rounded-[6.5px] object-cover"
+            className="h-full w-full rounded-8 object-cover"
           />
           <img
             src={ctaCardOverlay}
@@ -188,18 +188,18 @@ function CreateNewCollectionCard({ onPress }: { onPress?: () => void }) {
           }}
         >
           <div
-            className="flex items-center p-[3.182px]"
+            className="flex items-center p-1"
             style={{
               background: "rgba(208,212,221,0.64)",
               borderRadius: "15.273px 15.273px 1.273px 15.273px",
             }}
           >
-            <img src={ctaLike} alt="" className="h-[7.636px] w-[7.636px]" />
+            <img src={ctaLike} alt="" className="h-2 w-2" />
           </div>
         </div>
         {/* Paperplane badge */}
         <div
-          className="absolute flex items-center p-[2.899px]"
+          className="absolute flex items-center p-0.5"
           style={{
             right: -17.05,
             top: 32,
@@ -207,11 +207,11 @@ function CreateNewCollectionCard({ onPress }: { onPress?: () => void }) {
             borderRadius: "13.918px 13.918px 13.918px 1.16px",
           }}
         >
-          <div className="flex h-[8.201px] w-[8.201px] items-center justify-center">
+          <div className="flex h-2 w-2 items-center justify-center">
             <img
               src={ctaPaperplane}
               alt=""
-              className="h-[5.799px] w-[5.799px] -rotate-45"
+              className="h-1.5 w-1.5 -rotate-45"
             />
           </div>
         </div>
@@ -279,7 +279,7 @@ export default function CollectionDrawer({
     <div className="flex w-[375px] flex-col items-center">
       {/* Drag handle */}
       <div className="flex h-6 w-full items-center justify-center">
-        <div className="h-[3px] w-9 rounded-full bg-border-bold" />
+        <div className="h-0.5 w-9 rounded-full bg-border-bold" />
       </div>
 
       {/* Floating card */}
@@ -315,8 +315,8 @@ export default function CollectionDrawer({
       </div>
 
       {/* iOS home indicator */}
-      <div className="relative h-[34px] w-full">
-        <div className="absolute bottom-2 left-1/2 h-[5px] w-[134px] -translate-x-1/2 rounded-full bg-neutral-white" />
+      <div className="relative h-8 w-full">
+        <div className="absolute bottom-2 left-1/2 h-1 w-[134px] -translate-x-1/2 rounded-full bg-neutral-white" />
       </div>
     </div>
   );
