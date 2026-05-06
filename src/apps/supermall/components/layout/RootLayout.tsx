@@ -5,6 +5,7 @@ import { Retune } from 'retune';
 import { WishlistOverlay } from './WishlistOverlay';
 import { BottomNav } from '@ui/BottomNav';
 import type { Tab } from '@ui/BottomNav/BottomNav';
+import { backState } from '@ui';
 import { useCartStore } from '@state/cartStore';
 import { useUIStore } from '@state/uiStore';
 import { useWishlistStore } from '@state/wishlistStore';
@@ -16,6 +17,10 @@ const TAB_ROUTES: Record<Tab, string> = {
   profile: '/supermall/account',
   cart: '/supermall/cart',
 };
+
+// Tab order matches BottomNav's left-to-right rendering. A tap that moves
+// to a tab on the left animates as a back-step; to the right, a forward-step.
+const TAB_ORDER: Tab[] = ['home', 'categories', 'deals', 'profile', 'cart'];
 
 function tabForPath(p: string): Tab | undefined {
   if (p === '/supermall' || p === '/supermall/') return 'home';
@@ -79,7 +84,16 @@ export function RootLayout() {
         <BottomNav
           activeTab={activeTab}
           cartCount={cartCount}
-          onTabChange={(tab) => navigate(TAB_ROUTES[tab])}
+          onTabChange={(tab) => {
+            const current = tabForPath(location.pathname);
+            const goingLeft =
+              current !== undefined &&
+              TAB_ORDER.indexOf(tab) < TAB_ORDER.indexOf(current);
+            navigate(
+              TAB_ROUTES[tab],
+              goingLeft ? { state: backState() } : undefined,
+            );
+          }}
         />
       )}
     </div>

@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AnimatePresence, motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ProductCard, CameraIcon, SearchIcon, StatusBar } from '@ui';
 import type { Variants } from 'framer-motion';
@@ -163,17 +163,25 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
   const navigate = useNavigate();
   const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
 
-  // Continuous, scroll-driven morph values. By binding directly to scroll
-  // progress (no spring/transition), the header's geometry follows the
-  // user's finger 1:1 — eliminating the mid-transition "bounce" that
-  // happened when the previous binary toggle's exit animation ran while
-  // the user was still scrolling.
+  // Continuous, scroll-driven morph values. Bound directly to scroll progress
+  // (no spring) so geometry tracks the user's input 1:1 — no perceived lag on
+  // mouse-wheel or trackpad. The morph range is set wide enough at the page
+  // level (see MORPH_END) that each wheel tick produces a fraction of the
+  // morph rather than a full snap.
   const tileHeight = useTransform(progress, [0, 1], [76, 40]);
   const tileRadius = useTransform(progress, [0, 1], [20, 12]);
   const addressHeight = useTransform(progress, [0, 1], [49, 0]);
-  const addressOpacity = useTransform(progress, [0, 0.6], [1, 0]);
+  // Per-child margin-tops are animated alongside height so the flex column's
+  // spacing collapses with the morph. Compact end-state lands at 6px between
+  // children; the address row collapses entirely to 0.
+  const tilesMarginTop = useTransform(progress, [0, 1], [12, 6]);
+  const addressMarginTop = useTransform(progress, [0, 1], [12, 0]);
+  const searchMarginTop = useTransform(progress, [0, 1], [12, 6]);
+  const addressOpacity = useTransform(progress, [0, 0.55], [1, 0]);
   const fullOpacity = useTransform(progress, [0, 0.45], [1, 0]);
+  const fullScale = useTransform(progress, [0, 0.45], [1, 0.92]);
   const compactOpacity = useTransform(progress, [0.55, 1], [0, 1]);
+  const compactScale = useTransform(progress, [0.55, 1], [0.92, 1]);
 
   return (
     <section
@@ -182,7 +190,7 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
     >
       <StatusBar tone="dark" />
 
-      <div className="home-header__tiles">
+      <motion.div className="home-header__tiles" style={{ marginTop: tilesMarginTop }}>
         {SERVICE_TILES.map((t) => (
           <motion.button
             key={t.aria}
@@ -194,25 +202,30 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
           >
             <motion.span
               className="home-tile__inner-fill"
-              style={{ opacity: fullOpacity }}
+              style={{ opacity: fullOpacity, scale: fullScale }}
               aria-hidden={scrolled}
             >
               {t.full}
             </motion.span>
             <motion.span
               className="home-tile__inner-fill"
-              style={{ opacity: compactOpacity }}
+              style={{ opacity: compactOpacity, scale: compactScale }}
               aria-hidden={!scrolled}
             >
               {t.compact}
             </motion.span>
           </motion.button>
         ))}
-      </div>
+      </motion.div>
 
       <motion.div
         className="home-header__address"
-        style={{ height: addressHeight, opacity: addressOpacity, overflow: 'hidden' }}
+        style={{
+          height: addressHeight,
+          marginTop: addressMarginTop,
+          opacity: addressOpacity,
+          overflow: 'hidden',
+        }}
       >
         <div
           className="home-header__address-info"
@@ -240,10 +253,11 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
         </button>
       </motion.div>
 
-      <div
+      <motion.div
         className="home-header__search"
         role="button"
         tabIndex={0}
+        style={{ marginTop: searchMarginTop }}
         onClick={() => navigate('/supermall/search')}
         onKeyDown={(e) => { if (e.key === 'Enter') navigate('/supermall/search'); }}
       >
@@ -258,16 +272,22 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
         >
           <CameraIcon size={20} color="var(--color-text-tertiary)" />
         </button>
-      </div>
+      </motion.div>
     </section>
   );
 }
 
 /* ─── Shop by category — 2-row horizontal scroll grid ──────────────── */
-function ShopByCategory({ scrollRoot }: { scrollRoot: React.RefObject<HTMLElement | null> }) {
+function ShopByCategory({
+  scrollRoot,
+  className = '',
+}: {
+  scrollRoot: React.RefObject<HTMLElement | null>;
+  className?: string;
+}) {
   const navigate = useNavigate();
   return (
-    <section className="home-section" aria-label="Shop by category">
+    <section className={`home-section ${className}`.trim()} aria-label="Shop by category">
       <h2 className="home-section__title">Shop by category</h2>
       <div className="home-cat__scroll">
         <motion.div
@@ -371,42 +391,57 @@ function OffersForYou({ scrollRoot }: { scrollRoot: React.RefObject<HTMLElement 
 }
 
 /* ─── Page ─────────────────────────────────────────────────────────────── */
-// Scroll range over which the header morphs. Picked so the morph completes
-// before the page content meaningfully scrolls past the header's footprint —
-// short enough that users don't see a half-morphed state during normal scroll.
-const MORPH_START = 16;
-const MORPH_END = 96;
+// The header's morph runs over the scroll distance between scrollTop=0 (header
+// fully expanded) and scrollTop=offsetTop(first content section) (header fully
+// compact + first section snapped to top). Because the second value depends on
+// the rendered header height, we measure it on mount instead of hard-coding.
+const MORPH_START = 8;
+const MORPH_END_FALLBACK = 240;
 
 export default function HomePage() {
   const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const firstSectionRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [addressSheetOpen, setAddressSheetOpen] = useState(false);
-  const progress = useMotionValue(0);
+  const [morphEnd, setMorphEnd] = useState(MORPH_END_FALLBACK);
+
+  const { scrollY } = useScroll({ container: scrollRef });
+  const progress = useTransform(
+    scrollY,
+    [MORPH_START, morphEnd],
+    [0, 1],
+    { clamp: true },
+  );
+
+  useLayoutEffect(() => {
+    const section = firstSectionRef.current;
+    const container = scrollRef.current;
+    if (!section || !container) return;
+    const measure = () => {
+      // Distance from container top → section top, in scroll coordinates.
+      // This is the scrollTop value at which the section will snap to the
+      // top of the viewport, and where we want the morph to complete.
+      const distance =
+        section.getBoundingClientRect().top -
+        container.getBoundingClientRect().top +
+        container.scrollTop;
+      setMorphEnd(Math.max(distance, 120));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(section);
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    let rafId = 0;
-    const tick = () => {
-      rafId = 0;
-      const y = el.scrollTop;
-      const p = Math.min(1, Math.max(0, (y - MORPH_START) / (MORPH_END - MORPH_START)));
-      progress.set(p);
-      // `scrolled` is now only used for ARIA hints + an optional CSS class.
-      // The morph itself is driven entirely by `progress`.
-      setScrolled((prev) => (p > 0.5 ? true : prev && p > 0.4 ? true : false));
-    };
-    const onScroll = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(tick);
-    };
-    el.addEventListener('scroll', onScroll, { passive: true });
-    tick();
-    return () => {
-      el.removeEventListener('scroll', onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
+    // `scrolled` is only used for ARIA + an optional CSS class. The morph
+    // itself is driven entirely by `progress`.
+    const unsub = progress.on('change', (v) => {
+      setScrolled((prev) => (v > 0.5 ? true : prev && v > 0.4 ? true : false));
+    });
+    return unsub;
   }, [progress]);
 
   const handleTileTap = (aria: string) => {
@@ -426,7 +461,9 @@ export default function HomePage() {
           onAddressTap={() => setAddressSheetOpen(true)}
           onTileTap={handleTileTap}
         />
-        <ShopByCategory scrollRoot={scrollRef} />
+        <div ref={firstSectionRef}>
+          <ShopByCategory scrollRoot={scrollRef} className="home-section--snap-start" />
+        </div>
         <RecommendedForYou scrollRoot={scrollRef} />
         <OffersForYou scrollRoot={scrollRef} />
         <div className="home-page__spacer" />
