@@ -5,6 +5,7 @@ import { WishlistOverlay } from './WishlistOverlay';
 import { BottomNav } from '@ui/BottomNav';
 import type { Tab } from '@ui/BottomNav/BottomNav';
 import { useCartStore } from '@state/cartStore';
+import { useUIStore } from '@state/uiStore';
 
 const TAB_ROUTES: Record<Tab, string> = {
   home: '/supermall',
@@ -32,8 +33,9 @@ export function RootLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const cartCount = useCartStore((s) => s.itemCount());
+  const sheetOpen = useUIStore((s) => s.sheetCount > 0);
   const activeTab = tabForPath(location.pathname);
-  const hideNav = shouldHideNav(location.pathname);
+  const hideNav = shouldHideNav(location.pathname) || sheetOpen;
 
   return (
     <div className="root-layout">

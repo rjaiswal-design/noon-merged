@@ -1,6 +1,11 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { cn } from '../lib/cn'
 import { Squircle } from '../components/Squircle'
+import { useSheetOpen } from '@state/uiStore'
+// Co-locate the Tailwind directives + reset with the component so any host
+// (e.g. supermall's Home page) gets them without having to mount the
+// share-address app first.
+import '../index.css'
 
 type ToggleOption = 'address' | 'locker'
 
@@ -58,6 +63,7 @@ type SecondaryView = 'menu' | 'confirm-delete'
 type SecondaryState = { view: SecondaryView; addressId: string } | null
 
 export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
+  useSheetOpen(open)
   const [tab, setTab] = useState<ToggleOption>('address')
   const [query, setQuery] = useState('')
   const [selectedId, setSelectedId] = useState<string>('work')
@@ -180,7 +186,6 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
           <Squircle
             cornerRadius={16}
             cornerSmoothing={0.6}
-            borderColor="#F2F3F7"
             className="bg-neutral-white"
           >
             <div className="flex h-12 items-center gap-3 px-3">
@@ -197,7 +202,6 @@ export function AddressBottomSheet({ open, onClose }: AddressBottomSheetProps) {
           <Squircle
             cornerRadius={16}
             cornerSmoothing={0.6}
-            borderColor="#F2F3F7"
             className="bg-neutral-white"
             onClick={() => undefined}
           >
@@ -289,7 +293,7 @@ function GSTSection({
     <Squircle
       cornerRadius={16}
       cornerSmoothing={0.6}
-      borderColor={enabled ? '#D0E3FF' : '#EAECF0'}
+      borderColor={enabled ? '#D0E3FF' : undefined}
       className="bg-neutral-white"
     >
       <div
@@ -304,10 +308,10 @@ function GSTSection({
           <Squircle
             cornerRadius={8}
             cornerSmoothing={0.6}
-            borderColor={enabled ? '#D0E3FF' : '#EAECF0'}
+            borderColor={enabled ? '#D0E3FF' : undefined}
             className={cn(
               'size-8 flex-shrink-0 transition-colors duration-300',
-              enabled ? 'bg-[#D0E3FF]' : 'bg-neutral-white',
+              enabled ? 'bg-[#D0E3FF]' : 'bg-blue-gray-100',
             )}
           >
             <div className="flex h-full w-full items-center justify-center">
@@ -401,7 +405,7 @@ function GSTSection({
                 <Squircle
                   cornerRadius={10}
                   cornerSmoothing={0.6}
-                  borderColor={gstin.length === 15 ? '#D0E3FF' : '#EAECF0'}
+                  borderColor={gstin.length === 15 ? '#D0E3FF' : undefined}
                   className="bg-neutral-white"
                 >
                   <div className="flex h-11 items-center px-3">
@@ -435,7 +439,6 @@ function GSTSection({
                 <Squircle
                   cornerRadius={10}
                   cornerSmoothing={0.6}
-                  borderColor="#EAECF0"
                   className="bg-neutral-white"
                 >
                   <div className="flex h-11 items-center px-3">
@@ -685,7 +688,7 @@ function AddressCard({ item, isSelected, isDeleting = false, onSelect, onMore }:
     <Squircle
       cornerRadius={16}
       cornerSmoothing={0.6}
-      borderColor={isSelected ? '#D0E3FF' : '#EAECF0'}
+      borderColor={isSelected ? '#D0E3FF' : undefined}
       className="bg-neutral-white"
     >
       <div
@@ -706,8 +709,8 @@ function AddressCard({ item, isSelected, isDeleting = false, onSelect, onMore }:
         <Squircle
           cornerRadius={8}
           cornerSmoothing={0.6}
-          borderColor={isSelected ? '#D0E3FF' : '#EAECF0'}
-          className="size-7 bg-neutral-white"
+          borderColor={isSelected ? '#D0E3FF' : undefined}
+          className={cn('size-7', isSelected ? 'bg-neutral-white' : 'bg-blue-gray-100')}
         >
           <div className="flex h-full w-full items-center justify-center">
             <img

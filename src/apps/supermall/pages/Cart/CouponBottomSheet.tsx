@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useSheetOpen } from '@state/uiStore';
 
 /* ── Coupon definitions ──────────────────────────────────────────────────── */
 export type CouponDef = {
@@ -51,6 +52,7 @@ export function CouponBottomSheet({
   onManualApply,
   manualError,
 }: CouponBottomSheetProps) {
+  useSheetOpen(open);
   const dragStartY = useRef<number | null>(null);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
