@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { NavBar, SearchIcon, HeartOutline, ShareIcon, StatusBar } from "@ui";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ChevronLeft, SearchIcon, HeartOutline, ShareIcon, StatusBar } from "@ui";
 import "./PdpDesign.css";
 
 // — Product images (PNG) —
@@ -70,7 +71,7 @@ const ASSETS = {
   // The original four Figma MCP URLs here expired (asset host returns
   // a placeholder). Pointing them at the local PNGs we already ship.
   productImage: airpods,
-  adThumb:      bestsellerIcon,
+  adThumb:      sponsoredProductSamsung,
   gift:         bestsellerIcon,
 
   airpods,
@@ -128,18 +129,87 @@ const ASSETS = {
   sellerVerified:  sellerVerifiedIcon,
 };
 
-function HeaderButtons() {
+/* Distance over which the hero morph completes. Roughly the height of the
+   product image so by the time the user has scrolled past it the search pill
+   is fully expanded and the image is at its smallest. */
+const MORPH_END = 280;
+
+type PdpTopBarProps = {
+  scrollY: ReturnType<typeof useScroll>['scrollY'];
+};
+
+function PdpTopBar({ scrollY }: PdpTopBarProps) {
   const navigate = useNavigate();
+  const progress = useTransform(scrollY, [0, MORPH_END], [0, 1], { clamp: true });
+
+  // Topbar background fades to opaque white once the user has scrolled — needed
+  // so info cards behind don't read through the gaps between the white pills.
+  const headerBg = useTransform(
+    progress,
+    [0, 0.5, 1],
+    ['rgba(249,249,251,0)', 'rgba(255,255,255,0.85)', 'rgba(255,255,255,1)'],
+  );
+  const headerShadow = useTransform(
+    progress,
+    [0.7, 1],
+    ['0 0 0 rgba(0,0,0,0)', '0 1px 0 rgba(16,22,40,0.06)'],
+  );
+
+  // Search morphs from a 40×40 icon button (Figma state 1) into a 193×40 pill
+  // with a right-aligned "Search" label (Figma state 2 / M-SearchPill). Heart
+  // and share stay 40×40 throughout — they don't collapse.
+  const searchWidth = useTransform(progress, [0, 1], [40, 193]);
+  const searchPadX = useTransform(progress, [0, 1], [8, 12]);
+  // Hold the label hidden while the pill is still mostly icon-shaped, then
+  // fade in once there's actually room for it.
+  const searchTextOpacity = useTransform(progress, [0.6, 1], [0, 1]);
+
   return (
-    <NavBar
-      variant="overlay"
-      onBack={() => { if (window.history.length > 1) navigate(-1); else navigate('/supermall/shop'); }}
-      actions={[
-        { icon: <SearchIcon size={20} />, label: 'Search' },
-        { icon: <HeartOutline size={20} />, label: 'Wishlist' },
-        { icon: <ShareIcon size={20} />, label: 'Share' },
-      ]}
-    />
+    <motion.header
+      className="pdp-topbar"
+      style={{ background: headerBg, boxShadow: headerShadow }}
+    >
+      <StatusBar tone="dark" />
+      <div className="pdp-topbar__row">
+        <button
+          type="button"
+          className="pdp-topbar__pill"
+          aria-label="Go back"
+          onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/supermall/shop'); }}
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <div className="pdp-topbar__cluster">
+          <motion.button
+            type="button"
+            className="pdp-topbar__search"
+            aria-label="Search"
+            onClick={() => navigate('/supermall/search')}
+            style={{ width: searchWidth, paddingLeft: searchPadX, paddingRight: searchPadX }}
+          >
+            <span className="pdp-topbar__search-icon">
+              <SearchIcon size={20} />
+            </span>
+            <motion.span
+              className="pdp-topbar__search-text"
+              style={{ opacity: searchTextOpacity }}
+              aria-hidden
+            >
+              Search
+            </motion.span>
+          </motion.button>
+
+          <button type="button" className="pdp-topbar__pill" aria-label="Wishlist">
+            <HeartOutline size={20} />
+          </button>
+
+          <button type="button" className="pdp-topbar__pill" aria-label="Share">
+            <ShareIcon size={20} />
+          </button>
+        </div>
+      </div>
+    </motion.header>
   );
 }
 
@@ -252,7 +322,7 @@ function ComboCard() {
       <h3 className="text-base leading-5 font-bold text-bluegray-1000">In this combo</h3>
       <div className="mt-3 flex gap-2 overflow-x-auto pb-1 h-[72px] hide-scrollbar">
         {[1, 2].map((item) => (
-          <article key={item} className="min-w-[228px] rounded-2xl border border-bluegray-200 p-1.5">
+          <article key={item} className="min-w-[228px] rounded-2xl border border-solid border-bluegray-200 p-1.5">
             <div className="flex gap-3 items-center">
               <div className="relative h-[60px] w-[53px] overflow-hidden rounded-md bg-bluegray-50">
                 <img src={ASSETS.airpods} alt="" className="h-full w-full object-contain" />
@@ -305,7 +375,7 @@ function DeliveryCard() {
           member
         </span>
       </div>
-      <div className="flex items-center justify-between rounded-xl border border-bluegray-200 px-3 py-2">
+      <div className="flex h-10 items-center justify-between rounded-xl border border-solid border-bluegray-200 px-3 py-2">
         <span className="flex items-center gap-2 text-[13px] leading-[16px] text-bluegray-900">
           <span className="rounded bg-[#FEEE00] px-1.5 py-px text-[10px] font-bold italic leading-[14px] text-bluegray-1000">express</span>
           Get by 7th Sep
@@ -326,7 +396,7 @@ function DeliveryCard() {
           />
         </button>
         {open && (
-          <div className="border-t border-bluegray-200 px-3 py-2 flex flex-col gap-1.5">
+          <div className="border-t border-bluegray-200 px-3 py-2 flex flex-col gap-3">
             <div className="flex items-center justify-between">
               <span className="text-[13px] leading-[18px] text-bluegray-900">
                 Get it <span className="font-semibold">Today</span>
@@ -342,7 +412,7 @@ function DeliveryCard() {
             </div>
           </div>
         )}
-        <div className="flex items-center gap-1 px-3 pb-2 text-[11px] text-bluegray-600">
+        <div className="flex items-center gap-1 px-3 py-2 text-[11px] text-bluegray-600">
           <img src={ASSETS.info} alt="" className="h-3 w-3" />
           Select these options on checkout
         </div>
@@ -408,8 +478,8 @@ function ChipGroup({ options, selectedIndex }: { options: string[]; selectedInde
             key={label}
             className={
               selected
-                ? "flex h-10 items-center justify-center rounded-[10px] border-[1.5px] border-accent-300 bg-white px-3 py-2.5 shadow-[0_8px_12px_rgba(14,14,14,0.07)] text-base font-semibold leading-[18px] text-bluegray-1000"
-                : "flex h-10 items-center justify-center rounded-[10px] border border-bluegray-300 bg-white px-3 py-2.5 text-base italic font-normal leading-[18px] text-bluegray-800"
+                ? "flex h-10 items-center justify-center rounded-[10px] border border-solid border-accent-300 bg-white px-3 py-2.5 shadow-[0_8px_12px_rgba(14,14,14,0.07)] text-base font-semibold leading-[18px] text-bluegray-1000"
+                : "flex h-10 items-center justify-center rounded-[10px] border border-solid border-bluegray-300 bg-white px-3 py-2.5 text-base italic font-normal leading-[18px] text-bluegray-800"
             }
           >
             {label}
@@ -487,10 +557,10 @@ function VariantPicker() {
                   className={
                     "flex w-[88px] flex-col items-center overflow-hidden rounded-[10px] bg-white pb-0.5 " +
                     (selected
-                      ? "border-[1.5px] border-accent-400 shadow-[0_8px_24px_rgba(14,14,14,0.07)]"
+                      ? "border border-solid border-accent-400 shadow-[0_8px_24px_rgba(14,14,14,0.07)]"
                       : oos
                       ? "border border-dashed border-bluegray-300"
-                      : "border border-bluegray-300")
+                      : "border border-solid border-bluegray-300")
                   }
                 >
                   <div className="relative h-[88px] w-full overflow-hidden">
@@ -726,7 +796,7 @@ function SponsoredProducts() {
               role="button"
               tabIndex={0}
               onClick={() => navigate('/supermall/product/galaxy-s25-ultra')}
-              className="flex-shrink-0 w-[216px] flex items-start gap-0 rounded-[10px] border border-bluegray-100 p-1 overflow-hidden cursor-pointer"
+              className="flex-shrink-0 w-[216px] flex items-start gap-0 rounded-[10px] border border-solid border-bluegray-100 p-1 overflow-hidden cursor-pointer"
             >
               <div className="relative h-[71px] w-16 shrink-0 rounded-lg overflow-hidden bg-bluegray-50">
                 <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
@@ -902,10 +972,10 @@ function AdditionalInformation() {
 
 function ExtendedWarranty() {
   return (
-    <section className="mx-3 rounded-2xl bg-white px-3 py-4 flex flex-col gap-3">
+    <section className="mx-3 rounded-2xl bg-white px-3 py-4 flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-center justify-between px-0.5">
-        <h2 className="text-[15px] font-semibold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
+        <h2 className="text-base font-semibold leading-[17px] tracking-[-0.28px] text-bluegray-1000">
           Extended warranty
         </h2>
         <div className="flex items-center gap-1 opacity-80">
@@ -927,7 +997,7 @@ function ExtendedWarranty() {
             </p>
 
             {/* White card body */}
-            <div className="bg-white rounded-xl flex flex-col gap-3 pt-3 overflow-hidden border border-[#f5f5f5]">
+            <div className="bg-white rounded-xl flex flex-col gap-3 pt-3 overflow-hidden border border-solid border-[rgba(245,245,245,0.6)]">
               {/* Name row */}
               <div className="px-3 flex items-center gap-2">
                 <img
@@ -1018,11 +1088,11 @@ function BottomBar() {
   return (
     <div className="sticky bottom-0 z-20 rounded-t-xl bg-white px-3 pt-3 shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">
       <div className="flex h-12 items-center gap-2">
-        <div className="flex h-12 w-12 flex-col items-center justify-center rounded-xl border border-bluegray-300">
+        <div className="flex h-12 w-12 flex-col items-center justify-center rounded-xl border border-solid border-bluegray-300">
           <span className="text-xs text-bluegray-500">QTY</span>
           <span className="text-base font-bold text-bluegray-800">1</span>
         </div>
-        <button className="h-12 flex-1 rounded-[10px] border border-noon-blue text-sm font-bold text-noon-blue">Buy now</button>
+        <button className="h-12 flex-1 rounded-[10px] border border-solid border-noon-blue text-sm font-bold text-noon-blue">Buy now</button>
         <button className="h-12 flex-1 rounded-[10px] bg-noon-blue text-sm font-bold text-white">Add to cart</button>
       </div>
       <div className="flex justify-center pb-2 pt-3">
@@ -1057,7 +1127,7 @@ function FrequentlyBoughtTogether() {
                 )}
               </div>
               <p className="line-clamp-2 text-[11px] leading-[14px] text-bluegray-1000">{item.name}</p>
-              <p className="text-[13px] font-bold leading-4 text-bluegray-1000 line-through">{item.price}</p>
+              <p className="text-[13px] font-bold leading-4 text-bluegray-1000">{item.price}</p>
               <span className="self-start rounded bg-[#FEEE00] px-1 py-px text-[9px] font-bold italic leading-[12px] text-bluegray-1000">express Today</span>
             </div>
             {idx < items.length - 1 && (
@@ -1066,7 +1136,7 @@ function FrequentlyBoughtTogether() {
           </div>
         ))}
       </div>
-      <button type="button" className="mt-1 h-10 w-full rounded-[10px] border border-noon-blue text-[14px] font-semibold text-noon-blue">
+      <button type="button" className="mt-1 h-10 w-full rounded-[10px] border border-solid border-noon-blue text-[14px] font-semibold text-noon-blue">
         Buy all for Đ460
       </button>
     </section>
@@ -1235,11 +1305,28 @@ function ProductCarousel({ title, highlightWord }: { title: string; highlightWor
 }
 
 export default function PdpDesign() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll({ container: scrollRef });
+  const progress = useTransform(scrollY, [0, MORPH_END], [0, 1], { clamp: true });
+
+  // Image scales down toward its center and clamps at 80% (clamp comes from
+  // `progress`, which is itself clamped). Once the cards have scrolled up to
+  // cover the image we fade it to 0 — otherwise the page bg between cards
+  // leaks the still-pinned image through the gaps.
+  const imageScale = useTransform(progress, [0, 1], [1, 0.8]);
+  const imageOpacity = useTransform(scrollY, [MORPH_END, MORPH_END + 180], [1, 0], { clamp: true });
+
   return (
-    <div className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-[#F9F9FB] flex flex-col gap-3 overflow-y-auto">
-      <StatusBar tone="dark" />
-      <section className="relative">
-        <HeaderButtons />
+    <div
+      ref={scrollRef}
+      className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-[#F9F9FB] flex flex-col overflow-y-auto"
+    >
+      <PdpTopBar scrollY={scrollY} />
+
+      <motion.section
+        className="pdp-hero-sticky"
+        style={{ scale: imageScale, opacity: imageOpacity }}
+      >
         <img src={ASSETS.productImage} alt="" className="h-[512px] w-full object-cover" />
         <div className="absolute bottom-5 left-1/2 [transform:translateX(-50%)] flex items-center gap-1.5" aria-hidden="true">
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-1000" />
@@ -1248,26 +1335,30 @@ export default function PdpDesign() {
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-300" />
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-300" />
         </div>
-      </section>
-      <MainInfo />
-      <ComboCard />
-      <AdCard />
-      <DeliveryCard />
-      <FreeGifts />
-      <VariantPicker />
-      <PaymentOffers />
-      <TrustMarkers />
-      <ProductDetails />
-      <AdditionalInformation />
-      <BestsellerBanner />
-      <SellerWidget />
-      <ProductFeatures />
-      <SponsoredProducts />
-      <ExtendedWarranty />
-      <FrequentlyBoughtTogether />
-      <RatingsReviews />
-      <ProductCarousel title="Similar Products" />
-      <ProductCarousel title="Top Products in chargers" highlightWord="chargers" />
+      </motion.section>
+
+      <div className="pdp-content flex flex-col gap-3">
+        <MainInfo />
+        <ComboCard />
+        <AdCard />
+        <DeliveryCard />
+        <FreeGifts />
+        <VariantPicker />
+        <PaymentOffers />
+        <TrustMarkers />
+        <ProductDetails />
+        <AdditionalInformation />
+        <BestsellerBanner />
+        <SellerWidget />
+        <ProductFeatures />
+        <SponsoredProducts />
+        <ExtendedWarranty />
+        <FrequentlyBoughtTogether />
+        <RatingsReviews />
+        <ProductCarousel title="Similar Products" />
+        <ProductCarousel title="Top Products in chargers" highlightWord="chargers" />
+      </div>
+
       <BottomBar />
     </div>
   );
