@@ -1,6 +1,10 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { cn } from '../lib/cn'
 import { Squircle } from '../components/Squircle'
+// Co-locate the share-address Tailwind directives with the component so any
+// host (e.g. supermall's Home page) gets them without having to mount the
+// share-address app first.
+import '../index.css'
 
 type ToggleOption = 'address' | 'locker'
 

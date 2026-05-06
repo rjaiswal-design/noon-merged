@@ -5,6 +5,7 @@ import SmoothCorners from '@ui/SmoothCorners';
 import './index.css';
 
 const HomePage     = lazy(() => import('./pages/Home'));
+const MallStorePage = lazy(() => import('./pages/MallStore'));
 const PLPPage      = lazy(() => import('./pages/PLP'));
 const PDPPage      = lazy(() => import('./pages/PDP'));
 const CartPage     = lazy(() => import('./pages/Cart'));
@@ -19,6 +20,7 @@ export default function App() {
         <Routes>
           <Route element={<RootLayout />}>
             <Route index                      element={<HomePage />} />
+            <Route path="mall"                element={<MallStorePage />} />
             <Route path="search"              element={<SearchPage />} />
             <Route path="shop"                element={<PLPPage />} />
             <Route path="shop/:category"      element={<PLPPage />} />

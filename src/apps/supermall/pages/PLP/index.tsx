@@ -60,6 +60,7 @@ function PLPSkeleton() {
 }
 
 export default function PLPPage() {
+  const navigate = useNavigate();
   const [activeCategoryId, setActiveCategoryId] = useState('all');
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -82,8 +83,6 @@ export default function PLPPage() {
       </PageTransition>
     );
   }
-
-  const navigate = useNavigate();
 
   return (
     <PageTransition>
