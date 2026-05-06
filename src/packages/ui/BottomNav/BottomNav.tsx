@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   HomeDefault, HomeSelected,
   CategoriesDefault, CategoriesSelected,
@@ -25,14 +25,40 @@ const COLOR_ACTIVE = 'var(--color-text-action, #0f61ff)';
 const COLOR_DEFAULT = 'var(--color-text-tertiary, #666d85)';
 
 function TabIcon({ id, active }: { id: Tab; active: boolean }) {
-  const color = active ? COLOR_ACTIVE : COLOR_DEFAULT;
-  switch (id) {
-    case 'home': return active ? <HomeSelected color={color} /> : <HomeDefault color={color} />;
-    case 'categories': return active ? <CategoriesSelected color={color} /> : <CategoriesDefault color={color} />;
-    case 'deals': return active ? <DealsSelected color={color} /> : <DealsDefault color={color} />;
-    case 'profile': return active ? <ProfileSelected color={color} /> : <ProfileDefault color={color} />;
-    case 'cart': return active ? <CartSelected color={color} /> : <CartDefault color={color} />;
-  }
+  const Selected = {
+    home: HomeSelected,
+    categories: CategoriesSelected,
+    deals: DealsSelected,
+    profile: ProfileSelected,
+    cart: CartSelected,
+  }[id];
+  const Default = {
+    home: HomeDefault,
+    categories: CategoriesDefault,
+    deals: DealsDefault,
+    profile: ProfileDefault,
+    cart: CartDefault,
+  }[id];
+  return (
+    <span className="bottom-nav__icon-stack">
+      <motion.span
+        className="bottom-nav__icon-layer"
+        animate={{ opacity: active ? 0 : 1 }}
+        initial={false}
+        transition={iconTransition}
+      >
+        <Default color={COLOR_DEFAULT} />
+      </motion.span>
+      <motion.span
+        className="bottom-nav__icon-layer"
+        animate={{ opacity: active ? 1 : 0 }}
+        initial={false}
+        transition={iconTransition}
+      >
+        <Selected color={COLOR_ACTIVE} />
+      </motion.span>
+    </span>
+  );
 }
 
 const TABS: Tab[] = ['home', 'categories', 'deals', 'profile', 'cart'];
@@ -89,7 +115,7 @@ export function BottomNav({
   const tabs = showDeals ? TABS : TABS.filter((t) => t !== 'deals');
 
   return (
-    <nav className={`bottom-nav${hidden ? 'bottom-nav--hidden' : ''}`}>
+    <nav className={`bottom-nav ${hidden ? 'bottom-nav--hidden' : ''}`}>
       <div className="bottom-nav__bar">
         {tabs.map((id) => {
           const isActive = activeTab === id;
@@ -97,7 +123,7 @@ export function BottomNav({
             <button
               key={id}
               type="button"
-              className={`bottom-nav__tab${isActive ? 'bottom-nav__tab--active' : ''}`}
+              className={`bottom-nav__tab ${isActive ? 'bottom-nav__tab--active' : ''}`}
               onClick={() => onTabChange?.(id)}
               aria-label={TAB_LABELS[id]}
               aria-current={isActive ? 'page' : undefined}
@@ -117,27 +143,16 @@ export function BottomNav({
               <div className="bottom-nav__content">
                 {/* Icon — cross-fade between default/selected */}
                 <div className="bottom-nav__icon">
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.div
-                      key={`${id}-${isActive}`}
-                      initial={{ opacity: 0, scale: 0.85 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.85 }}
-                      transition={iconTransition}
-                      style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                    >
-                      {id === 'cart' && cartCount > 0 ? (
-                        <span className="bottom-nav__badge-wrap">
-                          <TabIcon id={id} active={isActive} />
-                          <span className="bottom-nav__badge">
-                            {cartCount > 99 ? '99+' : cartCount}
-                          </span>
-                        </span>
-                      ) : (
-                        <TabIcon id={id} active={isActive} />
-                      )}
-                    </motion.div>
-                  </AnimatePresence>
+                  {id === 'cart' && cartCount > 0 ? (
+                    <span className="bottom-nav__badge-wrap">
+                      <TabIcon id={id} active={isActive} />
+                      <span className="bottom-nav__badge">
+                        {cartCount > 99 ? '99+' : cartCount}
+                      </span>
+                    </span>
+                  ) : (
+                    <TabIcon id={id} active={isActive} />
+                  )}
                 </div>
 
                 {/* Label — animate color + weight */}
