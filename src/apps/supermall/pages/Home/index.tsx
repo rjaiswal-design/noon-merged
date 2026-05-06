@@ -8,7 +8,7 @@ import { CategoryCard } from '../../components/ui/CategoryCard';
 import { homeCategories as categories } from '../../data/categories';
 import type { Product } from '../../types/product';
 import { useWishlistStore } from '@state/wishlistStore';
-import { AddressBottomSheet } from '../../../share-address/screens/AddressBottomSheet';
+import { useAddressSheetStore } from '@state/addressSheetStore';
 import './Home.css';
 
 /* ─── Product / chip image assets ──────────────────────────────────────── */
@@ -403,7 +403,7 @@ export default function HomePage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const firstSectionRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
-  const [addressSheetOpen, setAddressSheetOpen] = useState(false);
+  const openAddressSheet = useAddressSheetStore((s) => s.openSheet);
   const [morphEnd, setMorphEnd] = useState(MORPH_END_FALLBACK);
 
   const { scrollY } = useScroll({ container: scrollRef });
@@ -458,7 +458,7 @@ export default function HomePage() {
         <HomeHeader
           progress={progress}
           scrolled={scrolled}
-          onAddressTap={() => setAddressSheetOpen(true)}
+          onAddressTap={openAddressSheet}
           onTileTap={handleTileTap}
         />
         <div ref={firstSectionRef}>
@@ -468,10 +468,6 @@ export default function HomePage() {
         <OffersForYou scrollRoot={scrollRef} />
         <div className="home-page__spacer" />
       </div>
-      {/* AddressBottomSheet is always mounted so AnimatePresence can run its
-          exit animation on close — see commit 9d4866e. The internal `open`
-          prop drives the slide-up/slide-down. */}
-      <AddressBottomSheet open={addressSheetOpen} onClose={() => setAddressSheetOpen(false)} />
     </PageTransition>
   );
 }

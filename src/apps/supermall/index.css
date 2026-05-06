@@ -1,3 +1,9 @@
+/* Tailwind utilities only — `base` (preflight) skipped on purpose so it
+   doesn't override supermall's reset/typography. The address bottomsheet
+   composed from share-address relies on these utility classes. */
+@tailwind components;
+@tailwind utilities;
+
 /* ============================================================================
    Supermall — surface-specific layout
    Tokens (colours, spacing, radii, typography, fonts, reset) come from
