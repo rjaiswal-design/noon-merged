@@ -12,3 +12,15 @@
 body {
   background: var(--grey-300);
 }
+
+/* Rating palette — used by the reviews flow's star colour ramps. Sentiment
+   gradient red→green for ratings 1..5 with a neutral loading shade.
+   Imported from the noon-reviews-2-prototype design tokens. */
+:root {
+  --color-rating-1: #d92626;
+  --color-rating-2: #e5641a;
+  --color-rating-3: #de9000;
+  --color-rating-4: #26b57c;
+  --color-rating-5: #0f8857;
+  --color-rating-loading: #d0d4dd;
+}

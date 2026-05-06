@@ -92,6 +92,10 @@ export default {
           500: '#2a8dff',
           600: '#0076ff',
           700: '#0057ff',
+          blue: '#0088ff',
+        },
+        status: {
+          delivered: '#0f8857',
         },
         bluegray: {
           50:   '#fcfcfd',
@@ -167,6 +171,7 @@ export default {
           primary:      'var(--color-border-primary)',
           subtle:       'var(--color-border-subtle)',
           medium:       'var(--color-border-medium)',
+          muted:        '#E1E3EB',
           bold:         'var(--color-border-bold)',
           extrabold:    'var(--color-border-extrabold)',
           action:       'var(--color-border-action)',
