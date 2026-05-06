@@ -10,6 +10,7 @@ import {
   HeartFilled,
   SearchIcon,
   SparkleIcon,
+  backState,
 } from '@ui';
 import type { Product } from '../../types/product';
 import { DIRHAM } from '../../data/mockProducts';
@@ -278,7 +279,7 @@ function MallHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange
   const navigate = useNavigate();
   const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
   const handleTileClick = (variant: string) => {
-    if (variant === 'noon') navigate('/supermall');
+    if (variant === 'noon') navigate('/supermall', { state: backState() });
   };
   return (
     <section

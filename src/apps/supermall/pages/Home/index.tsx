@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ProductCard, CameraIcon, SearchIcon, StatusBar } from '@ui';
+import type { Variants } from 'framer-motion';
 import { CategoryCard } from '../../components/ui/CategoryCard';
 import { homeCategories as categories } from '../../data/categories';
 import type { Product } from '../../types/product';
@@ -31,6 +32,22 @@ const recommendedChips = [
 type ChipLabel = typeof recommendedChips[number]['label'];
 
 const DIRHAM = 'د.إ';
+
+const homeWidgetsContainer: Variants = {
+  initial: {},
+  animate: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.4 },
+  },
+};
+
+const homeWidgetItem: Variants = {
+  initial: { opacity: 0, y: 24 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 const recProducts: Record<ChipLabel, Product[]> = {
   'For you': [
@@ -385,9 +402,21 @@ export default function HomePage() {
           onAddressTap={() => setAddressSheetOpen(true)}
           onTileTap={handleTileTap}
         />
-        <ShopByCategory />
-        <RecommendedForYou />
-        <OffersForYou />
+        <motion.div
+          variants={homeWidgetsContainer}
+          initial="initial"
+          animate="animate"
+        >
+          <motion.div variants={homeWidgetItem}>
+            <ShopByCategory />
+          </motion.div>
+          <motion.div variants={homeWidgetItem}>
+            <RecommendedForYou />
+          </motion.div>
+          <motion.div variants={homeWidgetItem}>
+            <OffersForYou />
+          </motion.div>
+        </motion.div>
         <div className="home-page__spacer" />
       </div>
       {/* AddressBottomSheet is always mounted so AnimatePresence can run its
