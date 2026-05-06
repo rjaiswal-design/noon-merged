@@ -138,10 +138,12 @@ export function ProductCard({ product }: ProductCardProps) {
           <div className="product-card__prices">
             <div className="product-card__price-group">
               <span className="product-card__price">
-                {product.currency}{product.sellingPrice}
+                <img src="/icon-aed.svg" alt="AED" className="dhm-mark" />
+                {product.sellingPrice}
               </span>
               <span className="product-card__original">
-                {product.currency}{product.originalPrice}
+                <img src="/icon-aed.svg" alt="AED" className="dhm-mark" />
+                {product.originalPrice}
               </span>
             </div>
             {discount > 0 && (

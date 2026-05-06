@@ -346,6 +346,10 @@
   white-space: nowrap;
 }
 
+.home-rec__chip--active {
+  background: linear-gradient(180deg, rgba(63, 92, 255, 0.10) 0%, rgba(63, 92, 255, 0.00) 100%);
+}
+
 .home-rec__chip--active .home-rec__chip-label {
   color: var(--brand-blue-600);
   font-weight: var(--font-weight-bold);
