@@ -33,19 +33,22 @@ type ChipLabel = typeof recommendedChips[number]['label'];
 
 const DIRHAM = 'د.إ';
 
-const homeWidgetsContainer: Variants = {
-  initial: {},
-  animate: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.4 },
-  },
-};
-
-const homeWidgetItem: Variants = {
-  initial: { opacity: 0, y: 24 },
+// Each home widget runs its own per-tile stagger triggered as the section
+// scrolls into view. Subtle rise + fade so it reads as content settling in
+// rather than performing a transition.
+const tileItem: Variants = {
+  initial: { opacity: 0, y: 8 },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const tilesContainer: Variants = {
+  initial: {},
+  animate: {
+    transition: { staggerChildren: 0.04 },
   },
 };
 
@@ -261,30 +264,37 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
 }
 
 /* ─── Shop by category — 2-row horizontal scroll grid ──────────────── */
-function ShopByCategory() {
+function ShopByCategory({ scrollRoot }: { scrollRoot: React.RefObject<HTMLElement | null> }) {
   const navigate = useNavigate();
   return (
     <section className="home-section" aria-label="Shop by category">
       <h2 className="home-section__title">Shop by category</h2>
       <div className="home-cat__scroll">
-        <div className="home-cat__grid">
+        <motion.div
+          className="home-cat__grid"
+          variants={tilesContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, root: scrollRoot, margin: '0px 0px -10% 0px' }}
+        >
           {categories.map((c, i) => (
-            <CategoryCard
-              key={`${c.label}-${i}`}
-              image={c.image}
-              label={c.label}
-              sale={c.sale}
-              onClick={() => navigate('/supermall/shop')}
-            />
+            <motion.div key={`${c.label}-${i}`} variants={tileItem}>
+              <CategoryCard
+                image={c.image}
+                label={c.label}
+                sale={c.sale}
+                onClick={() => navigate('/supermall/shop')}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
 /* ─── Recommended for you — uses existing ProductCard component ────────── */
-function RecommendedForYou() {
+function RecommendedForYou({ scrollRoot }: { scrollRoot: React.RefObject<HTMLElement | null> }) {
   const [active, setActive] = useState<ChipLabel>('For you');
   const products = recProducts[active];
 
@@ -314,15 +324,16 @@ function RecommendedForYou() {
         <motion.div
           key={active}
           className="home-rec__rail"
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
+          variants={tilesContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, root: scrollRoot, margin: '0px 0px -10% 0px' }}
+          exit={{ opacity: 0, y: -6, transition: { duration: 0.18 } }}
         >
           {products.map((p) => (
-            <div className="home-rec__card-wrap" key={p.id}>
+            <motion.div className="home-rec__card-wrap" key={p.id} variants={tileItem}>
               <ProductCard product={p} />
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </AnimatePresence>
@@ -333,15 +344,28 @@ function RecommendedForYou() {
 /* ─── Offers for you — SVG carousel ────────────────────────────────────── */
 const offerCards = ['/offer-1.svg', '/offer-2.svg', '/offer-3.svg'];
 
-function OffersForYou() {
+function OffersForYou({ scrollRoot }: { scrollRoot: React.RefObject<HTMLElement | null> }) {
   return (
     <section className="home-section" aria-label="Offers for you">
       <h2 className="home-section__title">Offers for you</h2>
-      <div className="home-offers__rail">
+      <motion.div
+        className="home-offers__rail"
+        variants={tilesContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, root: scrollRoot, margin: '0px 0px -10% 0px' }}
+      >
         {offerCards.map((src, i) => (
-          <img key={i} src={src} alt="" className="home-offers__card-img" draggable={false} />
+          <motion.img
+            key={i}
+            src={src}
+            alt=""
+            className="home-offers__card-img"
+            draggable={false}
+            variants={tileItem}
+          />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -402,21 +426,9 @@ export default function HomePage() {
           onAddressTap={() => setAddressSheetOpen(true)}
           onTileTap={handleTileTap}
         />
-        <motion.div
-          variants={homeWidgetsContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.div variants={homeWidgetItem}>
-            <ShopByCategory />
-          </motion.div>
-          <motion.div variants={homeWidgetItem}>
-            <RecommendedForYou />
-          </motion.div>
-          <motion.div variants={homeWidgetItem}>
-            <OffersForYou />
-          </motion.div>
-        </motion.div>
+        <ShopByCategory scrollRoot={scrollRef} />
+        <RecommendedForYou scrollRoot={scrollRef} />
+        <OffersForYou scrollRoot={scrollRef} />
         <div className="home-page__spacer" />
       </div>
       {/* AddressBottomSheet is always mounted so AnimatePresence can run its
