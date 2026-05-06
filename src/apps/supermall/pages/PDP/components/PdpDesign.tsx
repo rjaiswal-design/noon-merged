@@ -41,6 +41,7 @@ import couponBgIcon      from "./assets/icons/coupon-bg.svg?url";
 import couponPercentIcon from "./assets/icons/coupon-percent.svg?url";
 import bestsellerIcon    from "./assets/icons/bestseller.png?url";
 import bestsellerBadge   from "./assets/icons/bestseller-badge.svg?url";
+import noonOneBadge      from "./assets/icons/noon-one-badge.png?url";
 
 // — Additional Information section icons —
 import aiReturnsIcon  from "./assets/icons/ai-returns.svg?url";
@@ -110,6 +111,7 @@ const ASSETS = {
   couponPercent: couponPercentIcon,
   bestseller:    bestsellerIcon,
   bestsellerBadge,
+  noonOne:       noonOneBadge,
 
   aiReturns:  aiReturnsIcon,
   aiWarranty: aiWarrantyIcon,
@@ -271,7 +273,7 @@ function MainInfo() {
 function ComboCard() {
   return (
     <section className="mx-3 rounded-2xl bg-white px-4 py-3">
-      <h3 className="text-base leading-5 font-semibold text-bluegray-1000">In this combo</h3>
+      <h3 className="text-base leading-5 font-bold text-bluegray-1000">In this combo</h3>
       <div className="mt-3 flex gap-2 overflow-x-auto pb-1 h-[72px] hide-scrollbar">
         {[1, 2].map((item) => (
           <article key={item} className="min-w-[228px] rounded-2xl border border-bluegray-200 p-1.5">
@@ -322,8 +324,8 @@ function DeliveryCard() {
     <section className="mx-3 rounded-2xl bg-white p-3 flex flex-col gap-2">
       <div className="flex items-center justify-between">
         <h3 className="text-[15px] leading-[19px] font-semibold text-bluegray-1000">Delivery Information</h3>
-        <span className="flex items-center gap-1 rounded-full bg-[#fff7ed] px-1.5 py-0.5 text-[11px] font-semibold text-bluegray-900">
-          <span className="rounded bg-[#FEEE00] px-1.5 py-px text-[10px] font-bold italic leading-[14px] text-bluegray-1000">one</span>
+        <span className="flex items-center gap-1 rounded-full bg-transparent px-1.5 py-0.5 text-[11px] font-semibold text-bluegray-900">
+          <img src={ASSETS.noonOne} alt="noon One" className="h-[14px] w-auto" />
           member
         </span>
       </div>
@@ -375,7 +377,7 @@ function DeliveryCard() {
       >
         <span className="flex items-center gap-1.5">
           Get it today for free with{' '}
-          <span className="rounded bg-[#FEEE00] px-1.5 py-px text-[11px] font-bold italic leading-[14px] text-bluegray-1000">one</span>
+          <img src={ASSETS.noonOne} alt="noon One" className="h-[14px] w-auto" />
         </span>
         <img src={ASSETS.chevronRight} alt="" className="h-3 w-3 [filter:invert(1)]" />
       </button>
@@ -430,8 +432,8 @@ function ChipGroup({ options, selectedIndex }: { options: string[]; selectedInde
             key={label}
             className={
               selected
-                ? "flex h-10 items-center justify-center rounded-[10px] border-[1.5px] border-accent-300 bg-white px-3 py-2.5 shadow-[0_8px_12px_rgba(14,14,14,0.07)] text-sm font-semibold leading-[18px] text-bluegray-1000"
-                : "flex h-10 items-center justify-center rounded-[10px] border border-bluegray-300 bg-white px-3 py-2.5 text-sm italic font-normal leading-[18px] text-bluegray-800"
+                ? "flex h-10 items-center justify-center rounded-[10px] border-[1.5px] border-accent-300 bg-white px-3 py-2.5 shadow-[0_8px_12px_rgba(14,14,14,0.07)] text-base font-semibold leading-[18px] text-bluegray-1000"
+                : "flex h-10 items-center justify-center rounded-[10px] border border-bluegray-300 bg-white px-3 py-2.5 text-base italic font-normal leading-[18px] text-bluegray-800"
             }
           >
             {label}
@@ -480,7 +482,7 @@ function VariantPicker() {
             <p className="flex-1 text-[15px] font-semibold leading-[17px] text-bluegray-1000">Versions</p>
             <div className="flex items-center gap-0.5">
               <img src={ASSETS.info} alt="" className="h-4 w-4" />
-              <span className="text-[13px] font-semibold leading-[15px] text-accent-700">Learn more</span>
+              <span className="text-[13px] font-bold leading-[15px] text-accent-700">Learn more</span>
             </div>
           </div>
           <ChipGroup options={["UK 3 PIN", "US 2 PIN"]} selectedIndex={0} />
@@ -489,7 +491,7 @@ function VariantPicker() {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2">
             <p className="flex-1 text-[15px] font-semibold leading-[17px] text-bluegray-1000">Charger Model</p>
-            <span className="text-[13px] font-semibold leading-[15px] text-accent-700">Size Guide</span>
+            <span className="text-[13px] font-bold leading-[15px] text-accent-700">Size Guide</span>
           </div>
           <ChipGroup options={["UK 3 PIN", "US 2 PIN"]} selectedIndex={0} />
         </div>
@@ -497,7 +499,7 @@ function VariantPicker() {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 px-0.5">
             <p className="flex-1 text-[15px] font-semibold leading-[17px] text-bluegray-1000">Colour</p>
-            <span className="text-[13px] font-semibold leading-[15px] text-accent-700">View All</span>
+            <span className="text-[13px] font-bold leading-[15px] text-accent-700">View All</span>
           </div>
           <div className="flex gap-3">
             {COLOUR_VARIANTS.map((v) => {
@@ -1125,9 +1127,9 @@ function RatingsReviews() {
           64 reviews, summarised by noon AI
           <span className="text-purple-700">✦</span>
         </p>
-        <ul className="flex flex-col gap-1">
+        <ul className="flex flex-col gap-1 pl-2">
           {summaryBullets.map((b) => (
-            <li key={b} className="flex items-start gap-1 text-[13px] leading-[18px] text-bluegray-1000">
+            <li key={b} className="flex w-full items-start gap-1 text-[13px] leading-[18px] text-bluegray-1000">
               <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-bluegray-1000" />
               <span>{b}</span>
             </li>
