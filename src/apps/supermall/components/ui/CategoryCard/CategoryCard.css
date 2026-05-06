@@ -35,25 +35,8 @@
   height: 92px;
 }
 
-/* ── SALE badge ──────────────────────────────────────────────────────── */
-.cat-card__sale {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  background: linear-gradient(128deg, #E11111 2%, #FF5959 91%);
-  color: var(--neutral-white);
-  font-size: 11px;
-  line-height: 1;
-  font-weight: var(--font-weight-bold);
-  padding: 3px 4px 2px;
-  border-radius: 0 0 var(--radius-4) var(--radius-4);
-  letter-spacing: 0.2px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  font-family: 'Proxima Nova', var(--font-primary);
-}
+/* SALE badge is baked into the SVG asset (e.g. cat-r1-1.svg) — see
+   CategoryCard.tsx for the rationale. No overlay element here. */
 
 /* ── Label ────────────────────────────────────────────────────────────── */
 .cat-card__label {

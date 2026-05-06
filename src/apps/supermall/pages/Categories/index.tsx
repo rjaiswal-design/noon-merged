@@ -69,7 +69,6 @@ export default function CategoriesPage() {
                 <CategoryCard
                   image={c.image}
                   label={c.label}
-                  sale={c.sale}
                   onClick={() => navigate('/supermall/shop')}
                 />
               </motion.div>
