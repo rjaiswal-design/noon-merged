@@ -1,11 +1,10 @@
 export type HomeCategory = {
   label: string;
   image: string;
-  sale?: boolean;
 };
 
 export const homeCategories: HomeCategory[] = [
-  { label: 'Beauty & Skin Care',  image: '/categories/cat-r1-1.svg', sale: true },
+  { label: 'Beauty & Skin Care',  image: '/categories/cat-r1-1.svg' },
   { label: 'Toys & Games',        image: '/categories/cat-r2-1.svg' },
   { label: 'Grocery & Kitchen',   image: '/categories/cat-r1-2.svg' },
   { label: 'Electronics & Tools', image: '/categories/cat-r2-2.svg' },

@@ -9,7 +9,6 @@ const meta: Meta<typeof CategoryCard> = {
     backgrounds: { default: 'white', values: [{ name: 'white', value: '#ffffff' }] },
   },
   argTypes: {
-    sale: { control: 'boolean' },
     label: { control: 'text' },
     image: { control: 'text' },
   },
@@ -38,7 +37,6 @@ export const HomeAppliances: Story = {
   args: {
     image: '/categories/appliances.png',
     label: 'Home Appliances',
-    sale: true,
   },
 };
 
@@ -70,12 +68,12 @@ export const ShoesAndClothes: Story = {
   },
 };
 
-/* ── With SALE badge ──────────────────────────────────────────────────── */
+/* SALE badge is part of the SVG asset itself (e.g. cat-r1-1.svg). To
+   showcase a tile with the badge, point `image` at one of those assets. */
 export const WithSaleBadge: Story = {
   args: {
-    image: '/categories/appliances.png',
-    label: 'Home Appliances',
-    sale: true,
+    image: '/categories/cat-r1-1.svg',
+    label: 'Beauty & Skin Care',
   },
 };
 
@@ -85,7 +83,7 @@ export const CatGrid: Story = {
     const categories = [
       { image: '/categories/beauty.png',      label: 'Beauty & Skin Care' },
       { image: '/categories/grocery.png',     label: 'Grocery & Kitchen' },
-      { image: '/categories/appliances.png',  label: 'Home Appliances', sale: true },
+      { image: '/categories/appliances.png',  label: 'Home Appliances' },
       { image: '/categories/beauty.png',      label: 'Beauty & Skin Care' },
       { image: '/categories/grocery.png',     label: 'Grocery & Kitchen' },
       { image: '/categories/toys.png',        label: 'Toys & Games' },
@@ -122,7 +120,7 @@ export const CatGrid: Story = {
             gap: '16px',
           }}>
             {categories.map((c, i) => (
-              <CategoryCard key={i} image={c.image} label={c.label} sale={c.sale} />
+              <CategoryCard key={i} image={c.image} label={c.label} />
             ))}
           </div>
         </div>
