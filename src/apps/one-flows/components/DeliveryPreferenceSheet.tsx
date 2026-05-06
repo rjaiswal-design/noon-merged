@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SmoothCorners from "@ui/SmoothCorners";
+import { useSheetOpen } from "@state/uiStore";
 import { T } from '../lib/dsTokens';
 import {
   HANDOFF_LABEL,
@@ -32,6 +33,8 @@ function SheetShell({
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  // Per docs/INTERACTION_DESIGN.md §3 — bottom sheets hide the BottomNav.
+  useSheetOpen(open);
   return (
     <AnimatePresence>
       {open && (

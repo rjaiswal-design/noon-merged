@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SmoothCorners from "@ui/SmoothCorners";
+import { useSheetOpen } from "@state/uiStore";
 
 
 import { T } from '../lib/dsTokens';
@@ -22,6 +23,8 @@ function SheetShell({
   children: React.ReactNode;
   floating?: boolean;
 }) {
+  // Per docs/INTERACTION_DESIGN.md §3 — bottom sheets hide the BottomNav.
+  useSheetOpen(open);
   return (
     <AnimatePresence>
       {open && (
