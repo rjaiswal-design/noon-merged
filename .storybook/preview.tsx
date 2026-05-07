@@ -1,8 +1,17 @@
 import type { Preview } from '@storybook/react-vite';
+import { Retune } from 'retune';
 import '../src/packages/tokens/index.css';
 import './preview.css';
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <>
+        <Story />
+        <Retune />
+      </>
+    ),
+  ],
   parameters: {
     controls: {
       matchers: {

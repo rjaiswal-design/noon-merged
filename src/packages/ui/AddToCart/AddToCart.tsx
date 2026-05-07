@@ -33,7 +33,7 @@ export function AddToCart({ count, onAdd, onRemove }: AddToCartProps) {
           transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
           aria-label="Add to cart"
         >
-          <PlusIcon size={24} color="var(--supermall-800)" />
+          <PlusIcon size={24} color="var(--blue-600)" />
         </motion.button>
       ) : (
         <motion.div

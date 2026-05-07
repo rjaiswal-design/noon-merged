@@ -12,17 +12,18 @@
   height: 36px;
   min-height: 36px;
   background: var(--colour-neutral-white);
-  border: 1.2px solid var(--color-surface-supermall-bold);
+  border: 1.2px solid var(--blue-600);
+  color: var(--blue-600);
   padding: 4px;
   flex-shrink: 0;
 }
 
-/* Active: supermall bar */
+/* Active: action bar */
 .atc--active {
   width: 96px;
   height: 36px;
   min-height: 36px;
-  background: var(--color-surface-supermall-bold);
+  background: var(--brand-blue-600);
   padding: 4px;
   gap: 4px;
   overflow: hidden;
