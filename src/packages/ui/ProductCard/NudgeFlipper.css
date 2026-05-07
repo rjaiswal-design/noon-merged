@@ -1,19 +1,21 @@
 .nudge-flipper {
   position: relative;
   height: 16px;
-  perspective: 400px;
   overflow: hidden;
 }
 
+.nudge-flipper__track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
 .nudge-flipper__item {
-  position: absolute;
-  inset: 0;
+  height: 16px;
   display: flex;
   align-items: center;
   gap: 4px;
-  transform-origin: center;
-  backface-visibility: hidden;
-  will-change: transform, opacity;
+  flex-shrink: 0;
 }
 
 .nudge-flipper__icon {
