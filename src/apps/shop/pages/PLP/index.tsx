@@ -93,7 +93,7 @@ export default function PLPPage() {
             title="Make up products"
             onBack={() => navigate(-1)}
             actions={[
-              { icon: <SearchIcon size={24} color="var(--grey-900)" />, label: 'Search', onClick: () => navigate('/supermall/search') },
+              { icon: <SearchIcon size={24} color="var(--grey-900)" />, label: 'Search', onClick: () => navigate('/search') },
             ]}
           />
           <CategoryTabs

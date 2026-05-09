@@ -175,7 +175,7 @@ function PdpTopBar({ scrollY }: PdpTopBarProps) {
           type="button"
           className="pdp-topbar__pill"
           aria-label="Go back"
-          onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/supermall/shop'); }}
+          onClick={() => { if (window.history.length > 1) navigate(-1); else navigate('/shop'); }}
         >
           <ChevronLeft size={20} />
         </button>
@@ -185,7 +185,7 @@ function PdpTopBar({ scrollY }: PdpTopBarProps) {
             type="button"
             className="pdp-topbar__search"
             aria-label="Search"
-            onClick={() => navigate('/supermall/search')}
+            onClick={() => navigate('/search')}
             style={{ width: searchWidth, paddingLeft: searchPadX, paddingRight: searchPadX }}
           >
             <span className="pdp-topbar__search-icon">
@@ -795,7 +795,7 @@ function SponsoredProducts() {
               key={p.name}
               role="button"
               tabIndex={0}
-              onClick={() => navigate('/supermall/product/galaxy-s25-ultra')}
+              onClick={() => navigate('/product/galaxy-s25-ultra')}
               className="flex-shrink-0 w-[216px] flex items-start gap-0 rounded-[10px] border border-solid border-bluegray-100 p-1 overflow-hidden cursor-pointer"
             >
               <div className="relative h-[71px] w-16 shrink-0 rounded-lg overflow-hidden bg-bluegray-50">

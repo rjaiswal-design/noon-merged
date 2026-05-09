@@ -57,26 +57,26 @@
   width: 67px;
 }
 
-/* Icon */
+/* Icon — Field DS M-Bottomnav spec: 28×28 area, no extra padding */
 .bottom-nav__icon {
-  width: 32px;
-  height: 32px;
+  width: var(--size-28, 28px);
+  height: var(--size-28, 28px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .bottom-nav__icon svg {
-  width: 32px;
-  height: 32px;
+  width: var(--size-28, 28px);
+  height: var(--size-28, 28px);
 }
 
 /* Crossfade stack — Default and Selected icons layered on top of each other */
 .bottom-nav__icon-stack {
   position: relative;
   display: inline-flex;
-  width: 32px;
-  height: 32px;
+  width: var(--size-28, 28px);
+  height: var(--size-28, 28px);
 }
 
 .bottom-nav__icon-layer {

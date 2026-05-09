@@ -279,12 +279,12 @@ function MallHeader({ activeTab, onTabChange }: { activeTab: TopTab; onTabChange
   const navigate = useNavigate();
   const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
   const handleTileClick = (variant: string) => {
-    if (variant === 'noon') navigate('/supermall', { state: backState() });
+    if (variant === 'noon') navigate('/', { state: backState() });
   };
   return (
     <section
       className={`mall-top ${activeTab === 'Electronics' ? 'mall-top--electronics' : ''}`}
-      aria-label="Supermall delivery and search"
+      aria-label="Store delivery and search"
     >
       <div className="mall-services" aria-label="noon services">
         {serviceTiles.map((tile) => (
@@ -389,7 +389,7 @@ function HeroCategories({ activeTab }: { activeTab: TopTab }) {
         {isElectronics
           ? electronicsHeroCategories.map((category) => (
               <Link
-                to="/supermall/shop"
+                to="/shop"
                 className="mall-hero-card mall-hero-card--electronics"
                 key={category.label}
               >
@@ -407,7 +407,7 @@ function HeroCategories({ activeTab }: { activeTab: TopTab }) {
             ))
           : heroCategories.map((category) => (
               <Link
-                to="/supermall/shop"
+                to="/shop"
                 className="mall-hero-card"
                 key={category.label}
               >
@@ -425,7 +425,7 @@ function ProductRail({ title, tone }: { title: string; tone?: 'blue' }) {
     <section className={`mall-rail ${tone === 'blue' ? 'mall-rail--blue' : ''}`}>
       <div className="mall-section-header">
         <h2>{title}</h2>
-        <Link to="/supermall/shop">View all ›</Link>
+        <Link to="/shop">View all ›</Link>
       </div>
       <div className="mall-product-rail">
         {mallProducts.map((product) => (
@@ -470,7 +470,7 @@ function ShopByCategory() {
 
       <div className="mall-section-header">
         <h2>Shop by category</h2>
-        <Link to="/supermall/shop">View all ›</Link>
+        <Link to="/shop">View all ›</Link>
       </div>
 
       {/* Horizontal scrollable filter tabs */}
@@ -508,7 +508,7 @@ function ShopByCategory() {
         >
           {gridItems.map((category) => (
             <Link
-              to="/supermall/shop"
+              to="/shop"
               className="mall-category"
               key={category.label}
             >

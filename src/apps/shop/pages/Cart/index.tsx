@@ -147,7 +147,7 @@ function EmptyState() {
           type="button"
           className="crt-empty-hero__cta"
           whileTap={{ scale: 0.97 }}
-          onClick={() => navigate('/supermall/shop')}
+          onClick={() => navigate('/shop')}
         >
           Start Shopping
         </motion.button>
@@ -672,7 +672,7 @@ function FilledState() {
       <CouponsCard />
       <WishlistCarousel />
 
-      <StickyFooter total={total} onCheckout={() => navigate('/supermall/checkout')} />
+      <StickyFooter total={total} onCheckout={() => navigate('/checkout')} />
     </div>
   );
 }

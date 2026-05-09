@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router-dom';
 import { ProductCard } from './ProductCard';
-import type { Product } from '@/apps/supermall/types/product';
+import type { Product } from '@/apps/shop/types/product';
 
 const sample: Product = {
   id: 'p1',
