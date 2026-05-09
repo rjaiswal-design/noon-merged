@@ -259,8 +259,8 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
         role="button"
         tabIndex={0}
         style={{ marginTop: searchMarginTop }}
-        onClick={() => navigate('/supermall/search')}
-        onKeyDown={(e) => { if (e.key === 'Enter') navigate('/supermall/search'); }}
+        onClick={() => navigate('/search')}
+        onKeyDown={(e) => { if (e.key === 'Enter') navigate('/search'); }}
       >
         <SearchIcon size={20} color="var(--color-text-tertiary)" />
         <span className="home-header__search-text">Search for &ldquo;Maybelline 1014&rdquo;</span>
@@ -269,7 +269,7 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
           type="button"
           className="home-header__search-cam"
           aria-label="Visual search"
-          onClick={(e) => { e.stopPropagation(); navigate('/supermall/search'); }}
+          onClick={(e) => { e.stopPropagation(); navigate('/search'); }}
         >
           <CameraIcon size={20} color="var(--color-text-tertiary)" />
         </button>
@@ -303,7 +303,7 @@ function ShopByCategory({
               <CategoryCard
                 image={c.image}
                 label={c.label}
-                onClick={() => navigate('/supermall/shop')}
+                onClick={() => navigate('/shop')}
               />
             </motion.div>
           ))}
@@ -445,7 +445,7 @@ export default function HomePage() {
     if (aria === 'super mall') {
       // Navigate immediately. The destination owns its own loading skeleton
       // per docs/INTERACTION_DESIGN.md §2 ("one skeleton per screen load").
-      navigate('/supermall/mall');
+      navigate('/mall');
     }
   };
 

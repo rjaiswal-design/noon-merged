@@ -2,11 +2,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
-import type { Product } from '@/apps/supermall/types/product';
+import type { Product } from '@/apps/shop/types/product';
 import { HeartOutline, HeartFilled, StarFilled, PlusIcon } from '../icons';
 import './ProductCardSku.css';
 
-const PDP_ROUTE = '/supermall/product/galaxy-s25-ultra';
+const PDP_ROUTE = '/product/galaxy-s25-ultra';
 
 interface ProductCardSkuProps {
   product: Product;

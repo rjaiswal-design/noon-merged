@@ -6,35 +6,35 @@ import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
 
 function tabForPath(p: string): Tab | undefined {
-  if (p === '/supermall' || p === '/supermall/') return 'home';
-  if (p.startsWith('/supermall/categories')) return 'categories';
-  if (p === '/supermall/account') return 'profile';
-  if (p === '/supermall/cart') return 'cart';
+  if (p === '/' || p === '') return 'home';
+  if (p.startsWith('/categories')) return 'categories';
+  if (p === '/account') return 'profile';
+  if (p === '/cart') return 'cart';
   return undefined;
 }
 
 const TAB_ROUTES: Record<Tab, string> = {
-  home: '/supermall',
-  categories: '/supermall/categories',
-  deals: '/supermall',
-  profile: '/supermall/account',
-  cart: '/supermall/cart',
+  home: '/',
+  categories: '/categories',
+  deals: '/',
+  profile: '/account',
+  cart: '/cart',
 };
 
 // The bottom nav is shared chrome across the whole app. It hides on:
 //   - any PDP (sticky add-to-cart owns the bottom there)
 //   - /share-address (modal-style flow, full-bleed)
-//   - /supermall/account when the embedded noon-one iframe enters
-//     its immersive flow (splash + post-splash). The iframe posts a
-//     message when it transitions; we listen and toggle.
+//   - /account when the embedded noon-one iframe enters its immersive
+//     flow (splash + post-splash). The iframe posts a message when it
+//     transitions; we listen and toggle.
 //   - any time we're rendered inside an iframe (?embedded=1) — the
 //     host page owns the nav in that case.
 function shouldHide(pathname: string, search: string, noonOneShowsNav: boolean): boolean {
   if (new URLSearchParams(search).get('embedded') === '1') return true;
-  if (pathname === '/supermall' || pathname === '/supermall/') return true;
-  if (pathname.startsWith('/supermall/product/')) return true;
+  if (pathname === '/' || pathname === '') return true;
+  if (pathname.startsWith('/product/')) return true;
   if (pathname.startsWith('/share-address')) return true;
-  if (pathname === '/supermall/account' && !noonOneShowsNav) return true;
+  if (pathname === '/account' && !noonOneShowsNav) return true;
   return false;
 }
 
@@ -47,7 +47,7 @@ export function RootShell({ children }: { children: ReactNode }) {
   const [noonOneShowsNav, setNoonOneShowsNav] = useState(true);
 
   useEffect(() => {
-    if (location.pathname !== '/supermall/account') setNoonOneShowsNav(true);
+    if (location.pathname !== '/account') setNoonOneShowsNav(true);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export function RootShell({ children }: { children: ReactNode }) {
   return (
     <>
       {children}
-      {/* BottomNav moved into supermall RootLayout so it lives inside .app-frame */}
+      {/* BottomNav moved into shop RootLayout so it lives inside .app-frame */}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router-dom';
 import { ProductCardSku } from './ProductCardSku';
-import type { Product } from '@/apps/supermall/types/product';
+import type { Product } from '@/apps/shop/types/product';
 
 const sample: Product = {
   id: 'sku-1',

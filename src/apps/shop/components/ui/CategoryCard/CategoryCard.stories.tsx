@@ -3,7 +3,7 @@ import { CategoryCard } from './CategoryCard';
 import { homeCategories } from '../../../data/categories';
 
 const meta: Meta<typeof CategoryCard> = {
-  title: 'Supermall/CategoryCard',
+  title: 'Shop/CategoryCard',
   component: CategoryCard,
   parameters: {
     layout: 'centered',
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof CategoryCard>;
 
 /* ── Single card stories ──────────────────────────────────────────────── */
 /* All assets are the 92×92 composites used by the live home grid
-   (badge baked into the SVG). See src/apps/supermall/data/categories.ts. */
+   (badge baked into the SVG). See src/apps/shop/data/categories.ts. */
 
 export const BeautyAndSkinCare: Story = {
   args: {

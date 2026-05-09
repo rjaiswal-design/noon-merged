@@ -46,7 +46,7 @@ export default function CategoriesPage() {
               type="button"
               className="categories-page__action"
               aria-label="Search"
-              onClick={() => navigate('/supermall/search')}
+              onClick={() => navigate('/search')}
             >
               <SearchIcon size={24} color="var(--grey-900)" />
             </button>
@@ -69,7 +69,7 @@ export default function CategoriesPage() {
                 <CategoryCard
                   image={c.image}
                   label={c.label}
-                  onClick={() => navigate('/supermall/shop')}
+                  onClick={() => navigate('/shop')}
                 />
               </motion.div>
             ))}

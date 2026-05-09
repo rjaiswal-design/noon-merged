@@ -1,10 +1,10 @@
 import './hub.css'
 
 const apps = [
-  { slug: 'supermall',     title: 'Supermall',      tagline: 'Storefront, PLP, PDP, cart, checkout' },
-  { slug: 'share-address', title: 'Share Address',  tagline: 'Address bottom sheet flows' },
-  { slug: 'one-flows',     title: 'noon One',       tagline: 'Membership, sharing, account flows' },
-  { slug: 'wishlist',      title: 'Wishlist',       tagline: 'Collections drawer & multi-select' },
+  { slug: 'shop',          path: '/',              title: 'Shop',           tagline: 'Storefront, PLP, PDP, cart, checkout' },
+  { slug: 'share-address', path: '/share-address', title: 'Share Address',  tagline: 'Address bottom sheet flows' },
+  { slug: 'one-flows',     path: '/one-flows',     title: 'noon One',       tagline: 'Membership, sharing, account flows' },
+  { slug: 'wishlist',      path: '/wishlist',      title: 'Wishlist',       tagline: 'Collections drawer & multi-select' },
 ]
 
 export default function Hub() {
@@ -19,7 +19,7 @@ export default function Hub() {
           <li key={a.slug}>
             <button
               type="button"
-              onClick={() => { window.location.assign(`/${a.slug}`) }}
+              onClick={() => { window.location.assign(a.path) }}
               className="hub__card"
             >
               <h2>{a.title}</h2>

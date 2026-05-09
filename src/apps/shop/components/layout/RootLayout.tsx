@@ -13,11 +13,11 @@ import { useAddressSheetStore } from '@state/addressSheetStore';
 import { AddressBottomSheet } from '@/apps/share-address/screens/AddressBottomSheet';
 
 const TAB_ROUTES: Record<Tab, string> = {
-  home: '/supermall',
-  categories: '/supermall/categories',
-  deals: '/supermall',
-  profile: '/supermall/account',
-  cart: '/supermall/cart',
+  home: '/',
+  categories: '/categories',
+  deals: '/',
+  profile: '/account',
+  cart: '/cart',
 };
 
 // Tab order matches BottomNav's left-to-right rendering. A tap that moves
@@ -25,16 +25,16 @@ const TAB_ROUTES: Record<Tab, string> = {
 const TAB_ORDER: Tab[] = ['home', 'categories', 'deals', 'profile', 'cart'];
 
 function tabForPath(p: string): Tab | undefined {
-  if (p === '/supermall' || p === '/supermall/') return 'home';
-  if (p.startsWith('/supermall/categories')) return 'categories';
-  if (p === '/supermall/account') return 'profile';
-  if (p === '/supermall/cart') return 'cart';
+  if (p === '/' || p === '') return 'home';
+  if (p.startsWith('/categories')) return 'categories';
+  if (p === '/account') return 'profile';
+  if (p === '/cart') return 'cart';
   return undefined;
 }
 
 function shouldHideNav(pathname: string): boolean {
-  if (pathname.startsWith('/supermall/product/')) return true;
-  if (pathname.startsWith('/supermall/checkout')) return true;
+  if (pathname.startsWith('/product/')) return true;
+  if (pathname.startsWith('/checkout')) return true;
   return false;
 }
 
@@ -63,7 +63,7 @@ export function RootLayout() {
 
   // Reset noon-one's nav-hide request when navigating away from /account.
   useEffect(() => {
-    if (location.pathname !== '/supermall/account') setNoonOneHidesNav(false);
+    if (location.pathname !== '/account') setNoonOneHidesNav(false);
   }, [location.pathname]);
 
   const activeTab = tabForPath(location.pathname);
