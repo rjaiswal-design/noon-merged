@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
   ],
   framework: '@storybook/react-vite',
+  staticDirs: ['../public'],
   async viteFinal(viteConfig) {
     viteConfig.resolve = viteConfig.resolve ?? {};
     viteConfig.resolve.alias = {
