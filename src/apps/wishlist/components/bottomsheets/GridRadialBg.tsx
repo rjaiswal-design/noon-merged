@@ -13,12 +13,12 @@ export default function GridRadialBg({ height, cells = 88 }: Props) {
     <>
       <div
         aria-hidden
-        className="absolute -top-px left-1/2 flex w-[356px] -translate-x-1/2 flex-wrap content-center items-center gap-[0.5px] bg-surface-primary"
+        className="absolute -top-px left-1/2 flex w-[356px] -translate-x-1/2 flex-wrap content-center items-center gap-0 bg-surface-primary"
       >
         {Array.from({ length: cells }).map((_, i) => (
           <div
             key={i}
-            className="size-[44px] shrink-0 rounded-[4px] bg-surface-muted"
+            className="size-11 shrink-0 rounded-4 bg-surface-muted"
           />
         ))}
       </div>

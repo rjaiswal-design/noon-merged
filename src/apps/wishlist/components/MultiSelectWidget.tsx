@@ -72,7 +72,7 @@ function MoreActionButton({ onClick }: { onClick?: () => void }) {
       type="button"
       aria-label="More options"
       onClick={onClick}
-      className="relative flex size-10 shrink-0 items-center justify-center rounded-full border-[1.111px] border-border-action bg-surface-action-subtle p-[8.889px]"
+      className="relative flex size-10 shrink-0 items-center justify-center rounded-full border-[1.111px] border-border-action bg-surface-action-subtle p-2"
     >
       <span className="relative block size-5">
         <img
@@ -100,13 +100,13 @@ export default function MultiSelectWidget({
   onCart,
   onShare,
   onMore,
-  className = "",
+  className="",
 }: MultiSelectWidgetProps) {
   const visible = avatars.slice(0, MAX_AVATARS);
   return (
     <div
       className={
-        "inline-flex max-w-[359px] items-center gap-5 rounded-full bg-surface-primary p-2 font-primary " +
+        "inline-flex max-w-[359px] items-center gap-5 rounded-full bg-surface-primary p-2 font-primary" +
         className
       }
       style={{

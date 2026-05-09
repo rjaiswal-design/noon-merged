@@ -1,6 +1,7 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
+import { T } from '../lib/dsTokens';
 import {
   ORDERS,
   MARKETPLACES,
@@ -12,42 +13,12 @@ import {
 /* ================================================================
  *  Field DS tokens
  * ================================================================ */
-const T = {
-  color: {
-    text: {
-      primary: "#0e0e0e",
-      deep: "#101628",
-      heading: "#1d2539",
-      strong: "#343d54",
-      body: "#475067",
-      muted: "#666d85",
-    },
-    surface: {
-      canvas: "#ffffff",
-      page: "#f9f9fb",
-      scrim: "#fcfcfd",
-    },
-    border: {
-      divider: "#eaecf0",
-      subtle: "#f2f3f7",
-      strong: "#d0d4dd",
-    },
-    status: {
-      transit: { fg: "#1d4ed8", bg: "#e8efff", dot: "#3b82f6" },
-      preparing: { fg: "#92400e", bg: "#fef3c7", dot: "#d97706" },
-      delivered: { fg: "#108757", bg: "#e7f6f0", dot: "#108757" },
-      cancelled: { fg: "#991b1b", bg: "#fee2e2", dot: "#dc2626" },
-      returned: { fg: "#475067", bg: "#f2f3f7", dot: "#666d85" },
-    },
-    brand: { green: "#108757" },
-  },
-};
 
 /* ================================================================
  *  Inline icons
  * ================================================================ */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M12.5 5L7.5 10L12.5 15" stroke={T.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -55,7 +26,7 @@ function BackChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function SearchIcon({ className = "" }: { className?: string }) {
+function SearchIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="9" cy="9" r="5.5" stroke={T.color.text.primary} strokeWidth="1.6" />
@@ -64,7 +35,7 @@ function SearchIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function ChevronRight({ className = "", color = T.color.text.muted }: { className?: string; color?: string }) {
+function ChevronRight({ className="", color = T.color.text.muted }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 12 12" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M4.5 3L7.5 6L4.5 9" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -72,7 +43,7 @@ function ChevronRight({ className = "", color = T.color.text.muted }: { classNam
   );
 }
 
-function TruckIcon({ className = "", color }: { className?: string; color?: string }) {
+function TruckIcon({ className="", color }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <rect x="1.5" y="4" width="9" height="7" rx="1" stroke={color} strokeWidth="1.4" />
@@ -83,7 +54,7 @@ function TruckIcon({ className = "", color }: { className?: string; color?: stri
   );
 }
 
-function CheckSmall({ className = "", color }: { className?: string; color?: string }) {
+function CheckSmall({ className="", color }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M3.5 8.5L7 12L13 5" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -91,7 +62,7 @@ function CheckSmall({ className = "", color }: { className?: string; color?: str
   );
 }
 
-function ClockIcon({ className = "", color }: { className?: string; color?: string }) {
+function ClockIcon({ className="", color }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="8" cy="8" r="6" stroke={color} strokeWidth="1.4" />
@@ -100,7 +71,7 @@ function ClockIcon({ className = "", color }: { className?: string; color?: stri
   );
 }
 
-function XSmall({ className = "", color }: { className?: string; color?: string }) {
+function XSmall({ className="", color }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M4.5 4.5L11.5 11.5M11.5 4.5L4.5 11.5" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
@@ -108,7 +79,7 @@ function XSmall({ className = "", color }: { className?: string; color?: string 
   );
 }
 
-function ReturnIcon({ className = "", color }: { className?: string; color?: string }) {
+function ReturnIcon({ className="", color }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M3 6.5h8a3 3 0 0 1 3 3v.5" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -129,7 +100,7 @@ function MarketplaceBadge({ marketplace }: { marketplace: Marketplace }) {
   const meta = MARKETPLACES[marketplace];
   return (
     <span
-      className="inline-flex items-center px-[6px] py-[2px] rounded-[4px] font-noontree font-semibold text-[10px] leading-[12px] tracking-[0.4px] uppercase whitespace-nowrap"
+      className="inline-flex items-center px-1.5 py-0.5 rounded-4 font-noontree font-semibold text-tiny uppercase whitespace-nowrap"
       style={{ backgroundColor: meta.color.bg, color: meta.color.fg }}
     >
       {meta.label}
@@ -160,25 +131,25 @@ function StatusPill({ status, compact = false }: { status: StatusKey; compact?: 
 
   return (
     <div
-      className={`inline-flex items-center gap-[5px] rounded-full ${compact ? "px-[7px] py-[3px]" : "px-[8px] py-[4px]"}`}
+      className={`inline-flex items-center gap-[5px] rounded-full ${compact ? "px-1.5 py-0.5" : "px-2 py-1"}`}
       style={{ backgroundColor: c.bg }}
     >
       {status === "transit" ? (
-        <span className="relative flex size-[8px] items-center justify-center" aria-hidden="true">
+        <span className="relative flex size-2 items-center justify-center" aria-hidden="true">
           <span
             className="absolute inline-flex size-full rounded-full opacity-50 animate-ping"
             style={{ backgroundColor: c.dot }}
           />
           <span
-            className="relative inline-flex size-[7px] rounded-full"
+            className="relative inline-flex size-1.5 rounded-full"
             style={{ backgroundColor: c.dot }}
           />
         </span>
       ) : (
-        <Icon className="size-[12px]" color={c.fg} />
+        <Icon className="size-3" color={c.fg} />
       )}
       <span
-        className="font-noontree font-semibold text-[11px] leading-[12px] tracking-[-0.1px] whitespace-nowrap"
+        className="font-noontree font-semibold text-label-5 whitespace-nowrap"
         style={{ color: c.fg }}
       >
         {STATUS_LABEL[status]}
@@ -202,12 +173,12 @@ function TabPill({ value, onChange }: { value: Tab; onChange: (next: Tab) => voi
   const idx = tabs.findIndex((t) => t.key === value);
   return (
     <div
-      className="relative flex p-[4px] rounded-full w-full h-[40px]"
+      className="relative flex p-1 rounded-full w-full h-10"
       style={{ backgroundColor: T.color.surface.page }}
     >
       <div
         aria-hidden="true"
-        className="absolute top-[4px] bottom-[4px] left-[4px] rounded-full"
+        className="absolute top-1 bottom-1 left-1 rounded-full"
         style={{
           width: `calc(${100 / tabs.length}% - 4px)`,
           backgroundColor: T.color.surface.canvas,
@@ -222,7 +193,7 @@ function TabPill({ value, onChange }: { value: Tab; onChange: (next: Tab) => voi
           key={t.key}
           type="button"
           onClick={() => onChange(t.key)}
-          className="relative flex-1 rounded-full font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px] cursor-pointer transition-colors duration-150 z-10"
+          className="relative flex-1 rounded-full font-noontree font-semibold text-label-3p cursor-pointer transition-colors duration-150 z-10"
           style={{ color: value === t.key ? T.color.text.deep : T.color.text.body }}
         >
           {t.label}
@@ -275,31 +246,31 @@ function ItemStack({ items }: { items: Order["items"] }) {
   if (items.length === 1) {
     return (
       <div
-        className="size-[64px] rounded-[10px] border overflow-hidden flex items-center justify-center shrink-0"
+        className="size-16 rounded-8 border overflow-hidden flex items-center justify-center shrink-0"
         style={{
           background: "linear-gradient(180deg, #ffffff 32%, #eff0f3 143%)",
           borderColor: T.color.border.subtle,
         }}
       >
-        <img src={items[0].image} alt="" aria-hidden="true" className="size-[44px] object-contain" />
+        <img src={items[0].image} alt="" aria-hidden="true" className="size-11 object-contain" />
       </div>
     );
   }
   return (
-    <div className="relative size-[64px] shrink-0">
+    <div className="relative size-16 shrink-0">
       <div
-        className="absolute left-0 top-0 size-[44px] rounded-[8px] border overflow-hidden flex items-center justify-center bg-white z-10"
+        className="absolute left-0 top-0 size-11 rounded-8 border overflow-hidden flex items-center justify-center bg-white z-10"
         style={{
           background: "linear-gradient(180deg, #ffffff 32%, #eff0f3 143%)",
           borderColor: T.color.border.subtle,
           boxShadow: "0 1px 4px rgba(15,15,25,0.04)",
         }}
       >
-        <img src={visible[0].image} alt="" aria-hidden="true" className="size-[30px] object-contain" />
+        <img src={visible[0].image} alt="" aria-hidden="true" className="size-7 object-contain" />
       </div>
       {visible[1] && (
         <div
-          className="absolute right-0 bottom-0 size-[36px] rounded-[8px] border overflow-hidden flex items-center justify-center bg-white"
+          className="absolute right-0 bottom-0 size-9 rounded-8 border overflow-hidden flex items-center justify-center bg-white"
           style={{
             background: "linear-gradient(180deg, #ffffff 32%, #eff0f3 143%)",
             borderColor: T.color.border.subtle,
@@ -307,13 +278,13 @@ function ItemStack({ items }: { items: Order["items"] }) {
         >
           {extra > 0 ? (
             <span
-              className="font-noontree font-bold text-[12px] leading-[14px] tracking-[-0.1px]"
+              className="font-noontree font-bold text-label-4p"
               style={{ color: T.color.text.strong }}
             >
               +{extra + 1}
             </span>
           ) : (
-            <img src={visible[1].image} alt="" aria-hidden="true" className="size-[24px] object-contain" />
+            <img src={visible[1].image} alt="" aria-hidden="true" className="size-6 object-contain" />
           )}
         </div>
       )}
@@ -332,39 +303,39 @@ function ActiveOrderBanner({ order, onTrack }: { order: Order; onTrack: () => vo
   return (
     <SmoothCorners
       radius={16}
-      className="bg-white rounded-[16px] overflow-hidden relative flex flex-col gap-[14px] px-[16px] py-[16px] w-full"
+      className="bg-white rounded-16 overflow-hidden relative flex flex-col gap-3.5 px-4 py-4 w-full"
       style={{ border: `1px solid ${T.color.border.subtle}` }}
     >
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-[8px]">
+        <div className="flex items-center gap-2">
           <StatusPill status={order.status === "preparing" ? "preparing" : "transit"} />
           <MarketplaceBadge marketplace={order.marketplace} />
         </div>
         <span
-          className="font-noontree text-[11px] leading-[14px] tracking-[-0.1px]"
+          className="font-noontree text-b11"
           style={{ color: T.color.text.muted }}
         >
           {order.id}
         </span>
       </div>
 
-      <div className="flex items-center gap-[14px]">
+      <div className="flex items-center gap-3.5">
         <ItemStack items={order.items} />
-        <div className="flex flex-col gap-[2px] min-w-0 flex-1">
+        <div className="flex flex-col gap-0.5 min-w-0 flex-1">
           <p
-            className="font-noontree font-medium text-[12px] leading-[14px] tracking-[-0.1px]"
+            className="font-noontree font-medium text-label-4p"
             style={{ color: T.color.text.body }}
           >
             Arriving
           </p>
           <p
-            className="font-bold text-[20px] leading-[24px] tracking-[-0.2px]"
+            className="font-bold text-h20"
             style={{ color: T.color.text.deep }}
           >
             {order.eta || MARKETPLACES[order.marketplace].etaPromise}
           </p>
           <p
-            className="font-noontree text-[12px] leading-[16px] tracking-[-0.1px] truncate mt-[2px]"
+            className="font-noontree text-b12 truncate mt-0.5"
             style={{ color: T.color.text.muted }}
           >
             {order.items[0].name}
@@ -376,11 +347,11 @@ function ActiveOrderBanner({ order, onTrack }: { order: Order; onTrack: () => vo
       <button
         type="button"
         onClick={onTrack}
-        className="self-stretch h-[44px] rounded-[12px] font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px] text-white cursor-pointer flex items-center justify-center gap-[6px]"
+        className="self-stretch h-11 rounded-12 font-noontree font-semibold text-label-3p text-white cursor-pointer flex items-center justify-center gap-1.5"
         style={{ backgroundColor: T.color.text.primary }}
       >
         Track order
-        <ChevronRight className="size-[12px]" color="#ffffff" />
+        <ChevronRight className="size-3" color="#ffffff" />
       </button>
     </SmoothCorners>
   );
@@ -401,33 +372,33 @@ function OrderCard({ order, onOpen }: { order: Order; onOpen: () => void }) {
     <SmoothCorners
       radius={12}
       onClick={onOpen}
-      className="bg-white rounded-[12px] flex items-center gap-[12px] px-[12px] py-[12px] w-full cursor-pointer"
+      className="bg-white rounded-12 flex items-center gap-3 px-3 py-3 w-full cursor-pointer"
     >
       <ItemStack items={order.items} />
-      <div className="flex flex-col gap-[4px] flex-1 min-w-0">
-        <div className="flex items-center gap-[6px]">
+      <div className="flex flex-col gap-1 flex-1 min-w-0">
+        <div className="flex items-center gap-1.5">
           <MarketplaceBadge marketplace={order.marketplace} />
         </div>
         <p
-          className="font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px] truncate"
+          className="font-noontree font-semibold text-label-3p truncate"
           style={{ color: T.color.text.deep }}
         >
           {order.items[0].name}
           {order.items.length > 1 ? ` · +${order.items.length - 1} more` : ""}
         </p>
-        <div className="flex items-center gap-[6px]">
+        <div className="flex items-center gap-1.5">
           <StatusPill status={order.status} compact />
         </div>
-        <div className="flex items-center gap-[6px] mt-[2px]">
+        <div className="flex items-center gap-1.5 mt-0.5">
           <span
-            className="font-noontree text-[11px] leading-[14px] tracking-[-0.1px]"
+            className="font-noontree text-b11"
             style={{ color: T.color.text.muted }}
           >
             {formatDate(order.date)}
           </span>
-          <span aria-hidden="true" className="size-[3px] rounded-full" style={{ backgroundColor: T.color.border.strong }} />
+          <span aria-hidden="true" className="size-0.5 rounded-full" style={{ backgroundColor: T.color.border.strong }} />
           <span
-            className="font-noontree font-semibold text-[11px] leading-[14px] tracking-[-0.1px]"
+            className="font-noontree font-semibold text-b11"
             style={{ color: T.color.text.strong }}
           >
             AED {order.totalAed}
@@ -437,7 +408,7 @@ function OrderCard({ order, onOpen }: { order: Order; onOpen: () => void }) {
       <button
         type="button"
         onClick={(e) => { e.stopPropagation(); onOpen(); }}
-        className="shrink-0 h-[32px] px-[12px] rounded-full font-noontree font-semibold text-[12px] leading-none cursor-pointer"
+        className="shrink-0 h-8 px-3 rounded-full font-noontree font-semibold text-b12 leading-none cursor-pointer"
         style={{
           backgroundColor: T.color.surface.page,
           color: T.color.text.deep,
@@ -456,15 +427,15 @@ function OrderCard({ order, onOpen }: { order: Order; onOpen: () => void }) {
 
 function BandHeader({ label, count }: { label: string; count: number }) {
   return (
-    <div className="flex items-center gap-[8px] px-[2px]">
+    <div className="flex items-center gap-2 px-0.5">
       <span
-        className="font-noontree font-bold text-[13px] leading-[16px] tracking-[-0.1px]"
+        className="font-noontree font-bold text-label-3"
         style={{ color: T.color.text.heading }}
       >
         {label}
       </span>
       <span
-        className="font-noontree font-medium text-[11px] leading-[14px]"
+        className="font-noontree font-medium text-b11"
         style={{ color: T.color.text.muted }}
       >
         {count} {count === 1 ? "order" : "orders"}
@@ -483,21 +454,21 @@ function EmptyState({ tab }: { tab: Tab }) {
     : tab === "returns" ? { title: "No returns yet", body: "Orders you've returned or replaced will appear here." }
     : { title: "Nothing to see yet", body: "Your orders will show here once you start shopping." };
   return (
-    <div className="flex flex-col items-center justify-center py-[64px] px-[24px] text-center">
+    <div className="flex flex-col items-center justify-center py-16 px-6 text-center">
       <div
-        className="size-[56px] rounded-full flex items-center justify-center mb-[16px]"
+        className="size-14 rounded-full flex items-center justify-center mb-4"
         style={{ backgroundColor: T.color.surface.page }}
       >
-        <TruckIcon className="size-[24px]" color={T.color.text.muted} />
+        <TruckIcon className="size-6" color={T.color.text.muted} />
       </div>
       <p
-        className="font-bold text-[16px] leading-[20px] tracking-[-0.16px]"
+        className="font-bold text-h16"
         style={{ color: T.color.text.deep }}
       >
         {copy.title}
       </p>
       <p
-        className="mt-[6px] font-noontree text-[13px] leading-[18px] tracking-[-0.1px] max-w-[260px]"
+        className="mt-1.5 font-noontree text-label-3 max-w-[260px]"
         style={{ color: T.color.text.muted }}
       >
         {copy.body}
@@ -544,27 +515,27 @@ export default function MyOrdersPage({
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{ backgroundColor: T.color.surface.page }}
     >
       <div
-        className="absolute top-0 left-0 right-0 z-20 bg-white flex flex-col items-stretch pt-[47px] pb-[12px] relative"
+        className="absolute top-0 left-0 right-0 z-20 bg-white flex flex-col items-stretch pt-12 pb-3 relative"
         style={{ boxShadow: "0 2px 5px rgba(26,26,26,0.04)" }}
       >
         <StatusBar />
         <div className="flex items-center justify-between w-[343px] mx-auto">
-          <div className="flex items-center gap-[12px]">
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer"
+              className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer"
               style={{ borderColor: T.color.border.subtle }}
             >
-              <BackChevron className="size-[20px]" />
+              <BackChevron className="size-5" />
             </button>
             <p
-              className="font-bold text-[18px] leading-[24px] tracking-[-0.18px]"
+              className="font-bold text-h18"
               style={{ color: T.color.text.deep }}
             >
               My Orders
@@ -573,23 +544,23 @@ export default function MyOrdersPage({
           <button
             type="button"
             aria-label="Search orders"
-            className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer"
+            className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer"
             style={{ borderColor: T.color.border.subtle }}
           >
-            <SearchIcon className="size-[18px]" />
+            <SearchIcon className="size-4" />
           </button>
         </div>
 
-        <div className="w-[343px] mx-auto mt-[12px]">
+        <div className="w-[343px] mx-auto mt-3">
           <TabPill value={tab} onChange={setTab} />
         </div>
       </div>
 
-      <div className="absolute inset-0 overflow-y-auto pt-[176px] pb-[24px]">
+      <div className="absolute inset-0 overflow-y-auto pt-44 pb-6">
         {filtered.length === 0 ? (
           <EmptyState tab={tab} />
         ) : (
-          <div className="flex flex-col gap-[18px] w-[343px] mx-auto">
+          <div className="flex flex-col gap-4 w-[343px] mx-auto">
             {liveOrder && (
               <ActiveOrderBanner
                 order={liveOrder}
@@ -598,9 +569,9 @@ export default function MyOrdersPage({
             )}
 
             {buckets.map((band) => (
-              <div key={band.key} className="flex flex-col gap-[10px]">
+              <div key={band.key} className="flex flex-col gap-2.5">
                 <BandHeader label={BUCKET_LABEL[band.key]} count={band.orders.length} />
-                <div className="flex flex-col gap-[10px]">
+                <div className="flex flex-col gap-2.5">
                   {band.orders.map((o) => (
                     <OrderCard
                       key={o.id}
@@ -615,8 +586,8 @@ export default function MyOrdersPage({
         )}
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-[14px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-3.5 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
     </div>
   );

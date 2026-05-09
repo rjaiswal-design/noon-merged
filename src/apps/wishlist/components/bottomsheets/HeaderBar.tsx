@@ -15,14 +15,14 @@ export default function HeaderBar({
   items,
 }: HeaderBarProps) {
   return (
-    <div className="flex w-full items-center justify-between rounded-[12px] bg-surface-primary p-3">
+    <div className="flex w-full items-center justify-between rounded-12 bg-surface-primary p-3">
       <div className="flex items-center gap-2">
         {showBack && (
           <button
             type="button"
             onClick={onBack}
             aria-label="Back"
-            className="flex size-6 shrink-0 items-center justify-center rounded-[12px] bg-surface-tertiary p-1"
+            className="flex size-6 shrink-0 items-center justify-center rounded-12 bg-surface-tertiary p-1"
           >
             <span className="flex size-4 items-center justify-center overflow-hidden">
               <img src={chevronLeftIcon} alt="" aria-hidden className="block" />

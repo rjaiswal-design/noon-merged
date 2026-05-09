@@ -16,7 +16,7 @@ function CollectionCardSkeleton({ width }: { width: number }) {
 
 function ProductCardSkeleton() {
   return (
-    <div className="flex w-full flex-col gap-1.5 overflow-hidden rounded-[12px] border-[0.75px] border-surface-tertiary bg-surface-primary p-1.5">
+    <div className="flex w-full flex-col gap-1.5 overflow-hidden rounded-12 border-[0.75px] border-surface-tertiary bg-surface-primary p-1.5">
       <div className={`aspect-[3/4.1] w-full rounded-[10px] ${SHIMMER}`} />
       <div className={`h-3 w-full rounded ${SHIMMER}`} />
       <div className={`h-3 w-3/4 rounded ${SHIMMER}`} />
@@ -31,7 +31,7 @@ export default function WishlistSkeleton() {
   return (
     <div className="absolute inset-0 z-50 flex flex-col bg-surface-primary">
       {/* Status-bar gap */}
-      <div className="h-[47px] shrink-0" />
+      <div className="h-12 shrink-0" />
 
       {/* Header skeleton: back, title, create CTA */}
       <div className="flex h-14 shrink-0 items-center gap-3 px-4 py-2">
@@ -42,7 +42,7 @@ export default function WishlistSkeleton() {
       </div>
 
       {/* Horizontal collections row */}
-      <div className="flex shrink-0 items-end gap-[19px] overflow-hidden px-4 pt-4">
+      <div className="flex shrink-0 items-end gap-5 overflow-hidden px-4 pt-4">
         <CollectionCardSkeleton width={200} />
         <CollectionCardSkeleton width={140} />
         <CollectionCardSkeleton width={120} />
@@ -55,7 +55,7 @@ export default function WishlistSkeleton() {
       </div>
 
       {/* Product grid skeleton */}
-      <div className="grid grid-cols-2 gap-[15px] px-4 pt-3">
+      <div className="grid grid-cols-2 gap-3.5 px-4 pt-3">
         <ProductCardSkeleton />
         <ProductCardSkeleton />
         <ProductCardSkeleton />

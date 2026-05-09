@@ -1,31 +1,12 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 
-/* ---------- Field DS tokens (from Figma 718:29694 var defs) ---------- */
-const T = {
-  color: {
-    text: {
-      primary: "#0e0e0e",
-      deep: "#101628",
-      heading: "#1d2539",
-      strong: "#343d54",
-      body: "#475067",
-      muted: "#666d85",
-      subtle: "#7E859B",
-      highEmphasis: "rgba(2,6,12,0.92)",
-      secondary: "rgba(2,6,12,0.6)",
-    },
-    surface: { canvas: "#ffffff", page: "#f9f9fb", scrim50: "#fcfcfd" },
-    border: { divider: "#eaecf0", subtle: "#f2f3f7" },
-    brand: { blue: "#3866DF", blueDeep: "#0057ff", blueMid: "#0076ff", blueSoft: "#e1efff", blueScrim: "#eff7ff" },
-    verified: "#108757",
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M12.5 5L7.5 10L12.5 15" stroke={T.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -33,7 +14,7 @@ function BackChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function SearchIcon({ className = "" }: { className?: string }) {
+function SearchIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="9" cy="9" r="6" stroke={T.color.text.muted} strokeWidth="1.5" />
@@ -42,7 +23,7 @@ function SearchIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function PlusIcon({ className = "", color = T.color.brand.blueMid }: { className?: string; color?: string }) {
+function PlusIcon({ className="", color = T.color.brand.blueMid }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M10 4v12M4 10h12" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
@@ -50,7 +31,7 @@ function PlusIcon({ className = "", color = T.color.brand.blueMid }: { className
   );
 }
 
-function ChevronRight({ className = "", color = T.color.text.muted }: { className?: string; color?: string }) {
+function ChevronRight({ className="", color = T.color.text.muted }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 14 14" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M5.5 3.5L9 7L5.5 10.5" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -58,7 +39,7 @@ function ChevronRight({ className = "", color = T.color.text.muted }: { classNam
   );
 }
 
-function ShareIcon({ className = "" }: { className?: string }) {
+function ShareIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 18 18" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -78,7 +59,7 @@ function ShareIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function MoreVertical({ className = "" }: { className?: string }) {
+function MoreVertical({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 18 18" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="9" cy="3.5" r="1.4" fill={T.color.text.heading} />
@@ -88,7 +69,7 @@ function MoreVertical({ className = "" }: { className?: string }) {
   );
 }
 
-function BriefcaseIcon({ className = "", color = T.color.brand.blue }: { className?: string; color?: string }) {
+function BriefcaseIcon({ className="", color = T.color.brand.blue }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill={color} aria-hidden="true">
       <path
@@ -98,7 +79,7 @@ function BriefcaseIcon({ className = "", color = T.color.brand.blue }: { classNa
   );
 }
 
-function VerifiedBadge({ className = "" }: { className?: string }) {
+function VerifiedBadge({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="8" cy="8" r="7" fill={T.color.verified} />
@@ -130,26 +111,26 @@ function AddressCard({ address }: { address: Address }) {
   return (
     <SmoothCorners
       radius={12}
-      className="bg-white rounded-[12px] overflow-hidden border"
+      className="bg-white rounded-12 overflow-hidden border"
       style={{ borderColor: T.color.border.subtle }}
     >
       {/* Tinted top strip — icon + label + meta + share + more */}
       <div
-        className="flex items-center px-[12px] py-[10px] gap-[8px]"
+        className="flex items-center px-3 py-2.5 gap-2"
         style={{ backgroundColor: stripBg }}
       >
-        <div className="size-[24px] flex items-center justify-center shrink-0">
-          <BriefcaseIcon className="size-[20px]" color={iconColor} />
+        <div className="size-6 flex items-center justify-center shrink-0">
+          <BriefcaseIcon className="size-5" color={iconColor} />
         </div>
         <p
-          className="font-noontree font-bold text-[14px] leading-[18px] tracking-[-0.14px]"
+          className="font-noontree font-bold text-label-3p"
           style={{ color: T.color.text.deep }}
         >
           {address.label}
         </p>
         {address.meta && (
           <p
-            className="font-noontree font-semibold text-[12px] leading-[14px] tracking-[-0.1px]"
+            className="font-noontree font-semibold text-label-4p"
             style={{ color: address.primary ? T.color.brand.blueDeep : T.color.text.muted }}
           >
             {address.meta}
@@ -159,35 +140,35 @@ function AddressCard({ address }: { address: Address }) {
         <button
           type="button"
           aria-label="Share address"
-          className="size-[24px] flex items-center justify-center cursor-pointer"
+          className="size-6 flex items-center justify-center cursor-pointer"
         >
-          <ShareIcon className="size-[16px]" />
+          <ShareIcon className="size-4" />
         </button>
         <button
           type="button"
           aria-label="More options"
-          className="size-[24px] flex items-center justify-center cursor-pointer"
+          className="size-6 flex items-center justify-center cursor-pointer"
         >
-          <MoreVertical className="size-[16px]" />
+          <MoreVertical className="size-4" />
         </button>
       </div>
 
       {/* Body — street + contact */}
-      <div className="px-[12px] py-[12px] flex flex-col gap-[8px]">
+      <div className="px-3 py-3 flex flex-col gap-2">
         <p
-          className="font-noontree text-[14px] leading-[18px] tracking-[-0.14px]"
+          className="font-noontree text-label-3p"
           style={{ color: T.color.text.deep }}
         >
           {address.street}
         </p>
-        <div className="flex items-center gap-[6px]">
+        <div className="flex items-center gap-1.5">
           <p
-            className="font-noontree text-[13px] leading-[16px] tracking-[-0.12px]"
+            className="font-noontree text-label-3"
             style={{ color: T.color.text.body }}
           >
             {address.contactName}, {address.phone}
           </p>
-          {address.verified && <VerifiedBadge className="size-[14px] shrink-0" />}
+          {address.verified && <VerifiedBadge className="size-3.5 shrink-0" />}
         </div>
       </div>
     </SmoothCorners>
@@ -246,7 +227,7 @@ export default function AddressBookPage({ onBack }: { onBack: () => void }) {
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{ backgroundColor: T.color.surface.page }}
     >
       <StatusBar />
@@ -255,7 +236,7 @@ export default function AddressBookPage({ onBack }: { onBack: () => void }) {
         className="relative h-full overflow-y-auto"
         onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 4)}
       >
-        <div className="w-full pb-[40px]">
+        <div className="w-full pb-10">
           {/* Sticky header */}
           <div
             className={`sticky top-0 z-10 flex items-center gap-[12px] px-[16px] pt-[52px] pb-[12px] w-full transition-[background-color,border-color] duration-150 border-b ${
@@ -267,13 +248,13 @@ export default function AddressBookPage({ onBack }: { onBack: () => void }) {
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="bg-white flex items-center justify-center size-[36px] rounded-full cursor-pointer shrink-0 border"
+              className="bg-white flex items-center justify-center size-9 rounded-full cursor-pointer shrink-0 border"
               style={{ borderColor: T.color.border.subtle }}
             >
-              <BackChevron className="size-[20px]" />
+              <BackChevron className="size-5" />
             </button>
             <p
-              className="flex-1 font-noontree font-bold text-[18px] leading-[24px] tracking-[-0.18px]"
+              className="flex-1 font-noontree font-bold text-h18"
               style={{ color: T.color.text.deep }}
             >
               Address book
@@ -285,15 +266,15 @@ export default function AddressBookPage({ onBack }: { onBack: () => void }) {
               avoids the jumpy "two-bg" pattern. Same primitive as the
               CadenceToggle in PlanSelect: absolute thumb with transform
               translateX and a sharp cubic-bezier transition. */}
-          <div className="px-[16px] mt-[12px]">
+          <div className="px-4 mt-3">
             <div
-              className="relative flex p-[4px] rounded-full w-full h-[44px]"
+              className="relative flex p-1 rounded-full w-full h-11"
               style={{ backgroundColor: T.color.surface.page }}
             >
               {/* Sliding thumb — 50% width minus the 4px track padding. */}
               <div
                 aria-hidden="true"
-                className="absolute top-[4px] bottom-[4px] left-[4px] rounded-full"
+                className="absolute top-1 bottom-1 left-1 rounded-full"
                 style={{
                   width: "calc(50% - 4px)",
                   backgroundColor: T.color.surface.canvas,
@@ -307,7 +288,7 @@ export default function AddressBookPage({ onBack }: { onBack: () => void }) {
               <button
                 type="button"
                 onClick={() => setTab("address")}
-                className="relative flex-1 rounded-full font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px] cursor-pointer transition-colors duration-[180ms] z-10"
+                className="relative flex-1 rounded-full font-noontree font-semibold text-label-3p cursor-pointer transition-colors duration-[180ms] z-10"
                 style={{
                   color: tab === "address" ? T.color.text.deep : T.color.text.body,
                   backgroundColor: "transparent",
@@ -318,7 +299,7 @@ export default function AddressBookPage({ onBack }: { onBack: () => void }) {
               <button
                 type="button"
                 onClick={() => setTab("locker")}
-                className="relative flex-1 rounded-full font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px] cursor-pointer transition-colors duration-[180ms] z-10"
+                className="relative flex-1 rounded-full font-noontree font-semibold text-label-3p cursor-pointer transition-colors duration-[180ms] z-10"
                 style={{
                   color: tab === "locker" ? T.color.text.deep : T.color.text.body,
                   backgroundColor: "transparent",
@@ -330,43 +311,43 @@ export default function AddressBookPage({ onBack }: { onBack: () => void }) {
           </div>
 
           {/* Search bar */}
-          <div className="px-[16px] mt-[12px]">
+          <div className="px-4 mt-3">
             <SmoothCorners
               radius={12}
-              className="bg-white rounded-[12px] flex items-center gap-[10px] px-[14px] py-[12px] border"
+              className="bg-white rounded-12 flex items-center gap-2.5 px-3.5 py-3 border"
               style={{ borderColor: T.color.border.subtle }}
             >
-              <SearchIcon className="size-[18px] shrink-0" />
+              <SearchIcon className="size-4 shrink-0" />
               <input
                 type="text"
                 placeholder="Search for your building, area..."
-                className="flex-1 bg-transparent outline-none font-noontree text-[14px] leading-[18px] tracking-[-0.14px] placeholder:text-[var(--ph)]"
+                className="flex-1 bg-transparent outline-none font-noontree text-label-3p placeholder:text-[var(--ph)]"
                 style={{ color: T.color.text.deep, ["--ph" as string]: T.color.text.muted }}
               />
             </SmoothCorners>
           </div>
 
           {/* Add new Address row */}
-          <div className="px-[16px] mt-[10px]">
+          <div className="px-4 mt-2.5">
             <SmoothCorners
               as="button"
               radius={12}
-              className="bg-white rounded-[12px] flex items-center gap-[10px] px-[14px] py-[12px] w-full text-left border cursor-pointer"
+              className="bg-white rounded-12 flex items-center gap-2.5 px-3.5 py-3 w-full text-left border cursor-pointer"
               style={{ borderColor: T.color.border.subtle }}
             >
-              <PlusIcon className="size-[20px] shrink-0" />
+              <PlusIcon className="size-5 shrink-0" />
               <p
-                className="flex-1 font-noontree font-semibold text-[14px] leading-[18px] tracking-[-0.14px]"
+                className="flex-1 font-noontree font-semibold text-label-3p"
                 style={{ color: T.color.brand.blueMid }}
               >
                 Add new Address
               </p>
-              <ChevronRight className="size-[14px] shrink-0" color={T.color.brand.blueMid} />
+              <ChevronRight className="size-3.5 shrink-0" color={T.color.brand.blueMid} />
             </SmoothCorners>
           </div>
 
           {/* Address list */}
-          <div className="px-[16px] mt-[12px] flex flex-col gap-[10px]">
+          <div className="px-4 mt-3 flex flex-col gap-2.5">
             {ADDRESSES.map((addr) => (
               <AddressCard key={addr.id} address={addr} />
             ))}
@@ -375,8 +356,8 @@ export default function AddressBookPage({ onBack }: { onBack: () => void }) {
       </div>
 
       {/* iPhone home indicator */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-[14px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center py-3.5 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
     </div>
   );

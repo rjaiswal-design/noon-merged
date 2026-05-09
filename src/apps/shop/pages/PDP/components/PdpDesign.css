@@ -1,0 +1,140 @@
+/* Tailwind utilities for the new PDP design.
+   Scoped here (not in supermall's index.css) so we don't pull preflight
+   reset across the rest of the supermall app. The utility classes still
+   beat UA defaults via specificity. */
+@tailwind utilities;
+
+/* Reset just what the PDP design needs out of preflight: <h1>/<h2>/<h3>
+   default to 2em/1.5em bold which fights the design's text-base sizes.
+   Use :where() so this reset has 0 specificity — Tailwind utility
+   classes (font-semibold etc.) on the same element still win. */
+:where(.pdp-redesign h1, .pdp-redesign h2, .pdp-redesign h3, .pdp-redesign h4) {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+:where(.pdp-redesign p) { margin: 0; }
+:where(.pdp-redesign button) {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+:where(.pdp-redesign img) { display: block; max-width: 100%; }
+
+/* Hide scrollbars on horizontal-scroll containers while keeping scroll functional */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* =============================================================================
+   PDP scroll-driven morph — sticky top bar + sticky scaling hero image.
+   The morph is wired in PdpDesign.tsx via framer-motion useScroll/useTransform.
+   ========================================================================== */
+
+/* Sticky top bar holding the status bar + back / search / wishlist / share row.
+   At rest, only the four circular pills are visible over the product image; as
+   the user scrolls, the bg fades to white, the search pill expands to a full
+   input, and the heart + share pills collapse to width 0. */
+.pdp-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Layout matches Figma node 27:6093 / 27:6125: back arrow on the left, then a
+   right-aligned cluster of [search-pill, wishlist, share]. The search pill is
+   the only morphing element — heart + share stay 40×40 the whole time. */
+.pdp-topbar__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  min-height: 56px;
+}
+
+.pdp-topbar__cluster {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.pdp-topbar__pill,
+.pdp-topbar__search {
+  height: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #f2f3f7;
+  border-radius: 9999px;
+  color: #0e0e0e;
+  cursor: pointer;
+}
+
+.pdp-topbar__pill {
+  width: 40px;
+  flex-basis: 40px;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Search pill — width is driven by framer-motion (40 → 193). Padding is also
+   animated (8 → 12) so the icon stays roughly centered at rest. The icon stays
+   at the leading edge; the label takes the remaining space and is right-
+   aligned, matching the M-SearchPill component. */
+.pdp-topbar__search {
+  gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.pdp-topbar__search-icon {
+  flex: 0 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdp-topbar__search-text {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.1px;
+  font-weight: 500;
+  color: #1d2539;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sticky hero — pinned just under the top bar. The framer-motion `scale`
+   shrinks the image around its center as the user scrolls; once it lands at
+   60% it stays there (clamp on the scroll progress), and the info cards
+   scroll over it (z-index 20 vs 10). 100px top = 44px status bar + 56px
+   topbar row. Background stays transparent so the image sits on the page bg. */
+.pdp-hero-sticky {
+  position: sticky;
+  top: 100px;
+  z-index: 10;
+  background: transparent;
+  display: block;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.pdp-content {
+  position: relative;
+  z-index: 20;
+  background: transparent;
+}

@@ -1,122 +1,19 @@
+/* ============================================================================
+   Wishlist — surface-specific styles
+   Tokens, fonts, and global reset come from @tokens/index.css. This file
+   only owns Tailwind directives, the wishlist body background, animation
+   keyframes used by toasts/sheets/scenes, and the wishlist-only utility
+   classes (.corner-smooth-*, .dashed-underline-*).
+   ============================================================================ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Noontree — primary brand typeface */
-@font-face {
-  font-family: "Noontree";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("./assets/fonts/Noontree-Light.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Noontree";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./assets/fonts/Noontree-Regular.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Noontree";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("./assets/fonts/Noontree-Medium.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Noontree";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("./assets/fonts/Noontree-SemiBold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Noontree";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("./assets/fonts/Noontree-Bold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Noontree";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("./assets/fonts/Noontree-ExtraBold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Noontree";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url("./assets/fonts/Noontree-Black.woff2") format("woff2");
-}
-
-/* Field Design System — light mode tokens */
+/* Wishlist-only accent tokens not in Field DS yet. */
 :root {
-  /* Surface */
-  --colour-surface-primary: #ffffff;
-  --colour-surface-secondary: #f9f9fb;
-  --colour-surface-tertiary: #f2f3f7;
-  --colour-surface-primary-inverted: #101628;
-  --colour-surface-action-bold: #0f7eff;
-  --colour-surface-action-subtle: #ebf4ff;
-  --colour-surface-muted: #eaecf0;
-  --colour-surface-overlay-subtle: rgba(0, 0, 0, 0.24);
-  /* Text */
-  --colour-text-primary: #1d2539;
-  --colour-text-secondary: #475067;
-  --colour-text-tertiary: #666d85;
-  --colour-text-muted: #989fb3;
-  --colour-text-action: #0f61ff;
-  --colour-text-success: #0f8857;
-  --colour-text-error: #d92626;
-  --colour-text-on-surface-bold: #ffffff;
-  /* Border */
-  --colour-border-primary: #eaecf0;
-  --colour-border-subtle: #f2f3f7;
-  --colour-border-bold: #d0d4dd;
-  --colour-border-action: #bddbff;
-  /* Alphas */
-  --alpha-dark-4: rgba(0, 0, 0, 0.04);
-  --alpha-light-16: rgba(255, 255, 255, 0.16);
-  /* Accent */
-  --neutral-white: #ffffff;
   --crimson-400: #ff4869;
-  --pink-600: #f7306f;
-  --yellow-600: #f8b200;
-  --emerald-800: #115a56;
-
-  font-family: "Noontree", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-}
-
-html,
-body,
-button,
-input,
-select,
-textarea {
-  font-family: "Noontree", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --yellow-600:  #f8b200;
 }
 
 body {
@@ -124,81 +21,43 @@ body {
 }
 
 @keyframes toast-slide-up {
-  from {
-    transform: translateY(140%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(140%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
 
 @keyframes skeleton-shimmer {
-  from {
-    background-position: 150% 0;
-  }
-  to {
-    background-position: -150% 0;
-  }
+  from { background-position: 150% 0; }
+  to   { background-position: -150% 0; }
 }
 
 @keyframes widget-slide-up {
-  from {
-    transform: translateY(140%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(140%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
 
 @keyframes sheet-slide-up {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
 }
 
 @keyframes backdrop-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes options-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-6px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  from { opacity: 0; transform: translateY(-6px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
 }
 
 @keyframes scene-slide-in-right {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
 }
 
 @keyframes scene-slide-in-left {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
 }
 
 @layer utilities {

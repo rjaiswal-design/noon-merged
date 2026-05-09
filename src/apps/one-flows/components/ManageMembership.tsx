@@ -1,11 +1,11 @@
 import { useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import applePayLogo from "../assets/apple-pay.svg";
 
 /* ---------- Inline icons (kept local so this screen has no extra assets) ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 20 20"
@@ -25,7 +25,7 @@ function BackChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function RightChevron({ className = "" }: { className?: string }) {
+function RightChevron({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 14 14"
@@ -45,7 +45,7 @@ function RightChevron({ className = "" }: { className?: string }) {
   );
 }
 
-function CheckMark({ className = "" }: { className?: string }) {
+function CheckMark({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 16 16"
@@ -65,7 +65,7 @@ function CheckMark({ className = "" }: { className?: string }) {
   );
 }
 
-function CrossX({ className = "" }: { className?: string }) {
+function CrossX({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 14 14"
@@ -91,14 +91,14 @@ function CrossX({ className = "" }: { className?: string }) {
  */
 function ApplePayBadge() {
   return (
-    <div className="size-[32px] flex items-center justify-center shrink-0">
+    <div className="size-8 flex items-center justify-center shrink-0">
       <img
         src={applePayLogo}
         alt="Apple Pay"
         // FA Apple Pay viewBox is 640×512 (≈ 1.25:1). h-[22px] gives natural
         // width ≈ 27.5px, fits comfortably inside the 32×32 container with
         // breathing room and no horizontal squashing.
-        className="block h-[22px] w-auto max-w-none"
+        className="block h-5 w-auto max-w-none"
       />
     </div>
   );
@@ -164,57 +164,57 @@ function CurrentPlanBlock({
   return (
     <SmoothCorners
       radius={16}
-      className="bg-[#f9f9fb] border-[1.5px] border-[#eaecf0] rounded-[16px] w-[343px] flex flex-col gap-[14px] pb-[16px]"
+      className="bg-blue-gray-100 border-[1.5px] border-blue-gray-300 rounded-16 w-[343px] flex flex-col gap-3.5 pb-4"
     >
       {/* Inner white card */}
       <SmoothCorners
         radius={16}
-        className="bg-white rounded-[16px] flex flex-col gap-[6px] items-start pb-[16px] px-[16px] relative w-full"
+        className="bg-white rounded-16 flex flex-col gap-1.5 items-start pb-4 px-4 relative w-full"
       >
         {/* Left tag — "Current plan" or "Upgraded plan" depending on state */}
-        <div className="bg-[#108757] flex h-[24px] items-center justify-center px-[12px] py-[4px] rounded-bl-[12px] rounded-br-[12px] shrink-0">
-          <p className="font-noontree font-semibold text-white text-[12px] leading-none whitespace-nowrap shrink-0">
+        <div className="bg-green-600 flex h-6 items-center justify-center px-3 py-1 rounded-bl-12 rounded-br-12 shrink-0">
+          <p className="font-noontree font-semibold text-white text-b12 leading-none whitespace-nowrap shrink-0">
             {leftTagLabel}
           </p>
         </div>
 
         {/* Right-aligned tag — "Active" or "Free trial for N days" */}
-        <div className="absolute right-0 top-[25.5px] bg-[#f7fffc] border border-[#e7f6f0] flex items-center px-[12px] py-[4px] rounded-bl-[12px] rounded-tl-[12px]">
-          <p className="font-noontree font-semibold text-[12px] leading-[14px] tracking-[-0.12px] whitespace-nowrap">
+        <div className="absolute right-0 top-6 bg-bluegray-50 border border-green-100 flex items-center px-3 py-1 rounded-bl-12 rounded-tl-12">
+          <p className="font-noontree font-semibold text-label-4p whitespace-nowrap">
             {plan.trialDays ? (
               <>
-                <span className="text-[#108757]">Free trial </span>
-                <span className="text-[#475067]">
+                <span className="text-green-600">Free trial </span>
+                <span className="text-blue-gray-700">
                   for {plan.trialDays} days
                 </span>
               </>
             ) : (
-              <span className="text-[#108757]">{rightTag}</span>
+              <span className="text-green-600">{rightTag}</span>
             )}
           </p>
         </div>
 
-        <div className="flex flex-col gap-[14px] w-full">
-          <p className="flex-1 font-bold leading-[20px] text-[#1d2539] text-[16px] tracking-[-0.16px]">
+        <div className="flex flex-col gap-3.5 w-full">
+          <p className="flex-1 font-bold text-blue-gray-900 text-h16">
             {plan.name}
           </p>
 
-          <div className="h-px w-full border-t border-dashed border-[#eaecf0]" />
+          <div className="h-px w-full border-t border-dashed border-blue-gray-300" />
 
-          <div className="flex flex-col gap-[10px]">
+          <div className="flex flex-col gap-2.5">
             {plan.benefits.map((b, i) => (
-              <div key={i} className="flex gap-[10px] items-center">
-                <CheckMark className="size-[16px] shrink-0" />
-                <p className="font-noontree font-medium text-[#475067] text-[12px] leading-[14px] tracking-[-0.12px]">
+              <div key={i} className="flex gap-2.5 items-center">
+                <CheckMark className="size-4 shrink-0" />
+                <p className="font-noontree font-medium text-blue-gray-700 text-label-4p">
                   {b}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="h-px w-full border-t border-dashed border-[#eaecf0]" />
+          <div className="h-px w-full border-t border-dashed border-blue-gray-300" />
 
-          <p className="font-noontree font-semibold text-[#666d85] text-[12px] leading-[14px] tracking-[-0.12px]">
+          <p className="font-noontree font-semibold text-blue-gray-600 text-label-4p">
             Auto renews on xx-xx-xx at AED {plan.price}
           </p>
         </div>
@@ -224,12 +224,12 @@ function CurrentPlanBlock({
       <button
         type="button"
         onClick={onChangePlan}
-        className="flex items-center justify-between px-[16px] w-full cursor-pointer"
+        className="flex items-center justify-between px-4 w-full cursor-pointer"
       >
-        <p className="font-noontree font-medium text-[#101628] text-[14px] leading-[15px] tracking-[-0.12px]">
+        <p className="font-noontree font-medium text-blue-gray-1000 text-b14">
           Change Plan
         </p>
-        <RightChevron className="size-[14px]" />
+        <RightChevron className="size-3.5" />
       </button>
     </SmoothCorners>
   );
@@ -239,19 +239,19 @@ function PaymentMethodBlock({ onChangeMethod }: { onChangeMethod?: () => void })
   return (
     <SmoothCorners
       radius={16}
-      className="bg-[#f9f9fb] border-[1.5px] border-[#eaecf0] rounded-[16px] w-[343px] flex flex-col gap-[14px] pb-[16px]"
+      className="bg-blue-gray-100 border-[1.5px] border-blue-gray-300 rounded-16 w-[343px] flex flex-col gap-3.5 pb-4"
     >
       <SmoothCorners
         radius={16}
-        className="bg-white rounded-[16px] p-[16px] w-full"
+        className="bg-white rounded-16 p-4 w-full"
       >
-        <div className="flex flex-col gap-[6px]">
-          <p className="font-noontree text-[#475067] text-[12px] leading-[14px] tracking-[-0.12px]">
+        <div className="flex flex-col gap-1.5">
+          <p className="font-noontree text-blue-gray-700 text-label-4p">
             Payment Method
           </p>
-          <div className="flex gap-[10px] items-center">
+          <div className="flex gap-2.5 items-center">
             <ApplePayBadge />
-            <p className="font-bold text-[#1d2539] text-[16px] leading-[20px] tracking-[-0.16px]">
+            <p className="font-bold text-blue-gray-900 text-h16">
               Apple Pay
             </p>
           </div>
@@ -261,12 +261,12 @@ function PaymentMethodBlock({ onChangeMethod }: { onChangeMethod?: () => void })
       <button
         type="button"
         onClick={onChangeMethod}
-        className="flex items-center justify-between px-[16px] w-full cursor-pointer"
+        className="flex items-center justify-between px-4 w-full cursor-pointer"
       >
-        <p className="font-noontree font-medium text-[#343d54] text-[14px] leading-[15px] tracking-[-0.12px]">
+        <p className="font-noontree font-medium text-bluegray-800 text-b14">
           Change payment method
         </p>
-        <RightChevron className="size-[14px]" />
+        <RightChevron className="size-3.5" />
       </button>
     </SmoothCorners>
   );
@@ -278,20 +278,20 @@ function CancelMembershipBlock({ onCancel }: { onCancel?: () => void }) {
       as="button"
       radius={16}
       onClick={onCancel}
-      className="bg-white border border-[#f5f5f5] rounded-[16px] w-[343px] flex items-start gap-[8px] p-[12px] text-left cursor-pointer"
+      className="bg-white border border-blue-gray-200 rounded-16 w-[343px] flex items-start gap-2 p-3 text-left cursor-pointer"
     >
-      <div className="flex items-center justify-center size-[20px] shrink-0 mt-[1px]">
-        <CrossX className="size-[14px]" />
+      <div className="flex items-center justify-center size-5 shrink-0 mt-px">
+        <CrossX className="size-3.5" />
       </div>
-      <div className="flex flex-col gap-[4px] flex-1">
-        <p className="font-noontree font-semibold text-[#343d54] text-[14px] leading-[18px] tracking-[-0.14px]">
+      <div className="flex flex-col gap-1 flex-1">
+        <p className="font-noontree font-semibold text-bluegray-800 text-label-3p">
           Cancel membership
         </p>
-        <p className="font-noontree font-medium text-[#666d85] text-[12px] leading-[14px] tracking-[-0.12px]">
+        <p className="font-noontree font-medium text-blue-gray-600 text-label-4p">
           We will notify you 2 days before your trial ends
         </p>
       </div>
-      <RightChevron className="size-[14px] mt-[4px]" />
+      <RightChevron className="size-3.5 mt-1" />
     </SmoothCorners>
   );
 }
@@ -319,7 +319,7 @@ export default function ManageMembership({
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{
         backgroundImage: "linear-gradient(180deg, #ffffff 31%, #f3f3f5 100%)",
       }}
@@ -337,14 +337,14 @@ export default function ManageMembership({
         className="relative h-full overflow-y-auto"
         onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 4)}
       >
-        <div className="w-full pb-[26px]">
+        <div className="w-full pb-6">
           {/* Sticky header — sits below the status bar, transparent at rest,
               fills with the page colour + bottom hairline once content
               starts scrolling under it. */}
           <div
             className={`sticky top-0 z-10 flex items-center gap-[8px] px-[18px] pt-[52px] pb-[12px] w-full transition-[background-color,border-color] duration-150 border-b ${
               scrolled
-                ? "bg-white border-[#eaecf0]"
+                ? "bg-white border-blue-gray-300"
                 : "bg-transparent border-transparent"
             }`}
           >
@@ -352,18 +352,18 @@ export default function ManageMembership({
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="bg-white border border-[#f2f3f7] flex items-center justify-center p-[8px] rounded-[18px] cursor-pointer shrink-0"
+              className="bg-white border border-blue-gray-200 flex items-center justify-center p-2 rounded-16 cursor-pointer shrink-0"
             >
-              <BackChevron className="size-[20px]" />
+              <BackChevron className="size-5" />
             </button>
-            <p className="flex-1 font-bold text-[#0e0e0e] text-[16px] leading-[20px] tracking-[-0.16px]">
+            <p className="flex-1 font-bold text-[#0e0e0e] text-h16">
               Manage Membership
             </p>
           </div>
 
           {/* Cards stack — tightened from mt-[42px] to mt-[16px] so the gap
               under the header isn't gaping. */}
-          <div className="flex flex-col items-center gap-[24px] mt-[16px]">
+          <div className="flex flex-col items-center gap-6 mt-4">
             <CurrentPlanBlock
               planId={planId}
               isUpgraded={isUpgraded}
@@ -376,8 +376,8 @@ export default function ManageMembership({
       </div>
 
       {/* iPhone home indicator */}
-      <div className="absolute bottom-0 left-0 right-0 flex justify-center py-[14px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center py-3.5 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
     </div>
   );

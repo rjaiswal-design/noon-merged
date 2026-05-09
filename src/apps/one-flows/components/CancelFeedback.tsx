@@ -1,11 +1,11 @@
 import { Fragment, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 
 /* ---------- Inline icons ---------- */
 
-function BackChevron({ className = "" }: { className?: string }) {
+function BackChevron({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 20 20"
@@ -28,7 +28,7 @@ function BackChevron({ className = "" }: { className?: string }) {
 /** Dirham (AED) glyph from the Noontree font (PUA U+E001). */
 const AED_GLYPH = "";
 
-function Aed({ className = "" }: { className?: string }) {
+function Aed({ className="" }: { className?: string }) {
   return (
     <span
       aria-label="AED"
@@ -44,9 +44,9 @@ function Aed({ className = "" }: { className?: string }) {
     fill stays visible as a small inner circle. */
 function Radio({ selected }: { selected: boolean }) {
   return selected ? (
-    <div className="size-[20px] rounded-full border-[5px] border-[#0076ff] bg-white shrink-0" />
+    <div className="size-5 rounded-full border-[5px] border-blue-600 bg-white shrink-0" />
   ) : (
-    <div className="size-[20px] rounded-full border border-[#989fb3] bg-white shrink-0" />
+    <div className="size-5 rounded-full border border-bluegray-500 bg-white shrink-0" />
   );
 }
 
@@ -99,7 +99,7 @@ export default function CancelFeedback({
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{
         backgroundImage:
           "linear-gradient(180deg, #ffffff 0%, #f4f3f3 21%, #f4f3f3 100%)",
@@ -112,23 +112,23 @@ export default function CancelFeedback({
         type="button"
         onClick={onBack}
         aria-label="Go back"
-        className="absolute left-[14px] top-[59px] z-20 bg-white border border-[#f2f3f7] flex items-center justify-center p-[8px] rounded-[18px] cursor-pointer"
+        className="absolute left-3.5 top-[59px] z-20 bg-white border border-blue-gray-200 flex items-center justify-center p-2 rounded-16 cursor-pointer"
       >
-        <BackChevron className="size-[20px]" />
+        <BackChevron className="size-5" />
       </button>
 
       {/* Scrollable content area — leaves room for the fixed action bar
           (~158px including home indicator). */}
-      <div className="absolute inset-0 pt-[110px] pb-[180px] overflow-y-auto">
-        <div className="px-[14px] flex flex-col gap-[16px]">
+      <div className="absolute inset-0 pt-28 pb-[180px] overflow-y-auto">
+        <div className="px-3.5 flex flex-col gap-4">
           {/* Title */}
-          <div className="flex flex-col gap-[4px]">
-            <p className="font-bold text-[#343d54] text-[28px] leading-[31px] tracking-[-0.68px]">
+          <div className="flex flex-col gap-1">
+            <p className="font-bold text-bluegray-800 text-h28">
               Before you go,
             </p>
-            <p className="font-noontree text-[#666d85] text-[16px] leading-[22px] tracking-[-0.28px]">
+            <p className="font-noontree text-blue-gray-600 text-h16">
               You can save{" "}
-              <span className="relative inline-flex overflow-clip font-bold text-[#108757]">
+              <span className="relative inline-flex overflow-clip font-bold text-green-600">
                 <Aed />928/year
                 <motion.span
                   className="absolute inset-y-0 w-[60%] pointer-events-none"
@@ -154,7 +154,7 @@ export default function CancelFeedback({
               just like every other element in here (no negative inset). */}
           <SmoothCorners
             radius={16}
-            className="bg-white rounded-[16px] w-full px-[8px] py-[12px] flex flex-col flex-wrap gap-[7px] shadow-[0px_2px_20px_rgba(0,0,0,0.04)]"
+            className="bg-white rounded-16 w-full px-2 py-3 flex flex-col flex-wrap gap-1.5 shadow-[0px_2px_20px_rgba(0,0,0,0.04)]"
           >
             {REASONS.map((reason, i) => (
               <Fragment key={reason}>
@@ -164,9 +164,9 @@ export default function CancelFeedback({
                     setSelectedReason(reason);
                     if (reason !== "Other") setShowOtherError(false);
                   }}
-                  className="w-full flex items-center justify-between px-[8px] py-[4px] rounded-[12px] cursor-pointer shrink-0"
+                  className="w-full flex items-center justify-between px-2 py-1 rounded-12 cursor-pointer shrink-0"
                 >
-                  <p className="font-noontree font-medium text-[#475067] text-[14px] leading-[18px] tracking-[-0.14px] text-left">
+                  <p className="font-noontree font-medium text-blue-gray-700 text-label-3p text-left">
                     {reason}
                   </p>
                   <Radio selected={selectedReason === reason} />
@@ -175,7 +175,7 @@ export default function CancelFeedback({
                     input into the row immediately. Validation error shows a
                     red border + helper text until the user starts typing. */}
                 {reason === "Other" && selectedReason === "Other" && (
-                  <div className="px-[8px] pt-[4px] pb-[4px]">
+                  <div className="px-2 pt-1 pb-1">
                     {/* Click anywhere on the field surface to focus the input
                         (so the label area is tappable too, not just the
                         narrow input strip). */}
@@ -185,7 +185,7 @@ export default function CancelFeedback({
                         showOtherError
                           ? "border-[#e5004e]"
                           : otherFocused
-                            ? "border-[#cdd2dc]"
+                            ? "border-bluegray-400"
                             : "border-transparent"
                       }`}
                     >
@@ -212,7 +212,7 @@ export default function CancelFeedback({
                           mass: 0.6,
                         }}
                         style={{ transformOrigin: "top left" }}
-                        className="absolute left-[12px] right-[36px] top-0 pointer-events-none font-noontree font-normal text-[14px] leading-[18px] tracking-[-0.14px] whitespace-nowrap overflow-hidden text-ellipsis"
+                        className="absolute left-3 right-9 top-0 pointer-events-none font-noontree font-normal text-label-3p whitespace-nowrap overflow-hidden text-ellipsis"
                       >
                         Please tell us the reason (required if other is selected)
                       </motion.label>
@@ -227,7 +227,7 @@ export default function CancelFeedback({
                         }}
                         onFocus={() => setOtherFocused(true)}
                         onBlur={() => setOtherFocused(false)}
-                        className="absolute left-[12px] right-[36px] top-[24px] bottom-[6px] bg-transparent border-none outline-none font-noontree font-medium text-[14px] leading-[18px] tracking-[-0.14px] text-[#0e0e0e]"
+                        className="absolute left-3 right-9 top-6 bottom-1.5 bg-transparent border-none outline-none font-noontree font-medium text-label-3p text-[#0e0e0e]"
                       />
                       {/* Clear X — always visible per Figma; only interactive
                           when there's text to clear. Subtle scale on press. */}
@@ -245,9 +245,9 @@ export default function CancelFeedback({
                         animate={{ color: otherText !== "" ? "#666d85" : "#989fb3" }}
                         transition={{ duration: 0.15 }}
                         disabled={otherText === ""}
-                        className="absolute right-[12px] top-1/2 -translate-y-1/2 shrink-0 cursor-pointer disabled:cursor-default"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 shrink-0 cursor-pointer disabled:cursor-default"
                       >
-                        <svg viewBox="0 0 16 16" className="block size-[16px]" fill="none" aria-hidden="true">
+                        <svg viewBox="0 0 16 16" className="block size-4" fill="none" aria-hidden="true">
                           <path
                             d="M4 4l8 8M12 4l-8 8"
                             stroke="currentColor"
@@ -267,14 +267,14 @@ export default function CancelFeedback({
                         height: showOtherError ? "auto" : 0,
                       }}
                       transition={{ duration: 0.18, ease: [0.32, 0.72, 0, 1] }}
-                      className="overflow-hidden mt-[6px] text-[12px] leading-[16px] text-[#e5004e]"
+                      className="overflow-hidden mt-1.5 text-b12 text-[#e5004e]"
                     >
                       *This field is required
                     </motion.p>
                   </div>
                 )}
                 {i < REASONS.length - 1 && (
-                  <div className="border-t border-dashed border-[#eaecf0] shrink-0" />
+                  <div className="border-t border-dashed border-blue-gray-300 shrink-0" />
                 )}
               </Fragment>
             ))}
@@ -283,10 +283,10 @@ export default function CancelFeedback({
           {/* Pro tip card */}
           <SmoothCorners
             radius={16}
-            className="bg-[#fcfcfd] rounded-[16px] w-full p-[12px]"
+            className="bg-bluegray-50 rounded-16 w-full p-3"
           >
-            <p className="text-[13px] leading-[22px] text-[#666d85]">
-              <span className="font-bold text-[#108757]">Pro tip:</span>
+            <p className="text-label-3 text-blue-gray-600">
+              <span className="font-bold text-green-600">Pro tip:</span>
               {"  "}8 out of 10 members save 4x more than what they pay for with
               their benefits. Don't miss out!
             </p>
@@ -295,11 +295,11 @@ export default function CancelFeedback({
       </div>
 
       {/* Bottom fixed action bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white pt-[12px] pb-[16px] px-[16px] flex flex-col gap-[12px] rounded-tl-[12px] rounded-tr-[12px]">
+      <div className="absolute bottom-0 left-0 right-0 bg-white pt-3 pb-4 px-4 flex flex-col gap-3 rounded-tl-12 rounded-tr-12">
         <button
           type="button"
           onClick={onKeepMembership}
-          className="bg-[#101628] text-white font-semibold text-[15px] leading-[20px] tracking-[-0.26px] h-[52px] rounded-[12px] cursor-pointer"
+          className="bg-blue-gray-1000 text-white font-semibold text-b14 h-[52px] rounded-12 cursor-pointer"
         >
           Keep membership
         </button>
@@ -307,13 +307,13 @@ export default function CancelFeedback({
           type="button"
           onClick={handleContinue}
           disabled={!selectedReason}
-          className="bg-[#f9f9fb] border border-[#eaecf0] text-[#0e0e0e] font-semibold text-[15px] leading-[20px] tracking-[-0.26px] h-[52px] rounded-[12px] cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+          className="bg-blue-gray-100 border border-blue-gray-300 text-[#0e0e0e] font-semibold text-b14 h-[52px] rounded-12 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Continue Cancellation
         </button>
         {/* iPhone home indicator */}
-        <div className="flex justify-center pt-[8px]">
-          <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+        <div className="flex justify-center pt-2">
+          <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
         </div>
       </div>
     </div>

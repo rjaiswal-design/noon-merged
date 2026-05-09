@@ -1,0 +1,13 @@
+/* ============================================================================
+   Field Design System — entry point
+   Mount once at the application root (src/main.tsx). Provides:
+     - design tokens as CSS vars (colors, spacing, radius, type scale)
+     - typography utility classes (.text-h32-bold, .text-b14-medium, …)
+     - @font-face for Noontree
+     - global reset (body, html, *)
+   ============================================================================ */
+
+@import './tokens.css';
+@import './fonts.css';
+@import './typography.css';
+@import './reset.css';

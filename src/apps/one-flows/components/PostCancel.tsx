@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import {
   SavingsCard,
   PromoStrip,
@@ -24,7 +24,7 @@ import heroLogoLottie from "../assets/lottie/hero-logo.lottie?url";
 
 // Noontree-ExtraBold.woff2 doesn't carry the PUA dirham glyph (U+E001), so we
 // pin the Aed mark to weight 700 (Bold) regardless of the parent's font-weight.
-function Aed({ className = "" }: { className?: string }) {
+function Aed({ className="" }: { className?: string }) {
   return (
     <span
       aria-label="AED"
@@ -39,7 +39,7 @@ function Aed({ className = "" }: { className?: string }) {
 
 function Hero() {
   return (
-    <div className="h-[139.844px] relative shrink-0 w-[319px]">
+    <div className="h-[139.844px] relative shrink-0 w-80">
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[377px] left-1/2 top-[calc(50%-40.65px)] w-[665px] pointer-events-none">
         <DotLottieReact
           src={heroLogoLottie}
@@ -48,13 +48,13 @@ function Hero() {
           className="block w-full h-full"
         />
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute left-[calc(50%-2.17px)] w-[190.577px] h-[190.577px] top-[calc(50%-29.64px)]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute left-[calc(50%-2.17px)] w-48 h-48 top-[calc(50%-29.64px)]">
         <img alt="" className="absolute block inset-0 w-full h-full" src={ellipse2080} />
       </div>
-      <p className="-translate-x-1/2 absolute font-extrabold leading-[28px] left-[calc(50%+1px)] text-[28px] text-black text-center top-[77px] tracking-[-1px] w-[319px]">
+      <p className="-translate-x-1/2 absolute font-extrabold left-[calc(50%+1px)] text-h28 text-black text-center top-[77px] w-80">
         Rahul Jaiswal
       </p>
-      <p className="-translate-x-1/2 absolute font-normal leading-[18px] left-[calc(50%+1px)] text-[14px] text-black/75 text-center top-[111.84px] tracking-[-0.3px] whitespace-nowrap">
+      <p className="-translate-x-1/2 absolute font-normal left-[calc(50%+1px)] text-label-2 text-black/75 text-center top-28 whitespace-nowrap">
         One member since 5th Jan, 2026
       </p>
     </div>
@@ -65,7 +65,7 @@ function Hero() {
    Built by stacking the two source assets (colour pill + black wordmark)
    at the natural ratios from Figma so they crisp-render at any size. */
 
-function OneMark({ className = "" }: { className?: string }) {
+function OneMark({ className="" }: { className?: string }) {
   return (
     <span className={`relative inline-block align-middle ${className}`}>
       <img alt="" src={oneLogoFrame} className="absolute inset-0 w-full h-full" />
@@ -162,25 +162,25 @@ function CouponCard({ expires }: { expires: string }) {
 
       {/* Body content — flex-col stack matching Figma's `.coupon-content` */}
       <div
-        className="absolute left-0 top-0 flex flex-col items-center gap-[8px] p-[12px]"
+        className="absolute left-0 top-0 flex flex-col items-center gap-2 p-3"
         style={{ width: W, height: 223 }}
       >
-        <div className="flex flex-col items-center gap-[12px] px-[10.56px] pb-[8px] w-full">
-          <div className="flex flex-col items-center gap-[12px] w-full">
-            <div className="flex flex-col items-center gap-[8px] w-full">
-              <OneMark className="w-[36.9px] h-[20.82px]" />
-              <p className="font-noontree font-bold text-[19px] leading-[14.08px] text-[#0e0e0e] tracking-[-0.23px] text-center">
+        <div className="flex flex-col items-center gap-3 px-2.5 pb-2 w-full">
+          <div className="flex flex-col items-center gap-3 w-full">
+            <div className="flex flex-col items-center gap-2 w-full">
+              <OneMark className="w-9 h-5" />
+              <p className="font-noontree font-bold text-h18 text-[#0e0e0e] text-center">
                 Special price for you
               </p>
             </div>
-            <div className="bg-[#e1efff] border border-dashed border-[#71b2ff] rounded-[12.48px] px-[10.98px] py-[10.98px] shadow-[0px_0px_16px_rgba(22,22,22,0.04)]">
-              <p className="font-noontree font-extrabold text-[23.34px] leading-[27.46px] text-[#0076ff] tracking-[-0.22px] whitespace-nowrap">
+            <div className="bg-blue-100 border border-dashed border-accent-400 rounded-12 px-2.5 py-2.5 shadow-[0px_0px_16px_rgba(22,22,22,0.04)]">
+              <p className="font-noontree font-extrabold text-h24 text-blue-600 whitespace-nowrap">
                 <Aed />
                 4.99/month
               </p>
             </div>
           </div>
-          <p className="font-noontree font-normal text-[11px] leading-[16px] text-[#666d85] text-center">
+          <p className="font-noontree font-normal text-b11 text-blue-gray-600 text-center">
             {"Billed "}
             <span className="line-through">
               <Aed />
@@ -193,9 +193,9 @@ function CouponCard({ expires }: { expires: string }) {
         </div>
         <button
           type="button"
-          className="bg-[#108757] flex items-center justify-center h-[52px] w-[321px] rounded-[12px] cursor-pointer"
+          className="bg-green-600 flex items-center justify-center h-[52px] w-80 rounded-12 cursor-pointer"
         >
-          <p className="font-noontree font-medium text-[15px] leading-[18px] text-white tracking-[-0.12px] whitespace-nowrap">
+          <p className="font-noontree font-medium text-b14 text-white whitespace-nowrap">
             Continue at <Aed />
             4.99/month
           </p>
@@ -204,18 +204,18 @@ function CouponCard({ expires }: { expires: string }) {
 
       {/* Footer strip — wavy perforation top, timer label, gift-box decals */}
       <div
-        className="absolute left-0 flex flex-col items-center bg-[#fcfcfd] overflow-clip rounded-bl-[14.08px] rounded-br-[14.08px] border-l-[0.88px] border-r-[0.88px] border-b-[0.88px] border-white"
+        className="absolute left-0 flex flex-col items-center bg-bluegray-50 overflow-clip rounded-bl-16 rounded-br-16 border-l-[0.88px] border-r-[0.88px] border-b-[0.88px] border-white"
         style={{ top: FOOTER_TOP, width: W, height: FOOTER_H }}
       >
         <img
           alt=""
           src={couponDivider}
-          className="block w-full h-[3.52px] shrink-0"
+          className="block w-full h-1 shrink-0"
         />
-        <div className="flex items-center justify-center pt-[10.56px] pb-[14.08px] px-[7.04px] w-full">
-          <div className="flex items-center gap-[3.52px] px-[5.28px]">
-            <img alt="" src={timerOutline} className="block size-[16px]" />
-            <p className="font-medium text-[12px] leading-[14.08px] text-[#bb7000] tracking-[-0.1px] whitespace-nowrap tabular-nums">
+        <div className="flex items-center justify-center pt-2.5 pb-3.5 px-2 w-full">
+          <div className="flex items-center gap-1 px-1.5">
+            <img alt="" src={timerOutline} className="block size-4" />
+            <p className="font-medium text-b12 text-[#bb7000] whitespace-nowrap tabular-nums">
               Expires in {expires}
             </p>
           </div>
@@ -225,10 +225,10 @@ function CouponCard({ expires }: { expires: string }) {
             Class order matters: Tailwind composes transforms as rotate then
             scale, so `-scale-y-100 rotate-[-164.45deg]` applies the flip
             first (matching the Figma source classes). */}
-        <div className="absolute size-[62px] left-[-13.88px] top-[1.66px] -scale-y-100 rotate-[-164.45deg]">
+        <div className="absolute size-16 -left-3.5 top-0.5 -scale-y-100 rotate-[-164.45deg]">
           <GiftBox />
         </div>
-        <div className="absolute size-[62px] left-[300.12px] top-[1.66px] rotate-[-15.55deg]">
+        <div className="absolute size-16 left-[300.12px] top-0.5 rotate-[-15.55deg]">
           <GiftBox />
         </div>
       </div>
@@ -242,30 +242,30 @@ function EndingPlanCard({ onManage }: { onManage?: () => void }) {
   return (
     <SmoothCorners
       radius={12}
-      className="bg-[#f9f9fb] border border-[#f9f9fb] border-solid drop-shadow-[0px_2px_20px_rgba(0,0,0,0.02)] flex flex-col gap-[12px] items-start pb-[14px] relative shrink-0 w-[346px]"
+      className="bg-blue-gray-100 border border-blue-gray-100 border-solid drop-shadow-[0px_2px_20px_rgba(0,0,0,0.02)] flex flex-col gap-3 items-start pb-3.5 relative shrink-0 w-[346px]"
     >
       {/* Inner white block */}
       <SmoothCorners
         radius={12}
-        className="bg-white flex flex-col gap-[6px] items-center justify-center relative shadow-[0px_2px_40px_0px_rgba(0,0,0,0.01)] shrink-0 w-full"
+        className="bg-white flex flex-col gap-1.5 items-center justify-center relative shadow-[0px_2px_40px_0px_rgba(0,0,0,0.01)] shrink-0 w-full"
       >
-        <div className="flex items-center p-[12px] relative shrink-0 w-full">
-          <div className="flex flex-col gap-[2px] items-start relative shrink-0 text-left w-[200px]">
-            <p className="font-normal leading-[14px] text-[11px] text-black/75 w-full">
+        <div className="flex items-center p-3 relative shrink-0 w-full">
+          <div className="flex flex-col gap-0.5 items-start relative shrink-0 text-left w-[200px]">
+            <p className="font-normal text-b11 text-black/75 w-full">
               Current plan
             </p>
-            <p className="font-bold leading-[20px] text-[16px] text-[#02060c]/90 tracking-[-0.16px] w-full">
+            <p className="font-bold text-h16 text-[#02060c]/90 w-full">
               noon One &amp; YangoPlay
             </p>
           </div>
         </div>
         {/* Dashed separator */}
         <div className="h-px w-full border-t border-dashed border-neutral-200" />
-        <div className="bg-white flex gap-[4px] items-center pb-[12px] pt-[4px] px-[12px] relative rounded-bl-[12px] rounded-br-[12px] shrink-0 w-full">
+        <div className="bg-white flex gap-1 items-center pb-3 pt-1 px-3 relative rounded-bl-12 rounded-br-12 shrink-0 w-full">
           {/* Red x-circle icon */}
           <svg
             viewBox="0 0 20 20"
-            className="block size-[20px] shrink-0"
+            className="block size-5 shrink-0"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
@@ -278,14 +278,14 @@ function EndingPlanCard({ onManage }: { onManage?: () => void }) {
               strokeLinecap="round"
             />
           </svg>
-          <p className="font-normal leading-[17px] text-[12px] text-black/75 tracking-[-0.3px] whitespace-nowrap">
+          <p className="font-normal text-b12 text-black/75 whitespace-nowrap">
             Your membership will end on Oct 18, 2025
           </p>
         </div>
         {/* Free trial pill */}
-        <div className="absolute bg-[#f7fffc] border border-[#e7f6f0] flex h-[24px] items-center justify-end overflow-clip px-[12px] py-[4px] right-0 rounded-bl-[12px] rounded-tl-[12px] top-[18.16px]">
-          <p className="text-[11px] leading-none whitespace-nowrap">
-            <span className="font-bold text-[#108757]">Free trial</span>
+        <div className="absolute bg-bluegray-50 border border-green-100 flex h-6 items-center justify-end overflow-clip px-3 py-1 right-0 rounded-bl-12 rounded-tl-12 top-5">
+          <p className="text-b11 leading-none whitespace-nowrap">
+            <span className="font-bold text-green-600">Free trial</span>
             <span className="font-normal text-[#171717]"> for 14 days</span>
           </p>
         </div>
@@ -294,14 +294,14 @@ function EndingPlanCard({ onManage }: { onManage?: () => void }) {
       <button
         type="button"
         onClick={onManage}
-        className="flex items-center justify-between px-[16px] relative shrink-0 w-full cursor-pointer text-left"
+        className="flex items-center justify-between px-4 relative shrink-0 w-full cursor-pointer text-left"
       >
-        <p className="font-medium leading-[15px] text-[#262626] text-[13px] tracking-[-0.12px] whitespace-nowrap">
+        <p className="font-medium text-[#262626] text-label-3 whitespace-nowrap">
           Manage membership
         </p>
         <svg
           viewBox="0 0 14 14"
-          className="block size-[14px]"
+          className="block size-3.5"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
@@ -351,19 +351,19 @@ export default function PostCancel({
   const countdown = useCountdown(24 * 3600 - 1);
 
   return (
-    <div className="bg-[#f4f4f4] relative w-[375px] h-[812px] mx-auto rounded-[20px] overflow-hidden">
+    <div className="bg-blue-gray-200 relative w-[375px] h-[812px] mx-auto rounded-16 overflow-hidden">
       {/* Scrollable area — leaves room for the fixed bottom CTA bar (~96px). */}
       <div className="absolute inset-0 overflow-y-auto pb-[100px]">
         <div className="relative w-full">
           {/* Decorative orange/yellow background blobs */}
           <div className="absolute h-[774px] left-[-284.5px] top-[-101px] w-[937px] pointer-events-none overflow-hidden">
-            <div className="absolute h-[420px] left-[106px] top-[-30px] w-[426px]">
+            <div className="absolute h-[420px] left-[106px] -top-7 w-[426px]">
               <img alt="" src={ellipse3931} className="absolute -inset-[33%] w-[177%] h-[166%] max-w-none" />
             </div>
             <div className="absolute h-[485px] left-[400px] top-[-178.5px] w-[496px]">
               <img alt="" src={ellipse3930} className="absolute -inset-[27%] w-[154%] h-[154%] max-w-none" />
             </div>
-            <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[789px] left-[calc(50%+0.5px)] mix-blend-lighten top-1/2 w-[385px]">
+            <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[789px] left-[calc(50%+0.5px)] mix-blend-lighten top-1/2 w-96">
               <img alt="" src={lines} className="absolute inset-0 w-full h-full" />
             </div>
           </div>
@@ -376,9 +376,9 @@ export default function PostCancel({
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="absolute left-[14px] top-[59px] z-20 bg-white border border-[#f2f3f7] flex items-center justify-center p-[8px] rounded-[18px] cursor-pointer"
+              className="absolute left-3.5 top-[59px] z-20 bg-white border border-blue-gray-200 flex items-center justify-center p-2 rounded-16 cursor-pointer"
             >
-              <svg viewBox="0 0 20 20" className="size-[20px]" fill="none" aria-hidden="true">
+              <svg viewBox="0 0 20 20" className="size-5" fill="none" aria-hidden="true">
                 <path
                   d="M12.5 5L7.5 10L12.5 15"
                   stroke="#0E0E0E"
@@ -390,7 +390,7 @@ export default function PostCancel({
             </button>
           )}
 
-          <div className="relative flex flex-col gap-[18px] items-center w-[346px] mx-auto pt-[89px] pb-[40px]">
+          <div className="relative flex flex-col gap-4 items-center w-[346px] mx-auto pt-[89px] pb-10">
             <Hero />
 
             <CouponCard expires={countdown} />
@@ -399,7 +399,7 @@ export default function PostCancel({
 
             {/* Below-the-fold sections — same layout as the SubscribedUser
                 home, so we reuse the cards directly. */}
-            <div className="flex flex-col gap-[16px] items-center w-full">
+            <div className="flex flex-col gap-4 items-center w-full">
               <SavingsCard />
               <PromoStrip />
               <OsnCard />
@@ -411,19 +411,19 @@ export default function PostCancel({
       </div>
 
       {/* Fixed bottom CTA bar — green button + home indicator */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 bg-white pt-[14px] pb-[14px] px-[16px] rounded-tl-[12px] rounded-tr-[12px] shadow-[0px_-4px_17.6px_rgba(0,0,0,0.08)]">
+      <div className="absolute bottom-0 left-0 right-0 z-30 bg-white pt-3.5 pb-3.5 px-4 rounded-tl-12 rounded-tr-12 shadow-[0px_-4px_17.6px_rgba(0,0,0,0.08)]">
         <button
           type="button"
           onClick={onContinueOffer}
-          className="bg-[#108757] flex items-center justify-center h-[52px] w-full rounded-[12px] cursor-pointer"
+          className="bg-green-600 flex items-center justify-center h-[52px] w-full rounded-12 cursor-pointer"
         >
-          <p className="font-noontree font-medium text-[15px] leading-[18px] text-white tracking-[-0.12px] whitespace-nowrap">
+          <p className="font-noontree font-medium text-b14 text-white whitespace-nowrap">
             Continue at <Aed />
             4.99/month
           </p>
         </button>
-        <div className="flex justify-center pt-[10px]">
-          <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+        <div className="flex justify-center pt-2.5">
+          <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
         </div>
       </div>
     </div>

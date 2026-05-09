@@ -42,10 +42,10 @@ function GridBackground() {
   return (
     <div
       aria-hidden
-      className="absolute left-1/2 top-0 flex w-[356px] -translate-x-1/2 flex-wrap content-center items-center gap-[0.5px] bg-surface-primary"
+      className="absolute left-1/2 top-0 flex w-[356px] -translate-x-1/2 flex-wrap content-center items-center gap-0 bg-surface-primary"
     >
       {Array.from({ length: TOTAL_GRID_CELLS }).map((_, i) => (
-        <div key={i} className="size-[44px] shrink-0 rounded-[4px] bg-surface-muted" />
+        <div key={i} className="size-11 shrink-0 rounded-4 bg-surface-muted" />
       ))}
     </div>
   );
@@ -63,17 +63,17 @@ function GradientOverlay() {
 
 function MasterSwatch({ kind }: { kind: "airpods" | "bookmark" }) {
   return (
-    <div className="relative h-[80px] w-[126px] shrink-0">
+    <div className="relative h-20 w-32 shrink-0">
       {/* Right card (rotated +12deg) */}
       <div
-        className="absolute flex size-[80.652px] -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+        className="absolute flex size-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
         style={{ left: "calc(50% + 23.69px)", top: "calc(50% - 0.04px)" }}
       >
         <div className="rotate-12">
-          <div className="relative size-[68px] overflow-hidden rounded-[6.8px] bg-surface-primary shadow-[0_0_10.88px_0_rgba(0,0,0,0.06)]">
-            <div className="absolute left-[2.72px] top-[2.72px] size-[62.56px] overflow-hidden rounded-[5.44px]">
-              <div className="absolute inset-0 rounded-[5.44px] bg-surface-primary" />
-              <div className="absolute left-0 top-0 size-[62.56px] rounded-bl-[2.72px] rounded-br-[2.72px] rounded-tl-[2.72px] bg-surface-tertiary" />
+          <div className="relative size-[68px] overflow-hidden rounded-8 bg-surface-primary shadow-[0_0_10.88px_0_rgba(0,0,0,0.06)]">
+            <div className="absolute left-0.5 top-0.5 size-16 overflow-hidden rounded-4">
+              <div className="absolute inset-0 rounded-4 bg-surface-primary" />
+              <div className="absolute left-0 top-0 size-16 rounded-bl-4 rounded-br-4 rounded-tl-4 bg-surface-tertiary" />
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_8.937px_0_rgba(0,0,0,0.06)]" />
             </div>
           </div>
@@ -82,14 +82,14 @@ function MasterSwatch({ kind }: { kind: "airpods" | "bookmark" }) {
 
       {/* Left card (rotated -12deg) */}
       <div
-        className="absolute flex size-[80.652px] -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+        className="absolute flex size-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
         style={{ left: "calc(50% - 24.04px)", top: "calc(50% + 0.29px)" }}
       >
         <div className="-rotate-12">
-          <div className="relative size-[68px] overflow-hidden rounded-[6.8px] bg-surface-primary shadow-[0_0_10.88px_0_rgba(0,0,0,0.06)]">
-            <div className="absolute left-[2.72px] top-[2.72px] size-[62.56px] overflow-hidden rounded-[5.44px]">
-              <div className="absolute inset-0 rounded-[5.44px] bg-surface-primary" />
-              <div className="absolute left-0 top-0 size-[62.56px] bg-surface-tertiary" />
+          <div className="relative size-[68px] overflow-hidden rounded-8 bg-surface-primary shadow-[0_0_10.88px_0_rgba(0,0,0,0.06)]">
+            <div className="absolute left-0.5 top-0.5 size-16 overflow-hidden rounded-4">
+              <div className="absolute inset-0 rounded-4 bg-surface-primary" />
+              <div className="absolute left-0 top-0 size-16 bg-surface-tertiary" />
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_8.937px_0_rgba(0,0,0,0.06)]" />
             </div>
           </div>
@@ -97,9 +97,9 @@ function MasterSwatch({ kind }: { kind: "airpods" | "bookmark" }) {
       </div>
 
       {/* Center card */}
-      <div className="absolute left-1/2 top-1/2 size-[80px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[12px] bg-surface-primary shadow-[0_0_12.8px_0_rgba(0,0,0,0.06)]">
-        <div className="absolute left-[3.2px] top-[3.2px] size-[73.6px] overflow-hidden rounded-[8px]">
-          <div className="absolute inset-0 rounded-[8px] bg-surface-primary" />
+      <div className="absolute left-1/2 top-1/2 size-20 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-12 bg-surface-primary shadow-[0_0_12.8px_0_rgba(0,0,0,0.06)]">
+        <div className="absolute left-1 top-1 size-[73.6px] overflow-hidden rounded-8">
+          <div className="absolute inset-0 rounded-8 bg-surface-primary" />
           {kind === "airpods" ? (
             <img
               src={airpodsImg}
@@ -110,7 +110,7 @@ function MasterSwatch({ kind }: { kind: "airpods" | "bookmark" }) {
             <img
               src={bookmarkSvg}
               alt=""
-              className="absolute left-1/2 top-1/2 size-[40px] -translate-x-1/2 -translate-y-1/2"
+              className="absolute left-1/2 top-1/2 size-10 -translate-x-1/2 -translate-y-1/2"
             />
           )}
           <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_10.514px_0_rgba(0,0,0,0.06)]" />
@@ -145,8 +145,8 @@ function CreateButton({
 
 function ErrorRow({ message }: { message: string }) {
   return (
-    <div className="relative flex shrink-0 items-center gap-[4px]">
-      <img src={exclamationSvg} alt="" className="size-[14px] shrink-0" />
+    <div className="relative flex shrink-0 items-center gap-1">
+      <img src={exclamationSvg} alt="" className="size-3.5 shrink-0" />
       <p className="text-center font-primary text-b14 font-normal text-text-error">
         {message}
       </p>
@@ -268,9 +268,9 @@ export default function CreateCollectionCard({
       <GridBackground />
       <GradientOverlay />
 
-      <div className="relative flex w-full shrink-0 flex-col items-center gap-[24px]">
+      <div className="relative flex w-full shrink-0 flex-col items-center gap-6">
         <MasterSwatch kind={c.swatch} />
-        <div className="relative flex w-full shrink-0 flex-col items-center gap-[16px]">
+        <div className="relative flex w-full shrink-0 flex-col items-center gap-4">
           <textarea
             ref={taRef}
             value={value}

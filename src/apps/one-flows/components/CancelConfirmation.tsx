@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import StatusBar from "./StatusBar";
 
-function CrossIcon({ className = "" }: { className?: string }) {
+function CrossIcon({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -60,14 +60,14 @@ export default function CancelConfirmation({
   const ICON_OFFSET_PHASE_1 = 70;
 
   return (
-    <div className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px] bg-white">
+    <div className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16 bg-white">
       <StatusBar />
 
       <motion.button
         type="button"
         onClick={onDismiss}
         aria-label="Dismiss"
-        className="absolute left-1/2 bg-[#feebeb] border-[10px] border-solid border-[#fca5a5] flex items-center justify-center rounded-full p-[12px] cursor-pointer"
+        className="absolute left-1/2 bg-red-50 border-[10px] border-solid border-[#fca5a5] flex items-center justify-center rounded-full p-3 cursor-pointer"
         style={{ top: ICON_TOP }}
         // Phase 1 — badge pops from scale 0 → 1 via a gentle spring.
         // Phase 2 — y-settle runs over 0.9s with the same Shop ease so it
@@ -87,12 +87,12 @@ export default function CancelConfirmation({
           y: { duration: 0.9, ease: SHOP_EASE },
         }}
       >
-        <CrossIcon className="size-[32px]" />
+        <CrossIcon className="size-8" />
       </motion.button>
 
-      <div className="absolute left-[30px] top-[398px] w-[316px] flex flex-col gap-[12px] items-center text-center">
+      <div className="absolute left-7 top-[398px] w-[316px] flex flex-col gap-3 items-center text-center">
         <motion.p
-          className="font-noontree font-bold text-[20px] leading-[24px] tracking-[-0.2px] text-[#0e0e0e]"
+          className="font-noontree font-bold text-h20 text-[#0e0e0e]"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: revealed ? 1 : 0, y: revealed ? 0 : 24 }}
           transition={{
@@ -104,7 +104,7 @@ export default function CancelConfirmation({
           Your membership is cancelled
         </motion.p>
         <motion.p
-          className="text-[14px] leading-[20px] tracking-[-0.3px] text-black/75"
+          className="text-b14 text-black/75"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: revealed ? 1 : 0, y: revealed ? 0 : 24 }}
           transition={{
@@ -119,8 +119,8 @@ export default function CancelConfirmation({
         </motion.p>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 flex justify-center pt-[12px] pb-[16px] pointer-events-none">
-        <div className="bg-[#404553] h-[5px] rounded-[8px] w-[124px]" />
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center pt-3 pb-4 pointer-events-none">
+        <div className="bg-noon-black h-1 rounded-8 w-[124px]" />
       </div>
     </div>
   );

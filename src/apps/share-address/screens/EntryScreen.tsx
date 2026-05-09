@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AddressBottomSheet } from './AddressBottomSheet'
 
-const SUPERMALL_URL = '/supermall'
+const SHOP_URL = '/'
 
 export function EntryScreen() {
   const [sheetOpen, setSheetOpen] = useState(false)
@@ -20,9 +20,9 @@ export function EntryScreen() {
           can return to this entry flow. */}
       <button
         type="button"
-        onClick={() => { window.location.assign(SUPERMALL_URL); }}
-        aria-label="Open supermall"
-        className="absolute z-10 rounded-[20px] outline-none transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-700/60 hover:ring-2 hover:ring-blue-700/40"
+        onClick={() => { window.location.assign(SHOP_URL); }}
+        aria-label="Open shop"
+        className="absolute z-10 rounded-16 outline-none transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-700/60 hover:ring-2 hover:ring-blue-700/40"
         style={{ left: 88, top: 64, width: 80, height: 82 }}
       />
 

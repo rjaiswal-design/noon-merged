@@ -14,13 +14,14 @@ import SavedCardsPage from "./components/SavedCardsPage";
 import MyAccountPage from "./components/MyAccountPage";
 import MyOrdersPage from "./components/MyOrdersPage";
 import TrackOrderPage from "./components/TrackOrderPage";
+import ReviewsRootFlow from "./reviews/RootFlow";
 import CancelMembership from "./components/CancelMembership";
 import CancelFeedback from "./components/CancelFeedback";
 import CancelConfirmation from "./components/CancelConfirmation";
 import PostCancel from "./components/PostCancel";
 import PaymentMethod from "./components/PaymentMethod";
 import SplashScreen from "./components/SplashScreen";
-import SmoothCorners from "./components/SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import {
   SkeletonGate,
   HomeSkeleton,
@@ -40,6 +41,7 @@ type Screen =
   | "accountCards"
   | "myAccount"
   | "myOrders"
+  | "myOrdersReviews"
   | "trackOrder"
   | "manage"
   | "changePlan"
@@ -231,7 +233,7 @@ export default function App() {
             onAddresses={() => navigate("accountAddresses", "forward")}
             onSavedCards={() => navigate("accountCards", "forward")}
             onMyAccount={() => navigate("myAccount", "forward")}
-            onMyOrders={() => navigate("myOrders", "forward")}
+            onMyOrders={() => navigate("myOrdersReviews", "forward")}
             onSignedOut={() => navigate("home", "back")}
           />
         );
@@ -244,6 +246,13 @@ export default function App() {
               navigate("trackOrder", "forward");
             }}
           />
+        );
+      case "myOrdersReviews":
+        // Cloned reviews flow from theawryone/noon-reviews-2-prototype.
+        // Wired to the AccountsPage "My Orders" tile — back button on the
+        // OrdersScreen header pops back to AccountsPage.
+        return (
+          <ReviewsRootFlow onExit={() => navigate("accounts", "back")} />
         );
       case "trackOrder":
         return (

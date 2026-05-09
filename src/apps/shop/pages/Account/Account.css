@@ -1,0 +1,72 @@
+.account-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background: var(--grey-100, #f9f9fb);
+  overflow: hidden;
+}
+
+.account-page__iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: var(--grey-100, #f9f9fb);
+  opacity: 0;
+  transition: opacity 220ms ease-out;
+}
+
+.account-page__iframe--ready {
+  opacity: 1;
+}
+
+/* Neutral chrome-only host skeleton. Per docs/INTERACTION_DESIGN.md §2
+   "Iframe boundaries", the host paints only what's universally true
+   (status bar + one full-bleed content rectangle); the iframe owns its
+   per-screen skeleton. This avoids the layout jolt that previously
+   occurred when the host's guessed silhouette didn't match whichever
+   one-flows screen the iframe actually mounted. */
+.account-skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  background: var(--grey-100, #f9f9fb);
+  opacity: 1;
+  transition: opacity 260ms ease-out;
+}
+
+.account-skeleton--hidden {
+  opacity: 0;
+}
+
+.account-skeleton__frame {
+  width: 375px;
+  height: 812px;
+  padding: 60px 12px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-skeleton__body {
+  flex: 1;
+  border-radius: 16px;
+}
+
+.skel-block {
+  background: linear-gradient(
+    90deg,
+    var(--grey-200, #f2f3f7) 0%,
+    var(--grey-300, #eaecf0) 50%,
+    var(--grey-200, #f2f3f7) 100%
+  );
+  background-size: 200% 100%;
+  animation: skel-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes skel-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

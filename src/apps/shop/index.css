@@ -1,0 +1,107 @@
+/* Tailwind utilities only — `base` (preflight) skipped on purpose so it
+   doesn't override supermall's reset/typography. The address bottomsheet
+   composed from share-address relies on these utility classes. */
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   Supermall — surface-specific layout
+   Tokens (colours, spacing, radii, typography, fonts, reset) come from
+   @tokens/index.css mounted globally in src/main.tsx. This file only owns
+   styles that are unique to the supermall surface (the iPhone-style frame,
+   layout helpers, supermall-specific element resets).
+   ============================================================================ */
+
+body {
+  background-color: var(--grey-400);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100dvh;
+}
+
+#root {
+  /* Sizing & framing moved onto `.app-frame` so the squircle clip-path
+     applied by SmoothCorners can take effect (CSS border-radius would
+     pre-clip the rectangle and fight the squircle path). */
+  display: flex;
+  justify-content: center;
+}
+
+.app-frame {
+  width: 375px;
+  height: 812px;
+  background-color: var(--color-surface-primary);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Layout helpers ─────────────────────────────────────────────────────── */
+.root-layout {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.root-layout main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ─── Legacy typography utilities ────────────────────────────────────────────
+   The class-only versions (without weight) are still used in supermall's
+   markup. They map to the Field DS scale — composing with .fw-* works as
+   before. Once supermall components migrate to the canonical
+   .text-h32-bold style classes from @tokens, these can be removed. */
+.h40 { font-size: var(--font-h40-size); line-height: var(--font-h40-line-height); letter-spacing: var(--font-h40-letter-spacing); }
+.h32 { font-size: var(--font-h32-size); line-height: var(--font-h32-line-height); letter-spacing: var(--font-h32-letter-spacing); }
+.h28 { font-size: var(--font-h28-size); line-height: var(--font-h28-line-height); letter-spacing: var(--font-h28-letter-spacing); }
+.h24 { font-size: var(--font-h24-size); line-height: var(--font-h24-line-height); letter-spacing: var(--font-h24-letter-spacing); }
+.h20 { font-size: var(--font-h20-size); line-height: var(--font-h20-line-height); letter-spacing: var(--font-h20-letter-spacing); }
+.h18 { font-size: var(--font-h18-size); line-height: var(--font-h18-line-height); letter-spacing: var(--font-h18-letter-spacing); }
+.h16 { font-size: var(--font-h16-size); line-height: var(--font-h16-line-height); letter-spacing: var(--font-h16-letter-spacing); }
+.b16 { font-size: var(--font-b16-size); line-height: var(--font-b16-line-height); letter-spacing: var(--font-b16-letter-spacing); }
+.b14 { font-size: var(--font-b14-size); line-height: var(--font-b14-line-height); letter-spacing: var(--font-b14-letter-spacing); }
+.b12 { font-size: var(--font-b12-size); line-height: var(--font-b12-line-height); letter-spacing: var(--font-b12-letter-spacing); }
+.b11 { font-size: var(--font-b11-size); line-height: var(--font-b11-line-height); letter-spacing: var(--font-b11-letter-spacing); }
+.a17 { font-size: var(--font-a17-size); line-height: var(--font-a17-line-height); letter-spacing: var(--font-a17-letter-spacing); }
+.a16 { font-size: var(--font-a16-size); line-height: var(--font-a16-line-height); letter-spacing: var(--font-a16-letter-spacing); }
+.a14 { font-size: var(--font-a14-size); line-height: var(--font-a14-line-height); letter-spacing: var(--font-a14-letter-spacing); }
+.a12 { font-size: var(--font-a12-size); line-height: var(--font-a12-line-height); letter-spacing: var(--font-a12-letter-spacing); }
+
+.fw-regular   { font-weight: var(--font-weight-regular); }
+.fw-medium    { font-weight: var(--font-weight-medium); }
+.fw-semibold  { font-weight: var(--font-weight-semibold); }
+.fw-bold      { font-weight: var(--font-weight-bold); }
+.fw-extrabold { font-weight: var(--font-weight-extrabold); }

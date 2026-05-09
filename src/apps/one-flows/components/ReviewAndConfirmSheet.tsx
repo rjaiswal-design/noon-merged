@@ -1,9 +1,9 @@
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import applePayLogo from "../assets/apple-pay.svg";
 
 const AED_GLYPH = "";
 
-function Aed({ className = "" }: { className?: string }) {
+function Aed({ className="" }: { className?: string }) {
   return (
     <span
       aria-label="AED"
@@ -14,7 +14,7 @@ function Aed({ className = "" }: { className?: string }) {
   );
 }
 
-function SparkleIcon({ className = "" }: { className?: string }) {
+function SparkleIcon({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 16 16"
@@ -33,7 +33,7 @@ function SparkleIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function CalendarIcon({ className = "" }: { className?: string }) {
+function CalendarIcon({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 16 16"
@@ -74,7 +74,7 @@ function CalendarIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function ChevronDown({ className = "" }: { className?: string }) {
+function ChevronDown({ className="" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 12 12"
@@ -157,44 +157,44 @@ export default function ReviewAndConfirmSheet({
         }`}
       >
         {/* Drag handle */}
-        <div className="flex justify-center pt-[10px] pb-[6px]">
-          <div className="bg-[#d0d5dd] h-[4px] w-[36px] rounded-full" />
+        <div className="flex justify-center pt-2.5 pb-1.5">
+          <div className="bg-bluegray-400 h-1 w-9 rounded-full" />
         </div>
 
         {/* Title */}
-        <p className="font-bold text-[#0e0e0e] text-[16px] leading-[20px] tracking-[-0.16px] text-center pb-[16px]">
+        <p className="font-bold text-[#0e0e0e] text-h16 text-center pb-4">
           Review and confirm
         </p>
 
-        <div className="px-[16px] pb-[16px] flex flex-col gap-[16px]">
+        <div className="px-4 pb-4 flex flex-col gap-4">
           {/* Upcoming plan card */}
           <SmoothCorners
             radius={16}
-            className="bg-white rounded-[16px] border-[1.5px] border-[#eaecf0] overflow-hidden flex flex-col"
+            className="bg-white rounded-16 border-[1.5px] border-blue-gray-300 overflow-hidden flex flex-col"
           >
             {/* Green-tinted top label */}
             <div
-              className="px-[16px] pt-[14px] pb-[10px] flex items-center gap-[6px]"
+              className="px-4 pt-3.5 pb-2.5 flex items-center gap-1.5"
               style={{
                 backgroundImage:
                   "linear-gradient(180deg, rgba(229,250,236,1) 0%, rgba(229,250,236,0) 100%)",
               }}
             >
-              <SparkleIcon className="size-[16px] shrink-0" />
-              <p className="font-bold text-[#108757] text-[14px] leading-[18px] tracking-[-0.14px]">
+              <SparkleIcon className="size-4 shrink-0" />
+              <p className="font-bold text-green-600 text-label-3p">
                 Upcoming plan
               </p>
             </div>
 
             {/* Plan body */}
-            <div className="px-[16px] pb-[16px] pt-[6px] flex flex-col gap-[12px]">
-              <p className="font-bold text-[#1d2539] text-[18px] leading-[22px] tracking-[-0.18px]">
+            <div className="px-4 pb-4 pt-1.5 flex flex-col gap-3">
+              <p className="font-bold text-blue-gray-900 text-h18">
                 {plan.name}
               </p>
-              <div className="h-px w-full border-t border-dashed border-[#eaecf0]" />
-              <div className="flex items-center gap-[8px]">
-                <CalendarIcon className="size-[16px] shrink-0" />
-                <p className="font-noontree text-[#475067] text-[12px] leading-[14px] tracking-[-0.12px]">
+              <div className="h-px w-full border-t border-dashed border-blue-gray-300" />
+              <div className="flex items-center gap-2">
+                <CalendarIcon className="size-4 shrink-0" />
+                <p className="font-noontree text-blue-gray-700 text-label-4p">
                   Starts on xx-xx-xx at <Aed />
                   {plan.price} & {plan.cadence}
                 </p>
@@ -206,10 +206,10 @@ export default function ReviewAndConfirmSheet({
           {plan.refund && (
             <SmoothCorners
               radius={12}
-              className="bg-white rounded-[12px] border-[1.5px] border-[#eaecf0] p-[12px]"
+              className="bg-white rounded-12 border-[1.5px] border-blue-gray-300 p-3"
             >
-              <p className="font-noontree text-[#475067] text-[12px] leading-[16px] tracking-[-0.12px]">
-                <span className="font-bold text-[#1d2539]">Refund:</span> You
+              <p className="font-noontree text-blue-gray-700 text-b12">
+                <span className="font-bold text-blue-gray-900">Refund:</span> You
                 will get a pro-rated refund of <Aed />
                 {plan.refund} for your current plan after you upgrade.
               </p>
@@ -218,25 +218,25 @@ export default function ReviewAndConfirmSheet({
         </div>
 
         {/* Bottom action row */}
-        <div className="px-[16px] pb-[20px] pt-[8px] flex items-center gap-[12px] border-t border-[#eaecf0] bg-white">
+        <div className="px-4 pb-5 pt-2 flex items-center gap-3 border-t border-blue-gray-300 bg-white">
           {/* Apple Pay + masked PAN */}
-          <div className="flex items-center gap-[8px] shrink-0 pt-[8px]">
-            <div className="size-[32px] flex items-center justify-center shrink-0">
+          <div className="flex items-center gap-2 shrink-0 pt-2">
+            <div className="size-8 flex items-center justify-center shrink-0">
               <img
                 src={applePayLogo}
                 alt="Apple Pay"
-                className="block h-[22px] w-auto max-w-none"
+                className="block h-5 w-auto max-w-none"
               />
             </div>
             <div className="flex flex-col">
               <button
                 type="button"
-                className="flex items-center gap-[2px] text-[10px] text-[#475067] cursor-pointer"
+                className="flex items-center gap-0.5 text-tiny text-blue-gray-700 cursor-pointer"
               >
                 Pay with
-                <ChevronDown className="size-[10px]" />
+                <ChevronDown className="size-2.5" />
               </button>
-              <p className="font-bold text-[#1d2539] text-[13px] leading-[16px]">
+              <p className="font-bold text-blue-gray-900 text-label-3">
                 ****2006
               </p>
             </div>
@@ -246,7 +246,7 @@ export default function ReviewAndConfirmSheet({
           <button
             type="button"
             onClick={onConfirm}
-            className="flex-1 bg-black text-white font-bold text-[14px] rounded-[12px] py-[12px] cursor-pointer mt-[8px]"
+            className="flex-1 bg-black text-white font-bold text-b14 rounded-12 py-3 cursor-pointer mt-2"
           >
             {plan.ctaLabel}
           </button>

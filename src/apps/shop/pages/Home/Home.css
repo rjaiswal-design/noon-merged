@@ -1,0 +1,557 @@
+/* =============================================================================
+   Home page — 1:1 Figma match
+   All values via Field DS tokens.
+   ========================================================================== */
+
+/* ─── Page shell ──────────────────────────────────────────────────────── */
+.home-page {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--color-surface-primary);
+  -webkit-overflow-scrolling: touch;
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 0;
+}
+
+.home-page__spacer { flex: 1; }
+
+/* ─── Section primitives ──────────────────────────────────────────────── */
+.home-section {
+  padding: var(--space-20) var(--space-16) var(--space-8);
+  background: #FFFFFF;
+}
+
+.home-section__title {
+  font-size: var(--font-h18-size);
+  line-height: var(--font-h18-line-height);
+  letter-spacing: var(--font-h18-letter-spacing);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-14);
+}
+
+/* =============================================================================
+   HEADER — yellow band
+   ========================================================================== */
+.home-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: url('/header-bg.png') center / cover no-repeat;
+  padding: 0 0 var(--space-14);
+  display: flex;
+  flex-direction: column;
+  /* gap replaced with margin-top on children so the address row's gap can
+     collapse with its height when the morph compacts the header. */
+  gap: 0;
+  border-radius: 0 0 var(--radius-12) var(--radius-12);
+  scroll-snap-align: start;
+  /* `scroll-snap-stop: always` forces the snap to halt on the header even
+     while the user is scrolling past it. Combined with the scroll-driven
+     morph, that produced an oscillation between the expanded and compact
+     resting positions, which surfaced as a half-morphed double-painted
+     header. The `proximity` snap on `.home-page` is enough on its own. */
+}
+
+.home-header > * + * {
+  margin-top: var(--space-12);
+}
+
+.home-section--snap-start {
+  scroll-snap-align: start;
+}
+
+/* ── Service tiles — 76 × 76 rounded-20 ──────────────────────────────── */
+.home-header__tiles {
+  display: flex;
+  gap: var(--space-6);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 var(--space-16);
+}
+.home-header__tiles::-webkit-scrollbar { display: none; }
+
+.home-tile {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border: 0;
+  border-radius: 20px;
+  flex: 0 0 76px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  will-change: height, border-radius;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.home-tile__inner-fill {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+
+.home-tile__watermark {
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 17px;
+  left: 19px;
+  opacity: 0.25;
+}
+
+.home-tile__center-logo {
+  position: relative;
+  object-fit: contain;
+}
+
+.home-tile__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.home-tile__food-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  gap: 2px;
+}
+.home-tile__food-n {
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: -0.3px;
+}
+.home-tile__food-f {
+  font-size: 18px;
+  font-weight: var(--font-weight-extrabold);
+  color: #F4364C;
+  letter-spacing: 0.5px;
+}
+
+.home-tile__label {
+  font-size: 13px;
+  font-weight: var(--font-weight-bold);
+  color: #404553;
+  line-height: 10px;
+}
+
+.home-tile__fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+.home-tile__pay-icon {
+  width: 30px;
+  height: 26px;
+  border-radius: 19px;
+  background: linear-gradient(-90deg, rgb(70,89,217) 1%, rgb(85,35,221) 100%);
+  position: relative;
+  box-shadow: 2px 2px 0 rgba(110,115,131,0.4);
+}
+
+/* ── Address row — two-line stacked, heart right-aligned ──────────────── */
+.home-header__address {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-16);
+  height: 49px;
+}
+
+.home-header__address-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+}
+.home-header__address-info:focus-visible {
+  outline: 2px solid var(--brand-blue-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.home-header__address-row1 {
+  display: flex;
+  align-items: center;
+}
+
+.home-header__home-icon {
+  width: 17px;
+  height: 16px;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.home-header__address-label {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
+  color: #000;
+  letter-spacing: -0.3px;
+}
+
+.home-header__address-row2 {
+  display: flex;
+  align-items: center;
+  padding-left: 4px;
+  min-width: 0;
+  width: 100%;
+}
+
+.home-header__address-line {
+  font-size: 14px;
+  line-height: 24px;
+  color: #343D54;
+  letter-spacing: -0.3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: auto;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.home-header__chevron {
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.home-header__heart {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ── Search bar ──────────────────────────────────────────────────────── */
+.home-header__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  height: 48px;
+  margin: 0 var(--space-16);
+  padding: 0 var(--space-12);
+  background: var(--color-surface-primary);
+  border-radius: var(--radius-12);
+  border: 1px solid #D7DAE3;
+  cursor: text;
+}
+
+.home-header__search-text {
+  flex: 1;
+  font-size: var(--font-b14-size);
+  line-height: var(--font-b14-line-height);
+  color: var(--color-text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-header__search-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--color-border-primary);
+  flex-shrink: 0;
+}
+
+.home-header__search-cam {
+  background: transparent;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* =============================================================================
+   SHOP BY CATEGORY — 2-row horizontal scroll grid
+   Card styling lives in CategoryCard.css; this only owns the scroll container.
+   ========================================================================== */
+.home-cat__scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 calc(-1 * var(--space-16));
+  padding: 0 var(--space-16);
+}
+.home-cat__scroll::-webkit-scrollbar { display: none; }
+
+.home-cat__grid {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: 92px;
+  gap: 16px;
+  padding-right: var(--space-16);
+  background: #FFFFFF;
+}
+
+/* =============================================================================
+   RECOMMENDED FOR YOU
+   ========================================================================== */
+
+/* Chips moved to packages/ui/HomeRecChips/HomeRecChips.css */
+
+/* ── Product rail ────────────────────────────────────────────────────── */
+.home-rec__rail {
+  display: flex;
+  gap: var(--space-10);
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 calc(-1 * var(--space-16));
+  padding: 0 var(--space-16) var(--space-4);
+}
+.home-rec__rail::-webkit-scrollbar { display: none; }
+
+.home-rec__card-wrap {
+  width: auto;
+  flex-shrink: 0;
+}
+.home-rec__card-wrap .product-card {
+  width: 134px;
+  border: none;
+}
+.home-rec__card-wrap .product-card__text-group {
+  height: auto;
+  flex-shrink: 0;
+}
+.rec-card {
+  width: 155px;
+  flex-shrink: 0;
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-12);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.rec-card__media {
+  position: relative;
+  background: var(--color-surface-secondary);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16);
+}
+
+.rec-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.rec-card__tag {
+  position: absolute;
+  top: var(--space-8);
+  left: 0;
+  background: var(--green-700);
+  color: var(--neutral-white);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: var(--font-weight-bold);
+  padding: 3px 8px 3px 6px;
+  border-radius: 0 var(--radius-4) var(--radius-4) 0;
+}
+
+.rec-card__heart {
+  position: absolute;
+  top: var(--space-8);
+  right: var(--space-8);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-border-subtle);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.rec-card__media-footer {
+  position: absolute;
+  bottom: var(--space-8);
+  left: var(--space-8);
+  right: var(--space-8);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.rec-card__media-spacer { flex: 1; }
+
+.rec-card__ad {
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-tertiary);
+  background: var(--color-surface-primary);
+  padding: 2px 6px;
+  border-radius: var(--radius-4);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.rec-card__plus {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-rounded);
+  background: var(--grey-900);
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.rec-card__body {
+  padding: var(--space-8) var(--space-8) var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.rec-card__title {
+  font-size: var(--font-b12-size);
+  line-height: var(--font-b12-line-height);
+  letter-spacing: var(--font-b12-letter-spacing);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 32px;
+}
+
+.rec-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--font-b11-size);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.rec-card__prices {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+}
+
+.rec-card__price {
+  font-size: var(--font-b14-size);
+  line-height: var(--font-b14-line-height);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.rec-card__currency {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.rec-card__original {
+  font-size: var(--font-b11-size);
+  color: var(--color-text-tertiary);
+  text-decoration: line-through;
+}
+
+.rec-card__discount {
+  font-size: var(--font-b11-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-success);
+}
+
+.rec-card__delivery {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-b11-size);
+  line-height: var(--font-b11-line-height);
+  color: var(--color-text-secondary);
+}
+
+.rec-card__express {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.rec-card__express-badge {
+  font-size: 10px;
+  font-weight: var(--font-weight-extrabold);
+  color: var(--neutral-white);
+  background: var(--emerald-700);
+  padding: 2px 6px;
+  border-radius: var(--radius-4);
+  letter-spacing: 0.2px;
+  font-style: italic;
+}
+
+.rec-card__express-day {
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  color: var(--emerald-700);
+}
+
+/* =============================================================================
+   OFFERS FOR YOU — SVG carousel
+   ========================================================================== */
+.home-offers__rail {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 calc(-1 * var(--space-16));
+  padding: 0 var(--space-16) var(--space-4);
+}
+.home-offers__rail::-webkit-scrollbar { display: none; }
+
+.home-offers__card-img {
+  flex: 0 0 auto;
+  height: 172px;
+  width: auto;
+}
+

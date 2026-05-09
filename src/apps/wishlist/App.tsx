@@ -4,18 +4,64 @@ import { Retune } from "retune";
 import "./index.css";
 import ProductList from "./components/ProductList";
 import CollectionDrawer from "./components/CollectionDrawer";
+import WishlistPage from "./components/WishlistPage";
 import type { SkuCardProps } from "./components/SkuCard";
 import topImg from "./assets/Top.png";
 import bottomImg from "./assets/Bottom.png";
 
+function postClose() {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'wishlist:close' }, '*');
+  }
+}
+
 export default function App() {
+  const search = typeof window !== 'undefined' ? window.location.search : '';
+  const params = new URLSearchParams(search);
+  const isDrawer = params.get('drawer') === '1';
+  const isEmbedded = params.get('embedded') === '1' || isDrawer;
+  const initialImage = params.get('image') || undefined;
+
   const [selectedProduct, setSelectedProduct] = useState<SkuCardProps | null>(
     null,
   );
 
+  if (isDrawer) {
+    return (
+      <div className="absolute inset-0 z-50 flex flex-col justify-end">
+        <motion.button
+          type="button"
+          aria-label="Close"
+          onClick={postClose}
+          className="absolute inset-0 bg-black/80"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        />
+        <motion.div
+          className="relative"
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          transition={{ type: "spring", stiffness: 320, damping: 32 }}
+        >
+          <CollectionDrawer product={initialImage ? { image: initialImage } : undefined} />
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (isEmbedded) {
+    return (
+      <div className="min-h-full w-full bg-surface-primary">
+        <WishlistPage onBack={postClose} />
+        <Retune />
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="flex min-h-full w-full flex-col items-stretch justify-start bg-[#e9ebf0] py-8">
+      <div className="flex min-h-full w-full flex-col items-stretch justify-start bg-blue-gray-300 py-8">
         <div className="relative mx-auto flex h-[812px] w-[375px] flex-col overflow-hidden bg-surface-primary">
           <img src={topImg} alt="" className="block w-full shrink-0" />
           <div className="min-h-0 flex-1 overflow-hidden">

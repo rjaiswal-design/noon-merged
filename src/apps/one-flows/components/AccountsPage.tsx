@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import StatusBar from "./StatusBar";
-import SmoothCorners from "./SmoothCorners";
-import { BottomNav as SharedBottomNav } from "../../../shell/BottomNav";
+import SmoothCorners from "@ui/SmoothCorners";
 import {
   CountrySelectorSheet,
   SignOutSheet,
@@ -20,42 +19,11 @@ import wishlistRacket from "../assets/figma-products/wishlist-racket.svg";
 import wishlistHeart from "../assets/figma-products/wishlist-heart.svg";
 import creditCardBg from "../assets/figma-products/credit-card-bg.png";
 
-/* ---------- Field DS tokens (mirrored from Figma 733:13629) ---------- */
-const T = {
-  color: {
-    text: {
-      primary: "#0e0e0e",
-      deep: "#101628",
-      heading: "#1d2539",
-      strong: "#343d54",
-      body: "#475067",
-      muted: "#666d85",
-      subtle: "#989fb3",
-    },
-    surface: {
-      canvas: "#ffffff",
-      page: "#f9f9fb",
-      scrim50: "#fcfcfd",
-    },
-    border: {
-      divider: "#eaecf0",
-      hairline: "#f5f5f5",
-      subtle: "#f2f3f7",
-    },
-    brand: { green: "#108757" },
-    accent: {
-      info: "#0076ff",
-      infoDeep: "#0057ff",
-      yellow: "#FFE600",
-      yellowSoft: "#FFF6BF",
-    },
-    danger: "#f43333",
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /* ---------- Inline icons ---------- */
 
-function ChevronRight({ className = "", color = T.color.text.muted }: { className?: string; color?: string }) {
+function ChevronRight({ className="", color = T.color.text.muted }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 14 14" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M5.5 3.5L9 7L5.5 10.5" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -63,7 +31,7 @@ function ChevronRight({ className = "", color = T.color.text.muted }: { classNam
   );
 }
 
-function PencilIcon({ className = "" }: { className?: string }) {
+function PencilIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -76,7 +44,7 @@ function PencilIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function PinIcon({ className = "" }: { className?: string }) {
+function PinIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -90,7 +58,7 @@ function PinIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function ReturnIcon({ className = "" }: { className?: string }) {
+function ReturnIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -105,7 +73,7 @@ function ReturnIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function CardIcon({ className = "" }: { className?: string }) {
+function CardIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <rect x="2.5" y="5" width="15" height="11" rx="1.6" stroke={T.color.text.heading} strokeWidth="1.4" />
@@ -115,7 +83,7 @@ function CardIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function GlobeIcon({ className = "" }: { className?: string }) {
+function GlobeIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <circle cx="10" cy="10" r="7.5" stroke={T.color.text.heading} strokeWidth="1.4" />
@@ -124,7 +92,7 @@ function GlobeIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function SlidersIcon({ className = "" }: { className?: string }) {
+function SlidersIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <line x1="3" y1="6" x2="17" y2="6" stroke={T.color.text.heading} strokeWidth="1.4" strokeLinecap="round" />
@@ -135,7 +103,7 @@ function SlidersIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function BellIcon({ className = "" }: { className?: string }) {
+function BellIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -149,7 +117,7 @@ function BellIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function SignOutIcon({ className = "" }: { className?: string }) {
+function SignOutIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -164,7 +132,7 @@ function SignOutIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function NoonOneBadge({ className = "" }: { className?: string }) {
+function NoonOneBadge({ className="" }: { className?: string }) {
   // Composite of the colourful frame + the "one" wordmark, sized to the
   // Field DS variant used in the noon One banner (~38×21).
   return (
@@ -180,13 +148,13 @@ function NoonOneBadge({ className = "" }: { className?: string }) {
         alt="noon One"
         width={26}
         height={8}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[26px] h-[8px]"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-2"
       />
     </div>
   );
 }
 
-function HelpIcon({ className = "" }: { className?: string }) {
+function HelpIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -199,7 +167,7 @@ function HelpIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function ExternalIcon({ className = "" }: { className?: string }) {
+function ExternalIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 12 12" className={`block ${className}`} fill="none" aria-hidden="true">
       <path
@@ -213,7 +181,7 @@ function ExternalIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function FacebookIcon({ className = "" }: { className?: string }) {
+function FacebookIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.86.24-1.46 1.48-1.46H17V4.5c-.27-.04-1.2-.1-2.27-.1-2.25 0-3.79 1.37-3.79 3.9v2.2H8.5v3h2.44V21h2.56Z" fill={T.color.text.heading} />
@@ -221,7 +189,7 @@ function FacebookIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function XIcon({ className = "" }: { className?: string }) {
+function XIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M16.5 4h2.6l-5.7 6.5L20 20h-5.3l-4.1-5.4L5.7 20H3.1l6.1-7L3 4h5.4l3.7 4.9L16.5 4Zm-.9 14h1.4L8.5 5.5H7L15.6 18Z" fill={T.color.text.heading} />
@@ -229,7 +197,7 @@ function XIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function LinkedInIcon({ className = "" }: { className?: string }) {
+function LinkedInIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`block ${className}`} fill="none" aria-hidden="true">
       <path d="M6 9h2.6v9H6V9Zm1.3-4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM10.5 9h2.5v1.3a3 3 0 0 1 2.6-1.4c2.8 0 3.4 1.86 3.4 4.3V18h-2.6v-4c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2V18H10.5V9Z" fill={T.color.text.heading} />
@@ -237,7 +205,7 @@ function LinkedInIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function InstagramIcon({ className = "" }: { className?: string }) {
+function InstagramIcon({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`block ${className}`} fill="none" aria-hidden="true">
       <rect x="4" y="4" width="16" height="16" rx="4.5" stroke={T.color.text.heading} strokeWidth="1.6" />
@@ -247,7 +215,7 @@ function InstagramIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function FlagUAE({ className = "" }: { className?: string }) {
+function FlagUAE({ className="" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 16" className={`block ${className} rounded-[3px] overflow-hidden`} aria-hidden="true">
       <rect x="6" y="0" width="18" height="16/3" height="5.33" fill="#00732F" />
@@ -269,18 +237,18 @@ function BottomNav({ active = "account" }: { active?: "home" | "categories" | "d
     { key: "cart", label: "Cart", icon: <CartNavIcon active={active === "cart"} /> },
   ];
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-[#eaecf0] pt-[8px] pb-[28px] flex items-start justify-between px-[8px]">
+    <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-blue-gray-300 pt-2 pb-7 flex items-start justify-between px-2">
       {items.map((it) => (
-        <div key={it.key} className="flex flex-col items-center gap-[4px] flex-1">
-          <div className="size-[22px] flex items-center justify-center">{it.icon}</div>
+        <div key={it.key} className="flex flex-col items-center gap-1 flex-1">
+          <div className="size-5 flex items-center justify-center">{it.icon}</div>
           <p
-            className="font-noontree text-[10px] leading-[12px] tracking-[-0.1px]"
+            className="font-noontree text-tiny"
             style={{ color: it.key === active ? T.color.text.deep : T.color.text.muted, fontWeight: it.key === active ? 700 : 500 }}
           >
             {it.label}
           </p>
           {it.key === active && (
-            <div className="absolute top-0 h-[2px] w-[40px] rounded-full" style={{ backgroundColor: T.color.text.deep }} />
+            <div className="absolute top-0 h-0.5 w-10 rounded-full" style={{ backgroundColor: T.color.text.deep }} />
           )}
         </div>
       ))}
@@ -365,38 +333,38 @@ function FannedTiles({
     <div className="relative w-[141px] h-[60px] mx-auto">
       {/* Back-left empty card */}
       <div
-        className="absolute left-0 top-[10.5px] size-[40px] rounded-[8px] border"
+        className="absolute left-0 top-2.5 size-10 rounded-8 border"
         style={{ background: tileGradient, borderColor: "#f9f9fb" }}
       />
       {/* Back-right empty card */}
       <div
-        className="absolute left-[101px] top-[10.5px] size-[40px] rounded-[8px] border"
+        className="absolute left-[101px] top-2.5 size-10 rounded-8 border"
         style={{ background: tileGradient, borderColor: "#f9f9fb" }}
       />
       {/* Mid-left product */}
       <div
-        className="absolute left-[15px] top-[5px] size-[50px] rounded-[8px] border overflow-hidden flex items-center justify-center"
+        className="absolute left-3.5 top-1 size-12 rounded-8 border overflow-hidden flex items-center justify-center"
         style={{ background: tileGradient, borderColor: "#f9f9fb" }}
       >
-        <img src={leftMidImage} alt="" aria-hidden="true" className="size-[34px] object-contain opacity-90" />
+        <img src={leftMidImage} alt="" aria-hidden="true" className="size-8 object-contain opacity-90" />
       </div>
       {/* Mid-right product */}
       <div
-        className="absolute left-[76px] top-[5px] size-[50px] rounded-[8px] border overflow-hidden flex items-center justify-center"
+        className="absolute left-[76px] top-1 size-12 rounded-8 border overflow-hidden flex items-center justify-center"
         style={{ background: tileGradient, borderColor: "#f9f9fb" }}
       >
-        <img src={rightMidImage} alt="" aria-hidden="true" className="size-[34px] object-contain opacity-90" />
+        <img src={rightMidImage} alt="" aria-hidden="true" className="size-8 object-contain opacity-90" />
       </div>
       {/* Hero centre product — elevated above the others */}
       <div
-        className="absolute left-[40px] top-0 size-[60px] rounded-[10px] border overflow-hidden flex items-center justify-center relative"
+        className="absolute left-10 top-0 size-[60px] rounded-8 border overflow-hidden flex items-center justify-center relative"
         style={{
           background: centerGradient,
           borderColor: "#eaecf0",
           boxShadow: "0 2px 8px rgba(15,15,25,0.06)",
         }}
       >
-        <img src={centerImage} alt="" aria-hidden="true" className="size-[42px] object-contain" />
+        <img src={centerImage} alt="" aria-hidden="true" className="size-10 object-contain" />
         {centerOverlay}
       </div>
     </div>
@@ -429,18 +397,18 @@ function MenuRow({
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center w-full h-[38px] cursor-pointer gap-[8px]"
+      className="flex items-center w-full h-9 cursor-pointer gap-2"
     >
-      <div className="size-[28px] rounded-[8px] flex items-center justify-center shrink-0 p-[4px]">
+      <div className="size-7 rounded-8 flex items-center justify-center shrink-0 p-1">
         {icon}
       </div>
       <p
-        className="flex-1 font-noontree font-medium text-[15px] leading-[18px] tracking-[-0.14px] text-left whitespace-nowrap"
+        className="flex-1 font-noontree font-medium text-b14 text-left whitespace-nowrap"
         style={{ color: T.color.text.deep }}
       >
         {label}
       </p>
-      {trailing ?? <ChevronRight className="size-[14px] shrink-0" />}
+      {trailing ?? <ChevronRight className="size-3.5 shrink-0" />}
     </button>
   );
 }
@@ -453,7 +421,7 @@ function MenuRow({
 function DashedSep() {
   return (
     <div
-      className="h-0 border-t border-dashed ml-[36px]"
+      className="h-0 border-t border-dashed ml-9"
       style={{ borderColor: T.color.border.divider }}
     />
   );
@@ -501,38 +469,38 @@ export default function AccountsPage({
 
   return (
     <div
-      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-[20px]"
+      className="relative w-[375px] h-[812px] mx-auto overflow-hidden rounded-16"
       style={{ backgroundColor: T.color.surface.page }}
     >
       <StatusBar />
 
       {/* Scroll body */}
-      <div className="relative h-full overflow-y-auto pt-[44px] pb-[100px]">
-        <div className="flex flex-col gap-[12px] w-[351px] mx-auto">
+      <div className="relative h-full overflow-y-auto pt-11 pb-[100px]">
+        <div className="flex flex-col gap-3 w-[351px] mx-auto">
           {/* Top profile */}
-          <SmoothCorners radius={12} className="bg-white rounded-[12px] flex items-center px-[14px] py-[14px] gap-[12px]">
+          <SmoothCorners radius={12} className="bg-white rounded-12 flex items-center px-3.5 py-3.5 gap-3">
             <div
-              className="size-[44px] rounded-full flex items-center justify-center font-noontree font-bold text-white text-[16px] shrink-0"
+              className="size-11 rounded-full flex items-center justify-center font-noontree font-bold text-white text-h16 shrink-0"
               style={{ backgroundColor: "#666d85" }}
             >
               A
             </div>
-            <div className="flex-1 flex flex-col gap-[2px] min-w-0">
-              <p className="font-bold text-[16px] leading-[20px] tracking-[-0.16px] truncate" style={{ color: T.color.text.heading }}>
+            <div className="flex-1 flex flex-col gap-0.5 min-w-0">
+              <p className="font-bold text-h16 truncate" style={{ color: T.color.text.heading }}>
                 Hala Ayush
               </p>
-              <p className="font-noontree text-[12px] leading-[14px] tracking-[-0.12px] truncate" style={{ color: T.color.text.muted }}>
+              <p className="font-noontree text-label-4p truncate" style={{ color: T.color.text.muted }}>
                 aykapoor@noon.com
               </p>
             </div>
             <button
               type="button"
               onClick={onMyAccount}
-              className="size-[36px] rounded-full bg-white border flex items-center justify-center cursor-pointer shrink-0"
+              className="size-9 rounded-full bg-white border flex items-center justify-center cursor-pointer shrink-0"
               style={{ borderColor: T.color.border.subtle }}
               aria-label="Edit profile"
             >
-              <PencilIcon className="size-[16px]" />
+              <PencilIcon className="size-4" />
             </button>
           </SmoothCorners>
 
@@ -546,16 +514,16 @@ export default function AccountsPage({
             as="button"
             radius={16}
             onClick={onNoonOne}
-            className="rounded-[16px] relative flex items-center justify-between pl-[14px] pr-[12px] cursor-pointer text-left overflow-hidden h-[66px]"
+            className="rounded-16 relative flex items-center justify-between pl-3.5 pr-3 cursor-pointer text-left overflow-hidden h-16"
             style={{
               background:
                 "radial-gradient(60% 100% at 50% 50%, rgba(255,168,45,0.55) 0%, rgba(255,168,45,0) 100%), linear-gradient(90deg, #FFF3C0 0%, #FFE99B 100%)",
             }}
           >
-            <div className="flex flex-col gap-[3px]">
-              <div className="flex items-center gap-[6px]">
+            <div className="flex flex-col gap-0.5">
+              <div className="flex items-center gap-1.5">
                 <p
-                  className="font-noontree font-extrabold text-[15px] leading-[20px] tracking-[-0.24px]"
+                  className="font-noontree font-extrabold text-b14"
                   style={{ color: T.color.text.deep }}
                 >
                   Get Free Delivery
@@ -563,17 +531,17 @@ export default function AccountsPage({
                 <NoonOneBadge />
               </div>
               <p
-                className="font-noontree text-[12px] leading-[14px] tracking-[-0.12px]"
+                className="font-noontree text-label-4p"
                 style={{ color: "rgba(2,6,12,0.75)" }}
               >
                 On food, groceries, &amp; shopping
               </p>
             </div>
             <div
-              className="h-[39px] px-[18px] rounded-[12px] flex items-center justify-center shrink-0"
+              className="h-10 px-4 rounded-12 flex items-center justify-center shrink-0"
               style={{ backgroundColor: "#0e0e0e" }}
             >
-              <span className="font-noontree font-semibold text-[13px] leading-none text-white tracking-[-0.13px] whitespace-nowrap">
+              <span className="font-noontree font-semibold text-label-3 leading-none text-white whitespace-nowrap">
                 Join One
               </span>
             </div>
@@ -583,17 +551,17 @@ export default function AccountsPage({
               with 5 stacked tiles per Figma 733:13635/13636. Two empty
               back-tiles add depth; the three front tiles carry the
               product imagery, with the centre tile elevated and largest. */}
-          <div className="grid grid-cols-2 gap-[8px]">
+          <div className="grid grid-cols-2 gap-2">
             <SmoothCorners
               radius={12}
               onClick={onMyOrders}
-              className="bg-white rounded-[12px] flex flex-col px-[12px] py-[12px] gap-[12px] h-[136px] cursor-pointer items-center justify-center"
+              className="bg-white rounded-12 flex flex-col px-3 py-3 gap-3 h-[136px] cursor-pointer items-center justify-center"
             >
-              <div className="flex flex-col gap-[2px] items-start w-full">
-                <p className="font-bold text-[16px] leading-[20px] tracking-[-0.16px]" style={{ color: T.color.text.heading }}>
+              <div className="flex flex-col gap-0.5 items-start w-full">
+                <p className="font-bold text-h16" style={{ color: T.color.text.heading }}>
                   My Orders
                 </p>
-                <p className="font-noontree font-medium text-[12px] leading-[14px] tracking-[-0.12px]" style={{ color: T.color.text.muted }}>
+                <p className="font-noontree font-medium text-label-4p" style={{ color: T.color.text.muted }}>
                   manage &amp; returns
                 </p>
               </div>
@@ -611,13 +579,13 @@ export default function AccountsPage({
                   '*',
                 )
               }
-              className="bg-white rounded-[12px] flex flex-col px-[12px] py-[12px] gap-[12px] h-[136px] cursor-pointer items-center justify-center"
+              className="bg-white rounded-12 flex flex-col px-3 py-3 gap-3 h-[136px] cursor-pointer items-center justify-center"
             >
-              <div className="flex flex-col gap-[2px] items-start w-full">
-                <p className="font-bold text-[16px] leading-[20px] tracking-[-0.16px]" style={{ color: T.color.text.heading }}>
+              <div className="flex flex-col gap-0.5 items-start w-full">
+                <p className="font-bold text-h16" style={{ color: T.color.text.heading }}>
                   My Wishlist
                 </p>
-                <p className="font-noontree font-medium text-[12px] leading-[14px] tracking-[-0.12px]" style={{ color: T.color.text.muted }}>
+                <p className="font-noontree font-medium text-label-4p" style={{ color: T.color.text.muted }}>
                   add favourites
                 </p>
               </div>
@@ -630,7 +598,7 @@ export default function AccountsPage({
                     src={wishlistHeart}
                     alt=""
                     aria-hidden="true"
-                    className="absolute right-[3px] top-[3px] size-[10px]"
+                    className="absolute right-0.5 top-0.5 size-2.5"
                   />
                 }
               />
@@ -641,24 +609,24 @@ export default function AccountsPage({
               (Noontree font). The credit balance uses the noon dirham
               glyph (Noontree PUA U+E001) followed by the amount —
               matches the Figma 733:13629 spec exactly. */}
-          <SmoothCorners radius={12} className="bg-white rounded-[12px] flex items-center px-[14px] py-[14px] gap-[12px] cursor-pointer">
-            <div className="size-[28px] rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: T.color.border.subtle }}>
+          <SmoothCorners radius={12} className="bg-white rounded-12 flex items-center px-3.5 py-3.5 gap-3 cursor-pointer">
+            <div className="size-7 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: T.color.border.subtle }}>
               <span
-                className="font-noontree font-extrabold text-[14px] leading-none italic"
+                className="font-noontree font-extrabold text-b14 leading-none italic"
                 style={{ color: T.color.text.heading }}
               >
                 n
               </span>
             </div>
-            <div className="flex-1 flex flex-col gap-[1px]">
-              <p className="font-bold text-[14px] leading-[18px] tracking-[-0.14px]" style={{ color: T.color.text.heading }}>
+            <div className="flex-1 flex flex-col gap-px">
+              <p className="font-bold text-label-3p" style={{ color: T.color.text.heading }}>
                 noon Credits
               </p>
-              <p className="font-noontree text-[12px] leading-[14px] tracking-[-0.12px]" style={{ color: T.color.text.muted }}>
-                <span className="font-noontree mr-[2px]" aria-label="AED">{""}</span>0
+              <p className="font-noontree text-label-4p" style={{ color: T.color.text.muted }}>
+                <span className="font-noontree mr-0.5" aria-label="AED">{""}</span>0
               </p>
             </div>
-            <ChevronRight className="size-[14px]" />
+            <ChevronRight className="size-3.5" />
           </SmoothCorners>
 
           {/* noon One Credit Card carousel — horizontal swipe with
@@ -675,19 +643,19 @@ export default function AccountsPage({
               const idx = Math.round(e.currentTarget.scrollLeft / 359);
               if (idx !== activeSlide) setActiveSlide(idx);
             }}
-            className="-mr-[24px] overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="-mr-6 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            <div className="flex gap-[8px] pr-[24px]">
+            <div className="flex gap-2 pr-6">
               {/* Card 1 — primary credit card */}
-              <SmoothCorners radius={12} className="bg-white rounded-[12px] flex flex-col gap-[12px] px-[14px] py-[14px] shrink-0 snap-start" style={{ width: "351px" }}>
-                <div className="flex items-start gap-[12px]">
-                  <div className="flex flex-col gap-[10px] flex-1">
-                    <p className="font-bold text-[15px] leading-[20px] tracking-[-0.16px]" style={{ color: T.color.text.heading }}>
+              <SmoothCorners radius={12} className="bg-white rounded-12 flex flex-col gap-3 px-3.5 py-3.5 shrink-0 snap-start" style={{ width: "351px" }}>
+                <div className="flex items-start gap-3">
+                  <div className="flex flex-col gap-2.5 flex-1">
+                    <p className="font-bold text-b14" style={{ color: T.color.text.heading }}>
                       noon One Credit Card
                     </p>
                     <button
                       type="button"
-                      className="font-noontree font-semibold text-[12px] leading-none px-[14px] py-[10px] rounded-full text-white w-fit cursor-pointer"
+                      className="font-noontree font-semibold text-b12 leading-none px-3.5 py-2.5 rounded-full text-white w-fit cursor-pointer"
                       style={{ backgroundColor: T.color.text.primary }}
                     >
                       Apply now
@@ -698,7 +666,7 @@ export default function AccountsPage({
                       black bg + sneaker/gaming/headphone illustrations
                       + yellow noon phone + VISA Platinum). RAHUL name
                       overlay sits top-left per the Figma. */}
-                  <div className="w-[140px] h-[88px] rounded-[10px] shrink-0 relative overflow-hidden border" style={{ borderColor: "#909090" }}>
+                  <div className="w-[140px] h-[88px] rounded-8 shrink-0 relative overflow-hidden border" style={{ borderColor: "#909090" }}>
                     <img
                       src={creditCardBg}
                       alt=""
@@ -706,7 +674,7 @@ export default function AccountsPage({
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                     <p
-                      className="absolute top-[6px] left-[8px] font-noontree font-bold text-white text-[10px] tracking-[-0.1px] z-10"
+                      className="absolute top-1.5 left-2 font-noontree font-bold text-white text-tiny z-10"
                       style={{ textShadow: "0 1px 2px rgba(0,0,0,0.4)" }}
                     >
                       RAHUL
@@ -714,14 +682,14 @@ export default function AccountsPage({
                   </div>
                 </div>
                 <div
-                  className="rounded-[8px] px-[10px] py-[8px] flex items-center gap-[6px] flex-wrap"
+                  className="rounded-8 px-2.5 py-2 flex items-center gap-1.5 flex-wrap"
                   style={{ backgroundColor: T.color.surface.page }}
                 >
-                  <p className="font-noontree text-[11px] leading-[14px] tracking-[-0.1px]" style={{ color: T.color.text.body }}>
+                  <p className="font-noontree text-b11" style={{ color: T.color.text.body }}>
                     Get Unlimited free Delivery with
                   </p>
                   <NoonOneBadge />
-                  <p className="font-noontree text-[11px] leading-[14px] tracking-[-0.1px]" style={{ color: T.color.text.body }}>
+                  <p className="font-noontree text-b11" style={{ color: T.color.text.body }}>
                     Upto 20% savings · ₿500 welcome bonus
                   </p>
                 </div>
@@ -733,13 +701,13 @@ export default function AccountsPage({
                   noon One context, not buried in account settings. */}
               <SmoothCorners
                 radius={12}
-                className="bg-white rounded-[12px] flex flex-col gap-[12px] px-[14px] py-[14px] shrink-0 snap-start"
+                className="bg-white rounded-12 flex flex-col gap-3 px-3.5 py-3.5 shrink-0 snap-start"
                 style={{ width: "351px" }}
               >
-                <div className="flex items-start gap-[12px]">
-                  <div className="flex flex-col gap-[10px] flex-1">
+                <div className="flex items-start gap-3">
+                  <div className="flex flex-col gap-2.5 flex-1">
                     <p
-                      className="font-bold text-[15px] leading-[20px] tracking-[-0.16px]"
+                      className="font-bold text-b14"
                       style={{ color: T.color.text.heading }}
                     >
                       Get
@@ -756,7 +724,7 @@ export default function AccountsPage({
               slide. Tapping a dot scrolls the carousel to that slide
               (smooth) — a fallback for users who don't realise the
               section swipes. */}
-          <div className="flex justify-center gap-[4px] -mt-[4px]">
+          <div className="flex justify-center gap-1 -mt-1">
             {[0, 1].map((i) => (
               <button
                 key={i}
@@ -765,7 +733,7 @@ export default function AccountsPage({
                 onClick={() => {
                   carouselRef.current?.scrollTo({ left: i * 359, behavior: "smooth" });
                 }}
-                className="size-[6px] rounded-full cursor-pointer transition-colors duration-150"
+                className="size-1.5 rounded-full cursor-pointer transition-colors duration-150"
                 style={{
                   backgroundColor:
                     activeSlide === i ? T.color.text.deep : T.color.border.divider,
@@ -777,26 +745,26 @@ export default function AccountsPage({
           {/* Account management menu — outer card has p-12 + rounded-16
               per Field DS spec; inner list uses gap-8 with a dashed
               separator hairline sitting in each gap. */}
-          <SmoothCorners radius={16} className="bg-white rounded-[16px] p-[12px] flex flex-col gap-[8px]">
-            <MenuRow icon={<PinIcon className="size-[18px]" />} label="Addresses" onClick={onAddresses} />
+          <SmoothCorners radius={16} className="bg-white rounded-16 p-3 flex flex-col gap-2">
+            <MenuRow icon={<PinIcon className="size-4" />} label="Addresses" onClick={onAddresses} />
             <DashedSep />
-            <MenuRow icon={<ReturnIcon className="size-[18px]" />} label="Returns" />
+            <MenuRow icon={<ReturnIcon className="size-4" />} label="Returns" />
             <DashedSep />
-            <MenuRow icon={<CardIcon className="size-[18px]" />} label="Saved Cards" onClick={onSavedCards} />
+            <MenuRow icon={<CardIcon className="size-4" />} label="Saved Cards" onClick={onSavedCards} />
             <DashedSep />
             <MenuRow
-              icon={<GlobeIcon className="size-[18px]" />}
+              icon={<GlobeIcon className="size-4" />}
               label="Language"
               trailing={
                 /* Field DS Language toggle — pill track with the active
                    tab as a white card (Noontree SemiBold 12, Blue-Gray
                    /900) and the inactive as muted text alongside. */
                 <div
-                  className="flex items-center p-[4px] rounded-full"
+                  className="flex items-center p-1 rounded-full"
                   style={{ backgroundColor: T.color.surface.page }}
                 >
                   <span
-                    className="font-noontree font-semibold text-[12px] leading-[14px] px-[10px] py-[8px] rounded-[16px] bg-white border whitespace-nowrap"
+                    className="font-noontree font-semibold text-label-4p px-2.5 py-2 rounded-16 bg-white border whitespace-nowrap"
                     style={{
                       borderColor: T.color.surface.scrim50,
                       color: T.color.text.heading,
@@ -806,7 +774,7 @@ export default function AccountsPage({
                     English
                   </span>
                   <span
-                    className="font-noontree font-medium text-[14px] leading-[14px] px-[10px] py-[8px] whitespace-nowrap"
+                    className="font-noontree font-medium text-b14 px-2.5 py-2 whitespace-nowrap"
                     style={{ color: T.color.text.muted }}
                     dir="rtl"
                   >
@@ -817,23 +785,23 @@ export default function AccountsPage({
             />
             <DashedSep />
             <MenuRow
-              icon={<GlobeIcon className="size-[18px]" />}
+              icon={<GlobeIcon className="size-4" />}
               label="Country"
               onClick={() => setCountryOpen(true)}
               trailing={
-                <div className="flex items-center gap-[8px]">
-                  <FlagUAE className="w-[24px] h-[18px]" />
-                  <ChevronRight className="size-[14px]" />
+                <div className="flex items-center gap-2">
+                  <FlagUAE className="w-6 h-4" />
+                  <ChevronRight className="size-3.5" />
                 </div>
               }
             />
           </SmoothCorners>
 
           {/* Preferences card — same architecture, two rows */}
-          <SmoothCorners radius={16} className="bg-white rounded-[16px] p-[12px] flex flex-col gap-[8px]">
-            <MenuRow icon={<SlidersIcon className="size-[18px]" />} label="Preferences" onClick={() => setPrefOpen(true)} />
+          <SmoothCorners radius={16} className="bg-white rounded-16 p-3 flex flex-col gap-2">
+            <MenuRow icon={<SlidersIcon className="size-4" />} label="Preferences" onClick={() => setPrefOpen(true)} />
             <DashedSep />
-            <MenuRow icon={<BellIcon className="size-[18px]" />} label="Notifications" onClick={() => setNotifOpen(true)} />
+            <MenuRow icon={<BellIcon className="size-4" />} label="Notifications" onClick={() => setNotifOpen(true)} />
           </SmoothCorners>
 
           {/* Sign out card — Account Security moved to the pencil
@@ -841,37 +809,37 @@ export default function AccountsPage({
               since editing your profile *is* the account security
               flow. Keeps this card focused on the destructive
               sign-out action. */}
-          <SmoothCorners radius={16} className="bg-white rounded-[16px] p-[12px] flex flex-col gap-[8px]">
+          <SmoothCorners radius={16} className="bg-white rounded-16 p-3 flex flex-col gap-2">
             <button
               type="button"
               onClick={() => setSignOutOpen(true)}
-              className="flex items-center w-full h-[38px] cursor-pointer gap-[8px]"
+              className="flex items-center w-full h-9 cursor-pointer gap-2"
             >
-              <div className="size-[28px] rounded-[8px] flex items-center justify-center shrink-0 p-[4px]">
-                <SignOutIcon className="size-[18px]" />
+              <div className="size-7 rounded-8 flex items-center justify-center shrink-0 p-1">
+                <SignOutIcon className="size-4" />
               </div>
               <p
-                className="flex-1 font-noontree font-medium text-[15px] leading-[18px] tracking-[-0.14px] text-left whitespace-nowrap"
+                className="flex-1 font-noontree font-medium text-b14 text-left whitespace-nowrap"
                 style={{ color: T.color.danger }}
               >
                 Sign out
               </p>
-              <ChevronRight className="size-[14px] shrink-0" color={T.color.danger} />
+              <ChevronRight className="size-3.5 shrink-0" color={T.color.danger} />
             </button>
           </SmoothCorners>
 
           {/* Footer */}
-          <div className="flex flex-col items-center gap-[14px] pt-[18px] pb-[8px]">
-            <div className="flex items-center gap-[14px]">
-              <button type="button" className="font-noontree text-[12px] cursor-pointer" style={{ color: T.color.text.body }}>
+          <div className="flex flex-col items-center gap-3.5 pt-4 pb-2">
+            <div className="flex items-center gap-3.5">
+              <button type="button" className="font-noontree text-b12 cursor-pointer" style={{ color: T.color.text.body }}>
                 Policies
               </button>
-              <button type="button" className="font-noontree text-[12px] cursor-pointer flex items-center gap-[2px]" style={{ color: T.color.text.body }}>
+              <button type="button" className="font-noontree text-b12 cursor-pointer flex items-center gap-0.5" style={{ color: T.color.text.body }}>
                 Sell on noon
-                <ExternalIcon className="size-[10px]" />
+                <ExternalIcon className="size-2.5" />
               </button>
             </div>
-            <div className="flex items-center gap-[10px]">
+            <div className="flex items-center gap-2.5">
               {[
                 { Icon: FacebookIcon, key: "fb" },
                 { Icon: XIcon, key: "x" },
@@ -880,21 +848,21 @@ export default function AccountsPage({
               ].map(({ Icon, key }) => (
                 <div
                   key={key}
-                  className="size-[34px] rounded-full flex items-center justify-center border"
+                  className="size-8 rounded-full flex items-center justify-center border"
                   style={{ borderColor: T.color.border.divider }}
                 >
-                  <Icon className="size-[18px]" />
+                  <Icon className="size-4" />
                 </div>
               ))}
             </div>
-            <p className="font-noontree text-[11px]" style={{ color: T.color.text.muted }}>
+            <p className="font-noontree text-b11" style={{ color: T.color.text.muted }}>
               © 2025 noon. All Rights Reserved
             </p>
-            <div className="flex flex-col items-center gap-[2px] pt-[6px]">
-              <p className="font-noontree text-[11px]" style={{ color: T.color.text.muted }}>
+            <div className="flex flex-col items-center gap-0.5 pt-1.5">
+              <p className="font-noontree text-b11" style={{ color: T.color.text.muted }}>
                 You joined the noon app in June 2022.
               </p>
-              <p className="font-noontree text-[11px]" style={{ color: T.color.text.muted }}>
+              <p className="font-noontree text-b11" style={{ color: T.color.text.muted }}>
                 Version 4.63.0 designed with care in every detail.
               </p>
             </div>
@@ -906,15 +874,15 @@ export default function AccountsPage({
           level of the menu rows, per the Field DS placement on the
           Accounts Page. Sits well above the bottom nav so it doesn't
           collide with the credit-card section. */}
-      <div className="absolute right-[14px] bottom-[160px] z-20">
+      <div className="absolute right-3.5 bottom-40 z-20">
         <button
           type="button"
           onClick={() => setHelpOpen(true)}
-          className="flex items-center gap-[6px] px-[12px] py-[8px] rounded-full bg-white border cursor-pointer"
+          className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white border cursor-pointer"
           style={{ borderColor: T.color.accent.info, color: T.color.accent.info, boxShadow: "0 4px 12px rgba(15,15,25,0.06)" }}
         >
-          <HelpIcon className="size-[12px]" />
-          <span className="font-noontree font-semibold text-[12px] leading-none">
+          <HelpIcon className="size-3" />
+          <span className="font-noontree font-semibold text-b12 leading-none">
             Need help?
           </span>
         </button>
@@ -943,13 +911,6 @@ export default function AccountsPage({
         }}
       />
 
-      {/* Bottom nav — hidden when embedded inside the supermall shell;
-          the host app provides the real navigation in that mode. */}
-      {!embedded && (
-        <div className="absolute bottom-0 left-0 right-0">
-          <SharedBottomNav active="account" />
-        </div>
-      )}
     </div>
   );
 }

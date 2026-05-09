@@ -1,20 +1,8 @@
-import SmoothCorners from "./SmoothCorners";
+import SmoothCorners from "@ui/SmoothCorners";
 import chevronStroke from "../assets/chevron-stroke.svg";
 
-/* ---------- Field DS tokens ---------- */
-const T = {
-  color: {
-    text: { row: "#262626", heading: "#1d2539", body: "#475067", muted: "#666d85" },
-    surface: { canvas: "#ffffff", subtle: "#f9f9fb" },
-    border: { hairline: "#f5f5f5" },
-    brand: { green: "#108757", greenSoft: "#e7f6f0" },
-    /** Avatar identity hues — visual zone only, the single colour moment
-     *  on this card. Everything else is neutral so the card reads as a
-     *  quiet settings nudge consistent with CurrentPlanCard above it. */
-    avatar: { a: "#3D5BFF", b: "#FF6FA3", c: "#7B47E0" },
-  },
-};
 
+import { T } from '../lib/dsTokens';
 /**
  * Share noon One — discovery card on the home screen (PRD §5.1.4
  * "App-open nudge"). Architecture mirrors CurrentPlanCard exactly:
@@ -58,7 +46,7 @@ export default function ShareWithOthersCard({
   return (
     <SmoothCorners
       radius={12}
-      className="border flex flex-col gap-[12px] items-start pb-[14px] relative shrink-0"
+      className="border flex flex-col gap-3 items-start pb-3.5 relative shrink-0"
       style={{
         backgroundColor: T.color.surface.subtle,
         borderColor: T.color.surface.subtle,
@@ -71,7 +59,7 @@ export default function ShareWithOthersCard({
           with identical visual rhythm on the home screen. */}
       <SmoothCorners
         radius={12}
-        className="flex flex-col gap-[14px] p-[16px] relative shrink-0 w-full"
+        className="flex flex-col gap-3.5 p-4 relative shrink-0 w-full"
         style={{
           backgroundColor: T.color.surface.canvas,
           boxShadow: "0px 2px 40px 0px rgba(0,0,0,0.01)",
@@ -81,7 +69,7 @@ export default function ShareWithOthersCard({
             are the single multi-colour element; the savings pill is the
             single accent moment, calling out the headline value prop. */}
         <div className="flex items-center justify-between">
-          <div className="flex -space-x-[6px]">
+          <div className="flex -space-x-1.5">
             {[
               { i: "R", c: T.color.avatar.a },
               { i: "A", c: T.color.avatar.b },
@@ -89,7 +77,7 @@ export default function ShareWithOthersCard({
             ].map(({ i, c }) => (
               <div
                 key={i}
-                className="size-[22px] rounded-full border-[2px] border-white flex items-center justify-center text-[10px] font-noontree font-bold text-white"
+                className="size-5 rounded-full border-[2px] border-white flex items-center justify-center text-tiny font-noontree font-bold text-white"
                 style={{ backgroundColor: c }}
               >
                 {i}
@@ -97,7 +85,7 @@ export default function ShareWithOthersCard({
             ))}
           </div>
           <span
-            className="font-noontree font-semibold text-[11px] leading-none px-[8px] py-[4px] rounded-[6px] whitespace-nowrap"
+            className="font-noontree font-semibold text-b11 leading-none px-2 py-1 rounded-4 whitespace-nowrap"
             style={{
               backgroundColor: T.color.brand.greenSoft,
               color: T.color.brand.green,
@@ -110,15 +98,15 @@ export default function ShareWithOthersCard({
         {/* Title + subtitle — generous line height, single elegant value
             line under the title. Side-by-side per-tier comparison happens
             on the next screen; the home card just teases the headline. */}
-        <div className="flex flex-col gap-[4px]">
+        <div className="flex flex-col gap-1">
           <p
-            className="font-bold text-[16px] leading-[20px] tracking-[-0.16px]"
+            className="font-bold text-h16"
             style={{ color: T.color.text.heading }}
           >
             Share noon One
           </p>
           <p
-            className="font-noontree text-[12px] leading-[16px] tracking-[-0.12px]"
+            className="font-noontree text-b12"
             style={{ color: T.color.text.body }}
           >
             Up to 5 members from AED {fromPerMember} each. Every account stays
@@ -134,19 +122,19 @@ export default function ShareWithOthersCard({
       <button
         type="button"
         onClick={onShare}
-        className="flex items-center justify-between px-[16px] w-full cursor-pointer text-left"
+        className="flex items-center justify-between px-4 w-full cursor-pointer text-left"
       >
         <p
-          className="font-medium leading-[15px] text-[13px] tracking-[-0.12px] whitespace-nowrap"
+          className="font-medium text-label-3 whitespace-nowrap"
           style={{ color: T.color.text.row }}
         >
           Compare and switch
         </p>
-        <div className="overflow-clip relative shrink-0 size-[14px] flex items-center justify-center">
+        <div className="overflow-clip relative shrink-0 size-3.5 flex items-center justify-center">
           <img
             alt=""
             aria-hidden="true"
-            className="block w-[6px] h-[10px] rotate-180"
+            className="block w-1.5 h-2.5 rotate-180"
             src={chevronStroke}
           />
         </div>

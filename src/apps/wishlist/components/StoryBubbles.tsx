@@ -29,7 +29,7 @@ export default function StoryBubbles({ bubbles, onOpen }: StoryBubblesProps) {
           className="flex w-16 shrink-0 flex-col items-center gap-1.5 bg-transparent"
         >
           <span
-            className="relative flex size-[60px] items-center justify-center rounded-full p-[2.5px]"
+            className="relative flex size-[60px] items-center justify-center rounded-full p-0.5"
             style={{
               background: `conic-gradient(from 90deg, ${b.ringColor}, #f7306f, ${b.ringColor})`,
             }}
@@ -43,7 +43,7 @@ export default function StoryBubbles({ bubbles, onOpen }: StoryBubblesProps) {
             </span>
             <span
               aria-hidden
-              className="absolute -bottom-0.5 -right-0.5 flex size-5 items-center justify-center rounded-full bg-white text-[10px]"
+              className="absolute -bottom-0.5 -right-0.5 flex size-5 items-center justify-center rounded-full bg-white text-tiny"
             >
               {b.emoji}
             </span>
