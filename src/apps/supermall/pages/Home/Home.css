@@ -328,61 +328,7 @@
    RECOMMENDED FOR YOU
    ========================================================================== */
 
-/* ── Chips — vertical icon-above-label ───────────────────────────────── */
-.home-rec__chips {
-  display: flex;
-  gap: var(--space-4);
-  margin-bottom: var(--space-12);
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.home-rec__chips::-webkit-scrollbar { display: none; }
-
-.home-rec__chip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-  min-width: 56px;
-  padding: var(--space-8) var(--space-12);
-  border-radius: var(--radius-8);
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.home-rec__chip-icon {
-  width: 28px;
-  height: 28px;
-}
-
-.home-rec__chip-label {
-  font-size: var(--font-b11-size);
-  line-height: var(--font-b11-line-height);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
-  white-space: nowrap;
-}
-
-.home-rec__chip--active {
-  background: linear-gradient(180deg, rgba(63, 92, 255, 0.10) 0%, rgba(63, 92, 255, 0.00) 100%);
-}
-
-.home-rec__chip--active .home-rec__chip-label {
-  color: var(--brand-blue-600);
-  font-weight: var(--font-weight-bold);
-}
-
-.home-rec__chip--active::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--brand-blue-600);
-  border-radius: 1px;
-  margin-top: var(--space-2);
-}
+/* Chips moved to packages/ui/HomeRecChips/HomeRecChips.css */
 
 /* ── Product rail ────────────────────────────────────────────────────── */
 .home-rec__rail {

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ProductCard, CameraIcon, SearchIcon, StatusBar } from '@ui';
+import { HomeRecChips } from '@/packages/ui/HomeRecChips';
 import type { Variants } from 'framer-motion';
 import { CategoryCard } from '../../components/ui/CategoryCard';
 import { homeCategories as categories } from '../../data/categories';
@@ -321,23 +322,13 @@ function RecommendedForYou({ scrollRoot }: { scrollRoot: React.RefObject<HTMLEle
     <section className="home-section" aria-label="Recommended for you">
       <h2 className="home-section__title">Recommended for you</h2>
 
-      <div className="home-rec__chips" role="tablist">
-        {recommendedChips.map((c) => {
-          const isActive = c.label === active;
-          return (
-            <button
-              key={c.label}
-              role="tab"
-              aria-selected={isActive}
-              className={`home-rec__chip${isActive ? ' home-rec__chip--active' : ''}`}
-              onClick={() => setActive(c.label)}
-            >
-              <img src={c.icon} alt="" className="home-rec__chip-icon" />
-              <span className="home-rec__chip-label">{c.label}</span>
-            </button>
-          );
-        })}
-      </div>
+      <HomeRecChips
+        chips={recommendedChips}
+        activeKey={active}
+        onChange={(key) => setActive(key as ChipLabel)}
+        ariaLabel="Recommended categories"
+      />
+
 
       <AnimatePresence mode="wait">
         <motion.div
