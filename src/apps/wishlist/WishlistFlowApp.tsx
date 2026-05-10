@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Retune } from "retune";
+import { DevRetune } from "@/shell/DevRetune";
 
 import Header from "./components/Header";
 import CollectionCard from "./components/CollectionCard";
@@ -1566,7 +1566,7 @@ export default function WishlistFlowApp() {
           </div>
         </div>
       </div>
-      <Retune />
+      <DevRetune />
     </>
   );
 }

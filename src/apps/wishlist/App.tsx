@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Retune } from "retune";
+import { DevRetune } from "@/shell/DevRetune";
 import "./index.css";
 import ProductList from "./components/ProductList";
 import CollectionDrawer from "./components/CollectionDrawer";
@@ -54,7 +54,7 @@ export default function App() {
     return (
       <div className="min-h-full w-full bg-surface-primary">
         <WishlistPage onBack={postClose} />
-        <Retune />
+        <DevRetune />
       </div>
     );
   }
@@ -98,7 +98,7 @@ export default function App() {
           </AnimatePresence>
         </div>
       </div>
-      <Retune />
+      <DevRetune />
     </>
   );
 }

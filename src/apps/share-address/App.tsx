@@ -1,4 +1,4 @@
-import { Retune } from 'retune'
+import { DevRetune } from '@/shell/DevRetune'
 import './index.css'
 import { EntryScreen } from './screens/EntryScreen'
 import { AppShell } from './AppShell'
@@ -9,7 +9,7 @@ export default function App() {
       <AppShell>
         <EntryScreen />
       </AppShell>
-      <Retune force position="top-right" hotkey="alt+e" />
+      <DevRetune position="top-right" hotkey="alt+e" />
     </>
   )
 }

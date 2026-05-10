@@ -1,4 +1,4 @@
-import { Retune } from "retune";
+import { DevRetune } from "@/shell/DevRetune";
 import ToastCard from "./components/ToastCard";
 
 export default function ToastApp() {
@@ -16,7 +16,7 @@ export default function ToastApp() {
           <ToastCard variant="saved-collection" />
         </div>
       </div>
-      <Retune />
+      <DevRetune />
     </>
   );
 }
