@@ -1,0 +1,118 @@
+.pcard-compact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px;
+  background: var(--colour-neutral-white);
+  border: 1px solid var(--grey-200, #e6e8ef);
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 0;
+}
+
+.pcard-compact__image-wrap {
+  position: relative;
+  flex: 0 0 auto;
+  width: 60px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f4f6fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pcard-compact__image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.pcard-compact__qty {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #262a33;
+  background: #fff;
+  border: 1px solid var(--grey-300, #d8dce4);
+  border-radius: 6px;
+  padding: 0 4px;
+  line-height: 14px;
+}
+
+.pcard-compact__ad {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 10px;
+  color: #6b7280;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  padding: 0 4px;
+  line-height: 14px;
+}
+
+.pcard-compact__info {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pcard-compact__name {
+  margin: 0;
+  width: 160px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #212121;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pcard-compact__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.pcard-compact__price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0e0e0e;
+}
+
+.pcard-compact__currency {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.pcard-compact__strike {
+  font-size: 12px;
+  color: #6b7280;
+  text-decoration: line-through;
+}
+
+.pcard-compact__off {
+  font-size: 12px;
+  font-weight: 600;
+  color: #15803d;
+}
+
+.pcard-compact__express {
+  align-self: flex-start;
+  display: block;
+  height: 16px;
+  width: auto;
+}

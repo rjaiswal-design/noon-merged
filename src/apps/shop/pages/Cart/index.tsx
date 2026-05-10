@@ -562,20 +562,51 @@ function CouponsCard() {
 }
 
 /* ─── Wishlist carousel ─────────────────────────────────────────────── */
-type WishCard = {
-  id: string;
-  img: string;
-  name: string;
-  price: number;
-  old: number;
-  off: number;
-  tag?: 'bestseller' | 'ad';
-  express?: 'today' | 'express';
-};
-const wishlistRail: WishCard[] = [
-  { id: 'wl1', img: IMG_PCARD_AIRPODS,   name: 'Apple Airpods Pro 2 Wireless Earbuds', price: 899, old: 1399, off: 33, tag: 'bestseller', express: 'today' },
-  { id: 'wl2', img: IMG_PCARD_WASHER,    name: 'Whirlpool 7 kg Magic Clean',           price: 899, old: 1399, off: 33, tag: 'ad', express: 'express' },
-  { id: 'wl3', img: IMG_PCARD_PHONECASE, name: 'MAYNOS Suction Phone Case Mount',      price: 899, old: 1399, off: 33, express: 'today' },
+const wishlistRail: Product[] = [
+  {
+    id: 'wl1',
+    name: 'Apple Airpods Pro 2 Wireless Earbuds',
+    description: '',
+    brand: 'Apple',
+    category: 'electronics',
+    variant: '',
+    images: [IMG_PCARD_AIRPODS],
+    sellingPrice: 899,
+    originalPrice: 1399,
+    currency: DH,
+    rating: 4.6,
+    reviewCount: 1284,
+    tag: { label: 'Best Seller', variant: 'bestseller' },
+  },
+  {
+    id: 'wl2',
+    name: 'Whirlpool 7 kg Magic Clean',
+    description: '',
+    brand: 'Whirlpool',
+    category: 'home',
+    variant: '',
+    images: [IMG_PCARD_WASHER],
+    sellingPrice: 899,
+    originalPrice: 1399,
+    currency: DH,
+    rating: 4.4,
+    reviewCount: 612,
+    isSponsored: true,
+  },
+  {
+    id: 'wl3',
+    name: 'MAYNOS Suction Phone Case Mount',
+    description: '',
+    brand: 'MAYNOS',
+    category: 'accessories',
+    variant: '',
+    images: [IMG_PCARD_PHONECASE],
+    sellingPrice: 899,
+    originalPrice: 1399,
+    currency: DH,
+    rating: 4.2,
+    reviewCount: 341,
+  },
 ];
 
 function WishlistCarousel() {
@@ -583,31 +614,8 @@ function WishlistCarousel() {
     <section className="crt-wishrail-card">
       <h2 className="crt-wishrail-card__title">From your wishlist</h2>
       <div className="crt-wishrail-card__rail">
-        {wishlistRail.map((c) => (
-          <article key={c.id} className="crt-wcard">
-            <div className="crt-wcard__image">
-              {c.tag === 'bestseller' && <span className="crt-wcard__tag">Best Seller</span>}
-              {c.tag === 'ad' && <span className="crt-wcard__tag crt-wcard__tag--ad">Ad</span>}
-              <button type="button" className="crt-wcard__heart" aria-label="Wishlist">
-                <HeartOutline size={14} color="var(--grey-800)" />
-              </button>
-              <img src={c.img} alt="" />
-              {c.express && (
-                <span className="crt-wcard__express">
-                  {c.express === 'today' ? 'express • Today' : 'express'}
-                </span>
-              )}
-              <button type="button" className="crt-wcard__plus" aria-label="Add">+</button>
-            </div>
-            <div className="crt-wcard__body">
-              <p className="crt-wcard__name">{c.name}</p>
-              <div className="crt-wcard__price-row">
-                <span className="crt-wcard__price">{DH}{c.price}</span>
-                <span className="crt-wcard__strike">{c.old}</span>
-                <span className="crt-wcard__off">{c.off}%</span>
-              </div>
-            </div>
-          </article>
+        {wishlistRail.map((p) => (
+          <ProductCard key={p.id} product={p} />
         ))}
       </div>
     </section>

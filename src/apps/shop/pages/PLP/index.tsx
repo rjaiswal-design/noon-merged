@@ -154,7 +154,7 @@ export default function PLPPage() {
           ) : (
             <>
               {queryParam && total !== null && (
-                <p style={{ padding: '8px 16px 0', color: 'var(--grey-700)', fontSize: 13 }}>
+                <p className="px-4 py-2 text-[13px] text-[var(--grey-700)]">
                   {total} {total === 1 ? 'result' : 'results'}
                 </p>
               )}

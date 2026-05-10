@@ -118,7 +118,7 @@ export function ProductCardSku({
 
         {expressLabel && (
           <div className="psku__express">
-            <span className="psku__expressInner">express</span>
+            <img className="psku__expressInner" src="/express-badge.svg" alt="express" />
             <span className="psku__expressLabel">{expressLabel}</span>
           </div>
         )}

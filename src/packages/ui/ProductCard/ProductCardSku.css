@@ -201,11 +201,9 @@
 }
 
 .psku__expressInner {
-  background: #fed700;
-  color: #0e0e0e;
-  padding: 3px 5px 3px 6px;
-  font-style: italic;
-  text-transform: lowercase;
+  display: block;
+  height: 16px;
+  width: auto;
 }
 
 .psku__expressLabel {

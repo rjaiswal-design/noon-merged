@@ -927,6 +927,7 @@
   padding: 0 4px 4px;
 }
 .crt-wishrail-card__rail::-webkit-scrollbar { display: none; }
+.crt-wishrail-card__rail > * { flex: 0 0 auto; width: 134px; }
 .crt-wcard {
   flex: 0 0 auto;
   width: 134px;
