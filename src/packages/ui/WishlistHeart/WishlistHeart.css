@@ -1,0 +1,42 @@
+.wh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 999px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wh--tile {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.wh--bare {
+  background: transparent;
+  box-shadow: none;
+}
+
+.wh__pulse {
+  position: relative;
+  display: inline-block;
+}
+
+.wh__layer {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wh__outline {
+  position: relative;
+}
+
+.wh__fill {
+  /* Clip-path animates bottom→top to reveal the filled heart. */
+  will-change: clip-path;
+}

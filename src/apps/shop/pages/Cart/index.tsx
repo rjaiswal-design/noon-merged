@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
-import { ProductCard, HeartOutline, HeartFilled, ChevronDown, ChevronRight, PlusIcon, MinusIcon, TrashIcon } from '@ui';
+import { ProductCard, HeartOutline, ChevronDown, ChevronRight, PlusIcon, MinusIcon, TrashIcon, WishlistHeart } from '@ui';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
 import { fetchCartRecommendations } from '../../api/productsApi';
+import { getSuggestedCollectionFromName } from '../../data/suggestedCollection';
 import type { Product } from '../../types/product';
 import EMPTY_ILLUSTRATION from '../../assets/cart/empty-illustration.png';
 import IMG_PRODUCT from '../../assets/cart/product.png';
@@ -286,7 +287,8 @@ function SectionContainer({
 /* ─── Cart line ──────────────────────────────────────────────────────── */
 function CartLine({ item, variant }: { item: LineItem; variant: SectionVariant }) {
   const [qty, setQty] = useState(item.qty);
-  const [wishlisted, setWishlisted] = useState(false);
+  const openWishlist = useWishlistStore((s) => s.openDrawer);
+  const wishlisted = useWishlistStore((s) => s.wishlistedIds.has(item.id));
   const isFree = item.free === true;
   const isExpress = variant === 'express';
 
@@ -318,16 +320,19 @@ function CartLine({ item, variant }: { item: LineItem; variant: SectionVariant }
       <div className="crt-line__info">
         <div className="crt-line__title-row">
           <p className="crt-line__title">{item.title}</p>
-          <button
-            type="button"
+          <WishlistHeart
             className="crt-line__heart"
-            onClick={() => setWishlisted((v) => !v)}
-            aria-label="Wishlist"
-          >
-            {wishlisted
-              ? <HeartFilled size={16} color="#EF4444" />
-              : <HeartOutline size={16} color="var(--grey-700)" />}
-          </button>
+            wishlisted={wishlisted}
+            onToggle={() =>
+              openWishlist(
+                item.id,
+                item.image,
+                getSuggestedCollectionFromName(item.title),
+              )
+            }
+            size={16}
+            variant="bare"
+          />
         </div>
 
         {item.subtitle && (

@@ -15,6 +15,8 @@ export { Skel, SkeletonGate } from './Skeleton';
 export type { SkelProps, SkeletonGateProps } from './Skeleton';
 export { BottomSheet } from './BottomSheet';
 export type { BottomSheetProps } from './BottomSheet';
+export { WishlistHeart } from './WishlistHeart';
+export type { WishlistHeartProps } from './WishlistHeart';
 export { PageTransition, backState, forwardState } from './PageTransition';
 export type { PageTransitionProps, PageDirection } from './PageTransition';
 export * as Icons from './icons';

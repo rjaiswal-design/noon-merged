@@ -33,7 +33,8 @@ export default function App() {
           type="button"
           aria-label="Close"
           onClick={postClose}
-          className="absolute inset-0 bg-black/80"
+          className="absolute inset-0"
+          style={{ backgroundColor: 'rgba(18, 18, 18, 0.8)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
@@ -76,7 +77,8 @@ export default function App() {
                   type="button"
                   aria-label="Close"
                   onClick={() => setSelectedProduct(null)}
-                  className="absolute inset-0 bg-black/80"
+                  className="absolute inset-0"
+                  style={{ backgroundColor: 'rgba(18, 18, 18, 0.8)' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}

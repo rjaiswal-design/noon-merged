@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ChevronLeft, SearchIcon, HeartOutline, ShareIcon, StatusBar, ProductCard, ProductCardCompact, ProductCardAd, ProductCardBundle } from "@ui";
+import { ChevronLeft, SearchIcon, ShareIcon, StatusBar, ProductCard, ProductCardCompact, ProductCardAd, ProductCardBundle, WishlistHeart } from "@ui";
+import { useWishlistStore } from "@state/wishlistStore";
 import type { Product } from "../../../types/product";
+import { getSuggestedCollection } from "../../../data/suggestedCollection";
 import { products as catalogProducts } from "../../../data/products";
 import {
   getComboProducts,
@@ -168,10 +170,13 @@ const MORPH_END = 280;
 
 type PdpTopBarProps = {
   scrollY: ReturnType<typeof useScroll>['scrollY'];
+  product?: Product;
 };
 
-function PdpTopBar({ scrollY }: PdpTopBarProps) {
+function PdpTopBar({ scrollY, product }: PdpTopBarProps) {
   const navigate = useNavigate();
+  const openWishlist = useWishlistStore((s) => s.openDrawer);
+  const wishlisted = useWishlistStore((s) => (product ? s.wishlistedIds.has(product.id) : false));
   const progress = useTransform(scrollY, [0, MORPH_END], [0, 1], { clamp: true });
 
   // Topbar background fades to opaque white once the user has scrolled — needed
@@ -232,9 +237,22 @@ function PdpTopBar({ scrollY }: PdpTopBarProps) {
             </motion.span>
           </motion.button>
 
-          <button type="button" className="pdp-topbar__pill" aria-label="Wishlist">
-            <HeartOutline size={20} />
-          </button>
+          <WishlistHeart
+            className="pdp-topbar__pill"
+            wishlisted={wishlisted}
+            onToggle={() => {
+              if (product) {
+                openWishlist(
+                  product.id,
+                  product.images[0],
+                  getSuggestedCollection(product),
+                );
+              }
+            }}
+            size={20}
+            buttonSize={40}
+            variant="bare"
+          />
 
           <button type="button" className="pdp-topbar__pill" aria-label="Share">
             <ShareIcon size={20} />
@@ -1278,7 +1296,7 @@ export default function PdpDesign({ product }: PdpDesignProps = {}) {
       ref={scrollRef}
       className="pdp-redesign mx-auto h-full w-full max-w-[375px] bg-[#F9F9FB] flex flex-col overflow-y-auto"
     >
-      <PdpTopBar scrollY={scrollY} />
+      <PdpTopBar scrollY={scrollY} product={product} />
 
       <motion.section
         className="pdp-hero-sticky"

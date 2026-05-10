@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
 import type { Product } from '@/apps/shop/types/product';
-import { HeartOutline, HeartFilled, StarFilled, PlusIcon } from '../icons';
+import { getSuggestedCollection } from '@/apps/shop/data/suggestedCollection';
+import { StarFilled, PlusIcon } from '../icons';
+import { WishlistHeart } from '../WishlistHeart/WishlistHeart';
 import './ProductCardSku.css';
 
 const PDP_ROUTE = '/product/galaxy-s25-ultra';
@@ -63,19 +64,19 @@ export function ProductCardSku({
           <div className="psku__tag">{product.tag.label}</div>
         )}
 
-        <motion.button
+        <WishlistHeart
           className="psku__heart"
-          onClick={(e) => {
-            e.stopPropagation();
-            openWishlist(product.id, product.images[0]);
-          }}
-          whileTap={{ scale: 0.85 }}
-          aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-        >
-          {wishlisted
-            ? <HeartFilled size={16} color="var(--red-600)" />
-            : <HeartOutline size={16} color="var(--grey-700)" />}
-        </motion.button>
+          wishlisted={wishlisted}
+          onToggle={() =>
+            openWishlist(
+              product.id,
+              product.images[0],
+              getSuggestedCollection(product),
+            )
+          }
+          size={16}
+          variant="bare"
+        />
 
         <button
           className="psku__plus"

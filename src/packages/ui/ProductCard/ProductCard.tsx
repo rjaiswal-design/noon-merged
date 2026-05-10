@@ -1,10 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
 import type { Product } from '@/apps/shop/types/product';
+import { getSuggestedCollection } from '@/apps/shop/data/suggestedCollection';
 import { AddToCart } from '../AddToCart/AddToCart';
-import { HeartOutline, HeartFilled, StarFilled, MoonIcon } from '../icons';
+import { StarFilled, MoonIcon } from '../icons';
+import { WishlistHeart } from '../WishlistHeart/WishlistHeart';
 import { NudgeFlipper } from './NudgeFlipper';
 import './ProductCard.css';
 
@@ -89,20 +90,19 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
 
         {/* Wishlist */}
-        <motion.button
+        <WishlistHeart
           className="product-card__wishlist"
-          onClick={(e) => {
-            e.stopPropagation();
-            openWishlist(product.id, product.images[imgIndex]);
-          }}
-          whileTap={{ scale: 0.85 }}
-          aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-        >
-          {wishlisted
-            ? <HeartFilled size={16} color="var(--red-600)" />
-            : <HeartOutline size={16} color="var(--grey-700)" />
+          wishlisted={wishlisted}
+          onToggle={() =>
+            openWishlist(
+              product.id,
+              product.images[imgIndex],
+              getSuggestedCollection(product),
+            )
           }
-        </motion.button>
+          size={16}
+          variant="bare"
+        />
 
         {/* CTA overlay: Ad label + ATC; when active, dots move here */}
         <div className="product-card__cta">
