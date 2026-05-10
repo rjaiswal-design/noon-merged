@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CategoryCard } from './CategoryCard';
-import { homeCategories } from '../../../data/categories';
+import { homeCategories } from '@/apps/shop/data/categories';
 
 const PRESETS = {
   'Beauty & Skin Care':  '/categories/cat-r1-1.svg',

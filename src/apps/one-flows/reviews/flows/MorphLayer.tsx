@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { motion, useMotionValue, useTransform, animate } from "motion/react"
+import { motion, useMotionValue, useTransform, animate } from "framer-motion"
 import StarIcon from "../icons/StarIcon"
 import { SHIPMENTS } from "../data/orders"
 import { ratingColor, type Rating } from "../utils/ratingColors"

@@ -32,7 +32,7 @@ import {
   PostCancelSkeleton,
   PaymentMethodSkeleton,
 } from "./components/Skeleton";
-import { Retune } from "retune";
+import { DevRetune } from "@/shell/DevRetune";
 
 type Screen =
   | "home"
@@ -350,7 +350,7 @@ export default function App() {
           </div>
         )}
       </SmoothCorners>
-      {import.meta.env.DEV && <Retune port={9225} />}
+      <DevRetune port={9225} />
     </div>
   );
 }
