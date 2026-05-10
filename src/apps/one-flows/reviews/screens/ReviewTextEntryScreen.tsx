@@ -6,6 +6,22 @@ import CrossIcon from "../icons/CrossIcon"
 import { useReviewStore, type ReviewStep } from "../store/reviewStore"
 import { SHIPMENTS } from "../data/orders"
 import { ratingColor, type Rating } from "../utils/ratingColors"
+import {
+  countCoveredTopics,
+  detectProfanity,
+  cleanProfanity,
+  randomShimmerMs,
+  heightForVariant,
+  SUGGESTION_TAGS,
+  PRAISE_TOPICS_THRESHOLD,
+  SUGGESTIONS_HEIGHT,
+  PRAISE_HEIGHT,
+  PROFANITY_HEIGHT,
+  SHIMMER_MAX_MS,
+  type ProfanityMatch,
+  type SuggestionVariant,
+} from "./review-text-entry/utils"
+import { ExclamationIcon, SparkleEditIcon } from "./review-text-entry/icons"
 
 // Soft entrance for Question + InputContainer at the tail end of the
 // morph transition: rise 5% from below their final position while
@@ -30,173 +46,6 @@ const SUGGESTIONS_TRANSITION = {
 const SUGGESTIONS_INTRO_DELAY_MS = 800
 // Idle time (no typing) after which the suggestion strip re-appears.
 const SUGGESTIONS_PAUSE_MS = 2000
-// Height the suggestion strip occupies inside the input container.
-// Original (prompting) variant is taller because it wraps to two text rows;
-// praise variant is a single centered line and stays compact; profanity
-// warning splits an icon+message and a Fix-it action across the strip.
-const SUGGESTIONS_HEIGHT = 54
-const PRAISE_HEIGHT = 34
-const PROFANITY_HEIGHT = 38
-// Once the review text mentions this many tags, the strip switches from
-// the prompting variant to the celebratory praise variant.
-const PRAISE_TOPICS_THRESHOLD = 4
-
-// Tags shown in the suggestion strip — joined by 2px ellipse dividers.
-// Also drives the topic-coverage count that gates the praise variant.
-const SUGGESTION_TAGS = [
-  "Performance",
-  "Comfort",
-  "Fit",
-  "Battery",
-  "Build Quality",
-] as const
-
-function countCoveredTopics(text: string): number {
-  const normalized = text.toLowerCase()
-  return SUGGESTION_TAGS.reduce(
-    (acc, tag) => (normalized.includes(tag.toLowerCase()) ? acc + 1 : acc),
-    0,
-  )
-}
-
-// Local profanity blocklist — kept lowercase, matched as whole words
-// case-insensitively. Skews toward common English profanity, internet
-// abbreviations (fk, fkn, wtf), and mild gripe words like "sucks".
-const PROFANITY_WORDS = [
-  "shit",
-  "shitty",
-  "fuck",
-  "fucked",
-  "fucker",
-  "fucking",
-  "fck",
-  "fckn",
-  "fk",
-  "fkn",
-  "fking",
-  "fking",
-  "damn",
-  "damned",
-  "ass",
-  "asshole",
-  "bitch",
-  "bitches",
-  "piss",
-  "pissed",
-  "pissing",
-  "crap",
-  "crappy",
-  "sucks",
-  "sux",
-  "sucky",
-  "bastard",
-  "hell",
-  "wtf",
-  "stfu",
-  "bs",
-  "bullshit",
-  "cunt",
-  "dick",
-  "dickhead",
-  "cock",
-  "pussy",
-  "whore",
-  "slut",
-] as const
-
-const PROFANITY_REGEX = new RegExp(
-  `\\b(?:${PROFANITY_WORDS.join("|")})\\b`,
-  "gi",
-)
-
-// Non-profane stand-ins that preserve the original emotion/intensity. Picked
-// to keep negative reviews still negative and positive intensifiers still
-// punchy — we're cleaning language, not flipping sentiment.
-const PROFANITY_REPLACEMENTS: Record<string, string> = {
-  shit: "rubbish",
-  shitty: "lousy",
-  fuck: "dang",
-  fucked: "ruined",
-  fucker: "jerk",
-  fucking: "really",
-  fck: "really",
-  fckn: "really",
-  fk: "really",
-  fkn: "really",
-  fking: "really",
-  damn: "really",
-  damned: "darn",
-  ass: "fool",
-  asshole: "jerk",
-  bitch: "annoying",
-  bitches: "annoyances",
-  piss: "annoy",
-  pissed: "upset",
-  pissing: "annoying",
-  crap: "junk",
-  crappy: "poor",
-  sucks: "underwhelms",
-  sux: "underwhelms",
-  sucky: "poor",
-  bastard: "jerk",
-  hell: "heck",
-  wtf: "what",
-  stfu: "quiet",
-  bs: "nonsense",
-  bullshit: "nonsense",
-  cunt: "jerk",
-  dick: "jerk",
-  dickhead: "jerk",
-  cock: "rubbish",
-  pussy: "weak",
-  whore: "sellout",
-  slut: "sellout",
-}
-
-interface ProfanityMatch {
-  start: number
-  end: number
-}
-
-function detectProfanity(text: string): ProfanityMatch[] {
-  if (!text) return []
-  const matches: ProfanityMatch[] = []
-  // Reset state on the shared global regex.
-  PROFANITY_REGEX.lastIndex = 0
-  let m: RegExpExecArray | null
-  while ((m = PROFANITY_REGEX.exec(text)) !== null) {
-    matches.push({ start: m.index, end: m.index + m[0].length })
-  }
-  return matches
-}
-
-// Keep "Shit" → "Rubbish", "SHIT" → "RUBBISH", "shit" → "rubbish".
-function preserveCase(original: string, replacement: string): string {
-  if (!replacement) return replacement
-  if (original === original.toUpperCase()) return replacement.toUpperCase()
-  if (original[0] === original[0].toUpperCase()) {
-    return replacement[0].toUpperCase() + replacement.slice(1)
-  }
-  return replacement
-}
-
-function cleanProfanity(text: string): string {
-  PROFANITY_REGEX.lastIndex = 0
-  return text.replace(PROFANITY_REGEX, (match) => {
-    const replacement = PROFANITY_REPLACEMENTS[match.toLowerCase()] ?? match
-    return preserveCase(match, replacement)
-  })
-}
-
-// Per-word shimmer caps at 800ms. Random spread so multiple flagged words
-// don't sweep in lockstep.
-const SHIMMER_MIN_MS = 240
-const SHIMMER_MAX_MS = 800
-function randomShimmerMs(): number {
-  return SHIMMER_MIN_MS + Math.random() * (SHIMMER_MAX_MS - SHIMMER_MIN_MS)
-}
-
-type SuggestionVariant = "original" | "praise" | "profane"
 
 // Step transition (text-entry ⇄ photos). Tweens with Emil's iOS-drawer
 // curve for a soft, no-overshoot translate; covers slide, fade, and the
@@ -220,14 +69,6 @@ const PILL_LEFT = (375 - PILL_WIDTH) / 2 // 115.5
 // Device frame is 812px tall; this translates the photos panel (which sits
 // at top:110) past the bottom edge with buffer to cover its full height.
 const BELOW_VIEWPORT_Y = 820
-
-// Heights per variant — praise stays compact at 34px (single centered line);
-// profanity warning is 38px (icon + warning text + Fix it action).
-function heightForVariant(variant: SuggestionVariant): number {
-  if (variant === "praise") return PRAISE_HEIGHT
-  if (variant === "profane") return PROFANITY_HEIGHT
-  return SUGGESTIONS_HEIGHT
-}
 
 // First step of the review submission flow. Layout follows Figma node
 // `ReviewTextEntryScreen / Empty (Skip Voice)` (1759:23270): a 375×812
@@ -761,53 +602,6 @@ function ProfanityWarning({ onFix }: { onFix: () => void }) {
         </span>
       </button>
     </div>
-  )
-}
-
-function ExclamationIcon({ size = 11 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 12 12"
-      fill="none"
-      aria-hidden
-    >
-      <path
-        d="M6 1.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Zm0 7.5a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4Zm.65-2.65a.65.65 0 0 1-1.3 0V3.85a.65.65 0 1 1 1.3 0v2.2Z"
-        fill="#E5641A"
-      />
-    </svg>
-  )
-}
-
-function SparkleEditIcon({ size = 12 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 12 12"
-      fill="none"
-      aria-hidden
-    >
-      {/* Pencil body */}
-      <path
-        d="M8.05 2.55 9.45 3.95 4.4 9 3 9.4l.4-1.4 4.65-5.05Z"
-        stroke="#1d2539"
-        strokeWidth="0.9"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Sparkles */}
-      <path
-        d="M3.2 1.2 3.5 2 4.3 2.3 3.5 2.6 3.2 3.4 2.9 2.6 2.1 2.3 2.9 2Z"
-        fill="#1d2539"
-      />
-      <path
-        d="M9.6 7.1 9.95 8 10.85 8.35 9.95 8.7 9.6 9.6 9.25 8.7 8.35 8.35 9.25 8Z"
-        fill="#1d2539"
-      />
-    </svg>
   )
 }
 
