@@ -8,6 +8,8 @@ export { default as SmoothCorners } from './SmoothCorners/SmoothCorners';
 export type { SmoothCornersProps } from './SmoothCorners/SmoothCorners';
 export { ProductCard } from './ProductCard/ProductCard';
 export { AddToCart } from './AddToCart/AddToCart';
+export { WishlistHeart } from './WishlistHeart/WishlistHeart';
+export type { WishlistHeartProps } from './WishlistHeart/WishlistHeart';
 export { Skel, SkeletonGate } from './Skeleton';
 export type { SkelProps, SkeletonGateProps } from './Skeleton';
 export { BottomSheet } from './BottomSheet';

@@ -1,22 +1,24 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
 import type { Product } from '@/apps/shop/types/product';
-import { HeartOutline, HeartFilled, StarFilled, PlusIcon } from '../icons';
+import { StarFilled } from '../icons';
+import { AddToCart } from '../AddToCart/AddToCart';
+import SmoothCorners from '../SmoothCorners';
+import { WishlistHeart } from '../WishlistHeart/WishlistHeart';
+import { NudgeFlipper } from './NudgeFlipper';
+import expressTodayTag from './express-today.svg';
 import './ProductCardSku.css';
 
 const PDP_ROUTE = '/product/galaxy-s25-ultra';
 
 interface ProductCardSkuProps {
   product: Product;
-  freeDelivery?: boolean;
   expressLabel?: string;
 }
 
 export function ProductCardSku({
   product,
-  freeDelivery = true,
   expressLabel = 'Today',
 }: ProductCardSkuProps) {
   const navigate = useNavigate();
@@ -33,8 +35,7 @@ export function ProductCardSku({
     ((product.originalPrice - product.sellingPrice) / product.originalPrice) * 100
   );
 
-  function handleAdd(e: React.MouseEvent) {
-    e.stopPropagation();
+  function handleAdd() {
     if (count === 0) {
       addItem({
         id: product.id,
@@ -48,6 +49,14 @@ export function ProductCardSku({
     }
   }
 
+  function handleRemove() {
+    if (count <= 1) {
+      updateQty(product.id, 0);
+    } else {
+      updateQty(product.id, count - 1);
+    }
+  }
+
   return (
     <article
       className="psku"
@@ -56,35 +65,24 @@ export function ProductCardSku({
       tabIndex={0}
     >
       {/* ── Image area ───────────────────────────── */}
-      <div className="psku__media">
+      <SmoothCorners radius={10} smoothing={1} className="psku__media">
         <img className="psku__img" src={product.images[0]} alt={product.name} loading="lazy" />
 
         {product.tag && (
           <div className="psku__tag">{product.tag.label}</div>
         )}
 
-        <motion.button
-          className="psku__heart"
-          onClick={(e) => {
-            e.stopPropagation();
-            openWishlist(product.id, product.images[0]);
-          }}
-          whileTap={{ scale: 0.85 }}
-          aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-        >
-          {wishlisted
-            ? <HeartFilled size={16} color="var(--red-600)" />
-            : <HeartOutline size={16} color="var(--grey-700)" />}
-        </motion.button>
+        <div className="psku__heart">
+          <WishlistHeart
+            wishlisted={wishlisted}
+            onToggle={() => openWishlist(product.id, product.images[0])}
+          />
+        </div>
 
-        <button
-          className="psku__plus"
-          onClick={handleAdd}
-          aria-label="Add to cart"
-        >
-          <PlusIcon size={16} color="var(--blue-600)" />
-        </button>
-      </div>
+        <div className="psku__plus" onClick={(e) => e.stopPropagation()}>
+          <AddToCart count={count} onAdd={handleAdd} onRemove={handleRemove} />
+        </div>
+      </SmoothCorners>
 
       {/* ── Info area ────────────────────────────── */}
       <div className="psku__info">
@@ -109,35 +107,13 @@ export function ProductCardSku({
           )}
         </div>
 
-        {freeDelivery && (
-          <div className="psku__delivery">
-            <TruckIcon size={12} color="var(--blue-gray-600, #666d85)" />
-            <span>Free Delivery</span>
-          </div>
-        )}
+        <NudgeFlipper seed={product.id.length} />
 
         {expressLabel && (
-          <div className="psku__express">
-            <span className="psku__expressInner">express</span>
-            <span className="psku__expressLabel">{expressLabel}</span>
-          </div>
+          <img className="psku__express" src={expressTodayTag} alt="express today" />
         )}
       </div>
     </article>
   );
 }
 
-function TruckIcon({ size = 12, color = 'currentColor' }: { size?: number; color?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" aria-hidden="true">
-      <path
-        d="M1 3.5h7.5v5.25H1zM8.5 5.5h2.25l1.75 2v1.25H8.5z"
-        stroke={color}
-        strokeWidth="1.1"
-        strokeLinejoin="round"
-      />
-      <circle cx="3.6" cy="10.4" r="1" stroke={color} strokeWidth="1.1" />
-      <circle cx="10" cy="10.4" r="1" stroke={color} strokeWidth="1.1" />
-    </svg>
-  );
-}
