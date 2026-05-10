@@ -2,7 +2,12 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronLeft, SearchIcon, HeartOutline, ShareIcon, StatusBar } from "@ui";
+import type { Product } from "../../../types/product";
 import "./PdpDesign.css";
+
+interface PdpDesignProps {
+  product?: Product;
+}
 
 // — Product images (PNG) —
 import airpods from "./assets/airpods.png?url";
@@ -222,13 +227,22 @@ function CouponIcon() {
   );
 }
 
-function MainInfo() {
+function MainInfo({ product }: { product?: Product }) {
+  const brand = product?.brand ?? 'Anker';
+  const name = product?.name ?? 'USB C Plug, 735 Charger (Nano II 65W), PPS 3-Port Fast Compact USB C Charger for MacBook Pro/Air, iPad Pro, Galaxy S25/S24/S23/S22/S21/S20/S10';
+  const rating = product?.rating ?? 4.3;
+  const reviewCount = product?.reviewCount ?? 126;
+  const sellingPrice = product?.sellingPrice ?? 109;
+  const originalPrice = product?.originalPrice ?? 209;
+  const discount = originalPrice > sellingPrice
+    ? Math.round(((originalPrice - sellingPrice) / originalPrice) * 100)
+    : 0;
   return (
     <section className="mx-3 rounded-[16px] bg-accent-100 flex flex-col gap-2 pt-2.5">
       <div className="flex items-center justify-between px-3">
         <div className="flex items-center gap-1 text-[14px] font-bold leading-[18px] tracking-[-0.14px] text-accent-700">
           <img src={ASSETS.verified} alt="" className="h-[17px] w-[17px]" />
-          Anker
+          {brand}
         </div>
         <div className="flex items-center gap-0.5 text-[13px] font-semibold leading-[15px] tracking-[-0.12px] text-accent-700">
           Visit Store
@@ -239,8 +253,11 @@ function MainInfo() {
       <div className="rounded-2xl bg-white p-3 flex flex-col gap-3">
         <div className="flex flex-col gap-1 pr-3 relative">
           <h1 className="text-[16px] leading-[20px] font-medium tracking-[-0.16px] text-[#212121] line-clamp-2">
-            USB C Plug, 735 Charger (Nano II 65W), PPS 3-Port Fast Compact USB C Charger for MacBook Pro/Air, iPad Pro, Galaxy S25/S24/S23/S22/S21/S20/S10
+            {name}
           </h1>
+          {product?.description && (
+            <p className="text-[13px] leading-[17px] text-bluegray-700 line-clamp-2 mt-0.5">{product.description}</p>
+          )}
           <span className="absolute right-0 top-[20px] flex h-5 w-5 items-center justify-center rounded-full bg-bluegray-100">
             <img src={ASSETS.chevronDown} alt="" className="h-2.5 w-2.5" />
           </span>
@@ -248,8 +265,8 @@ function MainInfo() {
           <div className="mt-1 flex gap-1 text-[13px]">
             <span className="flex items-center gap-1 rounded-md bg-[#f7f8fa] px-1 py-0.5 text-bluegray-1000 leading-[14px]">
               <img src={ASSETS.star} alt="" className="h-3 w-3" />
-              <span className="font-semibold">4.3</span>
-              <span className="font-medium text-bluegray-800">(126 reviews)</span>
+              <span className="font-semibold">{rating}</span>
+              <span className="font-medium text-bluegray-800">({reviewCount} reviews)</span>
             </span>
             <span className="flex items-center gap-1 rounded-md bg-orange-50 px-1 py-1 text-bluegray-1000 font-medium leading-[14px]">
               <img src={ASSETS.card} alt="" className="h-4 w-4" />
@@ -260,9 +277,9 @@ function MainInfo() {
 
         <div className="flex flex-col gap-2">
           <div className="flex items-end gap-1">
-            <span className="text-[22px] leading-6 font-bold tracking-[-0.2px] text-bluegray-1000">Đ109</span>
-            <span className="pb-px text-[16px] leading-5 tracking-[-0.16px] text-bluegray-600 line-through">Đ209</span>
-            <span className="pb-px text-[14px] leading-[18px] font-semibold tracking-[-0.14px] text-green-700">47% OFF</span>
+            <span className="text-[22px] leading-6 font-bold tracking-[-0.2px] text-bluegray-1000">Đ{sellingPrice}</span>
+            <span className="pb-px text-[16px] leading-5 tracking-[-0.16px] text-bluegray-600 line-through">Đ{originalPrice}</span>
+            <span className="pb-px text-[14px] leading-[18px] font-semibold tracking-[-0.14px] text-green-700">{discount}% OFF</span>
             <span className="pb-px text-[14px] leading-[18px] tracking-[-0.14px] text-bluegray-600">(incl. of VAT)</span>
             <img src={ASSETS.info} alt="" className="ml-auto h-4 w-4" />
           </div>
@@ -1304,7 +1321,7 @@ function ProductCarousel({ title, highlightWord }: { title: string; highlightWor
   );
 }
 
-export default function PdpDesign() {
+export default function PdpDesign({ product }: PdpDesignProps = {}) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({ container: scrollRef });
   const progress = useTransform(scrollY, [0, MORPH_END], [0, 1], { clamp: true });
@@ -1327,7 +1344,7 @@ export default function PdpDesign() {
         className="pdp-hero-sticky"
         style={{ scale: imageScale, opacity: imageOpacity }}
       >
-        <img src={ASSETS.productImage} alt="" className="h-[512px] w-full object-cover" />
+        <img src={product?.images[0] ?? ASSETS.productImage} alt={product?.name ?? ""} className="h-[512px] w-full object-cover" />
         <div className="absolute bottom-5 left-1/2 [transform:translateX(-50%)] flex items-center gap-1.5" aria-hidden="true">
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-1000" />
           <span className="h-1.5 w-1.5 rounded-full bg-bluegray-300" />
@@ -1338,7 +1355,7 @@ export default function PdpDesign() {
       </motion.section>
 
       <div className="pdp-content flex flex-col gap-3">
-        <MainInfo />
+        <MainInfo product={product} />
         <ComboCard />
         <AdCard />
         <DeliveryCard />

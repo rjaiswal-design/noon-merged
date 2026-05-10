@@ -15,8 +15,6 @@ const TAG_STYLES: Record<string, { bg: string; color: string }> = {
   sale:       { bg: 'var(--red-700)', color: 'var(--colour-neutral-white)' },
 };
 
-const PDP_ROUTE = '/product/galaxy-s25-ultra';
-
 interface ProductCardProps {
   product: Product;
 }
@@ -65,7 +63,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article
       className="product-card"
-      onClick={() => navigate(PDP_ROUTE, { state: { from: `${location.pathname}${location.search}` } })}
+      onClick={() => navigate(`/product/${product.id}`, { state: { from: `${location.pathname}${location.search}` } })}
       role="button"
       tabIndex={0}
     >
@@ -76,6 +74,7 @@ export function ProductCard({ product }: ProductCardProps) {
           src={product.images[imgIndex]}
           alt={product.name}
           loading="lazy"
+          decoding="async"
         />
 
 

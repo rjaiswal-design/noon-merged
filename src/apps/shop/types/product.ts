@@ -3,9 +3,20 @@ export type ProductTag = {
   variant: 'bestseller' | 'new' | 'hot' | 'sale';
 };
 
+export type CategoryId =
+  | 'beauty'
+  | 'electronics'
+  | 'grocery'
+  | 'fashion'
+  | 'home'
+  | 'accessories';
+
 export interface Product {
   id: string;
   name: string;
+  description: string;
+  brand: string;
+  category: CategoryId;
   variant: string;
   images: string[];
   sellingPrice: number;

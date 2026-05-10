@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ProductCard, HeartOutline, HeartFilled, ChevronDown, ChevronRight, PlusIcon, MinusIcon, TrashIcon } from '@ui';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
+import { fetchCartRecommendations } from '../../api/productsApi';
 import type { Product } from '../../types/product';
 import EMPTY_ILLUSTRATION from '../../assets/cart/empty-illustration.png';
 import IMG_PRODUCT from '../../assets/cart/product.png';
@@ -21,11 +22,6 @@ import IMG_PCARD_PHONECASE from '../../assets/cart/pcard-phonecase.png';
 import './Cart.css';
 
 const DH = 'dh';
-const DIRHAM = 'د.إ';
-
-const IMG_AIRPODS    = 'https://www.figma.com/api/mcp/asset/094c04ac-f79c-4c06-8ade-22181db0946e';
-const IMG_PHONECASE  = 'https://www.figma.com/api/mcp/asset/a42626b0-83fb-4d93-b5e9-2b32fa20f110';
-const IMG_WASHER     = 'https://www.figma.com/api/mcp/asset/05966a58-1b4c-4271-b032-1e826704f394';
 
 /* ─── Inline icon helpers ─────────────────────────────────────────────── */
 function BoltIcon({ size = 14, color = '#2122b8' }: { size?: number; color?: string }) {
@@ -113,30 +109,65 @@ function CartHeader() {
 }
 
 /* ╔══════════════════════ EMPTY STATE ══════════════════════╗ */
-const recProducts: Product[] = [
-  { id: 'rec-1', name: 'Apple Airpods Pro 2 Wireless Earbuds', variant: '', images: [IMG_AIRPODS],   sellingPrice: 1900, originalPrice: 2200, currency: DIRHAM, rating: 4.3, reviewCount: 120, tag: { label: 'Best Seller', variant: 'bestseller' }, isSponsored: true },
-  { id: 'rec-2', name: 'Whirlpool 7 kg Magic Clean',            variant: '', images: [IMG_WASHER],    sellingPrice: 1900, originalPrice: 2200, currency: DIRHAM, rating: 4.3, reviewCount: 120, tag: { label: 'Best Seller', variant: 'bestseller' } },
-  { id: 'rec-3', name: 'MAYNOS Suction Phone Case Mount',       variant: '', images: [IMG_PHONECASE], sellingPrice: 1900, originalPrice: 2200, currency: DIRHAM, rating: 4.3, reviewCount: 120 },
-];
+function RecRailSkeleton() {
+  return (
+    <div className="crt-rec-card__rail" aria-busy="true">
+      {Array.from({ length: 3 }).map((_, i) => (
+        <div
+          key={i}
+          style={{
+            background: '#eef0f4',
+            borderRadius: 12,
+            height: 280,
+            minWidth: 168,
+            animation: 'plp-skel-pulse 1.2s ease-in-out infinite',
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
-function RecommendationCard({ title, sub, products }: { title: string; sub?: string; products: Product[] }) {
+function RecommendationCard({ title, sub, products }: { title: string; sub?: string; products: Product[] | null }) {
   return (
     <section className="crt-rec-card">
       <header className="crt-rec-card__header">
         <h2 className="crt-rec-card__title">{title}</h2>
         {sub && <span className="crt-rec-card__sub">{sub}</span>}
       </header>
-      <div className="crt-rec-card__rail">
-        {products.map((p) => (
-          <ProductCard key={p.id} product={p} />
-        ))}
-      </div>
+      {products === null ? (
+        <RecRailSkeleton />
+      ) : (
+        <div className="crt-rec-card__rail">
+          {products.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
 
 function EmptyState() {
   const navigate = useNavigate();
+  const [recs, setRecs] = useState<Product[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchCartRecommendations().then((products) => {
+      if (!cancelled) setRecs(products);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Slice the same fetched rec list across the three cards so each shows a
+  // distinct sub-set; the three cards are intentionally similar in the design.
+  const sponsored = recs ? recs.slice(0, 3) : null;
+  const youMightLike = recs ? recs.slice(3, 6) : null;
+  const browsed = recs ? [...recs].reverse().slice(0, 3) : null;
+
   return (
     <>
       <div className="crt-empty-hero">
@@ -152,9 +183,9 @@ function EmptyState() {
           Start Shopping
         </motion.button>
       </div>
-      <RecommendationCard title="Don't miss out on these offers" sub="Sponsored" products={recProducts} />
-      <RecommendationCard title="You might also like" products={recProducts} />
-      <RecommendationCard title="Previously browsed products" products={recProducts} />
+      <RecommendationCard title="Don't miss out on these offers" sub="Sponsored" products={sponsored} />
+      <RecommendationCard title="You might also like" products={youMightLike} />
+      <RecommendationCard title="Previously browsed products" products={browsed} />
     </>
   );
 }
