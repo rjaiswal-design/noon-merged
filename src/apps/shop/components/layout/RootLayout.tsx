@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { Retune } from 'retune';
+import { DevRetune } from '@/shell/DevRetune';
 import { WishlistOverlay } from './WishlistOverlay';
 import { BottomNav } from '@ui/BottomNav';
 import type { Tab } from '@ui/BottomNav/BottomNav';
@@ -84,7 +84,7 @@ export function RootLayout() {
       </main>
       <WishlistOverlay />
       <AddressBottomSheet open={addressSheetOpen} onClose={closeAddressSheet} />
-      <Retune />
+      <DevRetune />
       {!hideNav && (
         <BottomNav
           activeTab={activeTab}

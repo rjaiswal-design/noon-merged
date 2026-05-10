@@ -1,4 +1,4 @@
-import { Retune } from "retune";
+import { DevRetune } from "@/shell/DevRetune";
 import MultiSelectWidget from "./components/MultiSelectWidget";
 import airpodsImg from "./assets/wishlist/products/airpods.png";
 import chargerImg from "./assets/wishlist/products/charger.png";
@@ -57,7 +57,7 @@ export default function MultiSelectApp() {
           />
         </div>
       </div>
-      <Retune />
+      <DevRetune />
     </>
   );
 }

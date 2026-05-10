@@ -1,15 +1,11 @@
-const SHIMMER =
-  "bg-gradient-to-r from-surface-tertiary via-surface-secondary to-surface-tertiary bg-[length:200%_100%] animate-[skeleton-shimmer_1.4s_ease-in-out_infinite]";
+import { Skel } from "@ui";
 
 function CollectionCardSkeleton({ width }: { width: number }) {
   return (
     <div className="flex shrink-0 flex-col items-start gap-2">
-      <div
-        className={`h-[120px] rounded-2xl ${SHIMMER}`}
-        style={{ width }}
-      />
-      <div className={`h-3 w-20 rounded ${SHIMMER}`} />
-      <div className={`h-3 w-12 rounded ${SHIMMER}`} />
+      <Skel className="h-[120px] rounded-2xl" style={{ width }} />
+      <Skel className="h-3 w-20 rounded" />
+      <Skel className="h-3 w-12 rounded" />
     </div>
   );
 }
@@ -17,12 +13,12 @@ function CollectionCardSkeleton({ width }: { width: number }) {
 function ProductCardSkeleton() {
   return (
     <div className="flex w-full flex-col gap-1.5 overflow-hidden rounded-12 border-[0.75px] border-surface-tertiary bg-surface-primary p-1.5">
-      <div className={`aspect-[3/4.1] w-full rounded-[10px] ${SHIMMER}`} />
-      <div className={`h-3 w-full rounded ${SHIMMER}`} />
-      <div className={`h-3 w-3/4 rounded ${SHIMMER}`} />
-      <div className={`h-4 w-1/2 rounded ${SHIMMER}`} />
-      <div className={`h-4 w-2/3 rounded ${SHIMMER}`} />
-      <div className={`h-9 w-full rounded-lg ${SHIMMER}`} />
+      <Skel className="aspect-[3/4.1] w-full rounded-[10px]" />
+      <Skel className="h-3 w-full rounded" />
+      <Skel className="h-3 w-3/4 rounded" />
+      <Skel className="h-4 w-1/2 rounded" />
+      <Skel className="h-4 w-2/3 rounded" />
+      <Skel className="h-9 w-full rounded-lg" />
     </div>
   );
 }
@@ -35,10 +31,10 @@ export default function WishlistSkeleton() {
 
       {/* Header skeleton: back, title, create CTA */}
       <div className="flex h-14 shrink-0 items-center gap-3 px-4 py-2">
-        <div className={`size-10 rounded-full ${SHIMMER}`} />
-        <div className={`h-5 w-24 rounded ${SHIMMER}`} />
+        <Skel className="size-10 rounded-full" />
+        <Skel className="h-5 w-24 rounded" />
         <div className="ml-auto" />
-        <div className={`h-9 w-20 rounded-full ${SHIMMER}`} />
+        <Skel className="h-9 w-20 rounded-full" />
       </div>
 
       {/* Horizontal collections row */}
@@ -50,8 +46,8 @@ export default function WishlistSkeleton() {
 
       {/* "All Saved Items" header row */}
       <div className="flex shrink-0 items-center justify-between px-4 pb-3 pt-8">
-        <div className={`h-5 w-32 rounded ${SHIMMER}`} />
-        <div className={`h-7 w-16 rounded-full ${SHIMMER}`} />
+        <Skel className="h-5 w-32 rounded" />
+        <Skel className="h-7 w-16 rounded-full" />
       </div>
 
       {/* Product grid skeleton */}

@@ -1,74 +1,8 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { motion } from "framer-motion";
+import type { ReactNode } from "react";
+import { Skel, SkeletonGate } from "@ui";
 import StatusBar from "./StatusBar";
 
-/* ---------- Primitive ---------- */
-
-export function Skel({
-  className="",
-  style,
-}: {
-  className?: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <div
-      className={`relative overflow-hidden bg-[#eef0f3] ${className}`}
-      style={style}
-    >
-      <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/55 to-transparent" />
-    </div>
-  );
-}
-
-/* ---------- Gate ---------- */
-
-/**
- * Wraps a screen so the skeleton silhouette shows for `holdMs` after mount,
- * then crossfades to the real children. Real children only mount once
- * `ready=true`, so heavy animations (Lottie etc.) don't start during the
- * fake-load window.
- */
-export function SkeletonGate({
-  skeleton,
-  children,
-  holdMs = 380,
-  fadeMs = 220,
-}: {
-  skeleton: ReactNode;
-  children: ReactNode;
-  holdMs?: number;
-  fadeMs?: number;
-}) {
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setReady(true), holdMs);
-    return () => clearTimeout(t);
-  }, [holdMs]);
-
-  return (
-    <>
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 1 }}
-        animate={{ opacity: ready ? 0 : 1 }}
-        transition={{ duration: fadeMs / 1000, ease: "easeOut" }}
-      >
-        {skeleton}
-      </motion.div>
-      {ready && (
-        <motion.div
-          className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: fadeMs / 1000, ease: "easeOut" }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </>
-  );
-}
+export { Skel, SkeletonGate };
 
 /* ---------- Shared chrome ---------- */
 

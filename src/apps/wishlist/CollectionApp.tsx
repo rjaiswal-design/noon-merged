@@ -1,4 +1,4 @@
-import { Retune } from "retune";
+import { DevRetune } from "@/shell/DevRetune";
 import CollectionPage from "./components/CollectionPage";
 
 export default function CollectionApp() {
@@ -9,7 +9,7 @@ export default function CollectionApp() {
           <CollectionPage variant="default" />
         </div>
       </div>
-      <Retune />
+      <DevRetune />
     </>
   );
 }

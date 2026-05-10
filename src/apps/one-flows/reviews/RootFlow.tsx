@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
-import { motion } from "motion/react"
+import { motion } from "framer-motion"
 import OrdersScreen from "./screens/OrdersScreen"
 import ReviewTextEntryScreen from "./screens/ReviewTextEntryScreen"
 import MorphLayer from "./flows/MorphLayer"

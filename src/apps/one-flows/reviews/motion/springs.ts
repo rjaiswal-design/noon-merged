@@ -1,7 +1,7 @@
 // Spring/easing presets aligned with the Emil Kowalski / Field DS playbook.
 // Centralized here so timing stays consistent across all motion in the app.
 
-import type { Transition } from "motion/react"
+import type { Transition } from "framer-motion"
 
 // Drawer-style: subtle but perceptible overshoot, ~500ms feel, interruptible.
 // Apple's API form. 0.25 sits in the upper end of Emil's 0.1–0.3 "subtle" band.

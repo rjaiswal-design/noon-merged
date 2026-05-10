@@ -4,7 +4,7 @@ import {
   useMotionValueEvent,
   useTransform,
   type MotionValue,
-} from "motion/react"
+} from "framer-motion"
 import ActiveOrderCard from "./ActiveOrderCard"
 
 interface Props {

@@ -7,7 +7,7 @@ import {
   animate,
   type MotionValue,
   type PanInfo,
-} from "motion/react"
+} from "framer-motion"
 import CaretDownIcon from "../../icons/CaretDownIcon"
 import FilterIcon from "../../icons/FilterIcon"
 import ShipmentCard from "./ShipmentCard"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Retune } from "retune";
+import { DevRetune } from "@/shell/DevRetune";
 import BulkOptionsSheet from "./components/bottomsheets/BulkOptionsSheet";
 import MoveOrCopyItemsSheet from "./components/bottomsheets/MoveOrCopyItemsSheet";
 import RemoveItemsSheet from "./components/bottomsheets/RemoveItemsSheet";
@@ -136,7 +136,7 @@ export default function BottomSheetsApp() {
           </div>
         </div>
       </div>
-      <Retune />
+      <DevRetune />
     </>
   );
 }
