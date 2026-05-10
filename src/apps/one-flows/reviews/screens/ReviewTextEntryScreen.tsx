@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence, motion } from "framer-motion"
 import StatusBar from "../components/primitives/StatusBar"
 import StarIcon from "../icons/StarIcon"
 import CrossIcon from "../icons/CrossIcon"

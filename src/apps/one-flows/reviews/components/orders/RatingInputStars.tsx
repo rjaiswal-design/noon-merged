@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { motion, type Transition } from "motion/react"
+import { motion, type Transition } from "framer-motion"
 import StarIcon from "../../icons/StarIcon"
 import { ratingColor, ratingLoadingFill, type Rating } from "../../utils/ratingColors"
 

@@ -1,4 +1,4 @@
-import { motion } from "motion/react"
+import { motion } from "framer-motion"
 import { EASE_DRAWER } from "../../motion/springs"
 
 // Visual stand-in for the iOS keyboard. Slides up from the bottom when the

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { DevRetune } from "@/shell/DevRetune";
 import "./index.css";
 import ProductList from "./components/ProductList";
