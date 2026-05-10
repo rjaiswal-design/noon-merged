@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageTransition } from '../../components/layout/PageTransition';
 import { ProductCard, NavBar, SearchIcon, StatusBar } from '@ui';
-import { CategoryTabs } from './components/CategoryTabs';
 import { FilterBar } from './components/FilterBar';
 import { productCategories } from '../../data/categories';
 import { fetchByCategory, searchProducts } from '../../api/productsApi';
@@ -32,11 +31,6 @@ function PLPSkeleton() {
           <SkelBlock className="plp-skel-title" />
           <SkelBlock className="plp-skel-icon" />
           <SkelBlock className="plp-skel-icon" />
-        </div>
-        <div className="plp-skel-tabs">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <SkelBlock key={i} className="plp-skel-tab" />
-          ))}
         </div>
       </div>
 
@@ -136,13 +130,6 @@ export default function PLPPage() {
               { icon: <SearchIcon size={24} color="var(--grey-900)" />, label: 'Search', onClick: () => navigate('/search') },
             ]}
           />
-          {!queryParam && (
-            <CategoryTabs
-              categories={productCategories}
-              activeId={activeCategoryId}
-              onSelect={(id) => setActiveCategoryId(id as CategoryId | 'all')}
-            />
-          )}
         </div>
 
         <div className="plp__scroll">
