@@ -6,6 +6,9 @@ import type { Product } from '@/apps/shop/types/product';
 const sample: Product = {
   id: 'p1',
   name: 'Maybelline New York Liquid Foundation, Matte & Poreless',
+  description: 'Matte and poreless liquid foundation for daily wear.',
+  brand: 'Maybelline',
+  category: 'beauty',
   variant: '50 ml',
   images: ['https://images.unsplash.com/photo-1522335789203-aaaa1c3c5544?w=400'],
   sellingPrice: 86,

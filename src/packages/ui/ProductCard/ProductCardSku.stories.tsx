@@ -7,6 +7,9 @@ import { DIRHAM } from '@/apps/shop/data/mockProducts';
 const sample: Product = {
   id: 'sku-1',
   name: 'Apple Airpods Pro 2 Wireless Earbuds',
+  description: 'Premium wireless earbuds with active noise cancellation.',
+  brand: 'Apple',
+  category: 'electronics',
   variant: '',
   images: [
     'https://images-na.ssl-images-amazon.com/images/I/61oCISLE+PL._SX679_.jpg',

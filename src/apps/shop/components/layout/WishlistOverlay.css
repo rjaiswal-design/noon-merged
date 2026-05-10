@@ -1,3 +1,4 @@
+/* Page-mode (full wishlist) iframe — unchanged. */
 .wishlist-overlay {
   position: absolute;
   inset: 0;
@@ -7,10 +8,45 @@
   z-index: 1000;
 }
 
-.wishlist-overlay--drawer {
-  background: transparent;
-}
-
 .wishlist-overlay--page {
   background: var(--colour-neutral-white, #fff);
+}
+
+/* Drawer-mode sheet, rendered in-place inside the shop frame so it stays
+   contextual to the page the heart was tapped on. */
+.wishlist-sheet-root {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.wishlist-sheet-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.8);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.wishlist-sheet-card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* CollectionDrawer is a wishlist-app component that uses .corner-smooth-lg
+   for its avatar masks. That utility lives in the wishlist app's CSS, so
+   we re-declare it here for use inside the shop frame. */
+.corner-smooth-lg {
+  border-radius: 0;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M30,0 C8,0 0,8 0,30 L0,70 C0,92 8,100 30,100 L70,100 C92,100 100,92 100,70 L100,30 C100,8 92,0 70,0 Z' fill='black'/></svg>");
+          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M30,0 C8,0 0,8 0,30 L0,70 C0,92 8,100 30,100 L70,100 C92,100 100,92 100,70 L100,30 C100,8 92,0 70,0 Z' fill='black'/></svg>");
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
 }

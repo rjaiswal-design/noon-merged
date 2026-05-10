@@ -1,58 +1,39 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageTransition } from '../../components/layout/PageTransition';
+import { searchSuggestions, searchProducts, type SearchSuggestion } from '../../api/productsApi';
 import './Search.css';
-
-type Suggestion = {
-  query: string;
-  highlight: string;
-  rest: string;
-  context?: string;
-  to?: string;
-};
-
-const TRENDING: Suggestion[] = [
-  { query: 'maybelline', highlight: 'May', rest: 'belline', context: 'Option A → /mall',           to: '/mall' },
-  { query: 'iphone',     highlight: 'iPh', rest: 'one',     context: 'Option B → /product/p1',     to: '/product/p1' },
-  { query: 'pringles',   highlight: 'Prin', rest: 'gles',   context: 'Option C → /shop/grocery',   to: '/shop/grocery' },
-  { query: 'foundation', highlight: 'Foun', rest: 'dation', context: 'Option D → /shop?q=…',       to: '/shop?q=foundation' },
-  { query: 'categories', highlight: 'Cate', rest: 'gories', context: 'Option E → /categories',     to: '/categories' },
-];
-
-function buildSuggestions(q: string): Suggestion[] {
-  const trimmed = q.trim();
-  if (!trimmed) return TRENDING;
-  const cap = trimmed[0].toUpperCase() + trimmed.slice(1);
-  return [
-    { query: trimmed, highlight: cap, rest: '' },
-    { query: `${trimmed} for kids`,        highlight: cap, rest: ' for kids',         context: 'in board games' },
-    { query: `${trimmed} for adults`,      highlight: cap, rest: ' for adults',       context: 'in board games' },
-    { query: `${trimmed} for PlayStation 5`, highlight: cap, rest: ' for PlayStation 5', context: 'in electronics' },
-    { query: `${trimmed}ir controller`,    highlight: cap, rest: 'ir controller',     context: 'in electronics' },
-  ];
-}
 
 export default function SearchPage() {
   const navigate = useNavigate();
   const [q, setQ] = useState('');
+  const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
+  const [total, setTotal] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
-  const submit = (query: string, to?: string) => {
-    if (to) {
-      navigate(to);
-      return;
-    }
+  // Debounced fuzzy lookup. 150 ms of quiet before we hit the index — feels
+  // instant while keeping the user's typing animation smooth.
+  useEffect(() => {
+    const t = setTimeout(async () => {
+      const [s, r] = await Promise.all([
+        searchSuggestions(q),
+        q.trim() ? searchProducts(q) : Promise.resolve({ results: [], total: 0 }),
+      ]);
+      setSuggestions(s);
+      setTotal(r.total);
+    }, 150);
+    return () => clearTimeout(t);
+  }, [q]);
+
+  const submit = (query: string) => {
     const trimmed = query.trim();
     if (!trimmed) return;
     navigate(`/shop?q=${encodeURIComponent(trimmed)}`);
   };
-
-  const suggestions = buildSuggestions(q);
-  const total = q.trim() ? 747 : 0;
 
   return (
     <PageTransition>
@@ -95,20 +76,16 @@ export default function SearchPage() {
 
       <ul className="search-results">
         {suggestions.map((s, i) => (
-          <li key={`${s.query}-${i}`}>
+          <li key={`${s.productId}-${i}`}>
             <button
               type="button"
-              onClick={() => submit(s.query, s.to)}
+              onClick={() => submit(s.query)}
               className="search-result"
             >
               <span className="search-result__text">
                 <strong>{s.highlight}</strong>{s.rest}
               </span>
-              {i === 0 && q.trim() ? (
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="search-result__use">
-                  <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#666D85" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              ) : s.context ? (
+              {s.context ? (
                 <span className="search-result__chip">{s.context}</span>
               ) : null}
             </button>
@@ -123,7 +100,7 @@ export default function SearchPage() {
             >
               <span className="search-result__text">
                 <span className="search-result__all-line">Show all results for <strong>{q.trim()}</strong></span>
-                <span className="search-result__all-count">{total} results</span>
+                <span className="search-result__all-count">{total} {total === 1 ? 'result' : 'results'}</span>
               </span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="search-result__use">
                 <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#666D85" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />

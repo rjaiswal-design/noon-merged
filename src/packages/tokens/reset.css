@@ -35,3 +35,19 @@ select,
 textarea {
   font-family: inherit;
 }
+
+/* ── Global scrollbar removal ────────────────────────────────────────────
+   Hide scrollbars on every scrollable element across the app. Scrolling
+   still works (touch / wheel / keyboard) — only the visual track is hidden.
+   Firefox + IE/Edge use property-level hints; WebKit/Blink uses the
+   pseudo-element. */
+* {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE 10+ / old Edge */
+}
+
+*::-webkit-scrollbar {           /* Chrome, Safari, modern Edge */
+  width: 0;
+  height: 0;
+  display: none;
+}

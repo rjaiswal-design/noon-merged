@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
 import type { Product } from '@/apps/shop/types/product';
+import { getSuggestedCollection } from '@/apps/shop/data/suggestedCollection';
 import { StarFilled } from '../icons';
 import { AddToCart } from '../AddToCart/AddToCart';
 import SmoothCorners from '../SmoothCorners';
@@ -72,12 +73,19 @@ export function ProductCardSku({
           <div className="psku__tag">{product.tag.label}</div>
         )}
 
-        <div className="psku__heart">
-          <WishlistHeart
-            wishlisted={wishlisted}
-            onToggle={() => openWishlist(product.id, product.images[0])}
-          />
-        </div>
+        <WishlistHeart
+          className="psku__heart"
+          wishlisted={wishlisted}
+          onToggle={() =>
+            openWishlist(
+              product.id,
+              product.images[0],
+              getSuggestedCollection(product),
+            )
+          }
+          size={16}
+          variant="bare"
+        />
 
         <div className="psku__plus" onClick={(e) => e.stopPropagation()}>
           <AddToCart count={count} onAdd={handleAdd} onRemove={handleRemove} />
@@ -110,10 +118,9 @@ export function ProductCardSku({
         <NudgeFlipper seed={product.id.length} />
 
         {expressLabel && (
-          <img className="psku__express" src={expressTodayTag} alt="express today" />
+          <img className="psku__express" src={expressTodayTag} alt={`express ${expressLabel}`} />
         )}
       </div>
     </article>
   );
 }
-

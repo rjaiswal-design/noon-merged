@@ -8,18 +8,10 @@ import type { Variants } from 'framer-motion';
 import { CategoryCard } from '../../components/ui/CategoryCard';
 import { homeCategories as categories } from '../../data/categories';
 import type { Product } from '../../types/product';
+import { fetchHomeRails } from '../../api/productsApi';
 import { useWishlistStore } from '@state/wishlistStore';
 import { useAddressSheetStore } from '@state/addressSheetStore';
 import './Home.css';
-
-/* ─── Product / chip image assets ──────────────────────────────────────── */
-const IMG_ELEC       = 'https://www.figma.com/api/mcp/asset/094c04ac-f79c-4c06-8ade-22181db0946e';
-const IMG_BEAUTY     = 'https://www.figma.com/api/mcp/asset/0610acfc-1bd3-4c9c-90f2-86e19fa48666';
-const IMG_PHONECASE  = 'https://www.figma.com/api/mcp/asset/a42626b0-83fb-4d93-b5e9-2b32fa20f110';
-const IMG_APPLIANCES = 'https://www.figma.com/api/mcp/asset/96562933-022c-469f-9000-6852b861e163';
-const IMG_HAIR       = 'https://www.figma.com/api/mcp/asset/052d52c1-41b4-40a3-b7d4-1887d45502da';
-const IMG_AIRPODS    = 'https://www.figma.com/api/mcp/asset/094c04ac-f79c-4c06-8ade-22181db0946e';
-const IMG_WASHER     = 'https://www.figma.com/api/mcp/asset/05966a58-1b4c-4271-b032-1e826704f394';
 
 /* ─── Static data ──────────────────────────────────────────────────────── */
 
@@ -31,8 +23,6 @@ const recommendedChips = [
   { label: 'Home',        icon: '/icon-chip-home.svg' },
 ] as const;
 type ChipLabel = typeof recommendedChips[number]['label'];
-
-const DIRHAM = 'د.إ';
 
 // Each home widget runs its own per-tile stagger triggered as the section
 // scrolls into view. Subtle rise + fade so it reads as content settling in
@@ -53,33 +43,7 @@ const tilesContainer: Variants = {
   },
 };
 
-const recProducts: Record<ChipLabel, Product[]> = {
-  'For you': [
-    { id: 'a1', name: 'Apple Airpods Pro 2 Wireless Earbuds',    variant: '',  images: [IMG_AIRPODS],   sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128, tag: { label: 'Best Seller', variant: 'bestseller' }, isSponsored: true },
-    { id: 'a2', name: 'Whirlpool 7 kg Magic Clean',              variant: '',  images: [IMG_WASHER],    sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128, isSponsored: true },
-    { id: 'a3', name: 'MAYNOS Suction Phone Case Mount',         variant: '',  images: [IMG_PHONECASE], sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-  ],
-  Electronics: [
-    { id: 'e1', name: 'Apple Airpods Pro 2 Wireless Earbuds',    variant: '',  images: [IMG_AIRPODS],   sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128, tag: { label: 'Best Seller', variant: 'bestseller' } },
-    { id: 'e2', name: 'Whirlpool 7 kg Magic Clean',              variant: '',  images: [IMG_WASHER],    sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-    { id: 'e3', name: 'MAYNOS Suction Phone Case Mount',         variant: '',  images: [IMG_PHONECASE], sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-  ],
-  Beauty: [
-    { id: 'b1', name: 'Maybelline Foundation Matte & Poreless',  variant: '',  images: [IMG_BEAUTY],    sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128, tag: { label: 'Best Seller', variant: 'bestseller' } },
-    { id: 'b2', name: 'L\'Oreal Hair Care Shampoo',               variant: '',  images: [IMG_HAIR],      sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-    { id: 'b3', name: 'Apple Airpods Pro 2 Wireless Earbuds',    variant: '',  images: [IMG_AIRPODS],   sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-  ],
-  Fashion: [
-    { id: 'f1', name: 'MAYNOS Suction Phone Case Mount',         variant: '',  images: [IMG_PHONECASE], sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128, tag: { label: 'Best Seller', variant: 'bestseller' } },
-    { id: 'f2', name: 'Apple Airpods Pro 2 Wireless Earbuds',    variant: '',  images: [IMG_AIRPODS],   sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-    { id: 'f3', name: 'Whirlpool 7 kg Magic Clean',              variant: '',  images: [IMG_WASHER],    sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-  ],
-  Home: [
-    { id: 'h1', name: 'Whirlpool 7 kg Magic Clean',              variant: '',  images: [IMG_WASHER],    sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128, tag: { label: 'Best Seller', variant: 'bestseller' } },
-    { id: 'h2', name: 'Apple Airpods Pro 2 Wireless Earbuds',    variant: '',  images: [IMG_AIRPODS],   sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-    { id: 'h3', name: 'MAYNOS Suction Phone Case Mount',         variant: '',  images: [IMG_PHONECASE], sellingPrice: 899, originalPrice: 1399, currency: DIRHAM, rating: 4.3, reviewCount: 128 },
-  ],
-};
+type RailsByChip = Partial<Record<ChipLabel, Product[]>>;
 
 
 /* ─── Icons ────────────────────────────────────────────────────────────── */
@@ -314,9 +278,34 @@ function ShopByCategory({
 }
 
 /* ─── Recommended for you — uses existing ProductCard component ────────── */
-function RecommendedForYou({ scrollRoot }: { scrollRoot: React.RefObject<HTMLElement | null> }) {
+function RecRailSkeleton() {
+  return (
+    <div className="home-rec__rail" aria-busy="true" aria-label="Loading recommendations">
+      {Array.from({ length: 3 }).map((_, i) => (
+        <div
+          key={i}
+          className="home-rec__card-wrap"
+          style={{
+            background: '#eef0f4',
+            borderRadius: 12,
+            height: 280,
+            animation: 'plp-skel-pulse 1.2s ease-in-out infinite',
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function RecommendedForYou({
+  scrollRoot,
+  railsByChip,
+}: {
+  scrollRoot: React.RefObject<HTMLElement | null>;
+  railsByChip: RailsByChip | null;
+}) {
   const [active, setActive] = useState<ChipLabel>('For you');
-  const products = recProducts[active];
+  const products = railsByChip?.[active];
 
   return (
     <section className="home-section" aria-label="Recommended for you">
@@ -329,24 +318,27 @@ function RecommendedForYou({ scrollRoot }: { scrollRoot: React.RefObject<HTMLEle
         ariaLabel="Recommended categories"
       />
 
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active}
-          className="home-rec__rail"
-          variants={tilesContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, root: scrollRoot, margin: '0px 0px -10% 0px' }}
-          exit={{ opacity: 0, y: -6, transition: { duration: 0.18 } }}
-        >
-          {products.map((p) => (
-            <motion.div className="home-rec__card-wrap" key={p.id} variants={tileItem}>
-              <ProductCard product={p} />
-            </motion.div>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+      {!products ? (
+        <RecRailSkeleton />
+      ) : (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            className="home-rec__rail"
+            variants={tilesContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, root: scrollRoot, margin: '0px 0px -10% 0px' }}
+            exit={{ opacity: 0, y: -6, transition: { duration: 0.18 } }}
+          >
+            {products.map((p) => (
+              <motion.div className="home-rec__card-wrap" key={p.id} variants={tileItem}>
+                <ProductCard product={p} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      )}
     </section>
   );
 }
@@ -395,6 +387,22 @@ export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const openAddressSheet = useAddressSheetStore((s) => s.openSheet);
   const [morphEnd, setMorphEnd] = useState(MORPH_END_FALLBACK);
+  const [railsByChip, setRailsByChip] = useState<RailsByChip | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchHomeRails().then((rails) => {
+      if (cancelled) return;
+      const map: RailsByChip = {};
+      for (const { chip, products } of rails) {
+        map[chip as ChipLabel] = products;
+      }
+      setRailsByChip(map);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const { scrollY } = useScroll({ container: scrollRef });
   const progress = useTransform(
@@ -461,7 +469,7 @@ export default function HomePage() {
         <div ref={firstSectionRef}>
           <ShopByCategory scrollRoot={scrollRef} className="home-section--snap-start" />
         </div>
-        <RecommendedForYou scrollRoot={scrollRef} />
+        <RecommendedForYou scrollRoot={scrollRef} railsByChip={railsByChip} />
         <OffersForYou scrollRoot={scrollRef} />
         <div className="home-page__spacer" />
       </div>

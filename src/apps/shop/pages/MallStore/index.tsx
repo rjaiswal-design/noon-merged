@@ -189,6 +189,9 @@ const mallProducts: Product[] = [
   {
     id: 'mall-1',
     name: 'Maybelline New York Liquid Foundation, Matte & Poreless, Full',
+    description: 'Matte and poreless liquid foundation for daily wear.',
+    brand: 'Maybelline',
+    category: 'beauty',
     variant: '50 ml',
     images: [IMG_PRODUCT_1],
     sellingPrice: 86,
@@ -202,6 +205,9 @@ const mallProducts: Product[] = [
   {
     id: 'mall-2',
     name: 'Maybelline New York Liquid Foundation Photoready Tube',
+    description: 'Photoready foundation with buildable medium-coverage finish.',
+    brand: 'Maybelline',
+    category: 'beauty',
     variant: '50 ml',
     images: [IMG_PRODUCT_2],
     sellingPrice: 86,
@@ -214,6 +220,9 @@ const mallProducts: Product[] = [
   {
     id: 'mall-3',
     name: 'Maybelline New York Liquid Foundation Soft Matte',
+    description: 'Long-wear soft-matte liquid foundation.',
+    brand: 'Maybelline',
+    category: 'beauty',
     variant: '50 ml',
     images: [IMG_PRODUCT_3],
     sellingPrice: 94,
@@ -226,6 +235,9 @@ const mallProducts: Product[] = [
   {
     id: 'mall-4',
     name: 'Maybelline New York Liquid Foundation Compact Kit',
+    description: 'Compact foundation kit with mirror and applicator.',
+    brand: 'Maybelline',
+    category: 'beauty',
     variant: '50 ml',
     images: [IMG_PRODUCT_4],
     sellingPrice: 86,

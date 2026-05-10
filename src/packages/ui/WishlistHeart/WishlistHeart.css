@@ -1,21 +1,25 @@
 .wh {
-  width: 24px;
-  height: 24px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 0;
   padding: 0;
+  cursor: pointer;
+  border-radius: 999px;
   -webkit-tap-highlight-color: transparent;
+}
+
+.wh--tile {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.wh--bare {
+  background: transparent;
+  box-shadow: none;
 }
 
 .wh__stack {
   position: relative;
-  width: 16px;
-  height: 16px;
   display: inline-block;
   line-height: 0;
 }
@@ -31,6 +35,7 @@
   display: block;
   line-height: 0;
   clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
 }
 
 .wh__fill svg {

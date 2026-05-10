@@ -234,6 +234,10 @@ function CreateNewCollectionCard({ onPress }: { onPress?: () => void }) {
 
 export type DrawerProduct = {
   image?: string;
+  /** Override the label of the suggested-new-collection row. When the host
+   *  page knows what bucket this product belongs to (e.g. "Smart Speakers"
+   *  for a HomePod) it should pass that here so the sheet feels contextual. */
+  collectionName?: string;
 };
 
 export type CollectionDrawerProps = {
@@ -266,6 +270,8 @@ export default function CollectionDrawer({
   const withOverrides = (c: Collection): Collection => ({
     ...c,
     selected: selectedIds.has(c.id),
+    name:
+      c.suggested && product?.collectionName ? product.collectionName : c.name,
     thumb:
       product?.image && (c.id === "all" || c.suggested)
         ? product.image

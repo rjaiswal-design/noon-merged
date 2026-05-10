@@ -1,10 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { useCartStore } from '@state/cartStore';
 import { useWishlistStore } from '@state/wishlistStore';
 import type { Product } from '@/apps/shop/types/product';
+import { getSuggestedCollection } from '@/apps/shop/data/suggestedCollection';
 import { AddToCart } from '../AddToCart/AddToCart';
-import { HeartOutline, HeartFilled, StarFilled, MoonIcon } from '../icons';
+import { StarFilled, MoonIcon } from '../icons';
+import { WishlistHeart } from '../WishlistHeart/WishlistHeart';
 import { NudgeFlipper } from './NudgeFlipper';
 import './ProductCard.css';
 
@@ -14,8 +15,6 @@ const TAG_STYLES: Record<string, { bg: string; color: string }> = {
   hot:        { bg: 'var(--orange-700)', color: 'var(--colour-neutral-white)' },
   sale:       { bg: 'var(--red-700)', color: 'var(--colour-neutral-white)' },
 };
-
-const PDP_ROUTE = '/product/galaxy-s25-ultra';
 
 interface ProductCardProps {
   product: Product;
@@ -65,7 +64,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article
       className="product-card"
-      onClick={() => navigate(PDP_ROUTE, { state: { from: `${location.pathname}${location.search}` } })}
+      onClick={() => navigate(`/product/${product.id}`, { state: { from: `${location.pathname}${location.search}` } })}
       role="button"
       tabIndex={0}
     >
@@ -76,6 +75,7 @@ export function ProductCard({ product }: ProductCardProps) {
           src={product.images[imgIndex]}
           alt={product.name}
           loading="lazy"
+          decoding="async"
         />
 
 
@@ -90,20 +90,19 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
 
         {/* Wishlist */}
-        <motion.button
+        <WishlistHeart
           className="product-card__wishlist"
-          onClick={(e) => {
-            e.stopPropagation();
-            openWishlist(product.id, product.images[imgIndex]);
-          }}
-          whileTap={{ scale: 0.85 }}
-          aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-        >
-          {wishlisted
-            ? <HeartFilled size={16} color="var(--red-600)" />
-            : <HeartOutline size={16} color="var(--grey-700)" />
+          wishlisted={wishlisted}
+          onToggle={() =>
+            openWishlist(
+              product.id,
+              product.images[imgIndex],
+              getSuggestedCollection(product),
+            )
           }
-        </motion.button>
+          size={16}
+          variant="bare"
+        />
 
         {/* CTA overlay: Ad label + ATC; when active, dots move here */}
         <div className="product-card__cta">
