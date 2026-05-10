@@ -70,12 +70,6 @@ const SERVICE_TILES: TileSpec[] = [
     compact: <img src="/logo-noon-compact.svg" alt="noon" style={{ width: 58, height: 15 }} />,
   },
   {
-    bg: 'rgba(255,255,255,0.95)',
-    aria: 'super mall',
-    full: <img src="/logo-supermall.svg" alt="super mall" className="home-tile__center-logo" style={{ width: 54, height: 34 }} />,
-    compact: <img src="/logo-supermall-compact.svg" alt="super mall" style={{ width: 63, height: 15 }} />,
-  },
-  {
     bg: '#FFFFFF',
     aria: 'noon FOOD',
     full: <img src="/tile-food.png" alt="noon FOOD" className="home-tile__fill" />,
@@ -381,7 +375,6 @@ const MORPH_START = 8;
 const MORPH_END_FALLBACK = 240;
 
 export default function HomePage() {
-  const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement>(null);
   const firstSectionRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -449,13 +442,7 @@ export default function HomePage() {
     return unsub;
   }, [progress]);
 
-  const handleTileTap = (aria: string) => {
-    if (aria === 'super mall') {
-      // Navigate immediately. The destination owns its own loading skeleton
-      // per docs/INTERACTION_DESIGN.md §2 ("one skeleton per screen load").
-      navigate('/mall');
-    }
-  };
+  const handleTileTap = (_aria: string) => {};
 
   return (
     <PageTransition>
