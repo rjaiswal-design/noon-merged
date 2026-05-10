@@ -8,13 +8,15 @@ type Suggestion = {
   highlight: string;
   rest: string;
   context?: string;
+  to?: string;
 };
 
 const TRENDING: Suggestion[] = [
-  { query: 'maybelline', highlight: 'May', rest: 'belline', context: 'in beauty' },
-  { query: 'iphone',     highlight: 'iPh', rest: 'one',     context: 'in electronics' },
-  { query: 'pringles',   highlight: 'Prin', rest: 'gles',   context: 'in grocery' },
-  { query: 'foundation', highlight: 'Foun', rest: 'dation', context: 'in beauty' },
+  { query: 'maybelline', highlight: 'May', rest: 'belline', context: 'Option A → /mall',           to: '/mall' },
+  { query: 'iphone',     highlight: 'iPh', rest: 'one',     context: 'Option B → /product/p1',     to: '/product/p1' },
+  { query: 'pringles',   highlight: 'Prin', rest: 'gles',   context: 'Option C → /shop/grocery',   to: '/shop/grocery' },
+  { query: 'foundation', highlight: 'Foun', rest: 'dation', context: 'Option D → /shop?q=…',       to: '/shop?q=foundation' },
+  { query: 'categories', highlight: 'Cate', rest: 'gories', context: 'Option E → /categories',     to: '/categories' },
 ];
 
 function buildSuggestions(q: string): Suggestion[] {
@@ -39,7 +41,11 @@ export default function SearchPage() {
     inputRef.current?.focus();
   }, []);
 
-  const submit = (query: string) => {
+  const submit = (query: string, to?: string) => {
+    if (to) {
+      navigate(to);
+      return;
+    }
     const trimmed = query.trim();
     if (!trimmed) return;
     navigate(`/shop?q=${encodeURIComponent(trimmed)}`);
@@ -92,7 +98,7 @@ export default function SearchPage() {
           <li key={`${s.query}-${i}`}>
             <button
               type="button"
-              onClick={() => submit(s.query)}
+              onClick={() => submit(s.query, s.to)}
               className="search-result"
             >
               <span className="search-result__text">
