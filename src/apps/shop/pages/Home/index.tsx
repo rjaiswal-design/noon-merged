@@ -9,7 +9,6 @@ import { CategoryCard } from '../../components/ui/CategoryCard';
 import { homeCategories as categories } from '../../data/categories';
 import type { Product } from '../../types/product';
 import { fetchHomeRails } from '../../api/productsApi';
-import { useWishlistStore } from '@state/wishlistStore';
 import { useAddressSheetStore } from '@state/addressSheetStore';
 import './Home.css';
 
@@ -120,7 +119,6 @@ type HomeHeaderProps = {
 
 function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderProps) {
   const navigate = useNavigate();
-  const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
 
   // Continuous, scroll-driven morph values. Bound directly to scroll progress
   // (no spring) so geometry tracks the user's input 1:1 — no perceived lag on
@@ -206,7 +204,7 @@ function HomeHeader({ progress, scrolled, onAddressTap, onTileTap }: HomeHeaderP
           type="button"
           className="home-header__heart"
           aria-label="Wishlist"
-          onClick={openFullWishlist}
+          onClick={() => navigate('/wishlist')}
         >
           <img src="/icon-heart-blue.svg" alt="" width={36} height={36} />
         </button>

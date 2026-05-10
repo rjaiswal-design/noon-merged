@@ -554,7 +554,7 @@ function TrustMarkers() {
           return (
             <div
               key={item.label}
-              className="flex h-20 w-[94px] shrink-0 flex-col items-center justify-center gap-1 rounded-xl px-2 py-3.5 bg-white border border-solid border-bluegray-200"
+              className="flex h-20 w-[94px] shrink-0 flex-col items-center justify-center gap-1 rounded-xl px-2 py-3.5 bg-white border border-solid border-border-primary"
             >
               <img src={item.icon} alt="" className="h-6 w-6 object-contain" />
               <p

@@ -117,7 +117,7 @@ function AddToCartButton({ onClick }: { onClick?: () => void }) {
           className="block h-2 w-2"
         />
       </span>
-      <span className="font-primary text-l3 font-semibold text-text-action">
+      <span className="font-primary text-a14 font-semibold text-text-action w-auto shrink-0">
         Add to cart
       </span>
     </button>

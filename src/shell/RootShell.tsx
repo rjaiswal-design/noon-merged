@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { BottomNav } from '@ui/BottomNav';
 import type { Tab } from '@ui/BottomNav/BottomNav';
 import { useCartStore } from '@state/cartStore';
-import { useWishlistStore } from '@state/wishlistStore';
 
 function tabForPath(p: string): Tab | undefined {
   if (p === '/' || p === '') return 'home';
@@ -42,7 +41,6 @@ export function RootShell({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const cartCount = useCartStore((s) => s.itemCount());
-  const openFullWishlist = useWishlistStore((s) => s.openFullWishlist);
 
   const [noonOneShowsNav, setNoonOneShowsNav] = useState(true);
 
@@ -56,12 +54,12 @@ export function RootShell({ children }: { children: ReactNode }) {
         setNoonOneShowsNav(e.data.showHostNav);
       }
       if (e.data?.source === 'noon-one' && e.data.action === 'open-wishlist') {
-        openFullWishlist();
+        navigate('/wishlist');
       }
     };
     window.addEventListener('message', handler);
     return () => window.removeEventListener('message', handler);
-  }, [openFullWishlist]);
+  }, [navigate]);
 
   const activeTab = tabForPath(location.pathname);
   const hidden = shouldHide(location.pathname, location.search, noonOneShowsNav);
