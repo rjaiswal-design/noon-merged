@@ -5,8 +5,8 @@ export type HomeCategory = {
   image: string;
 };
 
-// 6 noon-style product categories powering PLP filter tabs, MallStore grids,
-// and Home rails. Image paths reuse existing local SVG assets.
+// 6 noon-style product categories powering PLP filter tabs and Home rails.
+// Image paths reuse existing local SVG assets.
 export const productCategories: Array<Category & { id: CategoryId | 'all' }> = [
   { id: 'all',         label: 'All items',   image: '/categories/cat-r1-1.svg' },
   { id: 'beauty',      label: 'Beauty',      image: '/categories/cat-r1-1.svg' },
