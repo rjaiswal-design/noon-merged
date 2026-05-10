@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router-dom';
 import { ProductCardSku } from './ProductCardSku';
 import type { Product } from '@/apps/shop/types/product';
+import { DIRHAM } from '@/apps/shop/data/mockProducts';
 
 const sample: Product = {
   id: 'sku-1',
@@ -12,7 +13,7 @@ const sample: Product = {
   ],
   sellingPrice: 899,
   originalPrice: 1399,
-  currency: 'dhm',
+  currency: DIRHAM,
   rating: 4.3,
   reviewCount: 0,
   tag: { label: 'Best Seller', variant: 'bestseller' },
