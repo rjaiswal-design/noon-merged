@@ -23,9 +23,9 @@ import './Cart.css';
 const DH = 'dh';
 const DIRHAM = 'د.إ';
 
-const IMG_AIRPODS    = 'https://www.figma.com/api/mcp/asset/094c04ac-f79c-4c06-8ade-22181db0946e';
-const IMG_PHONECASE  = 'https://www.figma.com/api/mcp/asset/a42626b0-83fb-4d93-b5e9-2b32fa20f110';
-const IMG_WASHER     = 'https://www.figma.com/api/mcp/asset/05966a58-1b4c-4271-b032-1e826704f394';
+const IMG_AIRPODS    = '/products/airpods.png';
+const IMG_PHONECASE  = '/products/phonecase.png';
+const IMG_WASHER     = '/products/washer.png';
 
 /* ─── Inline icon helpers ─────────────────────────────────────────────── */
 function BoltIcon({ size = 14, color = '#2122b8' }: { size?: number; color?: string }) {

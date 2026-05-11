@@ -1,9 +1,9 @@
 import { DIRHAM, mockProducts } from './mockProducts';
 import type { Product } from '../types/product';
 
-const IMG_PDP_HERO = 'https://www.figma.com/api/mcp/asset/944f28ab-549f-4595-810d-fb8ce60b1552';
-const IMG_COLOR_PINK = 'https://www.figma.com/api/mcp/asset/2b1ebe38-b6c6-4c00-b92a-ed2955ba8ebb';
-const IMG_COLOR_JADE = 'https://www.figma.com/api/mcp/asset/3b517896-dc55-47b0-98fe-e2aa98b0e8fe';
+const IMG_PDP_HERO = '/products/airpods.png';
+const IMG_COLOR_PINK = '/categories/beauty.png';
+const IMG_COLOR_JADE = '/categories/beauty2.png';
 
 export interface PDPOption {
   label: string;

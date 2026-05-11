@@ -1,8 +1,8 @@
 import type { Category, Product } from '../types/product';
 
 // Figma asset URLs — replace with Cloudinary public IDs once uploaded
-const IMG_MAYBELLINE = 'https://www.figma.com/api/mcp/asset/1dacbd62-48c6-4de9-8f68-4abc61423b1f';
-const IMG_BIODERMA   = 'https://www.figma.com/api/mcp/asset/db212daa-5cb9-4d0f-8618-05246ea39327';
+const IMG_MAYBELLINE = '/categories/beauty.png';
+const IMG_BIODERMA   = '/categories/beauty2.png';
 
 // Noontree PUA glyph U+E001 = Dirham symbol (ﺪ with stroke)
 export const DIRHAM = '';

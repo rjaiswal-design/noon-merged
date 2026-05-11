@@ -13,13 +13,13 @@ import { useAddressSheetStore } from '@state/addressSheetStore';
 import './Home.css';
 
 /* ─── Product / chip image assets ──────────────────────────────────────── */
-const IMG_ELEC       = 'https://www.figma.com/api/mcp/asset/094c04ac-f79c-4c06-8ade-22181db0946e';
-const IMG_BEAUTY     = 'https://www.figma.com/api/mcp/asset/0610acfc-1bd3-4c9c-90f2-86e19fa48666';
-const IMG_PHONECASE  = 'https://www.figma.com/api/mcp/asset/a42626b0-83fb-4d93-b5e9-2b32fa20f110';
-const IMG_APPLIANCES = 'https://www.figma.com/api/mcp/asset/96562933-022c-469f-9000-6852b861e163';
-const IMG_HAIR       = 'https://www.figma.com/api/mcp/asset/052d52c1-41b4-40a3-b7d4-1887d45502da';
-const IMG_AIRPODS    = 'https://www.figma.com/api/mcp/asset/094c04ac-f79c-4c06-8ade-22181db0946e';
-const IMG_WASHER     = 'https://www.figma.com/api/mcp/asset/05966a58-1b4c-4271-b032-1e826704f394';
+const IMG_ELEC       = '/categories/electronics.png';
+const IMG_BEAUTY     = '/categories/beauty.png';
+const IMG_PHONECASE  = '/products/phonecase.png';
+const IMG_APPLIANCES = '/categories/appliances.png';
+const IMG_HAIR       = '/categories/haircare.png';
+const IMG_AIRPODS    = '/products/airpods.png';
+const IMG_WASHER     = '/products/washer.png';
 
 /* ─── Static data ──────────────────────────────────────────────────────── */
 
